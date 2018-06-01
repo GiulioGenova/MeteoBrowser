@@ -1,12 +1,27 @@
 
-if (!require("pacman")) install.packages("pacman")
+#if (!require("pacman")) install.packages("pacman")
 
 #pacman::p_load(package1, package2, package_n)
-pac=c("dplyr","readr","tibble","tidyr","spdplyr","lubridate","pbapply",
-      "shiny","shinydashboard","shinyjs","DT","httr","leaflet","leaflet.extras",
-      "jsonlite","geojsonio","stringr")
-pacman::p_load(char = pac)
-
+#pac=c("dplyr","readr","tibble","tidyr","spdplyr","lubridate","pbapply",
+  #    "shiny","shinydashboard","shinyjs","DT","httr","leaflet","leaflet.extras",
+  #    "jsonlite","geojsonio","stringr")
+#pacman::p_load(char = pac)
+if (!require("dplyr")) install.packages("dplyr")
+if (!require("readr")) install.packages("readr")
+if (!require("tibble")) install.packages("tibble")
+if (!require("tidyr")) install.packages("tidyr")
+if (!require("spdplyr")) install.packages("spdplyr")
+if (!require("lubridate")) install.packages("lubridate")
+if (!require("shiny")) install.packages("shiny")
+if (!require("shinydashboard")) install.packages("shinydashboard")
+if (!require("shinyjs")) install.packages("shinyjs")
+if (!require("DT")) install.packages("DT")
+if (!require("httr")) install.packages("httr")
+if (!require("leaflet")) install.packages("leaflet")
+if (!require("leaflet.extras")) install.packages("leaflet.extras")
+if (!require("jsonlite")) install.packages("jsonlite")
+if (!require("geojsonio")) install.packages("geojsonio")
+if (!require("stringr")) install.packages("stringr")
 
 #install.packages("pbapply")
 #install.packages("DT")
