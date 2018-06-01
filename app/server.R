@@ -109,7 +109,7 @@ server <- function(input, output,session) {
    # session$reload()
     #return()
   #})
-  output$table<-renderDT(tot_tab, filter = 'top',rownames=F,
+  output$table<-renderDT(tot_tab, filter = 'top',rownames=F,selection="none",
                          #,server = T,
                          options = list(autoWidth = F,scrollX=T)
                          )#,server = TRUE,options=list(pageLength = 100,scrollX = T),  escape = FALSE
