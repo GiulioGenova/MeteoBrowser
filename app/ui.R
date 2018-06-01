@@ -25,7 +25,7 @@ library(leaflet)
 library(leaflet.extras)
 library(readr)
 library(DT)
-library(shinycssloaders)
+#library(shinycssloaders)
 #library(rgdal)
 #library(shinyBS)
 
