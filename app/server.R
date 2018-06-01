@@ -1,28 +1,7 @@
-pac1<-dplyr
-pac2<-readr
-pac3<-tibble
-pac4<-tidyr
-
-pac5<-spdplyr
-pac6<-lubridate
-pac7<-pbapply
-
-pac8<-shiny
-pac9<-shinydashboard
-pac10<-shinyjs
-
-pac11<-DT
-pac12<-httr
-
-pac13<-leaflet
-pac14<-leaflet.extras
-
-pac15<-jsonlite
-pac16<-geojsonio
-pac17<-stringr
-
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(pac1, pac2, pac3,pac4,pac5,pac6,pac7,pac8,pac9,pac10,pac11,pac12,pac13,pac14,pac15,pac16,pac17)
+pacman::p_load(dplyr, readr, tibble,tidyr,spdplyr,lubridate,
+               pbapply,shiny,shinydashboard,shinyjs,DT,httr,
+               leaflet,leaflet.extras,jsonlite,geojsonio,stringr)
 #install.packages("pbapply")
 #install.packages("DT")
 #devtools::install_github("ropensci/plotly")
@@ -36,26 +15,26 @@ pacman::p_load(pac1, pac2, pac3,pac4,pac5,pac6,pac7,pac8,pac9,pac10,pac11,pac12,
 #library(DBI)
 #library(RMariaDB)
 #library(MonalisR)
-library(dplyr)
+#library(dplyr)
 #library(dbplyr)
-library(lubridate)
+#library(lubridate)
 #library(plotly)
-library(shinydashboard)
-library(shiny)
-library(leaflet)
-library(leaflet.extras)
-library(readr)
+#library(shinydashboard)
+#library(shiny)
+#library(leaflet)
+#library(leaflet.extras)
+#library(readr)
 #library(rgdal)
-library(pbapply)
-library(tidyr)
-library(spdplyr)
-library(DT)
-library(httr)
-library(jsonlite)
-library(geojsonio)
-library(stringr)
-library(tibble)
-library(shinyjs)
+#library(pbapply)
+#library(tidyr)
+#library(spdplyr)
+#library(DT)
+#library(httr)
+#library(jsonlite)
+#library(geojsonio)
+#library(stringr)
+#library(tibble)
+#library(shinyjs)
 #source("//ABZ02FST.EURAC.EDU/AlpEnv/Projekte/SBR/01_Workspace/GeG/resample_SBR.R")
 #source("H:/Projekte/SBR/09_R_Script/resample_SBR_func.R")
 #wd<-setwd("H:/Projekte/SBR/01_Workspace/GeG/Shiny_wd")
