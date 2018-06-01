@@ -1,25 +1,25 @@
-pac1<-"dplyr"
-pac2<-"readr"
-pac3<-"tibble"
-pac4<-"tidyr"
+pac1<-dplyr
+pac2<-readr
+pac3<-tibble
+pac4<-tidyr
 
-pac5<-"spdplyr"
-pac6<-"lubridate"
-pac7<-"pbapply"
+pac5<-spdplyr
+pac6<-lubridate
+pac7<-pbapply
 
-pac8<-"shiny"
-pac9<-"shinydashboard"
-pac10<-"shinyjs"
+pac8<-shiny
+pac9<-shinydashboard
+pac10<-shinyjs
 
-pac11<-"DT"
-pac12<-"httr"
+pac11<-DT
+pac12<-httr
 
-pac13<-"leaflet"
-pac14<-"leaflet.extras"
+pac13<-leaflet
+pac14<-leaflet.extras
 
-pac15<-"jsonlite"
-pac16<-"geojsonio"
-pac17<-"stringr"
+pac15<-jsonlite
+pac16<-geojsonio
+pac17<-stringr
 
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(pac1, pac2, pac3,pac4,pac5,pac6,pac7,pac8,pac9,pac10,pac11,pac12,pac13,pac14,pac15,pac16,pac17)
