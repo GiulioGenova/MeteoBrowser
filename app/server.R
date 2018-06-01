@@ -1,7 +1,13 @@
+
 if (!require("pacman")) install.packages("pacman")
-pacman::p_load(dplyr, readr, tibble,tidyr,spdplyr,lubridate,
-               pbapply,shiny,shinydashboard,shinyjs,DT,httr,
-               leaflet,leaflet.extras,jsonlite,geojsonio,stringr)
+
+#pacman::p_load(package1, package2, package_n)
+pac=c("dplyr","readr","tibble","tidyr","spdplyr","lubridate","pbapply",
+      "shiny","shinydashboard","shinyjs","DT","httr","leaflet","leaflet.extras",
+      "jsonlite","geojsonio","stringr")
+pacman::p_load(char = pac)
+
+
 #install.packages("pbapply")
 #install.packages("DT")
 #devtools::install_github("ropensci/plotly")
