@@ -236,9 +236,9 @@ server <- function(input, output,session) {
     df=D$documents[[1]] 
     
     if(gather=="wide"){
-      spread=TRUE}else{
+      spread="TRUE"}else{
     
-      spread=FALSE
+      spread="FALSE"
     }
     db=resample_provBz_data(df=df,round=round,spread=spread)
     
