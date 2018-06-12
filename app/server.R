@@ -218,42 +218,35 @@ server <- function(input, output,session) {
   
   output$downloadData <- downloadHandler(
   filename = function() {
-      #station=as.character(input$Station)
-      #startdate<-as.character(input$daterange[1])
-      #enddate<-as.character(input$daterange[2])
-      
-      startdate<-as.character(min(as_date(D$documents[[1]]$TimeStamp)))
-      enddate<-as.character(max(as_date(D$documents[[1]]$TimeStamp)))
-      gather<-input$gather
-      round=input$round
-      nstat=D$documents[[1]]$Station %>% unique %>% length %>% as.character#                     as.character(length(unique(D$documents[[1]]$Station))) 
-      #paste0(station,'_',round,'_',startdate,'_',enddate,'.csv')
+    #station=as.character(input$Station)
+    #startdate<-as.character(input$daterange[1])
+    #enddate<-as.character(input$daterange[2])
+    
+    startdate<-as.character(min(as_date(D$documents[[1]]$TimeStamp)))
+    enddate<-as.character(max(as_date(D$documents[[1]]$TimeStamp)))
+    gather<-input$gather
+    round=input$round
+    nstat=D$documents[[1]]$Station %>% unique %>% length %>% as.character#                     as.character(length(unique(D$documents[[1]]$Station))) 
+    #paste0(station,'_',round,'_',startdate,'_',enddate,'.csv')
     paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.csv')#,round
-    },
-    content = function(con) {
-      
-        
-        if(input$gather=="wide"){
-        round=input$round
-        df=D$documents[[1]] 
-        df=resample(df=df,round=round)
-        
-        db=df%>%
-          spread(key = Sensor,value = Value,drop = T)
-      }else{
-        df=D$documents[[1]]
-        round=input$round
-        df=resample(df=df,round=round)
-        
-        db=df
-        }
-      
-       write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA",sep = ",",dec = ".")
-   
-      }
+  },
+  content = function(con) {
+    round=input$round
+    df=D$documents[[1]] 
+    
+    if(input$gather=="wide"){
+      spread=TRUE}
+    else{
+      spread=FALSE
+    }
+    df=resample_provBz_data(df=df,round=round,spread=spread)
+    
+    write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA",sep = ",",dec = ".")
+    
+  }
   
   
-  )
+)
   
   
   outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
