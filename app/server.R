@@ -237,6 +237,6 @@ server <- function(input, output,session) {
 )
   
   
-  outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
+  #outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
   outputOptions(output, 'rightdate', suspendWhenHidden=FALSE)
 }
