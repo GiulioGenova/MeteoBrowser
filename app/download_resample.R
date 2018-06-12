@@ -38,7 +38,7 @@ db_all<-bind_rows(db)
 #round="hour"
 
 db_all$TimeStamp<-as_datetime(db_all$TimeStamp)
-db_all<-left_join(db_all,getMeteoStat())#,by="SCODE"
+db_all<-left_join(db_all,getMeteoStat(),c("Station"="SCODE"))#,by="SCODE"
 
 }
 
