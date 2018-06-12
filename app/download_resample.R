@@ -49,7 +49,7 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
   if(round=="raw"){
     db_final<-df
     if(spread){
-      db_final<-df %>% gather(key = Sensor,value = Value,drop = T)
+      db_final<-db_final %>% gather(key = Sensor,value = Value,drop = T)
     }
     
   }else{
