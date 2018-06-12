@@ -38,33 +38,37 @@ db_all<-bind_rows(db)
 #round="hour"
 
 db_all$TimeStamp<-as_datetime(db_all$TimeStamp)
-db_all
+db_all<-left_join(db_all,getMeteoStat(),by="SCODE")
 
 }
 
-#df="C:/Users/GGenova/Downloads/data_5 mins_2018-05-11_2018-05-15.csv"
-#df=read_csv(df)
 
-resample<-function(df,round="hour"){
-  
+
+resample_provBz_data<-function(df,round="hour",spread=FALSE){
+  #df<-db_prov
   if(round=="raw"){
     db_final<-df
+    if(spread){
+      db_final<-df %>% gather(Sensor,Value)
+    }
+    }
   }else{
-  if(any(c("N") %in% df$Sensor)){
-    df_sum<-df%>%spread(Sensor,Value) %>% group_by(TimeStamp=floor_date(TimeStamp,unit=round),Station) %>%
-      summarise_at(vars(N),funs(sum(.,na.rm=T))) %>% gather(Sensor,Value,-TimeStamp,-Station)
-    
-    df_mean<-df%>%spread(Sensor,Value) %>% group_by(TimeStamp=floor_date(TimeStamp,unit=round),Station) %>%
-      summarise_at(vars(-N),funs(mean(.,na.rm=T))) %>% gather(Sensor,Value,-TimeStamp,-Station)
-    
-    db_final<-full_join(df_sum,df_mean)
-  }else{
-    db_final<-df%>%group_by(TimeStamp=floor_date(TimeStamp,unit = round),Station,Sensor)%>%
-      summarise(Value=mean(Value,na.rm = T) )
-  }
-}
-
   
-db_with_names<-left_join(db_final,getMeteoStat(),c("Station"="SCODE"))
+      db_final<-df%>%
+        group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
+        summarise(mean=mean(Value,na.rm = T),sum=sum(Value),max=max(Value,na.rm = T),min=min(Value,na.rm = T) ) %>% 
+        gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
+        unite(Sensor, Sensor, Variable,sep="")
+      
+      if(spread){
+        df_final<-db_final %>% 
+        gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
+        unite(temp, Sensor, Variable,sep="") %>%
+        spread(temp, Value)
+      }
+  }
+  
+  #df_with_names<-left_join(db_final,getMeteoStat(),by="SCODE")
+  df_with_names<-db_final %>% as.data.frame
 }
 #db=resample(df=df)
