@@ -232,9 +232,10 @@ server <- function(input, output,session) {
   },
   content = function(con) {
     round=input$round
+    gather=input$gather
     df=D$documents[[1]] 
     
-    if(input$gather=="wide"){
+    if(gather=="wide"){
       spread=TRUE}else{
     
       spread=FALSE
