@@ -203,6 +203,18 @@ server <- function(input, output,session) {
    # text2
    # })
  # })
+   
+  output$rightdate <-reactive({
+    datestart<- input$daterange[1] %>% as.character %>% as_date
+    dateend<- input$daterange[2] %>% as.character %>% as_date
+    return(datestart<=dateend)
+    
+  })
+  
+  output$tablebuilt <-reactive({
+    return(!is.null(D$documents))
+    #return(any(D$documents[[1]]))
+  })
   
   output$downloadData <- downloadHandler(
   filename = function() {
@@ -237,6 +249,6 @@ server <- function(input, output,session) {
 )
   
   
-  #outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
+  outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
   outputOptions(output, 'rightdate', suspendWhenHidden=FALSE)
 }
