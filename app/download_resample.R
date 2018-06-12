@@ -61,7 +61,7 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
         unite(Sensor, Sensor, Variable,sep="")
       
       if(spread){
-        df_final<-db_final %>% 
+        db_final<-db_final %>% 
         gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
         unite(temp, Sensor, Variable,sep="") %>%
         spread(temp, Value)
