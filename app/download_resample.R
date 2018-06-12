@@ -44,12 +44,12 @@ db_all<-left_join(db_all,getMeteoStat(),"SCODE")#,by="SCODE"
 
 
 
-resample_provBz_data<-function(df,round="hour",spread="FALSE"){
+resample_provBz_data<-function(df,round="hour",spread=FALSE){
   #df<-db_prov
   if(round=="raw"){
     db_final<-df
-    if(spread=="TRUE"){
-      db_final<-db_final %>% gather(key = Sensor,value = Value,drop = T)
+    if(spread){
+      db_final<-db_final %>% spread(key = Sensor,value = Value)
     }
     
   }else{
@@ -60,7 +60,7 @@ resample_provBz_data<-function(df,round="hour",spread="FALSE"){
         gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
         unite(Sensor, Sensor, Variable,sep="")
       
-      if(spread=="TRUE"){
+      if(spread){
         df_final<-db_final %>% 
         gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
         unite(temp, Sensor, Variable,sep="") %>%
