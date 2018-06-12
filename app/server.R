@@ -204,18 +204,6 @@ server <- function(input, output,session) {
    # })
  # })
   
-  output$rightdate <-reactive({
-    datestart<- input$daterange[1] %>% as.character %>% as_date
-    dateend<- input$daterange[2] %>% as.character %>% as_date
-    return(datestart<=dateend)
-    
-  })
-  
-  output$tablebuilt <-reactive({
-    return(!is.null(D$documents))
-    #return(any(D$documents[[1]]))
-  })
-  
   output$downloadData <- downloadHandler(
   filename = function() {
     #station=as.character(input$Station)
@@ -235,8 +223,8 @@ server <- function(input, output,session) {
     df=D$documents[[1]] 
     
     if(input$gather=="wide"){
-      spread=TRUE}
-    else{
+      spread=TRUE}else{
+    
       spread=FALSE
     }
     df=resample_provBz_data(df=df,round=round,spread=spread)
