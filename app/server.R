@@ -231,8 +231,8 @@ server <- function(input, output,session) {
     paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.csv')#,round
   },
   content = function(con) {
-    round=input$round
-    gather=input$gather
+    round<-input$round
+    gather<-input$gather
     df=D$documents[[1]] 
     
     if(gather=="wide"){
