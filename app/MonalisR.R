@@ -16,8 +16,25 @@ getMeteoStat<-function (url = NA, format = "table")
   }
 }
 
-downloadMeteo<-function (dburl = NULL, station_code, sensor_code, datestart, 
-          dateend, path = "", csv = FALSE) 
+getMeteoSensor<-function (url = NULL, SCODE = NULL, onlySensor = F) 
+{
+  if (is.null(url)) 
+    url <- "http://daten.buergernetz.bz.it/services/meteo/v1/sensors"
+  u <- GET(url) %>% content
+  ui <- cbind(sapply(u, "[[", 1), sapply(u, "[[", 2)) %>% 
+    as.tibble
+  colnames(ui) <- c("SCODE", "Sensor")
+  if (!is.null(SCODE)) 
+    ui <- is.element(ui$SCODE, SCODE) %>% which(. == T) %>% 
+    ui[., ]
+  if (onlySensor == T) 
+    ui <- ui$Sensor %>% unique
+  return(ui)
+}
+
+
+downloadMeteo<-function (sensor_code, station_code ,   datestart, 
+          dateend,dburl = NULL, path = "", csv = FALSE) 
 {
   if (is.null(dburl)) 
     dburl <- "http://daten.buergernetz.bz.it/services/meteo/v1/timeseries"
@@ -34,7 +51,7 @@ downloadMeteo<-function (dburl = NULL, station_code, sensor_code, datestart,
     DAT <- DAT %>% add_column(rep(sensor_code, times = nrow(.)), 
                               .before = 2) %>% add_column(rep(station_code, times = nrow(.)), 
                                                           .before = 2)
-    colnames(DAT) <- c("TimeStamp", "Station", "Sensor", 
+    colnames(DAT) <- c("TimeStamp", "SCODE", "Sensor", 
                        "Value")
     if (path != "") {
       myfile = paste0(path, "/", station_code, "_", sensor_code, 
@@ -104,4 +121,3 @@ convertDate<-function (date, db = "Monalisa")
     return(date)
   }
 }
- 
