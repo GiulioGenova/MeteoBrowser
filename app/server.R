@@ -239,7 +239,7 @@ server <- function(input, output,session) {
     
       spread=FALSE
     }
-    df=resample_provBz_data(df=df,round=round,spread=spread)
+    db=resample_provBz_data(df=df,round=round,spread=spread)
     
     write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA",sep = ",",dec = ".")
     
