@@ -226,7 +226,7 @@ server <- function(input, output,session) {
     enddate<-as.character(max(as_date(D$documents[[1]]$TimeStamp)))
     gather<-input$gather
     round=input$round
-    nstat=D$documents[[1]]$Station %>% unique %>% length %>% as.character#                     as.character(length(unique(D$documents[[1]]$Station))) 
+    nstat=D$documents[[1]]$SCODE %>% unique %>% length %>% as.character#                     as.character(length(unique(D$documents[[1]]$Station))) 
     #paste0(station,'_',round,'_',startdate,'_',enddate,'.csv')
     paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.csv')#,round
   },
