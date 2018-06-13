@@ -49,7 +49,7 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
   if(round=="raw"){
     db_final<-df
     if(spread){
-      db_final<-db_final %>% group_by(TimeStamp,SCODE,year=year(TimeStamp)) %>% filter(!(duplicated(TimeStamp)))
+      db_final<-db_final %>% group_by(TimeStamp,SCODE,year=year(TimeStamp)) %>% filter(!(duplicated(TimeStamp)))%>% as.data.frame
       db_final<-db_final %>% spread(key = Sensor,value = Value) %>% as.data.frame
       db_final<-db_final %>% select(-year)
     }
