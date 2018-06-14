@@ -1,33 +1,26 @@
-dwnld<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor),nstations){#,round=NULL,server=shiny::getDefaultReactiveDomain()
+dwnld<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor),nstations){
   tryCatch({
   n<-nstations
   
 download<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor)){
   tryCatch({
+  ## Debugging variables
   #station = "37100MS"
   #datestart = "2012-01-01";dateend = "2014-01-01"
   #sensor<-"LT"
   #sensors<-unique(getMeteoSensor()$Sensor)
   #sensors<-getMeteoSensor()%>%distinct(Sensor)
-  #initial.stop = 0
+  ##
   download_sensor<-function(sensor,station,datestart,dateend){
   tryCatch({  
-    #if(continue){
-    #if (initial.stop < getDefaultReactiveDomain()$input$stop %>% as.numeric) {
-     # initial.stop <<- initial.stop + 1
-      #stop()
-    #}else{
     
     incProgress(amount = 1/n,message = "Downloading... (SCODE-Sensor):",detail = paste(station,sensor,sep=" - ") )
     data<-downloadMeteo(station_code = station,sensor_code = sensor,datestart = datestart,dateend = dateend)
     data<-as.data.frame(data)
-  #httpuv:::service()
- # continue <<- !isTRUE(shiny::getDefaultReactiveDomain()$input$stopThis)
-  #}
+
   }, error = function(e){NULL})#    
     }
-  
-  
+    
   db<-lapply(sensors, download_sensor,station = station,datestart = datestart,dateend = dateend)
   db_all<-bind_rows(db)
   
@@ -36,8 +29,6 @@ download<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sen
 
 db<-pblapply(station, download,datestart = datestart,dateend = dateend,sensors=sensors)
 db_all<-bind_rows(db)
-
-#round="hour"
 
 db_all$TimeStamp<-as_datetime(db_all$TimeStamp)
 db_all<-left_join(db_all,getMeteoStat(),"SCODE")#,by="SCODE"
@@ -51,18 +42,16 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
   #df<-db_prov
   if(round=="raw"){
     db_final<-df
+    
     if(spread){
-      #db_final<-db_final %>% group_by(TimeStamp,SCODE,year=year(TimeStamp)) %>% filter(!(duplicated(TimeStamp)))%>% as.data.frame
-      #db_final<-db_final %>% spread(key = Sensor,value = Value) %>% as.data.frame
-      #db_final<-db_final %>% select(-year)
-      splitted<-split(db_final,df$Sensor)
       
+      splitted<-split(db_final,df$Sensor)
       splitted_rowid<-base::lapply(splitted, function(x) {
-        x %>% mutate(idrow = row_number()) %>% spread(key = Sensor,value = Value) %>% select(-idrow)
+      x %>% mutate(idrow = row_number()) %>% spread(key = Sensor,value = Value) %>% select(-idrow)
+      
       })
       
-      merged<-Reduce(function(...) merge(..., all = TRUE),
-                     splitted_rowid)
+      merged<-Reduce(function(...) merge(..., all = TRUE), splitted_rowid)
       db_final<-merged
       
     }
@@ -87,4 +76,3 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
   df_with_names<-db_final %>% as.data.frame
     }, error = function(e){df_with_names<-"Something went wrong. Probably there is no data available in the date range you picked. Try with a more recent final date"})#
 }
-#db=resample(df=df)
