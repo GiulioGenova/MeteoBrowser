@@ -39,26 +39,13 @@ ui <- dashboardPage(#useShinyjs(),
                      #menuItem("map", tabName = "map", icon = icon("info-circle"))#,
                      #menuItem("Data detail", tabName = "detail", icon = icon("bar-chart-o"))
                    )),
-  dashboardBody(#tags$a(href="javascript:history.go(0)", 
-    #      popify(tags$i(class="fa fa-refresh fa-5x"),
-    #         title = "Reload", 
-    #          content = "Click here to restart the Shiny session",
-    #         placement = "right")),
-    
-    #tags$style(type = "text/css", "#map {height: calc(100vh - 80px) !important;}"),
-    #tags$style(type = "text/css", "#map2 {height: calc(100vh - 350px) !important;}"),
-    #tags$style(type = "text/css", "#plotall {height: calc(100vh - 200px) !important;}"),
-    #tags$style(type = "text/css", "#plotair {height: calc(100vh - 200px) !important;}"),
+  dashboardBody(
     # Boxes need to be put in a row (or column)
     tabItems(
       
       tabItem(tabName = "Data",
               
               fluidRow(
-                # box(width = 2,selectInput("Station", label = h4("Station"),#, 
-                #                          choices = getMeteoStat()$NAME_D,selected = "Bozen",multiple = T),collapsible = T),#,selected = 'ALL' 
-                #box(width = 2,selectInput("Sensor", label = h4("Sensor"),#, 
-                #                         choices = getMeteoSensor()$Sensor,selected = "LT",multiple = T)),#,selected = 'ALL' 
                 
                 box(width = 4,collapsible = T,dateRangeInput(label = h4("Pick a date range"),inputId = "daterange",separator = " - ",min = "2000-01-01",
                                                              start = Sys.Date()-3,
@@ -79,27 +66,16 @@ ui <- dashboardPage(#useShinyjs(),
                                 label = h4("Choose between long or wide table to download"),
                                 choices = list("wide","long"))),
                 
-                box(width = 8,leafletOutput("map"),collapsible = T)#,
-                #box(width = 2,selectInput("round",label = h4("Time aggregation"),choices = list("hour","day","week","month","year","5 mins","15 mins"))),
-                #box(width = 2,downloadLink('downloadData', h4('Download')),actionButton(label= "update selection","refresh"))
-                
-              )#,fluidRow(verbatimTextOutput("Click_text")
-              
-              #)
-              #,fluidRow(conditionalPanel(condition = "output.tablebuilt",br(),
-              #                          downloadLink('downloadData', h4('Download'))
-              #                         )
-              #         ) 
+                box(width = 8,leafletOutput("map"),collapsible = T)
+              )
               ,fluidRow(
-                #box(width=12,
+
                 helpText("Select stations and parameters you want to dowload by filtering the table below.",
                          "To stop the download refresh the page"),
                 DTOutput('table')
-                #,collapsible = T)#,tableOutput('table')
+               
               )
-              #,
-              #fluidRow(box(width = 6,leafletOutput("map")))
-              
+      
       )
       ,
       tabItem(tabName = "map",fluidRow(downloadLink('downloadData2', h4('Download')))
