@@ -185,7 +185,7 @@ server <- function(input, output,session) {
     }
     
     db=resample_provBz_data(df=df,round=round,spread=spread)
-    write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA",sep = ",",dec = ".")
+    write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA")
     
   }
   
