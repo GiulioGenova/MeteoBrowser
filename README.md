@@ -11,3 +11,5 @@ shiny::runGitHub('GiulioGenova/ODBZ',subdir="app",launch.browser = TRUE)
 
 ==========================================================================
 
+This will automatically install the packages needed on your machine (the first time you run it only) and then run the app.
+
