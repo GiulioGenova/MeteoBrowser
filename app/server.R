@@ -1,16 +1,8 @@
 
-#if (!require("pacman")) install.packages("pacman")
-
-#pacman::p_load(package1, package2, package_n)
-#pac=c("dplyr","readr","tibble","tidyr","spdplyr","lubridate","pbapply",
-  #    "shiny","shinydashboard","shinyjs","DT","httr","leaflet","leaflet.extras",
-  #    "jsonlite","geojsonio","stringr")
-#pacman::p_load(char = pac)
 if (!require("dplyr")) install.packages("dplyr")
 if (!require("readr")) install.packages("readr")
 if (!require("tibble")) install.packages("tibble")
 if (!require("tidyr")) install.packages("tidyr")
-
 if (!require("spdplyr")) install.packages("spdplyr")
 if (!require("dbplyr")) install.packages("dbplyr")
 if (!require("pbapply")) install.packages("pbapply")
@@ -29,7 +21,6 @@ if (!require("stringr")) install.packages("stringr")
 #install.packages("pbapply")
 #install.packages("DT")
 #devtools::install_github("ropensci/plotly")
-
 #devtools::install_github("ropensci/geojsonio")
 #install.packages("rgdal", type = "source")
 #install.packages("rgeos", type = "source")
@@ -179,24 +170,25 @@ server <- function(input, output,session) {
     nstat=D$documents[[1]]$SCODE %>% unique %>% length %>% as.character 
     #paste0(station,'_',round,'_',startdate,'_',enddate,'.csv')
     paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.csv')#,round
-      }, error = function(e){"error.csv"})#
+      
+    }, error = function(e){"error.csv"})#
+  
   },
   content = function(con) {
+    
     round<-input$round
     gather<-input$gather
     df=D$documents[[1]] 
     
     if(gather=="wide"){
       spread=TRUE}else{
-    
       spread=FALSE
     }
-    db=resample_provBz_data(df=df,round=round,spread=spread)
     
+    db=resample_provBz_data(df=df,round=round,spread=spread)
     write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA",sep = ",",dec = ".")
     
   }
-  
   
 )
   
