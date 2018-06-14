@@ -11,6 +11,7 @@ download<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sen
   #sensors<-getMeteoSensor()%>%distinct(Sensor)
   #initial.stop = 0
   download_sensor<-function(sensor,station,datestart,dateend){
+    tryCatch({
     #if(continue){
     #if (initial.stop < getDefaultReactiveDomain()$input$stop %>% as.numeric) {
      # initial.stop <<- initial.stop + 1
@@ -23,6 +24,7 @@ download<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sen
   #httpuv:::service()
  # continue <<- !isTRUE(shiny::getDefaultReactiveDomain()$input$stopThis)
   #}
+      }, error = function(e){NULL})#
     }
   
   
