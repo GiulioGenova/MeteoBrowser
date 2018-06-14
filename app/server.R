@@ -59,42 +59,9 @@ library(geojsonio)
 library(stringr)
 library(tibble)
 library(shinyjs)
-#source("//ABZ02FST.EURAC.EDU/AlpEnv/Projekte/SBR/01_Workspace/GeG/resample_SBR.R")
-#source("H:/Projekte/SBR/09_R_Script/resample_SBR_func.R")
-#wd<-setwd("H:/Projekte/SBR/01_Workspace/GeG/Shiny_wd")
-#setwd("C:/temp_R/shiny_prov/")
-#setwd("H:/Projekte/SBR/01_Workspace/GeG/ODBZ")
+
 source(file.path(getwd(),"download_resample.R"))
 source(file.path(getwd(),"MonalisR.R"))
-#file<-file.path(wd,"Orchards_monitoring_station_MONALISA-SBR_Project_21032018.kml")
-#file<-"~/Orchards_monitoring_station_MONALISA-SBR_Project_21032018.kml"
-#getwd()
-# y axis title
-RHy <- list(title = "Air RH [%]")
-Airy <- list(title = "Air T [°C]")
-Py <- list(title = "P & Irrig [mm]")
-windy <- list(title = "Wind speed [m/s]")
-SWCy <- list(title = "SWC [%]")
-SWPy<- list(title = "SWP [%]")
-STy <- list(title = "Soil T [°C]")
-
-# colors
-RHcolor<-"#0188AE"
-AirTmeancolor<-"#000A10"
-AirTmaxncolor<-"#D81159"
-AirTmincolor<-"#0496FF"
-Pcolor<-"#1778AE"
-Irrigcolor<-"#00273D"
-Windcolor<-"#0D0508"
-SWC20color<-'red'#"#8F2D56"#same for SWP
-SWC40color<-'blue'#"#006BA6"#same for SWP
-ST20color<-'red'#"#8F2D56"
-ST40color<-'blue'#"#006BA6"
-
-# linetype
-STline<-"dash"
-RHline<-"solid"
-AirTline<-"soild"
 
 url <- "http://daten.buergernetz.bz.it/services/meteo/v1/sensors"
 u <- GET(url) %>% content
@@ -128,22 +95,6 @@ server <- function(input, output,session) {
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     sensors<-unique(tot_tab$TYPE[ids])%>%as.character
     nstations<-length(station)%>%as.numeric*length(sensors)%>%as.numeric
-    
-    #tab_station<-getMeteoStat()%>%filter(NAME_D%in%input$Station)#st
-    ##tab_station<-getMeteoStat()%>%filter(NAME_D%in%st)#st
-    
-    #tab_sensor<-getMeteoSensor()%>%filter(Sensor%in%input$Sensor)#sn
-    ##tab_sensor<-getMeteoSensor()%>%filter(Sensor%in%sn)#sn
-    
-    #tab<-left_join(tab_station,tab_sensor,"SCODE")
-    #nstations<-tab$NAME_D
-    
-    #statname=input$Station
-    #stations<-getMeteoStat()
-    #stat_code<-stations%>%filter(NAME_D%in%statname)
-    #station<-stat_code$SCODE
-    
-    #sensors<-input$Sensor
     
     datestart<-as.character(input$daterange[1])
     dateend<-as.character(input$daterange[2])
@@ -221,14 +172,11 @@ server <- function(input, output,session) {
     tryCatch({
     
     #station=as.character(input$Station)
-    #startdate<-as.character(input$daterange[1])
-    #enddate<-as.character(input$daterange[2])
-    
     startdate<-as.character(min(as_date(D$documents[[1]]$TimeStamp)))
     enddate<-as.character(max(as_date(D$documents[[1]]$TimeStamp)))
     gather<-input$gather
     round=input$round
-    nstat=D$documents[[1]]$SCODE %>% unique %>% length %>% as.character#                     as.character(length(unique(D$documents[[1]]$Station))) 
+    nstat=D$documents[[1]]$SCODE %>% unique %>% length %>% as.character 
     #paste0(station,'_',round,'_',startdate,'_',enddate,'.csv')
     paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.csv')#,round
       }, error = function(e){"error.csv"})#
@@ -251,7 +199,6 @@ server <- function(input, output,session) {
   
   
 )
-  
   
   outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
   outputOptions(output, 'rightdate', suspendWhenHidden=FALSE)
