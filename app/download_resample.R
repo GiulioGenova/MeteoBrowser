@@ -3,7 +3,7 @@ dwnld<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor
   n<-nstations
   
 download<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor)){
-  
+  tryCatch({
   #station = "37100MS"
   #datestart = "2012-01-01";dateend = "2014-01-01"
   #sensor<-"LT"
@@ -11,7 +11,7 @@ download<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sen
   #sensors<-getMeteoSensor()%>%distinct(Sensor)
   #initial.stop = 0
   download_sensor<-function(sensor,station,datestart,dateend){
-    
+  tryCatch({  
     #if(continue){
     #if (initial.stop < getDefaultReactiveDomain()$input$stop %>% as.numeric) {
      # initial.stop <<- initial.stop + 1
@@ -24,14 +24,14 @@ download<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sen
   #httpuv:::service()
  # continue <<- !isTRUE(shiny::getDefaultReactiveDomain()$input$stopThis)
   #}
-      
+  }, error = function(e){NULL})#    
     }
   
   
   db<-lapply(sensors, download_sensor,station = station,datestart = datestart,dateend = dateend)
   db_all<-bind_rows(db)
   
-  
+  }, error = function(e){NULL})#
 }
 
 db<-pblapply(station, download,datestart = datestart,dateend = dateend,sensors=sensors)
