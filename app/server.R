@@ -218,6 +218,8 @@ server <- function(input, output,session) {
   
   output$downloadData <- downloadHandler(
   filename = function() {
+    tryCatch({
+    
     #station=as.character(input$Station)
     #startdate<-as.character(input$daterange[1])
     #enddate<-as.character(input$daterange[2])
@@ -229,6 +231,7 @@ server <- function(input, output,session) {
     nstat=D$documents[[1]]$SCODE %>% unique %>% length %>% as.character#                     as.character(length(unique(D$documents[[1]]$Station))) 
     #paste0(station,'_',round,'_',startdate,'_',enddate,'.csv')
     paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.csv')#,round
+      }, error = function(e){"error.csv"})#
   },
   content = function(con) {
     round<-input$round
