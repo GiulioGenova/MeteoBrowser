@@ -41,7 +41,7 @@ db_all<-bind_rows(db)
 
 db_all$TimeStamp<-as_datetime(db_all$TimeStamp)
 db_all<-left_join(db_all,getMeteoStat(),"SCODE")#,by="SCODE"
-}, error = function(e){NULL})#
+}, error = function(e){"Something went wrong"})#
 }
 
 
