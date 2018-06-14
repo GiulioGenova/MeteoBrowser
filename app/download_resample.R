@@ -1,5 +1,5 @@
 dwnld<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor),nstations){#,round=NULL,server=shiny::getDefaultReactiveDomain()
-  
+  tryCatch({
   n<-nstations
   
 download<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor)){
@@ -11,7 +11,7 @@ download<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sen
   #sensors<-getMeteoSensor()%>%distinct(Sensor)
   #initial.stop = 0
   download_sensor<-function(sensor,station,datestart,dateend){
-    tryCatch({
+    
     #if(continue){
     #if (initial.stop < getDefaultReactiveDomain()$input$stop %>% as.numeric) {
      # initial.stop <<- initial.stop + 1
@@ -24,7 +24,7 @@ download<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sen
   #httpuv:::service()
  # continue <<- !isTRUE(shiny::getDefaultReactiveDomain()$input$stopThis)
   #}
-      }, error = function(e){NULL})#
+      
     }
   
   
@@ -41,12 +41,13 @@ db_all<-bind_rows(db)
 
 db_all$TimeStamp<-as_datetime(db_all$TimeStamp)
 db_all<-left_join(db_all,getMeteoStat(),"SCODE")#,by="SCODE"
-
+}, error = function(e){NULL})#
 }
 
 
 
 resample_provBz_data<-function(df,round="hour",spread=FALSE){
+  tryCatch({
   #df<-db_prov
   if(round=="raw"){
     db_final<-df
@@ -84,5 +85,6 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
   
   #df_with_names<-left_join(db_final,getMeteoStat(),by="SCODE")
   df_with_names<-db_final %>% as.data.frame
+    }, error = function(e){"Something went wrong"})#
 }
 #db=resample(df=df)
