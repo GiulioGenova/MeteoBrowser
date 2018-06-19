@@ -84,4 +84,4 @@ ui <- dashboardPage(#useShinyjs(),
     tabName = "about",
     tabPanel("About", box(width = NULL,about$value))
     )
-  ))
+  )))
