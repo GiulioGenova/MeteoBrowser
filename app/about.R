@@ -17,7 +17,7 @@ tags$html(
     p("To run the application locally run the following code:"),
     p("=========================================================================="),
     p("if (!require(\x22shiny\x22)) install.packages(\x22shiny\x22)"),
-    p(paste("shiny::runGitHub('GiulioGenova/ODBZ',subdir=\x22app\x22,launch.browser = TRUE)")),
+    p("shiny::runGitHub('GiulioGenova/ODBZ',subdir=\x22app\x22,launch.browser = TRUE)"),
     p("=========================================================================="),
     p("This will automatically install the packages needed on your machine (the first time you run it only) and then run the app."),
     br(),
