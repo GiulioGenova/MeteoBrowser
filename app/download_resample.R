@@ -66,9 +66,10 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
       
       if(spread){
         db_final<-db_final %>% 
-        gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
-        unite(temp, Sensor, Variable,sep="") %>%
-        spread(temp, Value)
+        #gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
+        #unite(temp, Sensor, Variable,sep="") %>%
+        #spread(temp, Value)
+        spread(Sensor, Value)
       }
   }
   
