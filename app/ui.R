@@ -28,8 +28,7 @@ library(DT)
 #library(shinycssloaders)
 #library(rgdal)
 #library(shinyBS)
-
-about = source('about.r')
+source(file.path(getwd(),'about.R'))
 
 ui <- dashboardPage(#useShinyjs(),
   skin = "blue",
