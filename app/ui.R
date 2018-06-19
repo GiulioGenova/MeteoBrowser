@@ -28,7 +28,7 @@ library(DT)
 #library(shinycssloaders)
 #library(rgdal)
 #library(shinyBS)
-about = source(file.path(getwd(),'MonalisR.R'))
+about = source(file.path(getwd(),'about.R'))
 
 ui <- dashboardPage(#useShinyjs(),
   skin = "blue",
