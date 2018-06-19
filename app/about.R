@@ -26,6 +26,7 @@ tags$html(
          target='_blank','Giulio Genova' )),
     p(Eurac - Institute for Alpine Environment),
     p("mail: giulio.genova@eurac.edu"),
+    p("2018-06-18"),
     br(),
     h3("Acknowledgements"),
     p("Special thanks to Mattia Rossi who has developed the R package \x22MonalisR\x22 which plays and important role in the backend of this application. You can find the package here:"),
