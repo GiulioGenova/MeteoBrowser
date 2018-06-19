@@ -29,6 +29,8 @@ library(DT)
 #library(rgdal)
 #library(shinyBS)
 
+about = source('about.r')
+
 ui <- dashboardPage(#useShinyjs(),
   skin = "blue",
   dashboardHeader(title = "Province Open Data stations"),
@@ -36,6 +38,7 @@ ui <- dashboardPage(#useShinyjs(),
                    sidebarMenu(
                      
                      menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o"))#,
+                     menuItem("about", tabName = "about", icon = icon("info-circle"))#,
                      #menuItem("map", tabName = "map", icon = icon("info-circle"))#,
                      #menuItem("Data detail", tabName = "detail", icon = icon("bar-chart-o"))
                    )),
@@ -78,7 +81,8 @@ ui <- dashboardPage(#useShinyjs(),
       
       )
       ,
-      tabItem(tabName = "map",fluidRow(downloadLink('downloadData2', h4('Download')))
-      )
+      tabItem(# the about page
+    tabName = "about",
+    tabPanel("About", box(width = NULL,about$value))
     )
   ))
