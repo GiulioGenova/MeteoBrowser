@@ -1,21 +1,88 @@
-tags$html(
-  tags$head(
-    tags$title('About page')
-  ),
-  tags$body(
-    h3("About the data"),
+#devtools::install_git("https://gitlab.inf.unibz.it/earth_observation_public//MonalisR")
+if (!require("dplyr")) install.packages("dplyr")
+if (!require("readr")) install.packages("readr")
+if (!require("tibble")) install.packages("tibble")
+if (!require("tidyr")) install.packages("tidyr")
+if (!require("spdplyr")) install.packages("spdplyr")
+if (!require("lubridate")) install.packages("lubridate")
+if (!require("shiny")) install.packages("shiny")
+if (!require("shinydashboard")) install.packages("shinydashboard")
+if (!require("shinyjs")) install.packages("shinyjs")
+if (!require("DT")) install.packages("DT")
+if (!require("httr")) install.packages("httr")
+if (!require("leaflet")) install.packages("leaflet")
+if (!require("leaflet.extras")) install.packages("leaflet.extras")
+if (!require("jsonlite")) install.packages("jsonlite")
+if (!require("geojsonio")) install.packages("geojsonio")
+if (!require("stringr")) install.packages("stringr")
 
-    p("This app provides a user-friendly interface to download data from the “Open Data Südtirol”."),
-    p("The “Open Data Südtirol” API and its documentation can be found at the Province of Bozen web site."),
-    p(a( href='http://daten.buergernetz.bz.it/it/dataset/misure-meteo-e-idrografiche', 
-         target='_blank','Open Data Südtirol - Meteo measurements web service')),
-    p('Once selected the stations and sensors by filtering the table and chosen a date range you are ready to download (the dataset starts in the beginning of 2016). When download is complete, a “save csv” icon pops up. You can choose between different time aggregations. “raw” preserves the timestamp of the sensor you are downloading (usually 5 or 10 minutes). For the other time aggregation options you will get the mean, maximum, minimum and sum values for each sensor in the selected timespan. You can also choose between “wide” or “long” data. In wide data you get a column for every sensor, in long data you get a factor column called “Sensor” and a column “Value” which stores the measurements.'),
-    br(),
-    h3("Acknowledgements"),
-    
-    p('Special thanks to Mattia Rossi who has developed the R package MonalisR which plays and important role in the backend of this application. You can find the package here: '),
-    p(a( href='https://gitlab.inf.unibz.it/earth_observation_public/MonalisR', 
-         target='_blank','MonalisR'))
+library(dplyr)
+library(lubridate)
+#library(plotly)
+library(shinydashboard)
+library(shiny)
+library(leaflet)
+library(leaflet.extras)
+library(readr)
+library(DT)
+#library(shinycssloaders)
+#library(rgdal)
+#library(shinyBS)
 
-  )
-)
+about = source('about.r')
+
+ui <- dashboardPage(#useShinyjs(),
+  skin = "blue",
+  dashboardHeader(title = "Province Open Data stations"),
+  dashboardSidebar(disable = T,
+                   sidebarMenu(
+                     
+                     menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o")),
+                     menuItem("about", tabName = "about", icon = icon("info-circle"))#,
+                     #menuItem("map", tabName = "map", icon = icon("info-circle"))#,
+                     #menuItem("Data detail", tabName = "detail", icon = icon("bar-chart-o"))
+                   )),
+  dashboardBody(
+    # Boxes need to be put in a row (or column)
+    tabItems(
+      
+      tabItem(tabName = "Data",
+              
+              fluidRow(
+                
+                box(width = 4,collapsible = T,dateRangeInput(label = h4("Pick a date range"),inputId = "daterange",separator = " - ",min = "2000-01-01",
+                                                             start = Sys.Date()-3,
+                                                             end = Sys.Date()+1),
+                    conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Download selected data","refresh")) ,
+                    #conditionalPanel(condition = "output.rightdate",br(),actionButton( "stop",label = "Stop Download (reload page)",class="btn-danger")),#,onclick="Shiny.onInputChange('stopThis',true)"
+                    conditionalPanel(condition = "output.tablebuilt",br(),#"input.daterange[1]<=input.daterange[2]"
+                                     downloadLink('downloadData', h4('Save as csv') ) 
+                    ),
+                    
+                    verbatimTextOutput("message"),
+                    verbatimTextOutput("selected"),
+                    selectInput("round",label = h4("Time aggregation"),
+                                choices = list("raw","hour","day","week","month","year")),
+                    
+                    #actionButton(label= "update selection","refresh"),
+                    selectInput("gather",
+                                label = h4("Choose between long or wide table to download"),
+                                choices = list("wide","long"))),
+                
+                box(width = 8,leafletOutput("map"),collapsible = T)
+              )
+              ,fluidRow(
+                
+                helpText("Select stations and parameters you want to dowload by filtering the table below.",
+                         "To stop the download refresh the page"),
+                DTOutput('table')
+                
+              )
+              
+      )
+      ,
+      tabItem(# the about page
+        tabName = "about",
+        tabPanel("About", box(width = NULL,about$value))
+      )
+    ))
