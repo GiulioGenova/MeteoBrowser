@@ -24,7 +24,7 @@ tags$html(
     h3("Author"),
     p(a( href='https://github.com/GiulioGenova/',
          target='_blank','Giulio Genova' )),
-    p(Eurac - Institute for Alpine Environment),
+    p("Eurac - Institute for Alpine Environment"),
     p("mail: giulio.genova@eurac.edu"),
     p("2018-06-18"),
     br(),
