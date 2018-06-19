@@ -32,7 +32,7 @@ about = source(file.path(getwd(),'about.R'))
 
 ui <- dashboardPage(#useShinyjs(),
   skin = "blue",
-  dashboardHeader(title = "Province Open Data stations"),
+  dashboardHeader(title = "Open Data South Tyrol"),
   dashboardSidebar(disable = F,
                    sidebarMenu(
                      
