@@ -24,7 +24,7 @@ tags$html(
     h3("Author"),
     p(a( href='https://github.com/GiulioGenova/',
          target='_blank','Giulio Genova' )),
-    p("mail: giulio.genova@eurac.edu"
+    p("mail: giulio.genova@eurac.edu"),
     br(),
     h3("Acknowledgements"),
     p("Special thanks to Mattia Rossi who has developed the R package \x22MonalisR\x22 which plays and important role in the backend of this application. You can find the package here:"),
