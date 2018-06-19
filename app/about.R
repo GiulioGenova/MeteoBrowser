@@ -18,7 +18,7 @@ tags$html(
     p("=========================================================================="),
     p(paste("if (!require(","shiny",")) install.packages(","shiny",")")),
     p(paste("shiny::runGitHub('GiulioGenova/ODBZ',subdir=","app",",launch.browser = TRUE)")),
-    P("=========================================================================="),
+    p("=========================================================================="),
     p("This will automatically install the packages needed on your machine (the first time you run it only) and then run the app."),
     br(),
     h3("Acknowledgements"),
