@@ -66,7 +66,7 @@ ui <- dashboardPage(#useShinyjs(),
                     
                     #actionButton(label= "update selection","refresh"),
                     selectInput("gather",
-                                label = h4("Choose between long or wide table to download"),
+                                label = h4("Choose between long or wide table format"),
                                 choices = list("wide","long"))),
                 
                 box(width = 8,leafletOutput("map"),collapsible = T)
