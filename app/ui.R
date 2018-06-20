@@ -58,7 +58,7 @@ ui <- dashboardPage(#useShinyjs(),
                     conditionalPanel(condition = "output.tablebuilt",br(),#"input.daterange[1]<=input.daterange[2]"
                                      downloadButton('downloadData', h4('Save as csv'), class="btn-danger" ) 
                     ),
-                    helpText("First download selected data then click the \"save as csv\""),
+                    helpText("First click \"download selected data\" then \"save as csv\""),
                     verbatimTextOutput("message"),
                     verbatimTextOutput("selected"),
                     selectInput("round",label = h4("Time aggregation"),
