@@ -67,10 +67,19 @@ server <- function(input, output,session) {
    # session$reload()
     #return()
   #})
-  output$table<-renderDT(tot_tab, filter = 'top',rownames=F,selection="none",
+  
+  DT::renderDT({
+  datatable(tot_tab, filter = 'top',rownames=F,selection="none",
                          options = list(autoWidth = F,scrollX=T)
-                         )%>%formatStyle(c("TYPE", "DESC_D", "DESC_I","UNIT"),
+                         ) %>% formatStyle(c("TYPE", "DESC_D", "DESC_I","UNIT"),
                                       backgroundColor = "grey")
+})
+  
+  
+  #output$table<-renderDT(tot_tab, filter = 'top',rownames=F,selection="none",
+   #                      options = list(autoWidth = F,scrollX=T)
+    #                     )%>%formatStyle(c("TYPE", "DESC_D", "DESC_I","UNIT"),
+     #                                 backgroundColor = "grey")
   #,server = TRUE,options=list(pageLength = 100,scrollX = T),  escape = FALSE
   
   ## connenction and query on province database
