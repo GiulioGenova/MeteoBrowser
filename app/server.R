@@ -68,9 +68,10 @@ server <- function(input, output,session) {
     #return()
   #})
   output$table<-renderDT(tot_tab, filter = 'top',rownames=F,selection="none",
-                         options = list(autoWidth = F,scrollX=T),formatStyle(c("TYPE", "DESC_D", "DESC_I","UNIT"),
+                         options = list(autoWidth = F,scrollX=T)
+                         )%>%formatStyle(c("TYPE", "DESC_D", "DESC_I","UNIT"),
                                       backgroundColor = "grey")
-                         )#,server = TRUE,options=list(pageLength = 100,scrollX = T),  escape = FALSE
+  #,server = TRUE,options=list(pageLength = 100,scrollX = T),  escape = FALSE
   
   ## connenction and query on province database
   D <- reactiveValues(documents = NULL)
