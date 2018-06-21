@@ -73,10 +73,10 @@ server <- function(input, output,session) {
                          options = list(autoWidth = F,scrollX=T)
                          ) %>% 
     formatStyle(c("TYPE", "DESC_D", "DESC_I","UNIT"),
-                                     backgroundColor = "grey")
+                                     backgroundColor = "#edf5e1")
 })
   
-  
+  #"#c3cfe6"
   #output$table<-renderDT(tot_tab, filter = 'top',rownames=F,selection="none",
    #                      options = list(autoWidth = F,scrollX=T)
     #                     )%>%formatStyle(c("TYPE", "DESC_D", "DESC_I","UNIT"),
