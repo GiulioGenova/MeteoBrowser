@@ -121,7 +121,7 @@ server <- function(input, output,session) {
      drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
 
       #use over from the sp package to identify selected cities
-      drawn_polygon <- spTransform(drawn_polygon, CRS = CRS(projection(stations_sel)))
+      drawn_polygon <- sp::spTransform(drawn_polygon, CRS = CRS(projection(stations_sel)))
       #drawn_polygon <- spTransform(drawn_polygon, crs(stations_sel))
       selected_stats <- stations_sel %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
 
