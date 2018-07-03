@@ -141,7 +141,9 @@ server <- function(input, output,session) {
       #if(!is.null(selected_stats)){
       #station<-selected_stats$SCODE%>%as.character
       print(stations_sp[which(!is.na(selected_stats)),"SCODE"])
-      
+       print(which(!is.na(selected_stats)))
+      sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
+      unique(sp_sel$SCODE) %>% as.character
        #}
     
       }
