@@ -70,7 +70,7 @@ ui <- dashboardPage(#useShinyjs(),
                                 choices = list("wide","long"))),
                    selectInput("spatialSelection",
                                 label = h4("Enable spatial selection"),
-                   choices = list("NO","YES"))),
+                   choices = list("NO","YES")),
                 box(width = 8,leafletOutput("map"),collapsible = T)
               )
               ,fluidRow(
