@@ -112,7 +112,7 @@ server <- function(input, output,session) {
       
     #################################################################################
      
-     if(input$spatialSelect=="YES"){
+     if(input$spatialSelection=="YES"){
      stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
     
      req(input$map_draw_stop)
