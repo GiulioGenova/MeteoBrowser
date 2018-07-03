@@ -141,7 +141,7 @@ server <- function(input, output,session) {
        #print the name of the cities
       #if(!is.null(selected_stats)){
       #station<-selected_stats$SCODE%>%as.character
-      station[which(!is.na(selected_stats)),"SCODE"]
+      stations_sp[which(!is.na(selected_stats)),"SCODE"]
        #}
     
       }
