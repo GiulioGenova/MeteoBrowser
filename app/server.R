@@ -125,14 +125,14 @@ server <- function(input, output,session) {
       #transform them to an sp Polygon
       
       #drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
-      drawn_polygon <- sp::Polygon(bind_rows(polygon_coordinates),hole="FALSE",proj4string=CRS(projection(stations_sp)))
-       print(drawn_polygon)
+      drawn_polygon <- sp::Polygon(bind_rows(polygon_coordinates),hole="FALSE")
+      is.null(drawn_polygon)
       #use over from the sp package to identify selected cities
       #drawn_polygon <- rgdal::spTransform(drawn_polygon, CRS = CRS(projection(stations_sel)))
       #drawn_polygon <- spTransform(drawn_polygon, crs(stations_sel))
       
-      selected_stats <- stations_sp %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))#,
-                                                            #proj4string = CRS(projection(stations_sp)))
+      selected_stats <- stations_sp %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")),
+                                                            proj4string = CRS(projection(stations_sp)))
       print(selected_stats)
       
        #print the name of the cities
