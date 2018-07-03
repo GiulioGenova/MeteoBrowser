@@ -62,6 +62,9 @@ library(sp)
 source(file.path(getwd(),"download_resample.R"))
 source(file.path(getwd(),"MonalisR.R"))
 
+leaf.proj <- "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+LL <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
+
 url <- "http://daten.buergernetz.bz.it/services/meteo/v1/sensors"
 u <- GET(url) %>% content
 se<-bind_rows(u)
@@ -124,19 +127,30 @@ server <- function(input, output,session) {
        print(polygon_coordinates)
       #transform them to an sp Polygon
       
-      drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+      #drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
       #drawn_polygon <- sp::Polygon(bind_rows(polygon_coordinates),hole="FALSE")
-      print("is null drawn_polygon")
-       print(is.null(drawn_polygon))
+      #print("is null drawn_polygon")
+      # print(is.null(drawn_polygon))
       #use over from the sp package to identify selected cities
       #drawn_polygon <- rgdal::spTransform(drawn_polygon, CRS = CRS(projection(stations_sel)))
       #drawn_polygon <- spTransform(drawn_polygon, crs(stations_sel))
       
-      selected_stats <- stations_sp %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")),
+      #selected_stats <- stations_sp %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")),
                                                           proj4string = CRS(projection(stations_sp)))
-      print("selected_stats")
-       print(selected_stats)
+     # print("selected_stats")
+      # print(selected_stats)
       
+    drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+    sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+
+    # set coords as latlong then transform to leaflet projection
+    proj4string(sp) <- LL
+    polyre <- spTransform(sp, leaf.proj)
+       
+     selected_stats <- stations_sp %over% polyre
+        print("selected_stats")
+       print(selected_stats)
+       
        #print the name of the cities
       #if(!is.null(selected_stats)){
       #station<-selected_stats$SCODE%>%as.character
