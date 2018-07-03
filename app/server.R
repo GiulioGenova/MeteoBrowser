@@ -162,8 +162,9 @@ server <- function(input, output,session) {
        
       sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
       print(sp_sel)
-      unique(sp_sel$SCODE) %>% as.character
-       station<-unique(sp_sel$SCODE) %>% as.character
+       print("SCODEs")
+      print(unique(sp_sel$SCODE) %>% as.character)
+      station<-unique(sp_sel$SCODE) %>% as.character
        #}
     
       }
