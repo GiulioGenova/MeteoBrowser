@@ -96,7 +96,7 @@ plotMeteoLeaflet<-function (stations = NULL, addPoints = NULL, addBuff = F, widt
         circleOptions = TRUE)%>%
   addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
     addLayersControl(baseGroups = c("OSM","SAT"),overlayGroups = c('draw'),
-                     options = layersControlOptions(collapsed = FALSE),position = "topleft")%>%
+                     options = layersControlOptions(collapsed = FALSE),position = "topleft")
   
   if (!is.null(addPoints)) {
     coords <- coordinates(addPoints)
