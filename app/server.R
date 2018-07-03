@@ -146,7 +146,7 @@ server <- function(input, output,session) {
     # set coords as latlong then transform to leaflet projection
     proj4string(sp) <- LL
     polyre <- spTransform(sp, leaf.proj)
-    selected_stats<-spTransform(selected_stats,leaf.proj)
+    stations_sp<-spTransform(stations_sp,leaf.proj)
        
      selected_stats <- stations_sp %over% polyre
         print("selected_stats")
