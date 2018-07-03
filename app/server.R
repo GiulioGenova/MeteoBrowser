@@ -127,7 +127,7 @@ server <- function(input, output,session) {
       drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
       #drawn_polygon <- sp::Polygon(bind_rows(polygon_coordinates),hole="FALSE")
       print("is null drawn_polygon")
-       is.null(drawn_polygon)
+       print(is.null(drawn_polygon))
       #use over from the sp package to identify selected cities
       #drawn_polygon <- rgdal::spTransform(drawn_polygon, CRS = CRS(projection(stations_sel)))
       #drawn_polygon <- spTransform(drawn_polygon, crs(stations_sel))
@@ -140,14 +140,15 @@ server <- function(input, output,session) {
        #print the name of the cities
       #if(!is.null(selected_stats)){
       #station<-selected_stats$SCODE%>%as.character
-      print(stations_sp[which(!is.na(selected_stats)),"SCODE"])
+      #print(stations_sp[which(!is.na(selected_stats)),"SCODE"])
       
        print("wich is not na of selected")
        print(which(!is.na(selected_stats)))
-      sp_sel
+       
       sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
       print(sp_sel)
       unique(sp_sel$SCODE) %>% as.character
+       station<-unique(sp_sel$SCODE) %>% as.character
        #}
     
       }
