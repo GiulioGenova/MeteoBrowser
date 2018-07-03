@@ -91,9 +91,9 @@ plotMeteoLeaflet<-function (stations = NULL, addPoints = NULL, addBuff = F, widt
   
       addDrawToolbar(
         targetGroup='draw',
-        polylineOptions=FALSE,
-        markerOptions = FALSE,
-        circleOptions = TRUE)%>%
+        polylineOptions=FALSE#,
+        #markerOptions = FALSE,
+        )%>%#circleOptions = TRUE
   addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
     addLayersControl(baseGroups = c("OSM","SAT"),overlayGroups = c('draw'),
                      options = layersControlOptions(collapsed = FALSE),position = "topleft")
