@@ -113,12 +113,13 @@ server <- function(input, output,session) {
     #################################################################################
      
      if(input$spatialSelection=="YES"){
-     stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
+     
     
      req(input$map_draw_stop)
      #print(input$mymap_draw_new_feature)
     
-
+     stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
+     
      #get the coordinates of the polygon
      polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
 
@@ -132,9 +133,9 @@ server <- function(input, output,session) {
                                                             proj4string = CRS(projection(stations_sel)))
 
       #print the name of the cities
-     if(!is.null(selected_stats)){
+      #if(!is.null(selected_stats)){
      station<-selected_stats$SCODE
-     }
+      #}
     
       }
     #################################################################################  
