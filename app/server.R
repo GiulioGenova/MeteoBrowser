@@ -131,7 +131,7 @@ server <- function(input, output,session) {
                                                             proj4string = CRS(projection(stations_sel)))
 
       #print the name of the cities
-     if(!is.null(selected_stats$SCODE)){
+     if(!is.null(selected_stats)){
      station<-selected_stats$SCODE
      }
     
