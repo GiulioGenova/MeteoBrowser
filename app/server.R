@@ -17,6 +17,7 @@ if (!require("leaflet.extras")) install.packages("leaflet.extras")
 if (!require("jsonlite")) install.packages("jsonlite")
 if (!require("geojsonio")) install.packages("geojsonio")
 if (!require("stringr")) install.packages("stringr")
+if (!require("sp")) install.packages("sp")
 
 #install.packages("pbapply")
 #install.packages("DT")
@@ -50,6 +51,7 @@ library(geojsonio)
 library(stringr)
 library(tibble)
 library(shinyjs)
+library(sp)
 
 source(file.path(getwd(),"download_resample.R"))
 source(file.path(getwd(),"MonalisR.R"))
@@ -91,7 +93,6 @@ server <- function(input, output,session) {
     #nstations<-length(ids)%>%as.numeric
     #nstations<-10
     #ids<-c(1,3,7,24)
-    
     #station<-tot_tab[ids,'SCODE']%>%unique#%>%as.vector
     #sensors<-tot_tab[ids,'TYPE']%>%unique
     station<-unique(tot_tab$SCODE[ids])%>%as.character
@@ -102,6 +103,29 @@ server <- function(input, output,session) {
     dateend<-as.character(input$daterange[2])
     #out_dir="H:/Projekte/SBR/04_Data/06_daily_resample"
     round=input$round
+      
+    #################################################################################
+      
+     stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
+    
+     req(input$map_draw_stop)
+     #print(input$mymap_draw_new_feature)
+    
+
+     #get the coordinates of the polygon
+     polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
+
+      #transform them to an sp Polygon
+     drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+
+      #use over from the sp package to identify selected cities
+     selected_stats <- stations_sel %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+
+      #print the name of the cities
+     selected_stats$SCODE
+    
+      
+    #################################################################################  
     
     if(as_date(datestart)<=dateend){
     withProgress(message = 'Getting data', value = 0, {
