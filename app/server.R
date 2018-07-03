@@ -117,7 +117,7 @@ server <- function(input, output,session) {
      
      stations_sp <- getMeteoStat(format = "spatial")
      req(input$map_draw_stop)
-     print(input$mymap_draw_new_feature)
+     #print(input$mymap_draw_new_feature)
      
      #get the coordinates of the polygon
      polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
