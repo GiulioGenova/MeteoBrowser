@@ -114,31 +114,15 @@ server <- function(input, output,session) {
     round=input$round
       
     #################################################################################
-     
+     #Spatial selection
      if(input$spatialSelection=="YES"){
      
      stations_sp <- getMeteoStat(format = "spatial")
      req(input$map_draw_stop)
-     #print(input$mymap_draw_new_feature)
+     
      
      #get the coordinates of the polygon
      polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
-     print("polygon_coordinates")
-       print(polygon_coordinates)
-      #transform them to an sp Polygon
-      
-      #drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
-      #drawn_polygon <- sp::Polygon(bind_rows(polygon_coordinates),hole="FALSE")
-      #print("is null drawn_polygon")
-      # print(is.null(drawn_polygon))
-      #use over from the sp package to identify selected cities
-      #drawn_polygon <- rgdal::spTransform(drawn_polygon, CRS = CRS(projection(stations_sel)))
-      #drawn_polygon <- spTransform(drawn_polygon, crs(stations_sel))
-      
-      #selected_stats <- stations_sp %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")),
-        #                                                  proj4string = CRS(projection(stations_sp)))
-     # print("selected_stats")
-      # print(selected_stats)
       
     drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
     sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
@@ -146,25 +130,14 @@ server <- function(input, output,session) {
     # set coords as latlong then transform to leaflet projection
     proj4string(sp) <- LL
     polyre <- spTransform(sp, leaf.proj)
+    
     stations_sp<-spTransform(stations_sp,leaf.proj)
        
-     selected_stats <- stations_sp %over% polyre
-        print("selected_stats")
-       print(selected_stats)
-       
-       #print the name of the cities
-      #if(!is.null(selected_stats)){
-      #station<-selected_stats$SCODE%>%as.character
-      #print(stations_sp[which(!is.na(selected_stats)),"SCODE"])
-      
-       print("wich is not na of selected")
-       print(which(!is.na(selected_stats)))
-       
-      sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
-      print(sp_sel)
-       print("SCODEs")
-      print(unique(sp_sel$SCODE) %>% as.character)
-      station<-unique(sp_sel$SCODE) %>% as.character
+    selected_stats <- stations_sp %over% polyre
+
+    sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
+
+    station<-unique(sp_sel$SCODE) %>% as.character
        #}
     
       }
