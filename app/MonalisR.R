@@ -88,9 +88,15 @@ plotMeteoLeaflet<-function (stations = NULL, addPoints = NULL, addBuff = F, widt
                                                                                                               stations$ALT))%>%
     #addEasyButton(easyButton(icon="fa-crosshairs", title="Locate Me",
      #                        onClick=JS("function(btn, map){ map.locate({setView: true}); }")))%>%
-    addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
-    addLayersControl(baseGroups = c("OSM","SAT"),
-                     options = layersControlOptions(collapsed = FALSE),position = "topleft")
+  
+      addDrawToolbar(
+        targetGroup='draw',
+        polylineOptions=FALSE,
+        markerOptions = FALSE,
+        circleOptions = TRUE)%>%
+  addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
+    addLayersControl(baseGroups = c("OSM","SAT"),overlayGroups = c('draw'),
+                     options = layersControlOptions(collapsed = FALSE),position = "topleft")%>%
   
   if (!is.null(addPoints)) {
     coords <- coordinates(addPoints)
