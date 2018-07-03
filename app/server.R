@@ -182,7 +182,37 @@ server <- function(input, output,session) {
   
   output$selected<-renderText({
     ids<-input$table_rows_all
+    
+    
     nstation<-unique(tot_tab$SCODE[ids])%>%as.character %>% length
+    #########################################################
+    if(input$spatialSelection=="YES"){
+     
+     stations_sp <- getMeteoStat(format = "spatial")
+     req(input$map_draw_stop)
+     
+     
+     #get the coordinates of the polygon
+     polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
+      
+    drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+    sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+
+    # set coords as latlong then transform to leaflet projection
+    proj4string(sp) <- LL
+    polyre <- spTransform(sp, leaf.proj)
+    
+    stations_sp<-spTransform(stations_sp,leaf.proj)
+       
+    selected_stats <- stations_sp %over% polyre
+
+    sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
+
+    station<-unique(sp_sel$SCODE) %>% as.character
+       #}
+    nstation<-length(station)%>%as.character
+      }
+    
     nsensors<-unique(tot_tab$TYPE[ids])%>%as.character %>% length
     if(nstation==1) stat<-" station" else{stat<- " stations"}
     if(nsensors==1) param<-" parameter" else{param<- " parameters"}
