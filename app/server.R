@@ -69,6 +69,7 @@ st<-getMeteoStat()
 tot_tab<-full_join(st,se)%>%dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,-VALUE,-LAT,-LONG)%>%
   mutate_if(is.character, funs(as.factor(.)))#%>%as.data.frame()
 
+stations_sp <- getMeteoStat(format = "spatial")
 
 server <- function(input, output,session) {
   #observeEvent(input$stop,{
@@ -117,8 +118,6 @@ server <- function(input, output,session) {
     
      req(input$map_draw_stop)
      #print(input$mymap_draw_new_feature)
-    
-     stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
      
      #get the coordinates of the polygon
      polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
@@ -129,12 +128,12 @@ server <- function(input, output,session) {
       #use over from the sp package to identify selected cities
       #drawn_polygon <- rgdal::spTransform(drawn_polygon, CRS = CRS(projection(stations_sel)))
       #drawn_polygon <- spTransform(drawn_polygon, crs(stations_sel))
-      selected_stats <- stations_sel %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")),
-                                                            proj4string = CRS(projection(stations_sel)))
+      selected_stats <- stations_sp %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")),
+                                                            proj4string = CRS(projection(stations_sp)))
 
       #print the name of the cities
       #if(!is.null(selected_stats)){
-     station<-selected_stats$SCODE
+     station<-selected_stats$SCODE%>%as.character
       #}
     
       }
