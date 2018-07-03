@@ -136,7 +136,7 @@ server <- function(input, output,session) {
       #drawn_polygon <- spTransform(drawn_polygon, crs(stations_sel))
       
       #selected_stats <- stations_sp %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")),
-                                                          proj4string = CRS(projection(stations_sp)))
+        #                                                  proj4string = CRS(projection(stations_sp)))
      # print("selected_stats")
       # print(selected_stats)
       
