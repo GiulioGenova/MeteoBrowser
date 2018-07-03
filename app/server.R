@@ -132,7 +132,7 @@ server <- function(input, output,session) {
 
       #print the name of the cities
      if(!is.null(selected_stats$SCODE)){
-     station<-unique(selected_stats$SCODE)%>%as.character
+     station<-unique(selected_stats[,"SCODE"])%>%as.character
      }
     
       
