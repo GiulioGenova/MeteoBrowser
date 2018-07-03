@@ -104,7 +104,6 @@ server <- function(input, output,session) {
     #sensors<-tot_tab[ids,'TYPE']%>%unique
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     sensors<-unique(tot_tab$TYPE[ids])%>%as.character
-    nstations<-length(station)%>%as.numeric*length(sensors)%>%as.numeric
     
     datestart<-as.character(input$daterange[1])
     dateend<-as.character(input$daterange[2])
@@ -141,12 +140,16 @@ server <- function(input, output,session) {
        #print the name of the cities
       #if(!is.null(selected_stats)){
       #station<-selected_stats$SCODE%>%as.character
-      stations_sp[which(!is.na(selected_stats)),"SCODE"]
+      print(stations_sp[which(!is.na(selected_stats)),"SCODE"])
+      
        #}
     
       }
     #################################################################################  
-    
+    nstations<-length(station)%>%as.numeric*length(sensors)%>%as.numeric
+      
+      
+      
     if(as_date(datestart)<=dateend){
     withProgress(message = 'Getting data', value = 0, {
     db<-dwnld(station=station,datestart=datestart,dateend=dateend,sensors=sensors,nstations=nstations)#round=round,
