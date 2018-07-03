@@ -121,7 +121,7 @@ server <- function(input, output,session) {
      
      #get the coordinates of the polygon
      polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
-
+     polygon_coordinates
       #transform them to an sp Polygon
       drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
       drawn_polygon
