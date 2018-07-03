@@ -67,7 +67,7 @@ ui <- dashboardPage(#useShinyjs(),
                     #actionButton(label= "update selection","refresh"),
                     selectInput("gather",
                                 label = h4("Choose between long or wide table format"),
-                                choices = list("wide","long")),
+                                choices = list("wide","long"))#,
                     #selectInput("spatialSelection",
                       #          label = h4("Enable spatial selection"),
                   # choices = list("NO","YES"))
