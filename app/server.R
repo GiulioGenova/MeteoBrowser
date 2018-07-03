@@ -122,7 +122,7 @@ server <- function(input, output,session) {
      selected_stats <- stations_sel %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
 
       #print the name of the cities
-     if(!is.null(selected_stats$SCODE){
+     if(!is.null(selected_stats$SCODE)){
      station<-selected_stats$SCODE
      }
     
