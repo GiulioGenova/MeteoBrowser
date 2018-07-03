@@ -19,7 +19,7 @@ if (!require("geojsonio")) install.packages("geojsonio")
 if (!require("stringr")) install.packages("stringr")
 if (!require("sp")) install.packages("sp")
 if (!require("raster")) install.packages("raster")
-if (!require("rgdal")) install.packages("rgdal")
+#if (!require("rgdal")) install.packages("rgdal")
 
 
 #install.packages("pbapply")
@@ -56,7 +56,7 @@ library(stringr)
 library(tibble)
 library(shinyjs)
 library(sp)
-library(rgdal)
+#library(rgdal)
 
 
 source(file.path(getwd(),"download_resample.R"))
@@ -111,7 +111,8 @@ server <- function(input, output,session) {
     round=input$round
       
     #################################################################################
-      
+     
+     if(input$spatialSelect=="spatial"){
      stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
     
      req(input$map_draw_stop)
@@ -135,7 +136,7 @@ server <- function(input, output,session) {
      station<-selected_stats$SCODE
      }
     
-      
+      }
     #################################################################################  
     
     if(as_date(datestart)<=dateend){
