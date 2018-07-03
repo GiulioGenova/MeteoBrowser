@@ -115,7 +115,7 @@ server <- function(input, output,session) {
      
      if(input$spatialSelection=="YES"){
      
-    
+     stations_sp <- getMeteoStat(format = "spatial")
      req(input$map_draw_stop)
      #print(input$mymap_draw_new_feature)
      
@@ -128,12 +128,13 @@ server <- function(input, output,session) {
       #use over from the sp package to identify selected cities
       #drawn_polygon <- rgdal::spTransform(drawn_polygon, CRS = CRS(projection(stations_sel)))
       #drawn_polygon <- spTransform(drawn_polygon, crs(stations_sel))
-      selected_stats <- stations_sp %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")),
-                                                            proj4string = CRS(projection(stations_sp)))
-
-      #print the name of the cities
+      #selected_stats <- stations_sp %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")),
+      #                                                      proj4string = CRS(projection(stations_sp)))
+      selected_cities <- stations_sp %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+      
+       #print the name of the cities
       #if(!is.null(selected_stats)){
-     station<-selected_stats$SCODE%>%as.character
+      station<-selected_stats$SCODE%>%as.character
       #}
     
       }
