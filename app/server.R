@@ -127,7 +127,8 @@ server <- function(input, output,session) {
       #use over from the sp package to identify selected cities
       #drawn_polygon <- rgdal::spTransform(drawn_polygon, CRS = CRS(projection(stations_sel)))
       #drawn_polygon <- spTransform(drawn_polygon, crs(stations_sel))
-      selected_stats <- stations_sel %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")),CRS = CRS(projection(stations_sel)))
+      selected_stats <- stations_sel %over% SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")),
+                                                            proj4string = CRS(projection(stations_sel)))
 
       #print the name of the cities
      if(!is.null(selected_stats$SCODE)){
