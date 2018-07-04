@@ -38,9 +38,9 @@ db_all<-left_join(db_all,getMeteoStat(),"SCODE")#,by="SCODE"
 
 
 resample_provBz_data<-function(df,round="hour",spread=FALSE){
-  tryCatch({
+  #tryCatch({
   #df<-db_prov
-  #if(round=="raw"){
+  if(round=="raw"){
     db_final<-df
     
     if(spread){
