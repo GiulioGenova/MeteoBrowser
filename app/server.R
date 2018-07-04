@@ -115,7 +115,7 @@ server <- function(input, output,session) {
       
     #################################################################################
      #Spatial selection
-     if(FALSE){#input$spatialSelection=="YES"
+     if(input$spatialSelection){#=="YES"FALSE
      
      stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
      req(input$map_draw_stop)
@@ -186,7 +186,7 @@ server <- function(input, output,session) {
     
     nstation<-unique(tot_tab$SCODE[ids])%>%as.character %>% length
     #########################################################
-    if(FALSE){#input$spatialSelection=="YES"
+    if(input$spatialSelection){#=="YES"FALSE
      
      stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
      req(input$map_draw_stop)
