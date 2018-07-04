@@ -38,7 +38,7 @@ db_all<-left_join(db_all,getMeteoStat(),"SCODE")#,by="SCODE"
 
 
 resample_provBz_data<-function(df,round="hour",spread=FALSE){
-  #tryCatch({
+  tryCatch({
   #df<-db_prov
   if(round=="raw"){
     db_final<-df
@@ -75,5 +75,5 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
   
   #df_with_names<-left_join(db_final,getMeteoStat(),by="SCODE")
   df_with_names<-db_final %>% as.data.frame
-   # }, error = function(e){df_with_names<-"Something went wrong. Probably there is no data available in the date range you picked. Try with a more recent final date"})#
+    }, error = function(e){df_with_names<-"Something went wrong. Probably there is no data available in the date range you picked. Try with a more recent final date"})#
 }
