@@ -76,7 +76,7 @@ ui <- dashboardPage(#useShinyjs(),
               ),
                    
                 box(width = 8,leafletOutput("map"),
-                    helpText("You have selected the following stations"),
+                    helpText("You have selected the following stations:"),
                     verbatimTextOutput("selected_list"),collapsible = T)
               )
               ,fluidRow(
