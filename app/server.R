@@ -223,7 +223,7 @@ server <- function(input, output,session) {
   output$selected_list<-renderText({
     ids<-input$table_rows_all
     
-    station<-unique(tot_tab$SCODE[ids])%>%as.character
+    station<-unique(tot_tab$NAME_D[ids])%>%as.character
     #########################################################
     if(input$spatialSelection){#=="YES"FALSE
      
@@ -246,13 +246,13 @@ server <- function(input, output,session) {
 
      sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
 
-     station<-unique(sp_sel$SCODE) %>% as.character
+     station<-unique(sp_sel$NAME_D) %>% as.character
        #}
     
      }
     
-    mssg<- paste("You have selected the following stations", station)
-    
+    #mssg<- paste("You have selected the following stations", station)
+    mssg<- station
 })
   
   
