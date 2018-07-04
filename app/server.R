@@ -219,6 +219,44 @@ server <- function(input, output,session) {
     mssg<- paste("You have selected n° ", nstation,stat," and ",nsensors,param)
     
   })
+  
+  output$selected_list<-renderText({
+    ids<-input$table_rows_all
+    
+    station<-unique(tot_tab$SCODE[ids])%>%as.character
+    #########################################################
+    if(input$spatialSelection){#=="YES"FALSE
+     
+     stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
+     req(input$map_draw_stop)
+
+     #get the coordinates of the polygon
+     polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
+      
+     drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+     sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+
+     # set coords as latlong then transform to leaflet projection
+     proj4string(sp) <- LL
+     polyre <- spTransform(sp, leaf.proj)
+    
+     stations_sp<-spTransform(stations_sp,leaf.proj)
+       
+     selected_stats <- stations_sp %over% polyre
+
+     sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
+
+     station<-unique(sp_sel$SCODE) %>% as.character
+       #}
+    
+     }
+    
+    mssg<- paste("You have selected the following stations", station)
+    
+})
+  
+  
+  
   #observe({
   #  click<-input$map_marker_click
    # if(is.null(click))
