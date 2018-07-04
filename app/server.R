@@ -227,7 +227,7 @@ server <- function(input, output,session) {
     #########################################################
     if(input$spatialSelection){#=="YES"FALSE
      
-     stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
+     stations_sp <- getMeteoStat(format = "spatial")%>%filter(NAME_D%in%station)
      req(input$map_draw_stop)
 
      #get the coordinates of the polygon
