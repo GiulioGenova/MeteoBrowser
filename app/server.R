@@ -183,7 +183,7 @@ server <- function(input, output,session) {
   output$selected<-renderText({
     ids<-input$table_rows_all
     
-    
+    station<-unique(tot_tab$SCODE[ids])%>%as.character
     nstation<-unique(tot_tab$SCODE[ids])%>%as.character %>% length
     #########################################################
     if(input$spatialSelection){#=="YES"FALSE
