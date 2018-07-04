@@ -75,7 +75,7 @@ ui <- dashboardPage(#useShinyjs(),
                   # choices = list("NO","YES"))
               ),
                    
-                box(width = 8,leafletOutput("map"),collapsible = T)
+                box(width = 8,leafletOutput("map"),verbatimTextOutput("selected_list"),collapsible = T)
               )
               ,fluidRow(
 
