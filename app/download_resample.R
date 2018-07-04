@@ -47,7 +47,7 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
       
       splitted<-base::split(db_final,df$Sensor)
       splitted_rowid<-base::lapply(splitted, function(x) {
-      x %>% dplyr::mutate(idrow = row_number()) %>% dplyr::spread(key = Sensor,value = Value) %>% dplyr::select(-idrow)
+      x %>% dplyr::mutate(idrow = row_number()) %>% tidyr::spread(key = Sensor,value = Value) %>% dplyr::select(-idrow)
       
       })
       
