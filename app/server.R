@@ -72,7 +72,7 @@ st<-getMeteoStat()
 tot_tab<-full_join(st,se)%>%dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,-VALUE,-LAT,-LONG)%>%
   mutate_if(is.character, funs(as.factor(.)))#%>%as.data.frame()
 
-stations_sp <- getMeteoStat(format = "spatial")
+#stations_sp <- getMeteoStat(format = "spatial")
 
 server <- function(input, output,session) {
   #observeEvent(input$stop,{
@@ -117,7 +117,7 @@ server <- function(input, output,session) {
      #Spatial selection
      if(FALSE){#input$spatialSelection=="YES"
      
-     stations_sp <- getMeteoStat(format = "spatial")
+     stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
      req(input$map_draw_stop)
      
      
@@ -188,7 +188,7 @@ server <- function(input, output,session) {
     #########################################################
     if(FALSE){#input$spatialSelection=="YES"
      
-     stations_sp <- getMeteoStat(format = "spatial")
+     stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
      req(input$map_draw_stop)
      
      
