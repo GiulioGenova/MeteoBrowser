@@ -252,7 +252,7 @@ server <- function(input, output,session) {
      }
     
     #mssg<- paste("You have selected the following stations", station)
-    mssg<- paste(station,collapse=" ;")
+    mssg<- paste(station,collapse="; ")
 })
   
   
