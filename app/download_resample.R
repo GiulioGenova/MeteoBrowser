@@ -59,9 +59,9 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
   }else{
   
       db_final<-df%>%#mutate(Value=ifelse(Value==-777,NA,Value))%>%
-        group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
+        group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT,VALUE)%>%
         summarise(mean=mean(Value,na.rm = T),sum=sum(Value,na.rm = T),max=max(Value,na.rm = T),min=min(Value,na.rm = T) ) %>% 
-        gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
+        gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT,-VALUE) %>%
         unite(Sensor, Sensor, Variable,sep="")
       
       if(spread){
