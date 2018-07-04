@@ -47,11 +47,11 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
       
       splitted<-base::split(db_final,df$Sensor)
       splitted_rowid<-base::lapply(splitted, function(x) {
-      x %>% mutate(idrow = row_number()) %>% spread(key = Sensor,value = Value) %>% select(-idrow)
+      x %>% dplyr::mutate(idrow = row_number()) %>% dplyr::spread(key = Sensor,value = Value) %>% dplyr::select(-idrow)
       
       })
       
-      merged<-Reduce(function(...) base::merge(..., all = TRUE), splitted_rowid)
+      merged<-base::Reduce(function(...) base::merge(..., all = TRUE), splitted_rowid)
       db_final<-merged
       
     }
