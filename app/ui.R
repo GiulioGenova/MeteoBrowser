@@ -68,7 +68,7 @@ ui <- dashboardPage(#useShinyjs(),
                     selectInput("gather",
                                 label = h4("Choose between long or wide table format"),
                                 choices = list("wide","long")),
-                   checkboxInput("spatialSelection", label = h4("Enable spatial selection (Draw a polygon in the map"),
+                   checkboxInput("spatialSelection", label = h4("Enable spatial selection (Draw a polygon in the map)"),
                                  value = FALSE)
                     #selectInput("spatialSelection",
                       #          label = h4("Enable spatial selection"),
