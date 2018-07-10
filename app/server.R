@@ -72,6 +72,10 @@ st<-getMeteoStat()
 tot_tab<-full_join(st,se)%>%dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALUE,-LAT,-LONG,-VALUE)%>%
   mutate_if(is.character, funs(as.factor(.)))#%>%as.data.frame()
 
+se_spread<-se %>% select(SCODE,TYPE,UNIT,VALUE) %>% 
+  unite(VALUE,VALUE,UNIT,sep=" ") %>% 
+  spread(TYPE,VALUE)
+
 #stations_sp <- getMeteoStat(format = "spatial")
 
 server <- function(input, output,session) {
@@ -169,6 +173,7 @@ server <- function(input, output,session) {
     ids<-input$table_rows_all
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
+    stations_sel<-left_join(stations_sel,se_spread)
     plotMeteoLeaflet(stations_sel)
     
   })
