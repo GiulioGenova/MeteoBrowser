@@ -114,7 +114,8 @@ plotMeteoLeaflet<-function (stations = NULL, addPoints = NULL, addBuff = F, widt
       polylineOptions=FALSE,
       markerOptions = FALSE,
       circleOptions = FALSE,
-      rectangleOptions =FALSE)%>%#
+      rectangleOptions =FALSE,
+      circleMarkerOptions =FALSE)%>%#
     addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
     addLayersControl(baseGroups = c("OSM","SAT"),overlayGroups = c('draw'),
                      options = layersControlOptions(collapsed = FALSE),position = "topleft")
