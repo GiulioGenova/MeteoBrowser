@@ -72,7 +72,7 @@ st<-getMeteoStat()
 tot_tab<-full_join(st,se)%>%dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALUE,-LAT,-LONG,-VALUE)%>%
   mutate_if(is.character, funs(as.factor(.)))#%>%as.data.frame()
 
-se_spread<-se %>% select(SCODE,TYPE,UNIT,VALUE) %>% 
+se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE) %>% 
   unite(VALUE,VALUE,UNIT,sep=" ") %>% 
   spread(TYPE,VALUE)
 
