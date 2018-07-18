@@ -143,7 +143,7 @@ server <- function(input, output,session) {
 
     station<-unique(sp_sel$SCODE) %>% as.character
        #}
-    filterForSensor<-tot_tab%>% dplyr::filter(SCODE%in%station)
+    filterForSensor<-tot_tab[,ids]%>% dplyr::filter(SCODE%in%station)
     sensors<-unique(filterForSensor$TYPE)%>%as.character
       }
     #################################################################################  
