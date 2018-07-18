@@ -63,9 +63,7 @@ ui <- dashboardPage(#useShinyjs(),
                    )),
   dashboardBody(
     tagList(
-  scr,
-  leafletOutput("map"),
-  actionButton("deletebtn", "remove drawn")
+  scr
   ),
     
     # Boxes need to be put in a row (or column)
