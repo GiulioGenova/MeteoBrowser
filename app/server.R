@@ -87,6 +87,11 @@ server <- function(input, output,session) {
                   backgroundColor = "#edf5e1")
   })
   
+  polyCoord <- reactiveValues(#data<-datafile()
+    req(input$map_draw_stop)
+    #get the coordinates of the polygon
+    polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
+)
   
   D <- reactiveValues(documents = NULL)
   
@@ -101,11 +106,12 @@ server <- function(input, output,session) {
   if(input$spatialSelection){#FALSE
     
     stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
-    req(input$map_draw_stop)
+    #req(input$map_draw_stop)
     
     
     #get the coordinates of the polygon
-    polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
+    #polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
+    polygon_coordinates <- polyCoord$polygon_coordinates
     
     drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
     sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
