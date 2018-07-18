@@ -50,11 +50,7 @@ scr <- tags$script(HTML(
 
 
 ui <- dashboardPage(#useShinyjs(),
-  tagList(
-  scr,
-  leafletOutput("map"),
-  actionButton("deletebtn", "remove drawn")
-  ),
+  
   skin = "blue",
   dashboardHeader(title = "Open Data South Tyrol",titleWidth = 320),
   dashboardSidebar(disable = F,
@@ -66,6 +62,12 @@ ui <- dashboardPage(#useShinyjs(),
                      #menuItem("Data detail", tabName = "detail", icon = icon("bar-chart-o"))
                    )),
   dashboardBody(
+    tagList(
+  scr,
+  leafletOutput("map"),
+  actionButton("deletebtn", "remove drawn")
+  ),
+    
     # Boxes need to be put in a row (or column)
     tabItems(
       
