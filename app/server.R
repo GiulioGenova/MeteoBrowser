@@ -191,6 +191,7 @@ server <- function(input, output,session) {
     
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     nstation<-unique(tot_tab$SCODE[ids])%>%as.character %>% length
+    nsensors<-unique(tot_tab$TYPE[ids])%>%as.character %>% length
     #########################################################
     if(input$spatialSelection){#=="YES"FALSE
      
@@ -217,9 +218,12 @@ server <- function(input, output,session) {
     station<-unique(sp_sel$SCODE) %>% as.character
        #}
     nstation<-length(station)%>%as.character
+    filterForSensor<-tot_tab[ids,]%>% dplyr::filter(SCODE%in%station)
+    sensors<-unique(filterForSensor$TYPE)%>%as.character
+    nsensors<-length(sensors)%>%as.character
       }
     
-    nsensors<-unique(tot_tab$TYPE[ids])%>%as.character %>% length
+    
     if(nstation==1) stat<-" station" else{stat<- " stations"}
     if(nsensors==1) param<-" parameter" else{param<- " parameters"}
     mssg<- paste("You have selected n° ", nstation,stat," and ",nsensors,param)
