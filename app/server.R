@@ -124,7 +124,7 @@ server <- function(input, output,session) {
       #polygon_coordinates <- polyCoord$polygon_coordinates
       polygon_coordinates <-polyCoord()
       if(is.null(polygon_coordinates)){
-          station<-NULL;sensors<-NULL,stationName<-NULL
+          station<-NULL;sensors<-NULL;stationName<-NULL
           }else{
       drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
       sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
