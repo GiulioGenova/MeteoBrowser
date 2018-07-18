@@ -90,48 +90,48 @@ server <- function(input, output,session) {
   polyCoord <- reactive(
     polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
     return(polygon_coordinates)
-)
+  )
   
   D <- reactiveValues(documents = NULL)
   
   StatSens<-reactive({
-  
-  ids<-input$table_rows_all
-  
-  station<-unique(tot_tab$SCODE[ids])%>%as.character
-  sensors<-unique(tot_tab$TYPE[ids])%>%as.character
-  stationName<-unique(tot_tab$NAME_D[ids])%>%as.character
-  #########################################################
-  if(input$spatialSelection){#FALSE
     
-    stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
-    req(input$map_draw_stop)
+    ids<-input$table_rows_all
     
-    
-    #get the coordinates of the polygon
-    #polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
-    #polygon_coordinates <- polyCoord$polygon_coordinates
-    polygon_coordinates <-polyCoord()
-    drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
-    sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
-    
-    # set coords as latlong then transform to leaflet projection
-    proj4string(sp) <- LL
-    polyre <- spTransform(sp, leaf.proj)
-    
-    stations_sp<-spTransform(stations_sp,leaf.proj)
-    
-    selected_stats <- stations_sp %over% polyre
-    
-    sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
-    
-    station<-unique(sp_sel$SCODE) %>% as.character
-    stationName<-unique(sp_sel$NAME_D) %>% as.character
-    
-    filterForSensor<-tot_tab[ids,]%>% dplyr::filter(SCODE%in%station)
-    sensors<-unique(filterForSensor$TYPE)%>%as.character
-  }
-  return(list(station,sensors,stationName))
+    station<-unique(tot_tab$SCODE[ids])%>%as.character
+    sensors<-unique(tot_tab$TYPE[ids])%>%as.character
+    stationName<-unique(tot_tab$NAME_D[ids])%>%as.character
+    #########################################################
+    if(input$spatialSelection){#FALSE
+      
+      stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
+      req(input$map_draw_stop)
+      
+      
+      #get the coordinates of the polygon
+      #polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
+      #polygon_coordinates <- polyCoord$polygon_coordinates
+      polygon_coordinates <-polyCoord()
+      drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+      sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+      
+      # set coords as latlong then transform to leaflet projection
+      proj4string(sp) <- LL
+      polyre <- spTransform(sp, leaf.proj)
+      
+      stations_sp<-spTransform(stations_sp,leaf.proj)
+      
+      selected_stats <- stations_sp %over% polyre
+      
+      sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
+      
+      station<-unique(sp_sel$SCODE) %>% as.character
+      stationName<-unique(sp_sel$NAME_D) %>% as.character
+      
+      filterForSensor<-tot_tab[ids,]%>% dplyr::filter(SCODE%in%station)
+      sensors<-unique(filterForSensor$TYPE)%>%as.character
+    }
+    return(list(station,sensors,stationName))
   })
   
   
@@ -140,15 +140,15 @@ server <- function(input, output,session) {
   
   observeEvent(input$refresh,{
     ids<-input$table_rows_all
-
+    
     station<-StatSens()[[1]]
     sensors<-StatSens()[[2]]
     
     datestart<-as.character(input$daterange[1])
     dateend<-as.character(input$daterange[2])
-
+    
     round=input$round
- 
+    
     nstations<-length(station)%>%as.numeric*length(sensors)%>%as.numeric
     
     
@@ -191,7 +191,7 @@ server <- function(input, output,session) {
     
   })
   
-   drawnshapes <- list()
+  drawnshapes <- list()
   
   # we are fortunate here since we get an event
   #   draw_all_features
@@ -265,7 +265,7 @@ server <- function(input, output,session) {
     
   })
   
- 
+  
   
   output$rightdate <-reactive({
     datestart<- input$daterange[1] %>% as.character %>% as_date
