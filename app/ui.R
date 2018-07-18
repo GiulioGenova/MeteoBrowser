@@ -77,7 +77,11 @@ ui <- dashboardPage(#useShinyjs(),
                    
                 box(width = 8,leafletOutput("map"),
                     helpText("You have selected the following stations:"),
-                    verbatimTextOutput("selected_list"),collapsible = T)
+                    verbatimTextOutput("selected_list"),
+                    helpText("And the following sensors:"),
+                    verbatimTextOutput("selected_listSensors"),
+                    collapsible = T)
+                    
               )
               ,fluidRow(
 
