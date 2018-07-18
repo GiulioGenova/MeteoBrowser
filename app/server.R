@@ -268,7 +268,7 @@ server <- function(input, output,session) {
   output$selected_listSensors<-renderText({
     ids<-input$table_rows_all
     
-    station<-unique(tot_tab$NAME_D[ids])%>%as.character
+    station<-unique(tot_tab$SCODE[ids])%>%as.character
     sensors<-unique(tot_tab$TYPE[ids])%>%as.character
     #########################################################
     if(input$spatialSelection){#=="YES"FALSE
