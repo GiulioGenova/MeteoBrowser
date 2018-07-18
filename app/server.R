@@ -87,8 +87,9 @@ server <- function(input, output,session) {
                   backgroundColor = "#edf5e1")
   })
   
-  polyCoord <- reactiveValues(
+  polyCoord <- reactive(
     polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
+    return(polygon_coordinates)
 )
   
   D <- reactiveValues(documents = NULL)
@@ -109,8 +110,8 @@ server <- function(input, output,session) {
     
     #get the coordinates of the polygon
     #polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
-    polygon_coordinates <- polyCoord$polygon_coordinates
-    
+    #polygon_coordinates <- polyCoord$polygon_coordinates
+    polygon_coordinates <-polyCoord()
     drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
     sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
     
