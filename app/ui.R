@@ -30,7 +30,27 @@ library(DT)
 #library(shinyBS)
 about = source(file.path(getwd(),'about.R'))
 
+scr <- tags$script(HTML(
+  "
+  Shiny.addCustomMessageHandler(
+  'removeleaflet',
+  function(x){
+  console.log('deleting',x)
+  // get leaflet map
+  var map = HTMLWidgets.find('#' + x.elid).getMap();
+  // remove
+  map.removeLayer(map._layers[x.layerid])
+  })
+  "
+))
+
+# then our new app can do something like this
+
+
+
+
 ui <- dashboardPage(#useShinyjs(),
+  tagList(scr),
   skin = "blue",
   dashboardHeader(title = "Open Data South Tyrol",titleWidth = 320),
   dashboardSidebar(disable = F,
@@ -76,6 +96,7 @@ ui <- dashboardPage(#useShinyjs(),
               ),
                    
                 box(width = 8,leafletOutput("map"),
+                    actionButton("deletebtn", "remove drawn"),
                     helpText("You have selected the following stations:"),
                     verbatimTextOutput("selected_list"),
                     helpText("And the following parameters (TYPE):"),
