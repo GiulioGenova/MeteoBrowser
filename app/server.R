@@ -98,6 +98,11 @@ server <- function(input, output,session) {
     polyCoord(polygon_coordinates)
     })
   
+  observeEvent(input$deletebtn,{
+    polygon_coordinates = NULL
+    polyCoord(polygon_coordinates)
+    })
+  
   D <- reactiveValues(documents = NULL)
   
   StatSens<-reactive({
