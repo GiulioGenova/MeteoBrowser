@@ -64,45 +64,7 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
     }
     
   }else{
-    if(NROW(df)>500000){
-      
-      res_cycle<-function(ids,df){
-        
-        df<-df %>% filter(SCODE%in%ids)
-        
-        db_sum<-df%>%
-          filter(Sensor%in%c("N","LT","IR")) %>% #
-          group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
-          summarise(sum=sum(Value,na.rm = T)) %>% 
-          gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
-          unite(Sensor, Sensor, Variable,sep="") %>% 
-          ungroup
-        
-        
-        db_mean<-df%>%filter(!Sensor%in%c("N","IR")) %>% 
-          group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
-          summarise(mean=mean(Value,na.rm = T)) %>% 
-          gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
-          unite(Sensor, Sensor, Variable,sep="") %>% 
-          ungroup
-        
-        db_min_max<-df%>%filter(Sensor%in%c("LT","LF")) %>% 
-          group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
-          summarise(min=min(Value,na.rm = T),max=max(Value,na.rm = T)) %>% 
-          gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
-          unite(Sensor, Sensor, Variable,sep="") %>% 
-          ungroup
-        
-        db_final<-bind_rows(db_sum,db_mean,db_min_max)
-      }
-      
-      ids<-df$SCODE %>% unique
-      
-      db_fin_list<-lapply(ids,res_cycle,df=df)
-      
-      db_final<-bind_rows(db_fin_list)
-      
-    }else{
+    
       
       db_sum<-df%>%filter(Sensor%in%c("N","LT")) %>% #
         group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
@@ -127,10 +89,7 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
         ungroup
       
       db_final<-bind_rows(db_sum,db_mean,db_min_max) %>% mutate(Value=ifelse(Value%in%c(-Inf,Inf,NaN),NA,Value))
-      
-      
-      
-    }
+
     
     #db_final<-df%>%
       #group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
