@@ -175,7 +175,20 @@ server <- function(input, output,session) {
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
     stations_sel<-left_join(stations_sel,se_spread)
-    plotMeteoLeaflet(stations_sel)
+    m<-plotMeteoLeaflet(stations_sel)
+    if(FALSE){#input$spatialSelection
+    m <- m %>% addDrawToolbar(
+               targetGroup='draw',
+               polylineOptions=FALSE,
+               markerOptions = FALSE,
+               circleOptions = FALSE,
+               rectangleOptions =FALSE,
+               circleMarkerOptions =FALSE)%>%#
+               addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
+               addLayersControl(overlayGroups = c('draw'),
+               options = layersControlOptions(collapsed = FALSE),position = "topleft")
+      }
+    m
     
   })
   
