@@ -98,7 +98,7 @@ server <- function(input, output,session) {
   sensors<-unique(tot_tab$TYPE[ids])%>%as.character
   stationName<-unique(tot_tab$NAME_D[ids])%>%as.character
   #########################################################
-  if(input$spatialSelection){#FALSE
+  if(FALSE){#input$spatialSelection
     
     stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
     req(input$map_draw_stop)
