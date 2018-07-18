@@ -186,6 +186,43 @@ server <- function(input, output,session) {
     
   })
   
+   drawnshapes <- list()
+  
+  # we are fortunate here since we get an event
+  #   draw_all_features
+  observeEvent(
+    input$map_draw_all_features,
+    {
+      drawnshapes <<- lapply(
+        input$map_draw_all_features$features,
+        function(ftr) {
+          ftr$properties$`_leaflet_id`
+        }
+      )
+      # seeing is believing
+      str(drawnshapes)
+    }
+  )
+  
+  # observe our simple little button to remove
+  observeEvent(
+    input$deletebtn,
+    {
+      print(drawnshapes)
+      lapply(
+        drawnshapes,
+        function(todelete) {
+          session$sendCustomMessage(
+            "removeleaflet",
+            list(elid="map", layerid=todelete)
+          )
+        }
+      )
+    }
+  )
+  
+  
+  
   output$message<-renderText({
     datestart<-as.character(input$daterange[1])
     dateend<-as.character(input$daterange[2])
