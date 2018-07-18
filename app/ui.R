@@ -99,8 +99,8 @@ ui <- dashboardPage(#useShinyjs(),
                   # choices = list("NO","YES"))
               ),
                    
-                box(width = 8,leafletOutput("map"),
-                    actionButton("deletebtn", "remove drawn"),
+                box(width = 8,leafletOutput(actionButton("deletebtn", "remove drawn"),"map"),
+                    
                     helpText("You have selected the following stations:"),
                     verbatimTextOutput("selected_list"),
                     helpText("And the following parameters (TYPE):"),
