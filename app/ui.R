@@ -50,7 +50,11 @@ scr <- tags$script(HTML(
 
 
 ui <- dashboardPage(#useShinyjs(),
-  tagList(scr),
+  tagList(
+  scr,
+  leafletOutput("map"),
+  actionButton("deletebtn", "remove drawn")
+  ),
   skin = "blue",
   dashboardHeader(title = "Open Data South Tyrol",titleWidth = 320),
   dashboardSidebar(disable = F,
