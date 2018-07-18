@@ -87,10 +87,10 @@ server <- function(input, output,session) {
                   backgroundColor = "#edf5e1")
   })
   
-  polyCoord <- reactive(
+  polyCoord <- reactive({
     polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
     return(polygon_coordinates)
-  )
+  })
   
   D <- reactiveValues(documents = NULL)
   
