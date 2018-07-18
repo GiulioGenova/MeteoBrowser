@@ -119,7 +119,7 @@ server <- function(input, output,session) {
       
     #################################################################################
      #Spatial selection
-     if(FALSE){#input$spatialSelection
+     if(input$spatialSelection){#FALSE
      
      stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
      req(input$map_draw_stop)
@@ -176,7 +176,8 @@ server <- function(input, output,session) {
     stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
     stations_sel<-left_join(stations_sel,se_spread)
     m<-plotMeteoLeaflet(stations_sel)
-    if(FALSE){#input$spatialSelection
+    
+    if(input$spatialSelection){#FALSE
     m <- m %>% addDrawToolbar(
                targetGroup='draw',
                polylineOptions=FALSE,
@@ -206,7 +207,7 @@ server <- function(input, output,session) {
     nstation<-unique(tot_tab$SCODE[ids])%>%as.character %>% length
     nsensors<-unique(tot_tab$TYPE[ids])%>%as.character %>% length
     #########################################################
-    if(FALSE){#input$spatialSelection
+    if(input$spatialSelection){#FALSE
      
      stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
      req(input$map_draw_stop)
@@ -248,7 +249,7 @@ server <- function(input, output,session) {
     
     station<-unique(tot_tab$NAME_D[ids])%>%as.character
     #########################################################
-    if(FALSE){#input$spatialSelection
+    if(input$spatialSelection){#FALSE
      
      stations_sp <- getMeteoStat(format = "spatial")%>%filter(NAME_D%in%station)
      req(input$map_draw_stop)
@@ -284,7 +285,7 @@ server <- function(input, output,session) {
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     sensors<-unique(tot_tab$TYPE[ids])%>%as.character
     #########################################################
-    if(FALSE){#input$spatialSelection
+    if(input$spatialSelection){#FALSE
      
      stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
      req(input$map_draw_stop)
