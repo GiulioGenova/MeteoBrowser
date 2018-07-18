@@ -88,7 +88,7 @@ server <- function(input, output,session) {
   })
   
   polyCoord <- reactiveValues(#data<-datafile()
-    req(input$map_draw_stop)
+    #req(input$map_draw_stop)
     #get the coordinates of the polygon
     polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
 )
@@ -106,7 +106,7 @@ server <- function(input, output,session) {
   if(input$spatialSelection){#FALSE
     
     stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
-    #req(input$map_draw_stop)
+    req(input$map_draw_stop)
     
     
     #get the coordinates of the polygon
