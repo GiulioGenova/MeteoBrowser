@@ -109,15 +109,15 @@ plotMeteoLeaflet<-function (stations = NULL, addPoints = NULL, addBuff = F, widt
     #addEasyButton(easyButton(icon="fa-crosshairs", title="Locate Me",
     #                        onClick=JS("function(btn, map){ map.locate({setView: true}); }")))%>%
     
-    addDrawToolbar(
-      targetGroup='draw',
-      polylineOptions=FALSE,
-      markerOptions = FALSE,
-      circleOptions = FALSE,
-      rectangleOptions =FALSE,
-      circleMarkerOptions =FALSE)%>%#
+    #addDrawToolbar(
+      #targetGroup='draw',
+      #polylineOptions=FALSE,
+      #markerOptions = FALSE,
+      #circleOptions = FALSE,
+      #rectangleOptions =FALSE,
+      #circleMarkerOptions =FALSE)%>%#
     addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
-    addLayersControl(baseGroups = c("OSM","SAT"),overlayGroups = c('draw'),
+    addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
                      options = layersControlOptions(collapsed = FALSE),position = "topleft")
   
   if (!is.null(addPoints)) {
