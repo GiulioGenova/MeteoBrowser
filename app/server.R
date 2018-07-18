@@ -123,7 +123,7 @@ server <- function(input, output,session) {
       #polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
       #polygon_coordinates <- polyCoord$polygon_coordinates
       polygon_coordinates <-polyCoord()
-      if(){is.null(polygon_coordinates)
+      if(is.null(polygon_coordinates)){
           station<-NULL;sensors<-NULL,stationName<-NULL
           }else{
       drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
