@@ -91,7 +91,7 @@ server <- function(input, output,session) {
    # polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
    # return(polygon_coordinates)
   #})
-  polyCoord <- reactiveValue(NULL)
+  polyCoord <- reactiveVal(NULL)
   
   observeEvent({
     polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
