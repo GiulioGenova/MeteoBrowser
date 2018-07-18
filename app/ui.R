@@ -78,7 +78,7 @@ ui <- dashboardPage(#useShinyjs(),
                 box(width = 8,leafletOutput("map"),
                     helpText("You have selected the following stations:"),
                     verbatimTextOutput("selected_list"),
-                    helpText("And the following sensors:"),
+                    helpText("And the following parameters (TYPE):"),
                     verbatimTextOutput("selected_listSensors"),
                     collapsible = T)
                     
