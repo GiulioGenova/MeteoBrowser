@@ -170,7 +170,7 @@ server <- function(input, output,session) {
     stations_sel<-left_join(stations_sel,se_spread)
     m<-plotMeteoLeaflet(stations_sel)
     
-    if(input$spatialSelection){#FALSE
+    if(FALSE){#input$spatialSelection
       m <- m %>% addDrawToolbar(
         targetGroup='draw',
         polylineOptions=FALSE,
