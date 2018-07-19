@@ -107,7 +107,7 @@ server <- function(input, output,session) {
   
   StatSens<-reactiveValues(station= c(),sensors= c(),stationName = c())#station= NULL,sensors= NULL,stationName = NULL  
   
-  reactive({
+  #reactive({
   observeEvent(input$updateSelection,{
     ids<-input$table_rows_all
     
@@ -154,7 +154,7 @@ server <- function(input, output,session) {
     StatSens$stationName<-stationName
   })
   
-  })
+  #})
   
   
   
