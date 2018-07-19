@@ -105,7 +105,9 @@ server <- function(input, output,session) {
   
   D <- reactiveValues(documents = NULL)
   
-  StatSens<-reactive({
+  StatSens<-reactiveValues(station= NULL,sensors= NULL,stationName = NULL)
+  
+  reactive({
     
     ids<-input$table_rows_all
     
@@ -146,7 +148,10 @@ server <- function(input, output,session) {
       sensors<-unique(filterForSensor$TYPE)%>%as.character
     }
       }
-    return(list(station,sensors,stationName))
+    #return(list(station,sensors,stationName))
+    StatSens$station<-station
+    StatSens$sensors<-sensors
+    StatSens$stationName<-stationName
   })
   
   
@@ -156,8 +161,11 @@ server <- function(input, output,session) {
   observeEvent(input$refresh,{
     ids<-input$table_rows_all
     
-    station<-StatSens()[[1]]
-    sensors<-StatSens()[[2]]
+    #station<-StatSens()[[1]]
+    #sensors<-StatSens()[[2]]
+    
+    station<-StatSens$station
+    sensors<-StatSens$sensors
     
     datestart<-as.character(input$daterange[1])
     dateend<-as.character(input$daterange[2])
@@ -252,8 +260,12 @@ server <- function(input, output,session) {
   
   output$selected<-renderText({
     
-    station<-StatSens()[[1]]
-    sensors<-StatSens()[[2]]
+    #station<-StatSens()[[1]]
+    #sensors<-StatSens()[[2]]
+    
+    station<-StatSens$station
+    sensors<-StatSens$sensors
+    
     nstation<-length(station)%>%as.numeric
     nsensors<-length(sensors)%>%as.numeric
     
@@ -266,7 +278,8 @@ server <- function(input, output,session) {
   
   output$selected_list<-renderText({
     
-    station<-StatSens()[[3]]
+    #station<-StatSens()[[3]]
+    station<-StatSens$stationName
     
     mssg<- paste(station,collapse="; ")
     
@@ -274,7 +287,9 @@ server <- function(input, output,session) {
   
   output$selected_listSensors<-renderText({
     
-    sensors<-StatSens()[[2]]
+    #sensors<-StatSens()[[2]]
+   
+    sensors<-StatSens$sensors
     
     mssg<- paste(sensors,collapse="; ")
     
