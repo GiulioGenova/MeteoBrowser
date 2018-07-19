@@ -114,7 +114,7 @@ server <- function(input, output,session) {
   #reactive({
   observe({#input$updateSelection
     input$tot_tab_search_columns
-    req(input$map_draw_stop)
+    #req(input$map_draw_stop)
     observe({
     ids<-input$table_rows_all
     
