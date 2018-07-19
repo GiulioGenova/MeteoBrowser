@@ -98,7 +98,8 @@ server <- function(input, output,session) {
     polyCoord(polygon_coordinates)
     })
   
-  observeEvent(req(input$map_draw_stop),{
+  #observeEvent(req(input$map_draw_stop),{
+    observe({
     polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
     polyCoord(polygon_coordinates)
     })
