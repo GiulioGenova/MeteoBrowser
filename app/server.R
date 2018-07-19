@@ -107,8 +107,8 @@ server <- function(input, output,session) {
   
   StatSens<-reactiveValues()#station= NULL,sensors= NULL,stationName = NULL
   
-  reactive({
-    
+  #reactive({
+  observe({
     ids<-input$table_rows_all
     
     station<-unique(tot_tab$SCODE[ids])%>%as.character
