@@ -112,8 +112,10 @@ server <- function(input, output,session) {
   StatSens<-reactiveValues(station= c(),sensors= c(),stationName = c())#station= NULL,sensors= NULL,stationName = NULL  
   
   #reactive({
-  observeEvent(input$tot_tab_search_columns,{#input$updateSelection
-    
+  observe({#input$updateSelection
+    input$tot_tab_search_columns
+    req(input$map_draw_stop)
+    observe({
     ids<-input$table_rows_all
     
     station<-unique(tot_tab$SCODE[ids])%>%as.character
@@ -158,6 +160,7 @@ server <- function(input, output,session) {
     StatSens$sensors<-sensors
     StatSens$stationName<-stationName
   })
+    })
   
   #})
   
