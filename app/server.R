@@ -105,10 +105,10 @@ server <- function(input, output,session) {
   
   D <- reactiveValues(documents = NULL)
   
-  StatSens<-reactiveValues(station= NULL,sensors= NULL,stationName = NULL)#  station= c(),sensors= c(),stationName = c()
+  StatSens<-reactiveValues(station= c(),sensors= c(),stationName = c())#station= NULL,sensors= NULL,stationName = NULL  
   
-  reactive({
-  #observe({
+  #reactive({
+  observeEvent(input$tot_tab_search_columns,req(input$map_draw_stop){
     ids<-input$table_rows_all
     
     station<-unique(tot_tab$SCODE[ids])%>%as.character
