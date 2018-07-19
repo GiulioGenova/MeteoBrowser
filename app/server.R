@@ -93,15 +93,17 @@ server <- function(input, output,session) {
   #})
   polyCoord <- reactiveVal(NULL)
   
+  observeEvent(input$deletebtn,{
+    polygon_coordinates = NULL
+    polyCoord(polygon_coordinates)
+    })
+  
   observeEvent(req(input$map_draw_stop),{
     polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
     polyCoord(polygon_coordinates)
     })
   
-  observeEvent(input$deletebtn,{
-    polygon_coordinates = NULL
-    polyCoord(polygon_coordinates)
-    })
+  
   
   D <- reactiveValues(documents = NULL)
   
