@@ -116,9 +116,9 @@ server <- function(input, output,session) {
     stationName<-unique(tot_tab$NAME_D[ids])%>%as.character
     #########################################################
     if(input$spatialSelection){#FALSE
-      
-      stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
       req(input$map_draw_stop)
+      stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
+      
       
       
       #get the coordinates of the polygon
