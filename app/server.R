@@ -105,7 +105,7 @@ server <- function(input, output,session) {
   
   D <- reactiveValues(documents = NULL)
   
-  StatSens<-reactiveValues()#station= NULL,sensors= NULL,stationName = NULL  station= c(),sensors= c(),stationName = c()
+  StatSens<-reactiveValues(station= NULL,sensors= NULL,stationName = NULL)#  station= c(),sensors= c(),stationName = c()
   
   reactive({
   #observe({
