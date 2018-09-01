@@ -106,6 +106,7 @@ server <- function(input, output,session) {
     })
   
   
+
   
   D <- reactiveValues(documents = NULL)
   
@@ -118,6 +119,7 @@ server <- function(input, output,session) {
     #req(input$map_draw_stop)
     observe({
     ids<-input$table_rows_all
+
     
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     sensors<-unique(tot_tab$TYPE[ids])%>%as.character
@@ -207,9 +209,11 @@ server <- function(input, output,session) {
     stations_sel<-left_join(stations_sel,se_spread)
     m<-plotMeteoLeaflet(stations_sel)
     
+
     if(input$spatialSelection){#FALSE
       polygon_coordinates <-polyCoord()
       
+
       m <- m %>% addDrawToolbar(
         targetGroup='draw',
         polylineOptions=FALSE,
