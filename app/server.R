@@ -224,7 +224,10 @@ server <- function(input, output,session) {
       if(is.null(polygon_coordinates)){
           
           }else{  
-        m <- m %>% addPolygons(polygon_coordinates[[1]][1],polygon_coordinates[[2]][1],fillOpacity = 0.5)
+        drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+        sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+        
+        m <- m + sp
           }
       
     }
