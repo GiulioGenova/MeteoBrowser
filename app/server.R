@@ -208,6 +208,13 @@ server <- function(input, output,session) {
     m<-plotMeteoLeaflet(stations_sel)
     
     if(input$spatialSelection){#FALSE
+      polygon_coordinates <-polyCoord()
+      if(is.null(polygon_coordinates)){
+          
+          }else{
+          drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+          sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+          }
       m <- m %>% addDrawToolbar(
         targetGroup='draw',
         polylineOptions=FALSE,
@@ -217,7 +224,8 @@ server <- function(input, output,session) {
         circleMarkerOptions =FALSE)%>%#
         addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
         addLayersControl(overlayGroups = c('draw'),
-                         options = layersControlOptions(collapsed = FALSE),position = "topleft")
+                         options = layersControlOptions(collapsed = FALSE),position = "topleft")%>%
+      addPolygons(sp,fillOpacity = 0.5)
     }
     m
     
