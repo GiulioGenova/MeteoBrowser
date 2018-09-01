@@ -87,63 +87,102 @@ server <- function(input, output,session) {
                   backgroundColor = "#edf5e1")
   })
   
+  #polyCoord <- reactive({
+   # polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
+   # return(polygon_coordinates)
+  #})
+  polyCoord <- reactiveVal(NULL)
+  
+  observeEvent(input$deletebtn,{
+    polygon_coordinates = NULL
+    polyCoord(polygon_coordinates)
+    })
+  
+  #observeEvent(req(input$map_draw_stop),{
+    observe({
+    req(input$map_draw_stop)
+      polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
+    polyCoord(polygon_coordinates)
+    })
+  
+  
+
   
   D <- reactiveValues(documents = NULL)
   
-  StatSens<-reactive({
+  StatSens<-reactiveValues(station= c(),sensors= c(),stationName = c())#station= NULL,sensors= NULL,stationName = NULL  
   
-  ids<-input$table_rows_all
-  
-  station<-unique(tot_tab$SCODE[ids])%>%as.character
-  sensors<-unique(tot_tab$TYPE[ids])%>%as.character
-  stationName<-unique(tot_tab$NAME_D[ids])%>%as.character
-  #########################################################
-  if(FALSE){#input$spatialSelection
+  #reactive({
+  observe({#input$updateSelection
+    input$tot_tab_state
+    #input$tot_tab_search_columns
+    #req(input$map_draw_stop)
+    observe({
+    ids<-input$table_rows_all
+
     
-    stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
-    req(input$map_draw_stop)
-    
-    
-    #get the coordinates of the polygon
-    polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
-    
-    drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
-    sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
-    
-    # set coords as latlong then transform to leaflet projection
-    proj4string(sp) <- LL
-    polyre <- spTransform(sp, leaf.proj)
-    
-    stations_sp<-spTransform(stations_sp,leaf.proj)
-    
-    selected_stats <- stations_sp %over% polyre
-    
-    sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
-    
-    station<-unique(sp_sel$SCODE) %>% as.character
-    stationName<-unique(sp_sel$NAME_D) %>% as.character
-    
-    filterForSensor<-tot_tab[ids,]%>% dplyr::filter(SCODE%in%station)
-    sensors<-unique(filterForSensor$TYPE)%>%as.character
-  }
-  return(list(station,sensors,stationName))
+    station<-unique(tot_tab$SCODE[ids])%>%as.character
+    sensors<-unique(tot_tab$TYPE[ids])%>%as.character
+    stationName<-unique(tot_tab$NAME_D[ids])%>%as.character
+    #########################################################
+    if(input$spatialSelection){#FALSE
+      #req(input$map_draw_stop)
+      stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
+      
+      
+      
+      #get the coordinates of the polygon
+      #polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
+      #polygon_coordinates <- polyCoord$polygon_coordinates
+      polygon_coordinates <-polyCoord()
+      if(is.null(polygon_coordinates)){
+          station<-NULL;sensors<-NULL;stationName<-NULL
+          }else{
+      drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+      sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+      
+      # set coords as latlong then transform to leaflet projection
+      proj4string(sp) <- LL
+      polyre <- spTransform(sp, leaf.proj)
+      
+      stations_sp<-spTransform(stations_sp,leaf.proj)
+      
+      selected_stats <- stations_sp %over% polyre
+      
+      sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
+      
+      station<-unique(sp_sel$SCODE) %>% as.character
+      stationName<-unique(sp_sel$NAME_D) %>% as.character
+      
+      filterForSensor<-tot_tab[ids,]%>% dplyr::filter(SCODE%in%station)
+      sensors<-unique(filterForSensor$TYPE)%>%as.character
+    }
+      }
+    #return(list(station,sensors,stationName))
+    StatSens$station<-station
+    StatSens$sensors<-sensors
+    StatSens$stationName<-stationName
   })
+    })
   
-  
+  #})
   
   
   
   observeEvent(input$refresh,{
     ids<-input$table_rows_all
-
-    station<-StatSens()[[1]]
-    sensors<-StatSens()[[2]]
+    
+    #station<-StatSens()[[1]]
+    #sensors<-StatSens()[[2]]
+    
+    station<-StatSens$station
+    sensors<-StatSens$sensors
     
     datestart<-as.character(input$daterange[1])
     dateend<-as.character(input$daterange[2])
-
+    
     round=input$round
- 
+    
     nstations<-length(station)%>%as.numeric*length(sensors)%>%as.numeric
     
     
@@ -170,7 +209,11 @@ server <- function(input, output,session) {
     stations_sel<-left_join(stations_sel,se_spread)
     m<-plotMeteoLeaflet(stations_sel)
     
-    if(FALSE){#input$spatialSelection
+
+    if(input$spatialSelection){#FALSE
+      polygon_coordinates <-polyCoord()
+      
+
       m <- m %>% addDrawToolbar(
         targetGroup='draw',
         polylineOptions=FALSE,
@@ -181,10 +224,57 @@ server <- function(input, output,session) {
         addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
         addLayersControl(overlayGroups = c('draw'),
                          options = layersControlOptions(collapsed = FALSE),position = "topleft")
+       
+      if(is.null(polygon_coordinates)){
+          
+          }else{  
+        drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+        sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+        
+        m <- m %>% addPolygons(data=sp,fillOpacity=0.4)
+          }
+      
     }
     m
     
   })
+  
+  drawnshapes <- list()
+  
+  # we are fortunate here since we get an event
+  #   draw_all_features
+  observeEvent(
+    input$map_draw_all_features,
+    {
+      drawnshapes <<- lapply(
+        input$map_draw_all_features$features,
+        function(ftr) {
+          ftr$properties$`_leaflet_id`
+        }
+      )
+      # seeing is believing
+      str(drawnshapes)
+    }
+  )
+  
+  # observe our simple little button to remove
+  observeEvent(
+    input$deletebtn,
+    {
+      print(drawnshapes)
+      lapply(
+        drawnshapes,
+        function(todelete) {
+          session$sendCustomMessage(
+            "removeleaflet",
+            list(elid="map", layerid=todelete)
+          )
+        }
+      )
+    }
+  )
+  
+  
   
   output$message<-renderText({
     datestart<-as.character(input$daterange[1])
@@ -195,8 +285,12 @@ server <- function(input, output,session) {
   
   output$selected<-renderText({
     
-    station<-StatSens()[[1]]
-    sensors<-StatSens()[[2]]
+    #station<-StatSens()[[1]]
+    #sensors<-StatSens()[[2]]
+    
+    station<-StatSens$station
+    sensors<-StatSens$sensors
+    
     nstation<-length(station)%>%as.numeric
     nsensors<-length(sensors)%>%as.numeric
     
@@ -209,7 +303,8 @@ server <- function(input, output,session) {
   
   output$selected_list<-renderText({
     
-    station<-StatSens()[[3]]
+    #station<-StatSens()[[3]]
+    station<-StatSens$stationName
     
     mssg<- paste(station,collapse="; ")
     
@@ -217,13 +312,15 @@ server <- function(input, output,session) {
   
   output$selected_listSensors<-renderText({
     
-    sensors<-StatSens()[[2]]
+    #sensors<-StatSens()[[2]]
+   
+    sensors<-StatSens$sensors
     
     mssg<- paste(sensors,collapse="; ")
     
   })
   
- 
+  
   
   output$rightdate <-reactive({
     datestart<- input$daterange[1] %>% as.character %>% as_date

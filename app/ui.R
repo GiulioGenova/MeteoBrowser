@@ -30,7 +30,27 @@ library(DT)
 #library(shinyBS)
 about = source(file.path(getwd(),'about.R'))
 
+scr <- tags$script(HTML(
+  "
+  Shiny.addCustomMessageHandler(
+  'removeleaflet',
+  function(x){
+  console.log('deleting',x)
+  // get leaflet map
+  var map = HTMLWidgets.find('#' + x.elid).getMap();
+  // remove
+  map.removeLayer(map._layers[x.layerid])
+  })
+  "
+))
+
+# then our new app can do something like this
+
+
+
+
 ui <- dashboardPage(#useShinyjs(),
+  
   skin = "blue",
   dashboardHeader(title = "Open Data South Tyrol",titleWidth = 320),
   dashboardSidebar(disable = F,
@@ -42,6 +62,10 @@ ui <- dashboardPage(#useShinyjs(),
                      #menuItem("Data detail", tabName = "detail", icon = icon("bar-chart-o"))
                    )),
   dashboardBody(
+    tagList(
+  scr
+  ),
+    
     # Boxes need to be put in a row (or column)
     tabItems(
       
@@ -52,7 +76,7 @@ ui <- dashboardPage(#useShinyjs(),
                 box(width = 4,collapsible = T,dateRangeInput(label = h4("Pick a date range"),inputId = "daterange",separator = " - ",min = "2000-01-01",
                                                              start = Sys.Date()-3,
                                                              end = Sys.Date()+1),
-                    
+                    #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Update selection","updateSelection")),
                     conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Download selected data","refresh")) ,
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton( "stop",label = "Stop Download (reload page)",class="btn-danger")),#,onclick="Shiny.onInputChange('stopThis',true)"
                     conditionalPanel(condition = "output.tablebuilt",br(),#"input.daterange[1]<=input.daterange[2]"
@@ -76,6 +100,7 @@ ui <- dashboardPage(#useShinyjs(),
               ),
                    
                 box(width = 8,leafletOutput("map"),
+                    conditionalPanel(condition ="input.spatialSelection",actionButton("deletebtn", "remove drawn")),
                     helpText("You have selected the following stations:"),
                     verbatimTextOutput("selected_list"),
                     helpText("And the following parameters (TYPE):"),
