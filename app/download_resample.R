@@ -89,7 +89,6 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
         ungroup
     
       db_wind<-df%>%filter(Sensor%in%c("WG")) %>% 
-        group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
         dplyr::mutate(Value=ifelse(Value>0 & Value<=22.5,"N",
                            ifelse(Value>22.5 & Value<=67.5,"NE",
                                   ifelse(Value>67.5 & Value<=112.5,"E",
@@ -99,6 +98,9 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
                                                               ifelse(Value>247.5 & Value<=292.5,"W",
                                                                      ifelse(Value>292.5 & Value<=337.5,"NW",
                                                                             ifelse(Value>292.5 & Value<=360,"N",NA))))))))))%>%
+    
+    group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
+        
         summarise(prevalentDir=as.character(sort(Value, decreasing=T)[1])) %>% 
         gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
         unite(Sensor, Sensor, Variable,sep="") %>% 
