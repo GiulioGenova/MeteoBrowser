@@ -1,5 +1,5 @@
 # ODBZ
-A Shiny App to download the meteorological time series from the Open Data - the Province of Bozen 
+A Shiny App to download the meteorological time series from the Open Data - Province of Bozen 
 
 To run the application run the following code:
 
