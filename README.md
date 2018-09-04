@@ -29,3 +29,9 @@ aggregations. "raw" preserves the timestamp of the sensor you are downloading (u
 aggregation options you will get the mean, maximum, minimum and sum values for each sensor in the selected timespan. You can also
 choose between "wide" or "long" data. In wide data you get a column for every sensor, in long data you get a factor column called
 "Sensor" and a column "Value" which stores the measurements.
+
+Acknowledgements
+
+Special thanks to Mattia Rossi who has developed the R package "MonalisR" which plays and important role in the backend of this
+application. You can find the package here:
+https://gitlab.inf.unibz.it/earth_observation_public/MonalisR
