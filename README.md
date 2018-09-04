@@ -21,6 +21,7 @@ And a dev version here:
 
 https://giuliogenova.shinyapps.io/ODBZ/
 
+
 How to:
 
 Once selected the stations and sensors by filtering the table and/or drawing a polygon on the map and chosen a date range you are ready to download (the dataset starts
@@ -29,6 +30,7 @@ aggregations. "raw" preserves the timestamp of the sensor you are downloading (u
 aggregation options you will get the mean, maximum, minimum and sum values for each sensor in the selected timespan. You can also
 choose between "wide" or "long" data. In wide data you get a column for every sensor, in long data you get a factor column called
 "Sensor" and a column "Value" which stores the measurements.
+
 
 Acknowledgements:
 
