@@ -32,6 +32,9 @@ choose between "wide" or "long" data. In wide data you get a column for every se
 
 Acknowledgements:
 
+The application si designed for retrieving meteorological and hydrological time series from the South Tyrolean Meteo Open Data 
+API (further documentation http://daten.buergernetz.bz.it/it/dataset/misure-meteo-e-idrografiche)
+
 Special thanks to Mattia Rossi who has developed the R package "MonalisR" which plays and important role in the backend of this
 application. You can find the package here:
 https://gitlab.inf.unibz.it/earth_observation_public/MonalisR
