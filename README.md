@@ -30,7 +30,7 @@ aggregation options you will get the mean, maximum, minimum and sum values for e
 choose between "wide" or "long" data. In wide data you get a column for every sensor, in long data you get a factor column called
 "Sensor" and a column "Value" which stores the measurements.
 
-Acknowledgements
+Acknowledgements:
 
 Special thanks to Mattia Rossi who has developed the R package "MonalisR" which plays and important role in the backend of this
 application. You can find the package here:
