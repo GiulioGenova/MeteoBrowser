@@ -23,7 +23,7 @@ https://giuliogenova.shinyapps.io/ODBZ/
 
 How to:
 
-Once selected the stations and sensors by filtering the table and chosen a date range you are ready to download (the dataset starts
+Once selected the stations and sensors by filtering the table and/or drawing a polygon on the map and chosen a date range you are ready to download (the dataset starts
 in the beginning of 2016). When download is complete, a "save as csv" icon pops up. You can choose between different time
 aggregations. "raw" preserves the timestamp of the sensor you are downloading (usually 5 or 10 minutes). For the other time
 aggregation options you will get the mean, maximum, minimum and sum values for each sensor in the selected timespan. You can also
