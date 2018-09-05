@@ -57,7 +57,10 @@ ui <- dashboardPage(#useShinyjs(),
                    sidebarMenu(
                      
                      menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o")),
-                     menuItem("README", tabName = "about", icon = icon("info-circle"))#,
+                     menuItem("README", tabName = "about", icon = icon("info-circle")),
+                     radioButtons(inputId = "language", label = "",
+                     choices = c("English" = "en", "Deutsch" = "de","Italiano"="it"),
+                     selected = "en")
                      #menuItem("map", tabName = "map", icon = icon("info-circle"))#,
                      #menuItem("Data detail", tabName = "detail", icon = icon("bar-chart-o"))
                    )),
@@ -73,9 +76,11 @@ ui <- dashboardPage(#useShinyjs(),
               
               fluidRow(
                 
-                box(width = 4,collapsible = T,dateRangeInput(label = h4("Pick a date range"),inputId = "daterange",separator = " - ",min = "2000-01-01",
-                                                             start = Sys.Date()-3,
-                                                             end = Sys.Date()+1),
+                box(width = 4,collapsible = T,uiOutput("daterange"),
+                    
+                    #dateRangeInput(label = h4("Pick a date range"),inputId = "daterange",separator = " - ",min = "2000-01-01",
+                    #                                         start = Sys.Date()-3,
+                    #                                         end = Sys.Date()+1)
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Update selection","updateSelection")),
                     conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Download selected data","refresh")) ,
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton( "stop",label = "Stop Download (reload page)",class="btn-danger")),#,onclick="Shiny.onInputChange('stopThis',true)"
