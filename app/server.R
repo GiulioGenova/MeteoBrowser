@@ -151,7 +151,7 @@ server <- function(input, output,session) {
     
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     sensors<-unique(tot_tab$TYPE[ids])%>%as.character
-    if(input$lenguage=="it"){
+    if(input$language=="it"){
       stationName<-unique(tot_tab$NAME_I[ids])%>%as.character
       }else {
        stationName<-unique(tot_tab$NAME_D[ids])%>%as.character
@@ -186,14 +186,11 @@ server <- function(input, output,session) {
       
       station<-unique(sp_sel$SCODE) %>% as.character
       
-        if(input$lenguage=="it"){
+        if(input$language=="it"){
       stationName<-unique(sp_sel$NAME_I) %>% as.character
       }else {
        stationName<-unique(sp_sel$NAME_D) %>% as.character
-    
-    }
-        
-        stationName<-unique(sp_sel$NAME_D) %>% as.character
+        }
       
       filterForSensor<-tot_tab[ids,]%>% dplyr::filter(SCODE%in%station)
       sensors<-unique(filterForSensor$TYPE)%>%as.character
