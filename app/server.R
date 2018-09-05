@@ -90,7 +90,7 @@ server <- function(input, output,session) {
   
   output$refresh  <- renderUI({
     conditionalPanel(condition = "output.rightdate",br(),
-                     actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")) ,
+                     actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")) 
   })
   output$tableInstructions  <- renderText({
     as.character(translation[grep("tableInstructions",translation$key),input$language])
