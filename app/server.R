@@ -80,19 +80,19 @@ se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE) %>%
 
 server <- function(input, output,session) {
   
-  tr <- function(text,leng=input$lenguage,translation=translation){ # translates text into current language
-    return(as.character(translation[grep(text,translation$key),leng]))
-}
-  
+  tr <- function(text,lenguage,translation){ # translates text into current language
+  x<-as.character(translation[grep(text,translation$key),lengauge])
+  return(x)
+  }
   
   # UI
   output$tableInstructions  <- renderText({
-    tr("tableInstructions")
+    tr("tableInstructions",input$lenguage,translation)
     })
   
   output$daterange<-renderUI({
     
-   dateRangeInput(label = h4(tr("daterange")),inputId = "daterange",separator = " - ",min = "2000-01-01",#
+   dateRangeInput(label = h4(tr("daterange",input$lenguage,translation)),inputId = "daterange",separator = " - ",min = "2000-01-01",#
                                                              start = Sys.Date()-3,
                                                              end = Sys.Date()+1,language=input$language)
    })
