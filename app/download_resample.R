@@ -74,7 +74,7 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
         ungroup
       
       
-      db_mean<-df%>%filter(!Sensor%in%c("N")) %>% 
+      db_mean<-df%>%filter(!Sensor%in%c("N","WR")) %>% 
         group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
         summarise(mean=mean(Value,na.rm = T)) %>% 
         gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
@@ -88,7 +88,7 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
         unite(Sensor, Sensor, Variable,sep="") %>% 
         ungroup
     
-      #db_wind<-df%>%filter(Sensor%in%c("WG")) %>% 
+      #db_wind<-df%>%filter(Sensor%in%c("WR")) %>% 
        # dplyr::mutate(Value=ifelse(Value>0 & Value<=22.5,"N",
                           # ifelse(Value>22.5 & Value<=67.5,"NE",
                                   #ifelse(Value>67.5 & Value<=112.5,"E",
