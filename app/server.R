@@ -377,7 +377,7 @@ server <- function(input, output,session) {
     
    dateRangeInput(label = h4("Pick a date range"),separator = " - ",min = "2000-01-01",#,inputId = "daterange"
                                                              start = Sys.Date()-3,
-                                                             end = Sys.Date()+1,language=input$naguage)
+                                                             end = Sys.Date()+1,language=input$language)
    })
   
   outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
