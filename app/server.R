@@ -109,9 +109,9 @@ server <- function(input, output,session) {
   
   output$table<-DT::renderDT({
     if(input$language=="it"){
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_D)
+    tot_tab<-tot_tab%>%dplyr::select(-NAME_D,-DESC_D)
     }else{
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_I)
+    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)
     }
     datatable(tot_tab, filter = 'top',rownames=F,selection="none",
               options = list(autoWidth = F,scrollX=T)
