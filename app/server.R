@@ -87,12 +87,12 @@ server <- function(input, output,session) {
   
   # UI
   output$tableInstructions  <- renderText({
-    tr("tableInstructions",input$lenguage,translation)
+    tr(text="tableInstructions",lenguage=input$lenguage,translation=translation)
     })
   
   output$daterange<-renderUI({
     
-   dateRangeInput(label = h4(tr("daterange",input$lenguage,translation)),inputId = "daterange",separator = " - ",min = "2000-01-01",#
+   dateRangeInput(label = h4(tr(text="daterange",lenguage=input$lenguage,translation=translation)),inputId = "daterange",separator = " - ",min = "2000-01-01",#
                                                              start = Sys.Date()-3,
                                                              end = Sys.Date()+1,language=input$language)
    })
