@@ -60,6 +60,7 @@ library(sp)
 
 source(file.path(getwd(),"download_resample.R"))
 source(file.path(getwd(),"MonalisR.R"))
+translation<-read.csv(file.path(getwd(),"translation.csv"),header = T,sep = ",",stringsAsFactors = F)
 
 leaf.proj <- "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
 LL <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
@@ -78,6 +79,24 @@ se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE) %>%
 
 
 server <- function(input, output,session) {
+  
+  tr <- function(text){ # translates text into current language
+    return(as.character(translation[grep(text,translation$key),input$lengauge]))
+}
+  
+  # UI
+  output$tableInstructions  <- renderText({
+    tr("tableInstructions")
+    })
+  
+  output$daterange<-renderUI({
+    
+   dateRangeInput(label = h4(tr("daterange")),inputId = "daterange",separator = " - ",min = "2000-01-01",#
+                                                             start = Sys.Date()-3,
+                                                             end = Sys.Date()+1,language=input$language)
+   })
+  
+  
   
   output$table<-DT::renderDT({
     datatable(tot_tab, filter = 'top',rownames=F,selection="none",
@@ -368,17 +387,7 @@ server <- function(input, output,session) {
     
   )
   
-  # UI
-  output$tableInstructions  <- renderText({
-    "Select stations and parameters you want to dowload by filtering the table below. To stop the download refresh the page"
-    })
   
-  output$daterange<-renderUI({
-    
-   dateRangeInput(label = h4("Pick a date range"),inputId = "daterange",separator = " - ",min = "2000-01-01",#
-                                                             start = Sys.Date()-3,
-                                                             end = Sys.Date()+1,language=input$language)
-   })
   
   outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
   outputOptions(output, 'rightdate', suspendWhenHidden=FALSE)
