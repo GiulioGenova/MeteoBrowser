@@ -108,7 +108,7 @@ server <- function(input, output,session) {
   
   
   output$table<-DT::renderDT({
-    if(input$lenguage=="it"){
+    if(input$language=="it"){
     tot_tab<-tot_tab[,-"NAME_D"]
     }else{
     tot_tab<-tot_tab[,-"NAME_I"]
