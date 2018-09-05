@@ -106,7 +106,24 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
         #unite(Sensor, Sensor, Variable,sep="") %>% 
         #ungroup
       
-      db_final<-bind_rows(db_sum,db_mean,db_min_max) %>% mutate(Value=ifelse(Value%in%c(-Inf,Inf,NaN),NA,Value))#,db_wind
+    db_wind<-df%>%filter(Sensor%in%c("WG")) %>% 
+        dplyr::mutate(Value=ifelse(Value>0 & Value<=22.5,1,
+                           ifelse(Value>22.5 & Value<=67.5,2,
+                                  ifelse(Value>67.5 & Value<=112.5,3,
+                                         ifelse(Value>112.5 & Value<=157.5,4,
+                                                ifelse(Value>157.5 & Value<=202.5,5,
+                                                       ifelse(Value>202.5 & Value<=247.5,6,
+                                                             ifelse(Value>247.5 & Value<=292.5,7,
+                                                                     ifelse(Value>292.5 & Value<=337.5,8,
+                                                                            ifelse(Value>292.5 & Value<=360,1,NA))))))))))%>%
+    
+    group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
+        
+        summarise(Dir=median(Value,na.rm=T)) %>% 
+        gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
+        unite(Sensor, Sensor, Variable,sep="") %>% 
+        ungroup
+      db_final<-bind_rows(db_sum,db_mean,db_min_max,db_wind) %>% mutate(Value=ifelse(Value%in%c(-Inf,Inf,NaN),NA,Value))#
 
     
     #db_final<-df%>%
