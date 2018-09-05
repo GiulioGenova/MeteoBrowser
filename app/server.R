@@ -373,6 +373,13 @@ server <- function(input, output,session) {
     "Select stations and parameters you want to dowload by filtering the table below. To stop the download refresh the page"
     })
   
+  renderUI({
+    
+   output$daterange<-dateRangeInput(label = h4("Pick a date range"),separator = " - ",min = "2000-01-01",#,inputId = "daterange"
+                                                             start = Sys.Date()-3,
+                                                             end = Sys.Date()+1,language=input$naguage)
+   })
+  
   outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
   outputOptions(output, 'rightdate', suspendWhenHidden=FALSE)
 }
