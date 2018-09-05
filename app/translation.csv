@@ -1,5 +1,5 @@
 key,en,de,it
 daterange,pick a date range,datum,scegli data di inizio e fine
-tableInstructions,Select stations and parameters you want to dowload by filtering the table below. To stop the download refresh the page,bla bla bla,ble blu bli
+tableInstructions,Select stations and parameters you want to dowload by filtering the table below,bla bla bla,Seleziona stazioni e parametri che vuoi scaricare filtrando la tabella sottostante
 downloadData,Download selected data,,Scarica dati selezionati
 spatialSelection,Enable spatial selection (Draw a polygon in the map),,Abilita la selezione tramite poligono (disegna poligono nella mappa)
