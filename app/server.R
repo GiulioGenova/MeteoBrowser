@@ -108,6 +108,11 @@ server <- function(input, output,session) {
   
   
   output$table<-DT::renderDT({
+    if(input$lenguage=="it"){
+    tot_tab<-tot_tab[,-"NAME_D"]
+    }else{
+    tot_tab<-tot_tab[,-"NAME_I"]
+    }
     datatable(tot_tab, filter = 'top',rownames=F,selection="none",
               options = list(autoWidth = F,scrollX=T)
     ) %>% 
