@@ -81,7 +81,7 @@ se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE) %>%
 server <- function(input, output,session) {
   
   tr <- function(text,lenguage,translation){ # translates text into current language
-  x<-as.character(translation[grep(text,translation$key),lengauge])
+  x<-as.character(translation[grep(text,translation$key),lenguage])
   return(x)
   }
   
