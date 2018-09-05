@@ -369,9 +369,8 @@ server <- function(input, output,session) {
   )
   
   # UI
-  output$tableInstructions  <- renderUI({
-    verbatimTextOutput("Select stations and parameters you want to dowload by filtering the table below.",
-         "To stop the download refresh the page")
+  output$tableInstructions  <- renderText({
+    "Select stations and parameters you want to dowload by filtering the table below. To stop the download refresh the page"
     })
   
   outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
