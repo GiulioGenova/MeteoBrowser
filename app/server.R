@@ -108,16 +108,29 @@ server <- function(input, output,session) {
   
   
   output$table<-DT::renderDT({
+    
     if(input$language=="it"){
     tot_tab<-tot_tab%>%dplyr::select(-NAME_D,-DESC_D)
     }else{
     tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)
     }
-    datatable(tot_tab, filter = 'top',rownames=F,selection="none",
+    
+    dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
               options = list(autoWidth = F,scrollX=T)
-    ) %>% 
-      formatStyle(c("TYPE", "DESC_D", "DESC_I","UNIT"),
+    ) 
+    
+    if(input$language=="it"){
+    dt<-dt%>% 
+      formatStyle(c("TYPE",  "DESC_I","UNIT"),
                   backgroundColor = "#edf5e1")
+    }else{
+    dt<-dt%>% 
+      formatStyle(c("TYPE", "DESC_D", "UNIT"),
+                  backgroundColor = "#edf5e1")
+    }
+    
+    dt
+  
   })
   
   #polyCoord <- reactive({
