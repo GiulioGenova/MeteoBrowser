@@ -88,7 +88,9 @@ server <- function(input, output,session) {
   
   # UI
   output$tableInstructions  <- renderText({
-    tr(text="tableInstructions",lenguage=as.character(input$lenguage),translation=translation)
+    as.character(translation[grep("tableInstructions",translation$key),input$language])
+    
+    #tr(text="tableInstructions",lenguage=as.character(input$lenguage),translation=translation)
     })
   
   output$daterange<-renderUI({
