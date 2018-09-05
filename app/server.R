@@ -375,7 +375,7 @@ server <- function(input, output,session) {
   
   output$daterange<-renderUI({
     
-   dateRangeInput(label = h4("Pick a date range"),separator = " - ",min = "2000-01-01",#,inputId = "daterange"
+   dateRangeInput(label = h4("Pick a date range"),inputId = "daterange",separator = " - ",min = "2000-01-01",#
                                                              start = Sys.Date()-3,
                                                              end = Sys.Date()+1,language=input$language)
    })
