@@ -106,7 +106,7 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
         #unite(Sensor, Sensor, Variable,sep="") %>% 
         #ungroup
       
-    db_wind<-df%>%filter(Sensor%in%c("WG")) %>% 
+    db_wind<-df%>%filter(Sensor%in%c("WR")) %>% 
         dplyr::mutate(Value=ifelse(Value>0 & Value<=22.5,1,
                            ifelse(Value>22.5 & Value<=67.5,2,
                                   ifelse(Value>67.5 & Value<=112.5,3,
