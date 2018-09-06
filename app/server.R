@@ -60,7 +60,6 @@ library(sp)
 
 source(file.path(getwd(),"download_resample.R"))
 source(file.path(getwd(),"MonalisR.R"))
-translation<-read.csv(file.path(getwd(),"translation.csv"),header = T,sep = ",",stringsAsFactors = F)
 
 leaf.proj <- "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
 LL <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
@@ -80,57 +79,12 @@ se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE) %>%
 
 server <- function(input, output,session) {
   
-  
-  #tr <- function(text,lenguage,translation){ # translates text into current language
-  #x<-as.character(translation[grep(text,translation$key),lenguage])
-  #return(x)
-  #}
-  
-  # UI
-  
-  output$refresh  <- renderUI({
-    conditionalPanel(condition = "output.rightdate",br(),
-                     actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")) 
-  })
-  output$tableInstructions  <- renderText({
-    as.character(translation[grep("tableInstructions",translation$key),input$language])
-    
-    #tr(text="tableInstructions",lenguage=as.character(input$lenguage),translation=translation)
-    })
-  
-  output$daterange<-renderUI({
-    
-   dateRangeInput(label = h4(as.character(translation[grep("daterange",translation$key),input$language])),inputId = "daterange",separator = " - ",min = "2000-01-01",#
-                                                             start = Sys.Date()-3,
-                                                             end = Sys.Date()+1,language=input$language)
-   })
-  
-  
-  
   output$table<-DT::renderDT({
-    
-    if(input$language=="it"){
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_D,-DESC_D)
-    }else{
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)
-    }
-    
-    dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
+    datatable(tot_tab, filter = 'top',rownames=F,selection="none",
               options = list(autoWidth = F,scrollX=T)
-    ) 
-    
-    if(input$language=="it"){
-    dt<-dt%>% 
-      formatStyle(c("TYPE",  "DESC_I","UNIT"),
+    ) %>% 
+      formatStyle(c("TYPE", "DESC_D", "DESC_I","UNIT"),
                   backgroundColor = "#edf5e1")
-    }else{
-    dt<-dt%>% 
-      formatStyle(c("TYPE", "DESC_D", "UNIT"),
-                  backgroundColor = "#edf5e1")
-    }
-    
-    dt
-  
   })
   
   #polyCoord <- reactive({
@@ -169,12 +123,7 @@ server <- function(input, output,session) {
     
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     sensors<-unique(tot_tab$TYPE[ids])%>%as.character
-    if(input$language=="it"){
-      stationName<-unique(tot_tab$NAME_I[ids])%>%as.character
-      }else {
-       stationName<-unique(tot_tab$NAME_D[ids])%>%as.character
-    
-    }
+    stationName<-unique(tot_tab$NAME_D[ids])%>%as.character
     #########################################################
     if(input$spatialSelection){#FALSE
       #req(input$map_draw_stop)
@@ -186,7 +135,7 @@ server <- function(input, output,session) {
       #polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
       #polygon_coordinates <- polyCoord$polygon_coordinates
       polygon_coordinates <-polyCoord()
-      if(is.null(polygon_coordinates)|is.null(ids)){
+      if(is.null(polygon_coordinates)){
           station<-NULL;sensors<-NULL;stationName<-NULL
           }else{
       drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
@@ -203,12 +152,7 @@ server <- function(input, output,session) {
       sp_sel<-stations_sp %>% dplyr::filter(row_number()%in%which(!is.na(selected_stats)))
       
       station<-unique(sp_sel$SCODE) %>% as.character
-      
-        if(input$language=="it"){
-      stationName<-unique(sp_sel$NAME_I) %>% as.character
-      }else {
-       stationName<-unique(sp_sel$NAME_D) %>% as.character
-        }
+      stationName<-unique(sp_sel$NAME_D) %>% as.character
       
       filterForSensor<-tot_tab[ids,]%>% dplyr::filter(SCODE%in%station)
       sensors<-unique(filterForSensor$TYPE)%>%as.character
@@ -423,8 +367,6 @@ server <- function(input, output,session) {
     }
     
   )
-  
-  
   
   outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
   outputOptions(output, 'rightdate', suspendWhenHidden=FALSE)
