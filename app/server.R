@@ -350,7 +350,7 @@ server <- function(input, output,session) {
     m<-plotMeteoLeaflet(stations_sel)
     
 
-    if(output$spatialSelection){#FALSE
+    if(input$spatialSelection){#FALSE
       polygon_coordinates <-polyCoord()
       
 
