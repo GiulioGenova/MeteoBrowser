@@ -120,15 +120,20 @@ server <- function(input, output,session) {
                                               as.character(translation[grep("month",translation$key),input$language]),
                                               as.character(translation[grep("year",translation$key),input$language])
                                              ))
-})
+    })
   
-  output$round<-renderUI({
+   output$gather<-renderUI({
     
    selectInput("gather", label= h4(as.character(translation[grep("gatherLabel",translation$key),input$language])),
                                 choices = list(as.character(translation[grep("wide",translation$key),input$language]),
-                                                as.character(translation[grep("lond",translation$key),input$language])
+                                                as.character(translation[grep("long",translation$key),input$language])
                                               ))
-})
+   })
+  
+  output$gather<-renderUI({
+  checkboxInput("spatialSelection", label = h4(as.character(translation[grep("spatialSelection",translation$key),input$language])),
+                                 value = TRUE)
+  })
   
     output$selected_list<-renderText({
     
