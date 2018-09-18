@@ -138,9 +138,9 @@ server <- function(input, output,session) {
   output$message<-renderText({
     datestart<-as.character(input$daterange[1])
     dateend<-as.character(input$daterange[2])
-    if(as_date(datestart)>as_date(dateend)){
+    if(as_date(datestart)>as_date(dateend)){messagedate<-as.character(translation[grep("massageDate",translation$key),input$language])}else{NULL}
       
-      messagedate<-as.character(translation[grep("massageDate",translation$key),input$language])}else{NULL}
+      
   })
   
   output$selected<-renderText({
@@ -154,9 +154,9 @@ server <- function(input, output,session) {
     nstation<-length(station)%>%as.numeric
     nsensors<-length(sensors)%>%as.numeric
     
-    if(nstation==1) stat<-as.character(translation[grep("station",translation$key),input$language]) 
+    if(nstation==1){ stat<-as.character(translation[grep("station",translation$key),input$language]) }
     else{stat<- as.character(translation[grep("stations",translation$key),input$language])}
-    if(nsensors==1) param<-as.character(translation[grep("sensors",translation$key),input$language]) 
+    if(nsensors==1){ param<-as.character(translation[grep("sensors",translation$key),input$language]) }
     else{param<- as.character(translation[grep("sensor",translation$key),input$language])}
     
     mssg<- paste(as.character(translation[grep("youvSelected",translation$key),input$language]),
