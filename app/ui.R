@@ -97,7 +97,7 @@ ui <- dashboardPage(#useShinyjs(),
                     #selectInput("round",label = h4("Time aggregation"),
                     #            choices = list("raw","hour","day","week","month","year")),
                     
-                    uiOutput("round")
+                    uiOutput("round"),
                     
                     #actionButton(label= "update selection","refresh"),
                     
