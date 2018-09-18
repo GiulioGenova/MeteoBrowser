@@ -109,10 +109,10 @@ ui <- dashboardPage(#useShinyjs(),
                     
                     uiOutput("gather"),
                     
-                    checkboxInput("spatialSelection", label = h4("Enable spatial selection (Draw a polygon in the map)"),
-                                value = FALSE)
+                    #checkboxInput("spatialSelection", label = h4("Enable spatial selection (Draw a polygon in the map)"),
+                     #           value = FALSE)
                     
-                    #uiOutput("spatialSelection")
+                    uiOutput("spatialSelection")
                     #selectInput("spatialSelection",
                     #            label = h4("Enable spatial selection"),
                   # choices = list("NO","YES"))
