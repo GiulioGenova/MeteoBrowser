@@ -341,8 +341,8 @@ server <- function(input, output,session) {
     return()
   })
   
-  output$map<-renderUI({
-  renderLeaflet({
+  
+  output$map<-renderLeaflet({
     ids<-input$table_rows_all
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
@@ -378,7 +378,7 @@ server <- function(input, output,session) {
     m
     
   })
-  })
+  
   drawnshapes <- list()
   
   # we are fortunate here since we get an event
