@@ -135,6 +135,7 @@ server <- function(input, output,session) {
                                  value = FALSE)
   })
   
+  
   #output$message<-renderText({
   #  datestart<-as.character(input$daterange[1])
   #  dateend<-as.character(input$daterange[2])
