@@ -1,5 +1,6 @@
 key,en,de,it
 daterange,Pick a date range,deutsch,Scegli data di inizio e fine
+massageDate,Error in selecting the date range. First date must be earlier than last date,deutsch,Errore nella selezione delle date. La prima data deve essere precedente all'ultima
 refresh,Download selected data,deutsch,Scarica dati selezionati
 downloadInstructions,First click "download selected data" then save as csv or json,deutsch, Prima clicca "Scarica dati selezionati" poi salva come csv o json
 roundLabel,Time aggregation,deutsch,Aggregazione temporale
@@ -15,3 +16,9 @@ long,wide,long,lunga
 tableInstructions,Select stations and parameters you want to dowload by filtering the table below,deutsch,Seleziona stazioni e parametri che vuoi scaricare filtrando la tabella sottostante
 formatSelection,Choose between long or wide table format,deutsch,Scegli tra formato un di tabella lungo o largo
 spatialSelection,Enable spatial selection (Draw a polygon in the map),,Abilita la selezione tramite poligono (disegna poligono nella mappa)
+youvSelected,You have selected n°,deutsch,Hai selezionato n°
+station,station,deutsch,stazione
+stations,stations,deutsch,stazioni
+sensor,sensor,deutsch,sensore
+sensors,sensors,deutsch,sensori
+and,and,deutsch,e
