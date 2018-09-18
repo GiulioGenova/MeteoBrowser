@@ -89,17 +89,23 @@ ui <- dashboardPage(#useShinyjs(),
                     conditionalPanel(condition = "output.tablebuilt",br(),#"input.daterange[1]<=input.daterange[2]"
                                      downloadButton('downloadData', h4('Save as csv'), class="btn-danger" ) 
                     ),
-                    helpText("First click \"download selected data\" then \"save as csv\""),
+                    #helpText("First click \"download selected data\" then \"save as csv\""),
+                    textOutput("downloadInstructions"),
                     verbatimTextOutput("message"),
                     verbatimTextOutput("selected"),
-                    selectInput("round",label = h4("Time aggregation"),
-                                choices = list("raw","hour","day","week","month","year")),
+                    
+                    #selectInput("round",label = h4("Time aggregation"),
+                    #            choices = list("raw","hour","day","week","month","year")),
+                    
+                    uiOutput("round")
                     
                     #actionButton(label= "update selection","refresh"),
+                    
                     selectInput("gather",
                                 label = h4("Choose between long or wide table format"),
                                 choices = list("wide","long")),
-                   checkboxInput("spatialSelection", label = h4("Enable spatial selection (Draw a polygon in the map)"),
+                   
+                    checkboxInput("spatialSelection", label = h4("Enable spatial selection (Draw a polygon in the map)"),
                                  value = FALSE)
                     #selectInput("spatialSelection",
                       #          label = h4("Enable spatial selection"),
