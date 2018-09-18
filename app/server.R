@@ -112,7 +112,7 @@ server <- function(input, output,session) {
   
   output$round<-renderUI({
     
-   selectInput("round",label = h4(as.character(translation[grep("roundLable",translation$key),input$language])),
+   selectInput("round",label = h4(as.character(translation[grep("roundLabel",translation$key),input$language])),
                                choices = list(as.character(translation[grep("raw",translation$key),input$language]),
                                               as.character(translation[grep("hour",translation$key),input$language]),
                                               as.character(translation[grep("day",translation$key),input$language]),
@@ -124,16 +124,10 @@ server <- function(input, output,session) {
   
   output$round<-renderUI({
     
-   selectInput("gather",
-                                 h4(as.character(translation[grep("gatherLable",translation$key),input$language])),
+   selectInput("gather", label= h4(as.character(translation[grep("gatherLabel",translation$key),input$language])),
                                 choices = list(as.character(translation[grep("wide",translation$key),input$language]),
                                                 as.character(translation[grep("lond",translation$key),input$language])
-                                              )), 
-    
-   selectInput("round",label = h4(as.character(translation[grep("roundLable",translation$key),input$language])),
-                               choices = list(as.character(translation[grep("raw",translation$key),input$language]),
-                                              as.character(translation[grep("year",translation$key),input$language])
-                                             ))
+                                              ))
 })
   
     output$selected_list<-renderText({
