@@ -16,7 +16,7 @@ long,long,long,lunga
 tableInstructions,Select stations and parameters you want to dowload by filtering the table below,deutsch,Seleziona stazioni e parametri che vuoi scaricare filtrando la tabella sottostante
 formatSelection,Choose between long or wide table format,deutsch,Scegli tra formato un di tabella lungo o largo
 spatialSelection,Enable spatial selection (Draw a polygon in the map),,Abilita la selezione tramite poligono (disegna poligono nella mappa)
-youvSelected,You have selected n°,deutsch,Hai selezionato n°
+youvSelected,You have selected n.,deutsch,Hai selezionato n.
 aaa,station,deutsch,stazione
 bbb,stations,deutsch,stazioni
 ccc,sensor,deutsch,sensore
