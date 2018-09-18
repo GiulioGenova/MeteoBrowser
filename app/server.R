@@ -122,7 +122,19 @@ server <- function(input, output,session) {
                                              ))
 })
   
-  
+  output$round<-renderUI({
+    
+   selectInput("gather",
+                                 h4(as.character(translation[grep("gatherLable",translation$key),input$language])),
+                                choices = list(as.character(translation[grep("wide",translation$key),input$language]),
+                                                as.character(translation[grep("lond",translation$key),input$language])
+                                              )), 
+    
+   selectInput("round",label = h4(as.character(translation[grep("roundLable",translation$key),input$language])),
+                               choices = list(as.character(translation[grep("raw",translation$key),input$language]),
+                                              as.character(translation[grep("year",translation$key),input$language])
+                                             ))
+})
   
     output$selected_list<-renderText({
     
@@ -417,7 +429,8 @@ server <- function(input, output,session) {
         #station=as.character(input$Station)
         startdate<-as.character(min(as_date(D$documents[[1]]$TimeStamp)))
         enddate<-as.character(max(as_date(D$documents[[1]]$TimeStamp)))
-        gather<-input$gather
+        gather<-as.character(translation[grep(input$gather,translation[,input$language]),"key"])
+        #gather<-input$gather
         round=input$round
         nstat=D$documents[[1]]$SCODE %>% unique %>% length %>% as.character 
         #paste0(station,'_',round,'_',startdate,'_',enddate,'.csv')
@@ -429,7 +442,8 @@ server <- function(input, output,session) {
     content = function(con) {
       round<-as.character(translation[grep(input$round,translation[,input$language]),"key"])
       #round<-input$round
-      gather<-input$gather
+      gather<-as.character(translation[grep(input$gather,translation[,input$language]),"key"])
+      #gather<-input$gather
       df=D$documents[[1]] 
       
       if(gather=="wide"){
