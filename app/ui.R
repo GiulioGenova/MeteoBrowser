@@ -120,9 +120,9 @@ ui <- dashboardPage(#useShinyjs(),
                    
                 box(width = 8,leafletOutput("map"),
                     conditionalPanel(condition ="output.spatialSelection",actionButton("deletebtn", "remove drawn")),
-                    helpText("You have selected the following stations:"),
+                    textOutput("youSelStations"),
                     verbatimTextOutput("selected_list"),
-                    helpText("And the following parameters (TYPE):"),
+                    textOutput("andSensors"),
                     verbatimTextOutput("selected_listSensors"),
                     collapsible = T)
                     
