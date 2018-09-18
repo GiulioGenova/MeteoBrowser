@@ -138,7 +138,9 @@ server <- function(input, output,session) {
   output$message<-renderText({
     datestart<-as.character(input$daterange[1])
     dateend<-as.character(input$daterange[2])
-    if(as_date(datestart)>as_date(dateend)){messagedate<-as.character(translation[grep("massageDate",translation$key),input$language])}else{NULL}
+    if(as_date(datestart)>as_date(dateend)){
+      messagedate<-as.character(translation[grep("massageDate",translation$key),input$language])
+    }else{NULL}
       
       
   })
