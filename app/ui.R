@@ -118,7 +118,7 @@ ui <- dashboardPage(#useShinyjs(),
                   # choices = list("NO","YES"))
               ),
                    
-                box(width = 8,leafletOutput("map"),
+                box(width = 8,uiOutput("map"),
                     conditionalPanel(condition ="output.spatialSelection",actionButton("deletebtn", "remove drawn")),
                     helpText("You have selected the following stations:"),
                     verbatimTextOutput("selected_list"),
