@@ -76,7 +76,9 @@ ui <- dashboardPage(#useShinyjs(),
               
               fluidRow(
                 
-                box(width = 4,collapsible = T,uiOutput("daterange"),
+                box(width = 4,collapsible = T,
+                    
+                    uiOutput("daterange"),
                     
                     #dateRangeInput(label = h4("Pick a date range"),inputId = "daterange",separator = " - ",min = "2000-01-01",
                     #                                         start = Sys.Date()-3,
