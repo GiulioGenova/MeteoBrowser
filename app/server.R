@@ -147,6 +147,13 @@ server <- function(input, output,session) {
       
   #})
   
+  output$message<-renderText({
+    datestart<-as.character(input$daterange[1])
+    dateend<-as.character(input$daterange[2])
+    if(as_date(datestart)>as_date(dateend)){
+      messagedate<-"Error in selecting the date range. First date must be earlier than last date"}else{NULL}
+})
+  
   output$selected<-renderText({
     
     #station<-StatSens()[[1]]
