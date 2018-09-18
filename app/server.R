@@ -92,6 +92,11 @@ server <- function(input, output,session) {
     conditionalPanel(condition = "output.rightdate",br(),
                      actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")) 
   })
+  
+  output$downloadInstructions <- renderText({
+    as.character(translation[grep("downloadInstructions",translation$key),input$language])
+    })
+  
   output$tableInstructions  <- renderText({
     as.character(translation[grep("tableInstructions",translation$key),input$language])
     
@@ -105,7 +110,26 @@ server <- function(input, output,session) {
                                                              end = Sys.Date()+1,language=input$language)
    })
   
+    output$selected_list<-renderText({
+    
+    #station<-StatSens()[[3]]
+    station<-StatSens$stationName
+    
+    mssg<- paste(station,collapse="; ")
+    
+  })
   
+  output$selected_listSensors<-renderText({
+    
+    #sensors<-StatSens()[[2]]
+   
+    sensors<-StatSens$sensors
+    
+    mssg<- paste(sensors,collapse="; ")
+    
+  })
+  
+  ###############
   
   output$table<-DT::renderDT({
     
@@ -357,25 +381,7 @@ server <- function(input, output,session) {
     
   })
   
-  output$selected_list<-renderText({
-    
-    #station<-StatSens()[[3]]
-    station<-StatSens$stationName
-    
-    mssg<- paste(station,collapse="; ")
-    
-  })
-  
-  output$selected_listSensors<-renderText({
-    
-    #sensors<-StatSens()[[2]]
-   
-    sensors<-StatSens$sensors
-    
-    mssg<- paste(sensors,collapse="; ")
-    
-  })
-  
+
   
   
   output$rightdate <-reactive({
