@@ -137,22 +137,22 @@ server <- function(input, output,session) {
   #})
   
   
-  #output$message<-renderText({
-  #  datestart<-as.character(input$daterange[1])
-  #  dateend<-as.character(input$daterange[2])
-  #  if(as_date(datestart)>as_date(dateend)){
-  #    messagedate<-as.character(translation[grep("massageDate",translation$key),input$language])
-  #  }else{NULL}
-      
-      
-  #})
-  
   output$message<-renderText({
     datestart<-as.character(input$daterange[1])
     dateend<-as.character(input$daterange[2])
     if(as_date(datestart)>as_date(dateend)){
-      messagedate<-"Error in selecting the date range. First date must be earlier than last date"}else{NULL}
-})
+      messagedate<-as.character(translation[grep("messageDate",translation$key),input$language])
+    }else{messagedate<-NULL}
+      messagedate
+      
+  })
+  
+  #output$message<-renderText({
+   # datestart<-as.character(input$daterange[1])
+    #dateend<-as.character(input$daterange[2])
+    #if(as_date(datestart)>as_date(dateend)){
+     # messagedate<-"Error in selecting the date range. First date must be earlier than last date"}else{NULL}
+#})
   
   output$selected<-renderText({
     
