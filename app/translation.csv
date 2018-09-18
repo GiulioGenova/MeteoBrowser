@@ -2,7 +2,7 @@ key,en,de,it
 daterange,Pick a date range,deutsch,Scegli data di inizio e fine
 massageDate,Error in selecting the date range. First date must be earlier than last date,deutsch,Errore nella selezione delle date. La prima data deve essere precedente all'ultima
 refresh,Download selected data,deutsch,Scarica dati selezionati
-downloadInstructions,First click \"download selected data\" then save as csv or json,deutsch, Prima clicca \"Scarica dati selezionati\" poi salva come csv o json
+downloadInstructions,First click download selected data then save as csv or json,deutsch, Prima clicca Scarica dati selezionati poi salva come csv o json
 roundLabel,Time aggregation,deutsch,Aggregazione temporale
 raw,raw,raw,grezza
 hour,hour,hour,oraria
