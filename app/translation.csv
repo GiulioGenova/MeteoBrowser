@@ -17,8 +17,8 @@ tableInstructions,Select stations and parameters you want to dowload by filterin
 formatSelection,Choose between long or wide table format,deutsch,Scegli tra formato un di tabella lungo o largo
 spatialSelection,Enable spatial selection (Draw a polygon in the map),,Abilita la selezione tramite poligono (disegna poligono nella mappa)
 youvSelected,You have selected n°,deutsch,Hai selezionato n°
-station,station,deutsch,stazione
-stations,stations,deutsch,stazioni
-sensor,sensor,deutsch,sensore
-sensors,sensors,deutsch,sensori
+aaa,station,deutsch,stazione
+bbb,stations,deutsch,stazioni
+ccc,sensor,deutsch,sensore
+ddd,sensors,deutsch,sensori
 and,and,deutsch,e
