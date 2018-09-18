@@ -187,6 +187,16 @@ server <- function(input, output,session) {
     
   })
   
+  output$selected_listSensors<-renderText({
+    
+    #station<-StatSens()[[3]]
+    sensors<-StatSens$sensors
+    
+    mssg<- paste(sensors,collapse="; ")
+    
+  })
+  
+  
   output$youSelStations<-renderText({
     
     as.character(translation[grep("youSelStations",translation$key),input$language])
