@@ -135,6 +135,38 @@ server <- function(input, output,session) {
                                  value = TRUE)
   })
   
+  output$message<-renderText({
+    datestart<-as.character(input$daterange[1])
+    dateend<-as.character(input$daterange[2])
+    if(as_date(datestart)>as_date(dateend)){
+      
+      messagedate<-as.character(translation[grep("massageDate",translation$key),input$language])}else{NULL}
+  })
+  
+  output$selected<-renderText({
+    
+    #station<-StatSens()[[1]]
+    #sensors<-StatSens()[[2]]
+    
+    station<-StatSens$station
+    sensors<-StatSens$sensors
+    
+    nstation<-length(station)%>%as.numeric
+    nsensors<-length(sensors)%>%as.numeric
+    
+    if(nstation==1) stat<-as.character(translation[grep("station",translation$key),input$language]) 
+    else{stat<- as.character(translation[grep("stations",translation$key),input$language])}
+    if(nsensors==1) param<-as.character(translation[grep("sensors",translation$key),input$language]) 
+    else{param<- as.character(translation[grep("sensor",translation$key),input$language])}
+    
+    mssg<- paste(as.character(translation[grep("youvSelected",translation$key),input$language]),
+                 nstation,stat,
+                 as.character(translation[grep("and",translation$key),input$language]),
+                 nsensors,param)
+    
+  })
+  
+  
     output$selected_list<-renderText({
     
     #station<-StatSens()[[3]]
@@ -381,30 +413,7 @@ server <- function(input, output,session) {
   
   
   
-  output$message<-renderText({
-    datestart<-as.character(input$daterange[1])
-    dateend<-as.character(input$daterange[2])
-    if(as_date(datestart)>as_date(dateend)){
-      messagedate<-"Error in selecting the date range. First date must be earlier than last date"}else{NULL}
-  })
   
-  output$selected<-renderText({
-    
-    #station<-StatSens()[[1]]
-    #sensors<-StatSens()[[2]]
-    
-    station<-StatSens$station
-    sensors<-StatSens$sensors
-    
-    nstation<-length(station)%>%as.numeric
-    nsensors<-length(sensors)%>%as.numeric
-    
-    if(nstation==1) stat<-" station" else{stat<- " stations"}
-    if(nsensors==1) param<-" parameter" else{param<- " parameters"}
-    
-    mssg<- paste("You have selected n° ", nstation,stat," and ",nsensors,param)
-    
-  })
   
 
   
