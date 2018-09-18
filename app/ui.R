@@ -29,7 +29,7 @@ library(DT)
 #library(rgdal)
 #library(shinyBS)
 about = source(file.path(getwd(),'about.R'))
-
+translation<-read.csv(file.path(getwd(),"translation.csv"),header = T,sep = ",",stringsAsFactors = F)
 scr <- tags$script(HTML(
   "
   Shiny.addCustomMessageHandler(
@@ -109,7 +109,7 @@ ui <- dashboardPage(#useShinyjs(),
                     
                     uiOutput("gather"),
                     
-                    checkboxInput("spatialSelection", label = h4("Enable spatial selection (Draw a polygon in the map)"),
+                    checkboxInput("spatialSelection", label = h4(as.character(translation[grep("spatialSelection",translation$key),input$language])),
                                 value = FALSE)
                     
                     #uiOutput("spatialSelection")
