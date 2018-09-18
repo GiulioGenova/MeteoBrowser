@@ -9,6 +9,7 @@ day,day,day,giornaliera
 week,week,week,settimanale
 month,month,month,mensile
 year,year,year,annuale
+gatherLable,Choose between long or wide table format,deutsch,Scegli tra formato un di tabella lungo o largo
 wide,wide,wide,larga
 long,wide,long,lunga
 tableInstructions,Select stations and parameters you want to dowload by filtering the table below,deutsch,Seleziona stazioni e parametri che vuoi scaricare filtrando la tabella sottostante
