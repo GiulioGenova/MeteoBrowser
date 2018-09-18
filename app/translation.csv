@@ -2,14 +2,14 @@ key,en,de,it
 daterange,Pick a date range,deutsch,Scegli data di inizio e fine
 refresh,Download selected data,deutsch,Scarica dati selezionati
 downloadInstructions,First click "download selected data" then save as csv or json,deutsch, Prima clicca "Scarica dati selezionati" poi salva come csv o json
-roundLable,Time aggregation,deutsch,Aggregazione temporale
+roundLabel,Time aggregation,deutsch,Aggregazione temporale
 raw,raw,raw,grezza
 hour,hour,hour,oraria
 day,day,day,giornaliera
 week,week,week,settimanale
 month,month,month,mensile
 year,year,year,annuale
-gatherLable,Choose between long or wide table format,deutsch,Scegli tra formato un di tabella lungo o largo
+gatherLabel,Choose between long or wide table format,deutsch,Scegli tra formato un di tabella lungo o largo
 wide,wide,wide,larga
 long,wide,long,lunga
 tableInstructions,Select stations and parameters you want to dowload by filtering the table below,deutsch,Seleziona stazioni e parametri che vuoi scaricare filtrando la tabella sottostante
