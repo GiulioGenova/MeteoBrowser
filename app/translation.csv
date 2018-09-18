@@ -1,5 +1,16 @@
 key,en,de,it
-daterange,pick a date range,datum,scegli data di inizio e fine
-tableInstructions,Select stations and parameters you want to dowload by filtering the table below,bla bla bla,Seleziona stazioni e parametri che vuoi scaricare filtrando la tabella sottostante
-refresh,Download selected data,,Scarica dati selezionati
+daterange,Pick a date range,deutsch,Scegli data di inizio e fine
+refresh,Download selected data,deutsch,Scarica dati selezionati
+downloadInstructions,First click "download selected data" then save as csv or json,deutsch, Prima clicca "Scarica dati selezionati" poi salva come csv o json
+roundLable,Time aggregation,deutsch,Aggregazione temporale
+raw,raw,raw,grezza
+hour,hour,hour,oraria
+day,day,day,giornaliera
+week,week,week,settimanale
+month,month,month,mensile
+year,year,year,annuale
+wide,wide,wide,larga
+long,wide,long,lunga
+tableInstructions,Select stations and parameters you want to dowload by filtering the table below,deutsch,Seleziona stazioni e parametri che vuoi scaricare filtrando la tabella sottostante
+formatSelection,Choose between long or wide table format,deutsch,Scegli tra formato un di tabella lungo o largo
 spatialSelection,Enable spatial selection (Draw a polygon in the map),,Abilita la selezione tramite poligono (disegna poligono nella mappa)
