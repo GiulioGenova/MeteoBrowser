@@ -131,7 +131,7 @@ server <- function(input, output,session) {
    })
   
   output$spatialSelection<-renderUI({
-  checkboxInput(label = h4(as.character(translation[grep("spatialSelection",translation$key),input$language])),
+  checkboxInput("spatialSelection",label = h4(as.character(translation[grep("spatialSelection",translation$key),input$language])),
                                  value = FALSE)
   })
   
