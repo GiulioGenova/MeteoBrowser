@@ -130,20 +130,20 @@ server <- function(input, output,session) {
                                               ))
    })
   
-  output$spatialSelection<-renderUI({
-  checkboxInput("spatialSelection", label = h4(as.character(translation[grep("spatialSelection",translation$key),input$language])),
-                                 value = FALSE)
-  })
+  #output$spatialSelection<-renderUI({
+  #checkboxInput("spatialSelection", label = h4(as.character(translation[grep("spatialSelection",translation$key),input$language])),
+  #                               value = FALSE)
+  #})
   
-  output$message<-renderText({
-    datestart<-as.character(input$daterange[1])
-    dateend<-as.character(input$daterange[2])
-    if(as_date(datestart)>as_date(dateend)){
-      messagedate<-as.character(translation[grep("massageDate",translation$key),input$language])
-    }else{NULL}
+  #output$message<-renderText({
+  #  datestart<-as.character(input$daterange[1])
+  #  dateend<-as.character(input$daterange[2])
+  #  if(as_date(datestart)>as_date(dateend)){
+  #    messagedate<-as.character(translation[grep("massageDate",translation$key),input$language])
+  #  }else{NULL}
       
       
-  })
+  #})
   
   output$selected<-renderText({
     
