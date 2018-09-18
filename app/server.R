@@ -110,6 +110,20 @@ server <- function(input, output,session) {
                                                              end = Sys.Date()+1,language=input$language)
    })
   
+  output$round<-renderUI({
+    
+   selectInput("round",label = h4(as.character(translation[grep("roundLable",translation$key),input$language])),
+                               choices = list(as.character(translation[grep("raw",translation$key),input$language]),
+                                              as.character(translation[grep("hour",translation$key),input$language]),
+                                              as.character(translation[grep("day",translation$key),input$language]),
+                                              as.character(translation[grep("week",translation$key),input$language]),
+                                              as.character(translation[grep("month",translation$key),input$language]),
+                                              as.character(translation[grep("year",translation$key),input$language])
+                                             ))
+})
+  
+  
+  
     output$selected_list<-renderText({
     
     #station<-StatSens()[[3]]
@@ -413,8 +427,8 @@ server <- function(input, output,session) {
       
     },
     content = function(con) {
-      
-      round<-input$round
+      round<-as.character(translation[grep(input$round,translation[,input$language]),"key"])
+      #round<-input$round
       gather<-input$gather
       df=D$documents[[1]] 
       
