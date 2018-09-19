@@ -168,7 +168,7 @@ server <- function(input, output,session) {
       #renderText(as.character(translation[grep("messageDate",translation$key),input$language])))
       
       conditionalPanel(condition = "output.rightdate==false",br(),
-      as.character(translation[grep("messageDate",translation$key),input$language]))
+      renderText(as.character(translation[grep("messageDate",translation$key),input$language])))
                              
                              
                              
