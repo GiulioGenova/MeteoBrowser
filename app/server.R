@@ -156,7 +156,7 @@ server <- function(input, output,session) {
   #})
   # output.spatialSelection
   #
-  output$message<-renderText({
+  output$message<-renderUI({
     #datestart<-as.character(input$daterange[1])
     #dateend<-as.character(input$daterange[2])
     #if(as_date(datestart)>as_date(dateend)){
@@ -164,11 +164,11 @@ server <- function(input, output,session) {
     #}else{messagedate<-NULL}
      # messagedate
       
-      #conditionalPanel(condition = "output.rightdate==false",br(),
-      #renderText(as.character(translation[grep("messageDate",translation$key),input$language])))
-      
       conditionalPanel(condition = "output.rightdate==false",br(),
       renderText(as.character(translation[grep("messageDate",translation$key),input$language])))
+      
+      #conditionalPanel(condition = "output.rightdate==false",br(),
+      #renderText(as.character(translation[grep("messageDate",translation$key),input$language])))
                              
                              
                              
