@@ -92,9 +92,10 @@ ui <- dashboardPage(#useShinyjs(),
                                      downloadButton('downloadData', h4('Save as csv'), class="btn-danger" ) 
                     ),
                     #helpText("First click \"download selected data\" then \"save as csv\""),
-                    textOutput("downloadInstructions"),
                     #verbatimTextOutput("message"),
                     uiOutput("message"),
+                    textOutput("downloadInstructions"),
+                    
                     verbatimTextOutput("selected"),
                     
                     #selectInput("round",label = h4("Time aggregation"),
