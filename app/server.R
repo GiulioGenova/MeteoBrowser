@@ -201,7 +201,7 @@ server <- function(input, output,session) {
                  nstation,stat,
                  as.character(translation[grep("and",translation$key),input$language]),
                  nsensors,param)
-    
+    return(mssg)
   })
   
   
