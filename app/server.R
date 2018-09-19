@@ -135,13 +135,17 @@ server <- function(input, output,session) {
                                               ))
    })
   
-  output$spatSel<-renderText({
+  #output$spatSel<-renderText({
     
-  as.character(translation[grep("spatialSelection",translation$key),input$language])
+  #as.character(translation[grep("spatialSelection",translation$key),input$language])
                               
+  #})
+  output$spatialSelection<-renderUI({
+  checkboxInput("spatialSelection", label = as.character(translation[grep("spatialSelection",translation$key),input$language]),
+                                value = FALSE)
   })
-  
-  
+  # output.spatialSelection
+  #
   output$message<-renderText({
     datestart<-as.character(input$daterange[1])
     dateend<-as.character(input$daterange[2])
