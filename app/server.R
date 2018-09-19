@@ -199,11 +199,11 @@ server <- function(input, output,session) {
     else{param<- as.character(translation[grep("ddd",translation$key),input$language])}
     
     youHave<-as.character(translation[grep("youvSelected",translation$key),input$language])
-    and<-as.character(translation[grep("and",translation$key),input$language])
+    and<-as.character(translation[grep("Sensorsand",translation$key),input$language])
     mssg<- paste(youHave,
-                 #nstation,stat,
+                 nstation,stat,
                  and#,
-                 #nsensors,param
+                 nsensors,param
                 )
     mssg
     #return(mssg)
