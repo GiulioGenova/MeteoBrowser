@@ -95,7 +95,7 @@ server <- function(input, output,session) {
   
   output$deletebtn  <- renderUI({
   if(input$spatialSelection==TRUE){
-    actionButton("deletebtn", as.character(translation[grep("refresh",translation$key),input$language]))}
+    actionButton("deletebtn", as.character(translation[grep("deletebtn",translation$key),input$language]))}
   })
   
   output$downloadInstructions <- renderText({
