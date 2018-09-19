@@ -108,11 +108,11 @@ ui <- dashboardPage(#useShinyjs(),
                     #            choices = list("wide","long")),
                     
                     uiOutput("gather"),
-                    verbatimTextOutput("spatSel"),
-                    checkboxInput("spatialSelection", label = "",
-                                value = FALSE)
+                    #verbatimTextOutput("spatSel"),
+                    #checkboxInput("spatialSelection", label = "",
+                    #            value = FALSE)
                     
-                    #uiOutput("spatSel")
+                    uiOutput("spatialSelection")
                     #selectInput("spatialSelection",
                     #            label = h4("Enable spatial selection"),
                   # choices = list("NO","YES"))
