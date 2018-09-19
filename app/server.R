@@ -202,7 +202,7 @@ server <- function(input, output,session) {
     and<-as.character(translation[grep("Sensorsand",translation$key),input$language])
     mssg<- paste(youHave,
                  nstation,stat,
-                 and#,
+                 and,
                  nsensors,param
                 )
     mssg
