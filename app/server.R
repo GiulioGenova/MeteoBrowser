@@ -93,10 +93,16 @@ server <- function(input, output,session) {
                      actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")) 
   })
   
+  #output$deletebtn  <- renderUI({
+  #if(input$spatialSelection==TRUE){
+  #  actionButton("deletebtn", as.character(translation[grep("deletebtn",translation$key),input$language]))}
+  #})
+  
   output$deletebtn  <- renderUI({
-  if(input$spatialSelection==TRUE){
-    actionButton("deletebtn", as.character(translation[grep("deletebtn",translation$key),input$language]))}
+  conditionalPanel(condition = "output.spatialSelection",br(),
+    actionButton("deletebtn", as.character(translation[grep("deletebtn",translation$key),input$language])))
   })
+  
   
   output$downloadInstructions <- renderText({
     as.character(translation[grep("downloadInstructions",translation$key),input$language])
@@ -380,7 +386,7 @@ server <- function(input, output,session) {
     
 # "output.spatialSelection"
 # input$spatialSelection   
-    if(input$spatialSelection==TRUE){#FALSE
+    if("output.spatialSelection"==TRUE){#FALSE
       polygon_coordinates <-polyCoord()
       
 
