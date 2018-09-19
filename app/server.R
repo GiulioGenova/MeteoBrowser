@@ -89,12 +89,13 @@ server <- function(input, output,session) {
   # UI
   
   output$refresh  <- renderUI({
-    conditionalPanel(condition = input$spatialSelection,br(),
+    conditionalPanel(condition = "output.rightdate",br(),
                      actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")) 
   })
   
   output$deletebtn  <- renderUI({
-  conditionalPanel(condition ="output.spatialSelection",actionButton("deletebtn", as.character(translation[grep("refresh",translation$key),input$language])))
+  #input$spatialSelection==TRUE
+    conditionalPanel(condition ="output.spatialSelection",actionButton("deletebtn", as.character(translation[grep("refresh",translation$key),input$language])))
   })
   
   output$downloadInstructions <- renderText({
