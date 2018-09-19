@@ -93,6 +93,10 @@ server <- function(input, output,session) {
                      actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")) 
   })
   
+  output$refresh  <- renderUI({
+  conditionalPanel(condition ="output.spatialSelection",actionButton("deletebtn", as.character(translation[grep("refresh",translation$key),input$language])))
+  })
+  
   output$downloadInstructions <- renderText({
     as.character(translation[grep("downloadInstructions",translation$key),input$language])
     })
