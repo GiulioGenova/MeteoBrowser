@@ -377,8 +377,11 @@ server <- function(input, output,session) {
     return()
   })
   
+  #####
+  output$map<-renderUI({
   
-  output$map<-renderLeaflet({
+  
+  renderLeaflet({
     ids<-input$table_rows_all
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
@@ -387,7 +390,7 @@ server <- function(input, output,session) {
     
 # "output.spatialSelection"
 # input$spatialSelection   
-    if(output.spatialSelection){#FALSE
+    if("output.spatialSelection"){#FALSE
       polygon_coordinates <-polyCoord()
       
 
@@ -415,6 +418,9 @@ server <- function(input, output,session) {
     m
     
   })
+  })
+  
+  #######
   
   drawnshapes <- list()
   
