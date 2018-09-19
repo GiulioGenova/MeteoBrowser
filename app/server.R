@@ -89,8 +89,12 @@ server <- function(input, output,session) {
   # UI
   
   output$refresh  <- renderUI({
-    conditionalPanel(condition = "output.rightdate",br(),
-                     actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")) 
+    datestart<- input$daterange[1] %>% as.character %>% as_date
+    dateend<- input$daterange[2] %>% as.character %>% as_date
+    if(datestart<=dateend){actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")}
+    
+    #conditionalPanel(condition = "output.rightdate",br(),
+     #                actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")) 
   })
   
   output$deletebtn  <- renderUI({
@@ -460,12 +464,12 @@ server <- function(input, output,session) {
 
   
   
-  output$rightdate <-reactive({
-    datestart<- input$daterange[1] %>% as.character %>% as_date
-    dateend<- input$daterange[2] %>% as.character %>% as_date
-    return(datestart<=dateend)
+ # output$rightdate <-reactive({
+ #   datestart<- input$daterange[1] %>% as.character %>% as_date
+ #   dateend<- input$daterange[2] %>% as.character %>% as_date
+ #   return(datestart<=dateend)
     
-  })
+ # })
   
   output$tablebuilt <-reactive({
     return(!is.null(D$documents))
