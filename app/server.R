@@ -192,16 +192,19 @@ server <- function(input, output,session) {
     nstation<-length(station)%>%as.numeric
     nsensors<-length(sensors)%>%as.numeric
     
-    if(nstation==1){ stat<-as.character(translation[grep("aaa",translation$key),input$language])}else{stat<- as.character(translation[grep("bbb",translation$key),input$language])}
+    if(nstation==1){ stat<-as.character(translation[grep("aaa",translation$key),input$language])}
+    else{stat<- as.character(translation[grep("bbb",translation$key),input$language])}
     
-    if(nsensors==1){param<-as.character(translation[grep("ccc",translation$key),input$language])}else{param<- as.character(translation[grep("ddd",translation$key),input$language])}
+    if(nsensors==1){param<-as.character(translation[grep("ccc",translation$key),input$language])}
+    else{param<- as.character(translation[grep("ddd",translation$key),input$language])}
     
     
-    mssg<- paste(as.character(translation[grep("youvSelected",translation$key),input$language]),
+    mssg<- paste(#as.character(translation[grep("youvSelected",translation$key),input$language]),
                  nstation,stat,
-                 as.character(translation[grep("and",translation$key),input$language]),
+                 #as.character(translation[grep("and",translation$key),input$language]),
                  nsensors,param)
-    return(mssg)
+    mssg
+    #return(mssg)
   })
   
   
