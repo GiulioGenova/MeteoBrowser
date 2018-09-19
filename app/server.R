@@ -380,7 +380,7 @@ server <- function(input, output,session) {
     
 # "output.spatialSelection"
 # input$spatialSelection   
-    if("output.spatialSelection"){#FALSE
+    if(input$spatialSelection==TRUE){#FALSE
       polygon_coordinates <-polyCoord()
       
 
