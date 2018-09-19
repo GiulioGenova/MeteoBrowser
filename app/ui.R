@@ -108,19 +108,19 @@ ui <- dashboardPage(#useShinyjs(),
                     #            choices = list("wide","long")),
                     
                     uiOutput("gather"),
-                    #verbatimTextOutput("spatSel"),
-                    #checkboxInput("spatialSelection", label = "",
-                    #            value = FALSE)
+                    verbatimTextOutput("spatSel"),
+                    checkboxInput("spatialSelection", label = "",
+                                value = FALSE)
                     
-                    uiOutput("spatialSelection")
+                    #uiOutput("spatialSelection")
                     #selectInput("spatialSelection",
                     #            label = h4("Enable spatial selection"),
                   # choices = list("NO","YES"))
               ),
                    
                 box(width = 8,
-                    #leafletOutput("map"),
-                    uiOutput("map"),
+                    leafletOutput("map"),
+                    #uiOutput("map"),
                     #conditionalPanel(condition ="output.spatialSelection",actionButton("deletebtn", "remove drawn")),
                     uiOutput("deletebtn"),
                     textOutput("youSelStations"),
