@@ -93,15 +93,15 @@ server <- function(input, output,session) {
                      actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")) 
   })
   
-  #output$deletebtn  <- renderUI({
-  #if(input$spatialSelection==TRUE){
-  #  actionButton("deletebtn", as.character(translation[grep("deletebtn",translation$key),input$language]))}
-  #})
-  
   output$deletebtn  <- renderUI({
-  conditionalPanel(condition = "output.spatialSelection",br(),
-    actionButton("deletebtn", as.character(translation[grep("deletebtn",translation$key),input$language])))
+  if(input$spatialSelection==TRUE){
+    actionButton("deletebtn", as.character(translation[grep("deletebtn",translation$key),input$language]))}
   })
+  
+  #output$deletebtn  <- renderUI({
+  #conditionalPanel(condition = "output.spatialSelection",br(),
+  #  actionButton("deletebtn", as.character(translation[grep("deletebtn",translation$key),input$language])))
+  #})
   
   
   output$downloadInstructions <- renderText({
@@ -141,15 +141,15 @@ server <- function(input, output,session) {
                                               ))
    })
   
-  #output$spatSel<-renderText({
+  output$spatSel<-renderText({
     
-  #as.character(translation[grep("spatialSelection",translation$key),input$language])
+  as.character(translation[grep("spatialSelection",translation$key),input$language])
                               
-  #})
-  output$spatialSelection<-renderUI({
-  checkboxInput("spatialSelection", label = as.character(translation[grep("spatialSelection",translation$key),input$language]),
-                                value = FALSE)
   })
+  #output$spatialSelection<-renderUI({
+  #checkboxInput("spatialSelection", label = as.character(translation[grep("spatialSelection",translation$key),input$language]),
+  #                              value = FALSE)
+  #})
   # output.spatialSelection
   #
   output$message<-renderText({
@@ -296,7 +296,7 @@ server <- function(input, output,session) {
     }
     #########################################################
     #input$spatialSelection
-      if("output.spatialSelection"==TRUE){#FALSE
+      if(input$spatialSelection){#FALSE
       #req(input$map_draw_stop)
       stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
       
@@ -377,11 +377,8 @@ server <- function(input, output,session) {
     return()
   })
   
-  #####
-  output$map<-renderUI({
   
-  
-  renderLeaflet({
+  output$map<-renderLeaflet({
     ids<-input$table_rows_all
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
@@ -390,7 +387,7 @@ server <- function(input, output,session) {
     
 # "output.spatialSelection"
 # input$spatialSelection   
-    if("output.spatialSelection"){#FALSE
+    if(input$spatialSelection){#FALSE
       polygon_coordinates <-polyCoord()
       
 
@@ -417,7 +414,6 @@ server <- function(input, output,session) {
     }
     m
     
-  })
   })
   
   #######
