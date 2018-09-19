@@ -296,7 +296,7 @@ server <- function(input, output,session) {
     }
     #########################################################
     #input$spatialSelection
-      if("output.spatialSelection"){#FALSE
+      if(input$spatialSelection){#FALSE
       #req(input$map_draw_stop)
       stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
       
@@ -387,7 +387,7 @@ server <- function(input, output,session) {
     
 # "output.spatialSelection"
 # input$spatialSelection   
-    if("output.spatialSelection"){#FALSE
+    if(input$spatialSelection){#FALSE
       polygon_coordinates <-polyCoord()
       
 
