@@ -52,22 +52,8 @@ scr <- tags$script(HTML(
 ui <- dashboardPage(#useShinyjs(),
   
   skin = "blue",
-  dashboardHeader(
-    tags$li(class = "dropdown",
-              tags$style(".main-header {max-height: 100px}"),
-              tags$style(".main-header .logo {height: 100px ; padding-top: 10px}")
-     )
-  ,
-    #title =loadingLogo('http://www.eurac.edu/Style%20Library/','logoEURAC.jpg','buffpowa.gif')
-    title = tags$a(href='http://www.eurac.edu/',
-         #tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'))#,
-    tags$img(src='logoMeteoBrowser.jpg'))
-  #  titleWidth = 320
-  ),
-  dashboardSidebar(
-    
-    tags$style(".left-side, .main-sidebar {padding-top: 110px}"),
-    disable = F,
+  dashboardHeader(title = "Open Data South Tyrol",titleWidth = 320),
+  dashboardSidebar(disable = F,
                    sidebarMenu(
                      
                      menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o")),
@@ -78,7 +64,7 @@ ui <- dashboardPage(#useShinyjs(),
   dashboardBody(
     tagList(
   scr
-  ),
+),
     
     # Boxes need to be put in a row (or column)
     tabItems(
