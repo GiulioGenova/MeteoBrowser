@@ -53,7 +53,7 @@ ui <- dashboardPage(#useShinyjs(),
   
   skin = "blue",
   dashboardHeader(title = tags$a(href='http://www.eurac.edu',
-         tags$img(src='Style%20Library/logoEURAC.jpg')),titleWidth = 320),
+         tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg')),titleWidth = 320),
   dashboardSidebar(disable = F,
                    sidebarMenu(
                      
