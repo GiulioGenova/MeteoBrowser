@@ -58,8 +58,8 @@ ui <- dashboardPage(#useShinyjs(),
               tags$style(".main-header .logoEURAC {height: 350px}")
       ),
     #title =loadingLogo('http://www.eurac.edu/Style%20Library/','logoEURAC.jpg','buffpowa.gif')
-    title = tags$a(href='http://www.eurac.edu/Style%20Library',
-         tags$img(src='logoEURAC.jpg'))#,
+    title = tags$a(href='http://www.eurac.edu/',
+         tags$img(src='Style%20Library/logoEURAC.jpg'))#,
     
   #  titleWidth = 320
   ),
