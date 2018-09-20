@@ -52,9 +52,20 @@ scr <- tags$script(HTML(
 ui <- dashboardPage(#useShinyjs(),
   
   skin = "blue",
-  dashboardHeader(title = tags$a(href='http://www.eurac.edu',
-         tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg')),titleWidth = 320,titleHeight= 320),
-  dashboardSidebar(disable = F,
+  dashboardHeader(
+    tags$li(class = "dropdown",
+              tags$style(".main-header {max-height: 250px}"),
+              tags$style(".main-header .logoEURAC {height: 250px}")
+      ),
+    
+    title = tags$a(href='http://www.eurac.edu',
+         tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg')),
+    
+    titleWidth = 320),
+  dashboardSidebar(
+    
+    tags$style(".left-side, .main-sidebar {padding-top: 250px}"),
+    disable = F,
                    sidebarMenu(
                      
                      menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o")),
