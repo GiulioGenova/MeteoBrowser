@@ -54,8 +54,8 @@ ui <- dashboardPage(#useShinyjs(),
   skin = "blue",
   dashboardHeader(
     tags$li(class = "dropdown",
-              tags$style(".main-header {height: 350px}"),
-              tags$style(".main-header .logoEURAC {height: 350px}")
+              tags$style(".main-header {max-height: 350px}"),
+              tags$style(".main-header .logo {height: 350px}")
      )
   ,
     #title =loadingLogo('http://www.eurac.edu/Style%20Library/','logoEURAC.jpg','buffpowa.gif')
