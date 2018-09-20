@@ -54,8 +54,8 @@ ui <- dashboardPage(#useShinyjs(),
   skin = "blue",
   dashboardHeader(
     tags$li(class = "dropdown",
-              tags$style(".main-header {max-height: 250px}"),
-              tags$style(".main-header .logoEURAC {height: 250px}")
+              tags$style(".main-header {max-height: 350px}"),
+              tags$style(".main-header .logoEURAC {height: 350px}")
       ),
     
     title = tags$a(href='http://www.eurac.edu',
@@ -64,7 +64,7 @@ ui <- dashboardPage(#useShinyjs(),
     titleWidth = 320),
   dashboardSidebar(
     
-    tags$style(".left-side, .main-sidebar {padding-top: 250px}"),
+    tags$style(".left-side, .main-sidebar {padding-top: 350px}"),
     disable = F,
                    sidebarMenu(
                      
