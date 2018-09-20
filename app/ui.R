@@ -53,7 +53,7 @@ ui <- dashboardPage(#useShinyjs(),
   
   skin = "blue",
   dashboardHeader(tags$li(class = "dropdown",
-            tags$style(".main-header {max-height: 100px; background-color: #bc2c43;}"),
+            tags$style(".main-header {max-height: 100px; background-color: #bc2c43}"),
             tags$style(".main-header .logo {height: 100px ; padding-top: 10px}")
     )
     ,
@@ -64,7 +64,7 @@ ui <- dashboardPage(#useShinyjs(),
     #  titleWidth = 320
                  ),
   dashboardSidebar(
-    tags$style(".left-side, .main-sidebar {padding-top: 110px}"),
+    tags$style(".left-side, .main-sidebar {padding-top: 110px; background-color: #bc2c43}"),
     disable = F,
                    sidebarMenu(
                      
