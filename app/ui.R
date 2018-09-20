@@ -59,9 +59,10 @@ ui <- dashboardPage(#useShinyjs(),
       ),
     
     title = tags$a(href='http://www.eurac.edu',
-         tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg')),
+         tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'))#,
     
-    titleWidth = 320),
+  #  titleWidth = 320
+  ),
   dashboardSidebar(
     
     tags$style(".left-side, .main-sidebar {padding-top: 350px}"),
