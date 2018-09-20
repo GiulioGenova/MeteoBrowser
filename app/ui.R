@@ -56,9 +56,9 @@ ui <- dashboardPage(#useShinyjs(),
            tags$style( ".skin-blue .main-header .logo {
                         background-color: #cd4e37;
                                             }"),
-           tags$style( ".skin-blue .main-header {
-                        background-color: #cd4e37;
-                                            }"),
+           tags$style( ".skin-blue .main-header .navbar {
+                              background-color: #cd4e37;
+                              }  "),
            tags$style( ".skin-blue .main-header .logo:hover {
                         background-color: #cd4e37;
                                             }"),
