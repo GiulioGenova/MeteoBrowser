@@ -55,7 +55,7 @@ ui <- dashboardPage(#useShinyjs(),
   dashboardHeader(
     tags$li(class = "dropdown",
               tags$style(".main-header {max-height: 350px}"),
-              tags$style(".main-header .logoEURAC {height: 350px}")
+              tags$style(".main-header .http://www.eurac.edu/Style%20Library/logoEURAC {height: 350px}")
       ),
     
     title = tags$a(href='http://www.eurac.edu',
