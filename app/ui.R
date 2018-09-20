@@ -54,8 +54,17 @@ ui <- dashboardPage(#useShinyjs(),
   skin = "blue",
   dashboardHeader(tags$li(class = "dropdown",
            tags$style( ".skin-blue .main-header .logo {
-                        background-color: #bc2c43;
+                        background-color: #cd4e37;
                                             }"),
+           tags$style( ".skin-blue .main-header {
+                        background-color: #cd4e37;
+                                            }"),
+           tags$style( ".skin-blue .main-header .logo:hover {
+                        background-color: #cd4e37;
+                                            }"),
+           #tags$style( ".skin-blue .main-header {
+           #             background-color: #cd4e37;
+           #                                 }"),
             tags$style(".main-header {max-height: 100px}"),
             tags$style(".main-header .logo {height: 100px ; padding-top: 10px}")
     )
