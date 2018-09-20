@@ -54,8 +54,8 @@ ui <- dashboardPage(#useShinyjs(),
   skin = "blue",
   dashboardHeader(
     tags$li(class = "dropdown",
-              tags$style(".main-header {max-height: 350px}"),
-              tags$style(".main-header .logo {height: 350px}")
+              tags$style(".main-header {max-height: 150px}"),
+              tags$style(".main-header .logo {height: 150px ; padding-top: 10px}")
      )
   ,
     #title =loadingLogo('http://www.eurac.edu/Style%20Library/','logoEURAC.jpg','buffpowa.gif')
@@ -66,7 +66,7 @@ ui <- dashboardPage(#useShinyjs(),
   ),
   dashboardSidebar(
     
-    tags$style(".left-side, .main-sidebar {padding-top: 350px}"),
+    tags$style(".left-side, .main-sidebar {padding-top: 10px}"),
     disable = F,
                    sidebarMenu(
                      
