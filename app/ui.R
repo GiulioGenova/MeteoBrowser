@@ -73,7 +73,7 @@ ui <- dashboardPage(#useShinyjs(),
     #title =loadingLogo('http://www.eurac.edu/Style%20Library/','logoEURAC.jpg','buffpowa.gif')
     title = tags$a(href='http://www.eurac.edu/',
                    #tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'))#,
-                   tags$img(src='logoMeteoBrowser.jpg'))
+                   tags$img(src='logoMeteoBrowser.jpg'),'Meteo Browser South Tyrol')
     #  titleWidth = 320
                  ),
   dashboardSidebar(
