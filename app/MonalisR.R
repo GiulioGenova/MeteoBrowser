@@ -81,29 +81,29 @@ plotMeteoLeaflet<-function (stations = NULL, addPoints = NULL, addBuff = F, widt
     #addTiles()%>% 
     addProviderTiles("OpenStreetMap.Mapnik", group = "OSM")%>% 
     addProviderTiles("Esri.WorldImagery", group = "SAT") %>%
-    addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
-                        as.character %>% as.numeric, icon = c1, popup = paste("Code:",stations$SCODE, "<br>", 
-                                                                              "Name GER:", stations$NAME_D,"<br>",
-                                                                              "Name ITA:", stations$NAME_I, "<br>",
-                                                                              "Altitude:",stations$ALT, "<br>",
-                                                                              "<br>",
-                                                                              "Latest recorded measurements:", "<br>",
-                                                                              "Air temperature:",stations$LT, "<br>",
-                                                                              "Relative humidity:",stations$LF, "<br>",
-                                                                              
-                                                                              "Precipitation:",stations$N, "<br>",
-                                                                              "Wind speed:",stations$WG, "<br>",
-                                                                              "Wind direction:",stations$WR, "<br>",
-                                                                              "Wind guts:",stations$WG.BOE, "<br>",
-                                                                              "Atmospheric perssion:",stations$LD.RED, "<br>",
-                                                                              "Solar Radiation:",stations$GS, "<br>",
-                                                                              "Sunshine hours:",stations$SD, "<br>",
-                                                                              "Snow height:",stations$HS, "<br>",
-                                                                              "Water temperature:",stations$WT, "<br>",
-                                                                              "Water flow:",stations$Q, "<br>",
-                                                                              "Water level:",stations$W, "<br>"#,
-                                                                              #"Ground water level:",stations$WT, "W.ABST"
-                                                                              ))%>%
+    #addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
+     #                   as.character %>% as.numeric, icon = c1, popup = paste("Code:",stations$SCODE, "<br>", 
+      #                                                                        "Name GER:", stations$NAME_D,"<br>",
+       #                                                                       "Name ITA:", stations$NAME_I, "<br>",
+        #                                                                      "Altitude:",stations$ALT, "<br>",
+         #                                                                     "<br>",
+          #                                                                    "Latest recorded measurements:", "<br>",
+           #                                                                   "Air temperature:",stations$LT, "<br>",
+            #                                                                  "Relative humidity:",stations$LF, "<br>",
+             #                                                                 
+              #                                                                "Precipitation:",stations$N, "<br>",
+               #                                                               "Wind speed:",stations$WG, "<br>",
+                #                                                              "Wind direction:",stations$WR, "<br>",
+                 #                                                             "Wind guts:",stations$WG.BOE, "<br>",
+                  #                                                            "Atmospheric perssion:",stations$LD.RED, "<br>",
+                   #                                                           "Solar Radiation:",stations$GS, "<br>",
+                    #                                                          "Sunshine hours:",stations$SD, "<br>",
+                     #                                                         "Snow height:",stations$HS, "<br>",
+                      #                                                        "Water temperature:",stations$WT, "<br>",
+                       #                                                       "Water flow:",stations$Q, "<br>",
+                        #                                                      "Water level:",stations$W, "<br>"#,
+                         #                                                     #"Ground water level:",stations$WT, "W.ABST"
+                          #                                                    ))%>%
     
     #  ""     ""       ""          "SSTF"      
     #addEasyButton(easyButton(icon="fa-crosshairs", title="Locate Me",
