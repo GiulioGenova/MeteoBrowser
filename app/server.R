@@ -408,7 +408,7 @@ server <- function(input, output,session) {
     m<- m %>% addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
                         as.character %>% as.numeric, icon = c1, 
                                 popup = paste(as.character(translation[grep("code",translation$key),input$language]),stations$SCODE, "<br>", 
-                                              as.character(translation[grep("nameDe",translation$key),input$language]),"<br>",
+                                              as.character(translation[grep("nameDe",translation$key),input$language]),stations$NAME_D,"<br>",
                                               as.character(translation[grep("nameIt",translation$key),input$language]), stations$NAME_I, "<br>",
                                               as.character(translation[grep("altitude",translation$key),input$language]),stations$ALT, "<br>",
                                               "<br>",
