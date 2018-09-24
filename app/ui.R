@@ -50,7 +50,7 @@ scr <- tags$script(HTML(
 
 
 ui <- dashboardPage(#useShinyjs(),
-  
+  title= "Meteo Browser",
     
   skin = "blue",
   dashboardHeader(tags$li(class = "dropdown",
