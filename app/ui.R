@@ -49,7 +49,7 @@ scr <- tags$script(HTML(
 header <- dashboardHeader()
 anchor <- tags$a(href='http://www.eurac.edu/',
                  tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg', height='60', width='50'),#
-                 'project name')
+                 'Meteo Browser South Tyrol')
 
 header$children[[2]]$children <- tags$div(
     tags$head(tags$style(HTML(".name { background-color: black }"))),
