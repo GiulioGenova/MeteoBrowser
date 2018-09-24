@@ -76,7 +76,8 @@ se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE) %>%
   unite(VALUE,VALUE,UNIT,sep=" ") %>% 
   spread(TYPE,VALUE)
 
-
+c1 <- awesomeIcons(icon = "ios-close", iconColor = "black", 
+library = "ion", markerColor = "blue")
 
 server <- function(input, output,session) {
   
