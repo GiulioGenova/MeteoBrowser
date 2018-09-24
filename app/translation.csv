@@ -29,13 +29,13 @@ code,Code:,deutsch,Codice:
 nameDe,Name (German):,deutsch,Nome (Tedesco)
 nameIt,Name (Italian):,deutsch,Nome (Italiano)
 altitude,Elevation:,deutsch,Altitudine
-latestRecorded,Latest recorded measurements:,deutsch,Ultime misurazioni registrate
-airTemp,Air temperature:,Lufttemperatur,Temperatura dell'aria
-reHum,Relative humidity:,relative Luftfeuchte:,Umidita relativa
+latestRecorded,Latest recorded measurements:,deutsch,Ultime misurazioni registrate:
+airTemp,Air temperature:,Lufttemperatur:,Temperatura dell'aria:
+reHum,Relative humidity:,relative Luftfeuchte:,Umidita relativa:
 precipitation,Precipitation:,Niederschlag:,Precipitazione:
 windSpeed,Wind speed:,Windgeschwindigkeit:,Velocita del vento:
 windDir,Wind direction:,Windrichtung:,Direzione del vento:
-windGuts,Wind guts:,Windgeschwindigkeit Böe:,Velocita raffica:
+windGuts,Wind guts:,Windgeschwindigkeit Boee:,Velocita raffica:
 atmPress,Atmospheric perssion:,Luftdruck:,Pressione atmosferica:
 solarRad,Solar Radiation:,Globalstrahlung:,Radiazione globale:
 sunsHour,Sunshine hours:,	Sonnenscheindauer:,Durata soleggiamento:
