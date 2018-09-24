@@ -94,13 +94,13 @@ server <- function(input, output,session) {
   
   output$Data  <- renderMenu({
     sidebarMenu(
-  menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o"))
+  menuItem(as.character(translation[grep("menuData",translation$key),input$language]), tabName = "Data", icon = icon("bar-chart-o"))
       )
   })
   
   output$about  <- renderMenu({
     sidebarMenu(
-  menuItem("README", tabName = "about", icon = icon("info-circle"))
+  menuItem(as.character(translation[grep("menuReadme",translation$key),input$language]), tabName = "about", icon = icon("info-circle"))
       )
   })
   
