@@ -1,4 +1,6 @@
 key,en,de,it
+menuData,Data overview,deutsch,Panoramica sui dati
+menuReadme,Readme,deutsch,Leggimi
 daterange,Pick a date range,deutsch,Scegli data di inizio e fine
 messageDate,Error in selecting the date range. First date must be earlier than last date,deutsch,Errore nella selezione delle date. La prima data deve essere precedente all'ultima
 refresh,Download selected data,deutsch,Scarica dati selezionati
