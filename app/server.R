@@ -84,7 +84,7 @@ library = "ion", markerColor = "blue")
 
 server <- function(input, output,session) {
   
-  output$about  <- renderUI({
+  output$about_out  <- renderUI({
   #if(input$language=="en"){
   about = source(file.path(getwd(),'about.R'))
   #}
