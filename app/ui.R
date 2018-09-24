@@ -54,7 +54,7 @@ anchor <- tags$a(tags$style(HTML("a { color: black; padding-right: 5px;}")),
 
 stile<-tags$li(class = "dropdown",
            tags$style( ".skin-blue .main-header .logo {
-                        background-color: #cd4e37; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;
+                        background-color: White; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;
                                             }"),
            tags$style( ".skin-blue .main-header .navbar {
                               background-color: #dae0e0; 
