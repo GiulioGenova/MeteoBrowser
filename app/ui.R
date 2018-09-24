@@ -51,7 +51,7 @@ anchor <- tags$a(href='http://www.eurac.edu/',
                  tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg', height='60', width='50'),#
                  'Meteo Browser South Tyrol')
 
-stilez<-dashboardHeader(tags$li(class = "dropdown",
+stile<-tags$li(class = "dropdown",
            tags$style( ".skin-blue .main-header .logo {
                         background-color: #cd4e37;
                                             }"),
@@ -70,7 +70,7 @@ stilez<-dashboardHeader(tags$li(class = "dropdown",
 
 header$children[[2]]$children <- tags$div(
     tags$head(tags$style(HTML(".name { background-color: black }"))),
-    anchor,stile
+    anchor,stile,
     class = 'name')
 
 
