@@ -78,10 +78,13 @@ ui <- dashboardPage(#useShinyjs(),
   dashboardSidebar(
     tags$style(".left-side, .main-sidebar {padding-top: 110px}"),
     disable = F,
-                   sidebarMenu(
-                     uiOutput("Data"),
+                   
+    sidebarMenuOutput("Data"),
+    sidebarMenuOutput("about"),
+    sidebarMenu(
+                     #uiOutput("Data"),
                      #menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o")),
-                     uiOutput("about"),
+                     #uiOutput("about"),
                      #menuItem("README", tabName = "about", icon = icon("info-circle")),
                      radioButtons("language", "Language",
                                   c("English" = "en",
