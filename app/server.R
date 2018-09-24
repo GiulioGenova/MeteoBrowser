@@ -412,7 +412,7 @@ server <- function(input, output,session) {
                                               as.character(translation[grep("nameIt",translation$key),input$language]), stations$NAME_I, "<br>",
                                               as.character(translation[grep("altitude",translation$key),input$language]),stations$ALT, "<br>",
                                               "<br>",
-                                              as.character(translation[grep("lastRecorded",translation$key),input$language]), 
+                                              as.character(translation[grep("latestRecorded",translation$key),input$language]), 
                                               "<br>",
                                               as.character(translation[grep("airTemp",translation$key),input$language]),stations$LT, "<br>",
                                               as.character(translation[grep("reHum",translation$key),input$language]),stations$LF, "<br>",
