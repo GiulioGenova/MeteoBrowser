@@ -48,7 +48,7 @@ scr <- tags$script(HTML(
 
 header <- dashboardHeader()
 anchor <- tags$a(href='http://www.eurac.edu/',
-                 tags$img(src='logoMeteoBrowser.jpg'),#, height='60', width='50'
+                 tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
                  'project name')
 
 header$children[[2]]$children <- tags$div(
