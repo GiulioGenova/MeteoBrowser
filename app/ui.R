@@ -46,8 +46,8 @@ scr <- tags$script(HTML(
 
 # then our new app can do something like this
 
-header <- dashboardHeader(titleWidth = 500)
-anchor <- tags$a(tags$style(HTML(".tit { color: black; padding-right: 5px;font-weight: bold;font-family: Verdana;}")),#;font-size: 1vw;;font-size: 1.05em
+header <- dashboardHeader(titleWidth = 580)
+anchor <- tags$a(tags$style(HTML(".tit { color: black; padding-right: 5px;font-weight: bold;font-family: Arial;}")),#;font-size: 1vw;;font-size: 1.05em
                  tags$style(HTML(".tit:hover { color: #cd4e37;}")),
                  href='http://www.eurac.edu/',
                  tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
