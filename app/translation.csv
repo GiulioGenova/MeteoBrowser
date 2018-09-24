@@ -35,7 +35,7 @@ reHum,Relative humidity:,,Umiditá relativa
 percipitation,Precipitation:,,Precipitazione:
 windSpeed,Wind speed:,,Velocità del vento:
 windDir,Wind direction:,,Direzione del vento:
-Wind guts:,,Velocitá raffica
+windGuts,Wind guts:,Windgeschwindigkeit Böe,Velocitá raffica
 atmPress,Atmospheric perssion:,,Pressione atmosferica
 solarRad,Solar Radiation:,Globalstrahlung:,Radiazione globale:
 sunsHour,Sunshine hours:,	Sonnenscheindauer,Durata soleggiamento
