@@ -72,9 +72,10 @@ st<-getMeteoStat()
 tot_tab<-full_join(st,se)%>%dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALUE,-LAT,-LONG,-VALUE)%>%
   mutate_if(is.character, funs(as.factor(.)))#%>%as.data.frame()
 
-se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>% 
+se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>%
+  dplyr::mutate(DATE=as_datetime(DATE))%>%
   unite(VALUE,VALUE,UNIT,sep=" ") %>% 
-  unite(VALUE,VALUE,DATE,sep="<br>") %>%  
+  unite(VALUE,VALUE,DATE,sep="   ") %>%  
   spread(TYPE,VALUE)
 
 c1 <- awesomeIcons(icon = "ios-close", iconColor = "black", 
