@@ -46,10 +46,10 @@ scr <- tags$script(HTML(
 
 # then our new app can do something like this
 
-header <- dashboardHeader(titleWidth = 500)
+header <- dashboardHeader(titleWidth = 450)
 anchor <- tags$a(tags$style(HTML("a { color: black; padding-right: 5px;}")),
                  href='http://www.eurac.edu/',
-                 tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg', height='60', width='50'),#
+                 tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
                  'Meteo Browser South Tyrol')
 
 stile<-tags$li(class = "dropdown",
