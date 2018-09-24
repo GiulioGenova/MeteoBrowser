@@ -84,9 +84,13 @@ library = "ion", markerColor = "blue")
 
 server <- function(input, output,session) {
   
-  if(input$language=="en"){
+  output$about  <- renderUI({
+  #if(input$language=="en"){
   about = source(file.path(getwd(),'about.R'))
-  }
+  #}
+  
+  about$value
+  })
   #tr <- function(text,lenguage,translation){ # translates text into current language
   #x<-as.character(translation[grep(text,translation$key),lenguage])
   #return(x)
