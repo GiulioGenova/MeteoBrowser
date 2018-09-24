@@ -77,7 +77,7 @@ ui <- dashboardPage(#useShinyjs(),
            #                                 }"),
             tags$style(".main-header {max-height: 100px}"),
             tags$style(".main-header .logo {height: 100px ; padding-top: 10px}")
-    )
+    ),
      header             
     ,
     #title =loadingLogo('http://www.eurac.edu/Style%20Library/','logoEURAC.jpg','buffpowa.gif')
