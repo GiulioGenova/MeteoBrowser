@@ -1,4 +1,4 @@
-deutschkey,en,de,it
+key,en,de,it
 daterange,Pick a date range,deutsch,Scegli data di inizio e fine
 messageDate,Error in selecting the date range. First date must be earlier than last date,deutsch,Errore nella selezione delle date. La prima data deve essere precedente all'ultima
 refresh,Download selected data,deutsch,Scarica dati selezionati
@@ -12,10 +12,10 @@ month,month,month,mensile
 year,year,year,annuale
 wide,wide,wide,larga
 long,long,long,lunga
-gatherLabel,Choose between compact or wider table format,,Scegli tra formato un di tabella lungo o largo
+gatherLabel,Choose between compact or wider table format,deutsch,Scegli tra formato un di tabella lungo o largo
 tableInstructions,Select stations and parameters you want to dowload by filtering the table below,deutsch,Seleziona stazioni e parametri che vuoi scaricare filtrando la tabella sottostante
 formatSelection,Choose between long or wide table format,deutsch,Scegli tra formato un di tabella lungo o largo
-spatialSelection,Enable spatial selection (Draw a polygon in the map),,Abilita la selezione tramite poligono (disegna poligono nella mappa)
+spatialSelection,Enable spatial selection (Draw a polygon in the map),deutsch,Abilita la selezione tramite poligono (disegna poligono nella mappa)
 deletebtn,Remove drawn polygons,deutsch,Cancella poligoni disegnati
 youvSelected,You have selected n.,deutsch,Hai selezionato n.
 aaa,station,deutsch,stazione
