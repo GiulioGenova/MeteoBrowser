@@ -91,6 +91,9 @@ server <- function(input, output,session) {
   #}
   
   # UI
+  output$Data  <- renderUI({
+  menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o"))
+  })
   
   output$refresh  <- renderUI({
     #datestart<- input$daterange[1] %>% as.character %>% as_date
