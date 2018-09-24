@@ -78,8 +78,7 @@ ui <- dashboardPage(#useShinyjs(),
    #         tags$style(".main-header {max-height: 100px}"),
    #         tags$style(".main-header .logo {height: 100px ; padding-top: 10px}")
    # ),
-     header             
-    ,
+     
     #title =loadingLogo('http://www.eurac.edu/Style%20Library/','logoEURAC.jpg','buffpowa.gif')
     #title = tags$a(href='http://www.eurac.edu/',
     #               #tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'))#,
@@ -91,7 +90,9 @@ ui <- dashboardPage(#useShinyjs(),
      #  #tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'))#,
      #  tags$img(src='logoMeteoBrowser.jpg'))
 #  titleWidth = 320
-                  ),        
+#                  ),
+header             
+    ,
   dashboardSidebar(
     tags$style(".left-side, .main-sidebar {padding-top: 110px}"),
     disable = F,
