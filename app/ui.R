@@ -46,6 +46,15 @@ scr <- tags$script(HTML(
 
 # then our new app can do something like this
 
+header <- dashboardHeader()
+anchor <- tags$a(href='http://www.eurac.edu/',
+                 tags$img(src='logoMeteoBrowser.jpg'),#, height='60', width='50'
+                 'project name')
+
+header$children[[2]]$children <- tags$div(
+    tags$head(tags$style(HTML(".name { background-color: black }"))),
+    anchor,
+    class = 'name')
 
 
 
@@ -69,6 +78,7 @@ ui <- dashboardPage(#useShinyjs(),
             tags$style(".main-header {max-height: 100px}"),
             tags$style(".main-header .logo {height: 100px ; padding-top: 10px}")
     )
+     header             
     ,
     #title =loadingLogo('http://www.eurac.edu/Style%20Library/','logoEURAC.jpg','buffpowa.gif')
     #title = tags$a(href='http://www.eurac.edu/',
@@ -77,12 +87,10 @@ ui <- dashboardPage(#useShinyjs(),
     ##  titleWidth = 320
      #            ),
                   
-    title =       tags$div(
-tags$a(href='http://www.eurac.edu/',
-       #tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'))#,
-       tags$img(src='logoMeteoBrowser.jpg'),'Meteo Browser South Tyrol')
+    #title =  tags$a(href='http://www.eurac.edu/',
+     #  #tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'))#,
+     #  tags$img(src='logoMeteoBrowser.jpg'))
 #  titleWidth = 320
-,class = 'name')
                   ),        
   dashboardSidebar(
     tags$style(".left-side, .main-sidebar {padding-top: 110px}"),
