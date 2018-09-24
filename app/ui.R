@@ -29,7 +29,7 @@ library(DT)
 #library(rgdal)
 #library(shinyBS)
 #about = source(file.path(getwd(),'about.R'))
-translation<-read.csv(file.path(getwd(),"translation.csv"),header = T,sep = ",",stringsAsFactors = F)
+#translation<-read.csv(file.path(getwd(),"translation.csv"),header = T,sep = ",",stringsAsFactors = F)
 scr <- tags$script(HTML(
   "
   Shiny.addCustomMessageHandler(
