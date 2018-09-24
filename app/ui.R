@@ -81,6 +81,7 @@ ui <- dashboardPage(#useShinyjs(),
                    sidebarMenu(
                      uiOutput("Data"),
                      #menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o")),
+                     uiOutput("about"),
                      #menuItem("README", tabName = "about", icon = icon("info-circle")),
                      radioButtons("language", "Language",
                                   c("English" = "en",
