@@ -62,22 +62,22 @@ ui <- dashboardPage(#useShinyjs(),
   title= "Meteo Browser",
     
   skin = "blue",
-  #dashboardHeader(tags$li(class = "dropdown",
-  #         tags$style( ".skin-blue .main-header .logo {
-   #                     background-color: #cd4e37;
-   #                                         }"),
-   #        tags$style( ".skin-blue .main-header .navbar {
-   #                           background-color: #dae0e0;
-   #                           }  "),
-   #        tags$style( ".skin-blue .main-header .logo:hover {
-   #                     background-color:  	#dae0e0;
-   #                                         }"),
-   #        #tags$style( ".skin-blue .main-header {
-   #        #             background-color: #cd4e37;
-   #        #                                 }"),
-   #         tags$style(".main-header {max-height: 100px}"),
-   #         tags$style(".main-header .logo {height: 100px ; padding-top: 10px}")
-   # ),
+  dashboardHeader(tags$li(class = "dropdown",
+           tags$style( ".skin-blue .main-header .logo {
+                        background-color: #cd4e37;
+                                            }"),
+           tags$style( ".skin-blue .main-header .navbar {
+                              background-color: #dae0e0;
+                              }  "),
+           tags$style( ".skin-blue .main-header .logo:hover {
+                        background-color:  	#dae0e0;
+                                            }"),
+           #tags$style( ".skin-blue .main-header {
+           #             background-color: #cd4e37;
+           #                                 }"),
+            tags$style(".main-header {max-height: 100px}"),
+            tags$style(".main-header .logo {height: 100px ; padding-top: 10px}")
+    ),
      
     #title =loadingLogo('http://www.eurac.edu/Style%20Library/','logoEURAC.jpg','buffpowa.gif')
     #title = tags$a(href='http://www.eurac.edu/',
@@ -90,7 +90,7 @@ ui <- dashboardPage(#useShinyjs(),
      #  #tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'))#,
      #  tags$img(src='logoMeteoBrowser.jpg'))
 #  titleWidth = 320
-#                  ),
+                  ),
 header             
     ,
   dashboardSidebar(
