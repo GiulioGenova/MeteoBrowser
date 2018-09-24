@@ -30,13 +30,13 @@ nameDe,Name (German):,deutsch,Nome (Tedesco)
 nameIt,Name (Italian):,deutsch,Nome (Italiano)
 altitude,Elevation:,deutsch,Altitudine
 latestRecorded,Latest recorded measurements:,deutsch,Ultime misurazioni registrate
-airTemp,Air temperature:,,Temperatura dell'aria
-reHum,Relative humidity:,,Umiditá relativa
-precipitation,Precipitation:,,Precipitazione:
-windSpeed,Wind speed:,,Velocità del vento:
-windDir,Wind direction:,,Direzione del vento:
-windGuts,Wind guts:,Windgeschwindigkeit Böe:,Velocitá raffica:
-atmPress,Atmospheric perssion:,,Pressione atmosferica:
+airTemp,Air temperature:,Lufttemperatur,Temperatura dell'aria
+reHum,Relative humidity:,relative Luftfeuchte:,Umidita relativa
+precipitation,Precipitation:,Niederschlag:,Precipitazione:
+windSpeed,Wind speed:,Windgeschwindigkeit:,Velocita del vento:
+windDir,Wind direction:,Windrichtung:,Direzione del vento:
+windGuts,Wind guts:,Windgeschwindigkeit Böe:,Velocita raffica:
+atmPress,Atmospheric perssion:,Luftdruck:,Pressione atmosferica:
 solarRad,Solar Radiation:,Globalstrahlung:,Radiazione globale:
 sunsHour,Sunshine hours:,	Sonnenscheindauer:,Durata soleggiamento:
 snowH,Snow height:,Schneehoehe:,Altezza neve al suolo:
