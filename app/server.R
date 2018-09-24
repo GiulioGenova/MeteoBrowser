@@ -75,6 +75,7 @@ tot_tab<-full_join(st,se)%>%dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALUE,-L
 se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>% 
   dplyr::mutate(DATE=paste0("(",as_datetime(DATE),")"))%>%
   unite(VALUE,VALUE,UNIT,sep=" ") %>% 
+  dplyr::mutate(VALUE=paste0("<b>",VALUE,"</b>"))%>%
   unite(VALUE,VALUE,DATE,sep=" ") %>% 
   spread(TYPE,VALUE)
 
