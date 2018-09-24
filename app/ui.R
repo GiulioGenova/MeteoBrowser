@@ -47,16 +47,17 @@ scr <- tags$script(HTML(
 # then our new app can do something like this
 
 header <- dashboardHeader()
-anchor <- tags$a(href='http://www.eurac.edu/',
+anchor <- tags$a(tags$style(HTML(" { color: black }")),
+                 href='http://www.eurac.edu/',
                  tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg', height='60', width='50'),#
                  'Meteo Browser South Tyrol')
 
 stile<-tags$li(class = "dropdown",
            tags$style( ".skin-blue .main-header .logo {
-                        background-color: #cd4e37;
+                        background-color: #cd4e37;max-width: 450px;
                                             }"),
            tags$style( ".skin-blue .main-header .navbar {
-                              background-color: #dae0e0;
+                              background-color: #dae0e0; 
                               }  "),
            tags$style( ".skin-blue .main-header .logo:hover {
                         background-color:  	#dae0e0;
@@ -65,7 +66,7 @@ stile<-tags$li(class = "dropdown",
            #             background-color: #cd4e37;
            #                                 }"),
             tags$style(".main-header {max-height: 100px}"),
-            tags$style(".main-header .logo {height: 100px ; padding-top: 10px; max-width: 450px}")
+            tags$style(".main-header .logo {height: 100px ; padding-top: 10px}")
     )
 
 header$children[[2]]$children <- tags$div(
