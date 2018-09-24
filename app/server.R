@@ -74,6 +74,7 @@ tot_tab<-full_join(st,se)%>%dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALUE,-L
 
 se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>% 
   unite(VALUE,VALUE,UNIT,DATE,sep=" ") %>% 
+  unite(VALUE,VALUE,DATE,sep="<br>") %>%  
   spread(TYPE,VALUE)
 
 c1 <- awesomeIcons(icon = "ios-close", iconColor = "black", 
