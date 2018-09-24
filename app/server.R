@@ -93,11 +93,15 @@ server <- function(input, output,session) {
   # UI
   
   output$Data  <- renderMenu({
+    sidebarMenu(
   menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o"))
+      )
   })
   
   output$about  <- renderMenu({
+    sidebarMenu(
   menuItem("README", tabName = "about", icon = icon("info-circle"))
+      )
   })
   
   output$refresh  <- renderUI({
