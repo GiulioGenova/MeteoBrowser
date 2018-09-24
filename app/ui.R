@@ -28,7 +28,7 @@ library(DT)
 #library(shinycssloaders)
 #library(rgdal)
 #library(shinyBS)
-about = source(file.path(getwd(),'about.R'))
+#about = source(file.path(getwd(),'about.R'))
 translation<-read.csv(file.path(getwd(),"translation.csv"),header = T,sep = ",",stringsAsFactors = F)
 scr <- tags$script(HTML(
   "
@@ -50,7 +50,10 @@ scr <- tags$script(HTML(
 
 
 ui <- dashboardPage(#useShinyjs(),
-  
+  if(input$language=="en"){
+  about = source(file.path(getwd(),'about.R'))
+  }
+    
   skin = "blue",
   dashboardHeader(tags$li(class = "dropdown",
            tags$style( ".skin-blue .main-header .logo {
