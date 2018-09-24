@@ -175,6 +175,9 @@ ui <- dashboardPage(#useShinyjs(),
       ,
       tabItem(# the about page
     tabName = "about",
-    tabPanel("About", box(width = NULL,about$value))
+    tabPanel("About", box(width = NULL,
+                          #about$value
+                         uiOutput("about")
+                         ))
     )
 )))
