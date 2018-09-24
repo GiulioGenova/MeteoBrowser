@@ -73,7 +73,7 @@ tot_tab<-full_join(st,se)%>%dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALUE,-L
   mutate_if(is.character, funs(as.factor(.)))#%>%as.data.frame()
 
 se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>% 
-  unite(VALUE,VALUE,UNIT,sep=" ") %>% 
+  unite(VALUE,VALUE,UNIT,DATE,sep=" ") %>% 
   spread(TYPE,VALUE)
 
 c1 <- awesomeIcons(icon = "ios-close", iconColor = "black", 
