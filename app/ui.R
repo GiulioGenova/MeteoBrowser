@@ -51,7 +51,7 @@ anchor <- tags$a(tags$style(HTML(".tit { color: black; padding-right: 5px;font-w
                  tags$style(HTML(".tit:hover { color: #cd4e37;}")),
                  href='http://www.eurac.edu/',
                  tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
-                 'Meteo Browser South Tyrol',class='tit')
+                 'Meteo Browser <br> South Tyrol',class='tit')
 
 stile<-tags$li(class = "dropdown",
            tags$style( ".skin-blue .main-header .logo {
