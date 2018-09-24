@@ -91,9 +91,9 @@ server <- function(input, output,session) {
   #}
   
   # UI
-  output$Data  <- renderUI({
-  menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o"))
-  })
+  #output$Data  <- renderUI({
+  #menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o"))
+  #})
   
   output$about  <- renderUI({
   menuItem("README", tabName = "about", icon = icon("info-circle"))
