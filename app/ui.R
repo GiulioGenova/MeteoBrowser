@@ -50,9 +50,7 @@ scr <- tags$script(HTML(
 
 
 ui <- dashboardPage(#useShinyjs(),
-  if(input$language=="en"){
-  about = source(file.path(getwd(),'about.R'))
-  }
+  
     
   skin = "blue",
   dashboardHeader(tags$li(class = "dropdown",
