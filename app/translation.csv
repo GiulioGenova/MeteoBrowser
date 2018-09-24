@@ -10,9 +10,9 @@ day,day,day,giornaliera
 week,week,week,settimanale
 month,month,month,mensile
 year,year,year,annuale
-gatherLabel,Choose between compact or wider table format,deutsch,Scegli tra formato un di tabella lungo o largo
 wide,wide,wide,larga
 long,long,long,lunga
+gatherLabel,Choose between compact or wider table format,deutsch,Scegli tra formato un di tabella lungo o largo
 tableInstructions,Select stations and parameters you want to dowload by filtering the table below,deutsch,Seleziona stazioni e parametri che vuoi scaricare filtrando la tabella sottostante
 formatSelection,Choose between long or wide table format,deutsch,Scegli tra formato un di tabella lungo o largo
 spatialSelection,Enable spatial selection (Draw a polygon in the map),,Abilita la selezione tramite poligono (disegna poligono nella mappa)
@@ -25,4 +25,14 @@ ddd,sensors,deutsch,sensori
 Sensorsand,and,deutsch,e
 youSelStations,You have selected the following stations:,deutsch,Hai selezionato le seguenti stazioni:
 andSensors,And the following sensors:,deutsch,E i seguenti sensori:
-
+code,Code:,deutsch,Codice:
+nameDe,Name (German):,deutsch,Nome (Tedesco)
+nameIt,Name (Italian):,deutsch,Nome (Italiano)
+altitude,Elevation:,deutsch,Altitudine
+latestRecorded,Latest recorded measurements:,deutsch,Ultime misurazioni registrate
+airTemp,Air temperature:,,Temperatura dell'aria
+reHum,Relative humidity:,,Umiditá relativa
+percipitation,Precipitation:,,Precipitazione:
+windSpeed,Wind speed:,,Velocità del vento:
+windDir,Wind direction:,,Direzione del vento:
+Wind guts:,,Velocitá raffica
