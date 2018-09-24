@@ -36,3 +36,10 @@ percipitation,Precipitation:,,Precipitazione:
 windSpeed,Wind speed:,,Velocità del vento:
 windDir,Wind direction:,,Direzione del vento:
 Wind guts:,,Velocitá raffica
+atmPress,Atmospheric perssion:,,Pressione atmosferica
+solarRad,Solar Radiation:,Globalstrahlung:,Radiazione globale:
+sunsHour,Sunshine hours:,	Sonnenscheindauer,Durata soleggiamento
+snowH,Snow height:,Schneehoehe,Altezza neve al suolo
+watTemp,Water temperature:,Wassertemperatur,Temperatura acqua
+watFlow,Water flow:,Durchfluss,Portata
+watLevel,Water level:,Wasserstand,Livello idrometrico
