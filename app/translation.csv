@@ -35,11 +35,11 @@ reHum,Relative humidity:,,Umiditá relativa
 percipitation,Precipitation:,,Precipitazione:
 windSpeed,Wind speed:,,Velocità del vento:
 windDir,Wind direction:,,Direzione del vento:
-windGuts,Wind guts:,Windgeschwindigkeit Böe,Velocitá raffica
-atmPress,Atmospheric perssion:,,Pressione atmosferica
+windGuts,Wind guts:,Windgeschwindigkeit Böe:,Velocitá raffica:
+atmPress,Atmospheric perssion:,,Pressione atmosferica:
 solarRad,Solar Radiation:,Globalstrahlung:,Radiazione globale:
-sunsHour,Sunshine hours:,	Sonnenscheindauer,Durata soleggiamento
-snowH,Snow height:,Schneehoehe,Altezza neve al suolo
-watTemp,Water temperature:,Wassertemperatur,Temperatura acqua
-watFlow,Water flow:,Durchfluss,Portata
-watLevel,Water level:,Wasserstand,Livello idrometrico
+sunsHour,Sunshine hours:,	Sonnenscheindauer:,Durata soleggiamento:
+snowH,Snow height:,Schneehoehe:,Altezza neve al suolo:
+watTemp,Water temperature:,Wassertemperatur:,Temperatura acqua:
+watFlow,Water flow:,Durchfluss:,Portata:
+watLevel,Water level:,Wasserstand:,Livello idrometrico:
