@@ -75,8 +75,8 @@ stile<-tags$li(class = "dropdown",
     )
 
 header$children[[2]]$children <- tags$div(
-    tags$head(tags$style(HTML(".name { color: black }")),stile),
-    anchor,
+    tags$head(tags$style(HTML(".name { color: black }"))),
+    anchor,stile,
     class = 'name')
 
 
