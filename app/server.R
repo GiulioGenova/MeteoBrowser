@@ -349,9 +349,9 @@ server <- function(input, output,session) {
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     sensors<-unique(tot_tab$TYPE[ids])%>%as.character
     if(input$language=="it"){
-      stationName<-unique(tot_tab$NAME_I[ids])%>%as.character
+      stationName<-unique(tot_tab$NOME[ids])%>%as.character
       }else {
-       stationName<-unique(tot_tab$NAME_D[ids])%>%as.character
+       stationName<-unique(tot_tab$NAME[ids])%>%as.character
     
     }
     #########################################################
