@@ -158,8 +158,9 @@ header
                     uiOutput("refresh"),
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Download selected data","refresh")) ,
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton( "stop",label = "Stop Download (reload page)",class="btn-danger")),#,onclick="Shiny.onInputChange('stopThis',true)"
-                    conditionalPanel(condition = "output.tablebuilt",br(),#"input.daterange[1]<=input.daterange[2]"
-                                     downloadButton('downloadData', h4('Save as csv'), class="btn-danger" ) 
+                    uiOutput("save")
+                    #conditionalPanel(condition = "output.tablebuilt",br(),#"input.daterange[1]<=input.daterange[2]"
+                    #                 downloadButton('downloadData', h4('Save as csv'), class="btn-danger" ) 
                     ),
                     #helpText("First click \"download selected data\" then \"save as csv\""),
                     #verbatimTextOutput("message"),
