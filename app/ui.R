@@ -158,7 +158,7 @@ header
                     div(style="display: inline-block;vertical-align:top; width: 55%;",uiOutput("refresh")),
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Download selected data","refresh")) ,
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton( "stop",label = "Stop Download (reload page)",class="btn-danger")),#,onclick="Shiny.onInputChange('stopThis',true)"
-                    uiOutput("save"),
+                    div(style="display: inline-block;vertical-align:top; width: 40%;",uiOutput("save")),
                     tags$head(tags$style(".butt{background-color:#cd4e37;} .butt{color: white;}")),
                     #conditionalPanel(condition = "output.tablebuilt",br(),#"input.daterange[1]<=input.daterange[2]"
                     #                 downloadButton('downloadData', h4('Save as csv'), class="btn-danger" ) 
