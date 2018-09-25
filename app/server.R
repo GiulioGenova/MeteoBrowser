@@ -580,7 +580,7 @@ server <- function(input, output,session) {
       if(input$csvjson=="csv"){
       write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA")
         }else{
-      
+      toJSON(db)
       }
       
     }
