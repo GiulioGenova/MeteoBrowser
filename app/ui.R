@@ -182,9 +182,10 @@ header
                     #            choices = list("wide","long")),
                     
                     uiOutput("gather"),
-                    div(style="display: inline-block;vertical-align:top; width: 150px;",verbatimTextOutput("spatSel")),
-                    div(style="display: inline-block;vertical-align:top; width: 150px;",checkboxInput("spatialSelection", label = "",
-                                value = FALSE))
+                    div(style="display: inline-block;vertical-align:top; width: 50px;",checkboxInput("spatialSelection", label = "",
+                                value = FALSE)),
+                    div(style="display: inline-block;vertical-align:top; width: 350px;",verbatimTextOutput("spatSel"))
+                    
                     
                     #uiOutput("spatialSelection")
                     #selectInput("spatialSelection",
