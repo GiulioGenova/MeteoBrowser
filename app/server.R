@@ -282,13 +282,13 @@ server <- function(input, output,session) {
     
     if(input$language=="it"){
     tot_tab<-tot_tab%>%dplyr::select(-NAME_D,-DESC_D)%>%
-      rename(NAME_I="NOME",TYPE="SENSORE",ALT="ALTITUDINE")
+      rename(NAME_I=NOME,TYPE=SENSORE,ALT=ALTITUDINE)
     }else if(input$language=="de"){
     tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)%>%
-      rename(TYPE="SENSOR")
+      rename(TYPE=SENSOR)
     }else{
     tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)%>%
-      rename(NAME_D="NAME",TYPE="SENSOR",ALT="ELEVATION")
+      rename(NAME_D=NAME,TYPE=SENSOR,ALT=ELEVATION)
     }
     
     dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
