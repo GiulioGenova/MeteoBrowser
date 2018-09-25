@@ -281,9 +281,11 @@ server <- function(input, output,session) {
   output$table<-DT::renderDT({
     
     if(input$language=="it"){
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_D,-DESC_D)
+    tot_tab<-tot_tab%>%dplyr::select(-NAME_D,-DESC_D)%>%dplyr::rename(NAME_I=NOME,TYPE=SENSORE,ALT=ALTITUDINE)
+    }else if(input$language=="de"){
+    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)%>%dplyr::rename(TYPE=SENSOR)
     }else{
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)
+    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)%>%dplyr::rename(NAME_D=NAME,TYPE=SENSOR,ALT=ELEVATION)
     }
     
     dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
@@ -292,11 +294,14 @@ server <- function(input, output,session) {
     
     if(input$language=="it"){
     dt<-dt%>% 
-      formatStyle(c("TYPE",  "DESC_I","UNIT"),
+      formatStyle(c("SENSORE",  "DESC_I","UNIT"),
+                  backgroundColor = "#edf5e1")
+    }else if(input$language=="de"){
+    dt<-dt%>% 
+      formatStyle(c("SENSOR", "DESC_D", "UNIT"),
                   backgroundColor = "#edf5e1")
     }else{
-    dt<-dt%>% 
-      formatStyle(c("TYPE", "DESC_D", "UNIT"),
+    formatStyle(c("SENSOR", "DESC_D", "UNIT"),
                   backgroundColor = "#edf5e1")
     }
     
