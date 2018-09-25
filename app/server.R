@@ -105,7 +105,7 @@ server <- function(input, output,session) {
   output$save  <- renderMenu({
   conditionalPanel(condition = "output.tablebuilt",br(),#"input.daterange[1]<=input.daterange[2]"
                  div(style="display: inline-block;vertical-align:top; width: 150px; background-color: #cd4e37;",
-                     downloadButton('downloadData', h4('Save as csv') )),#,class="btn-danger"
+                     downloadButton('downloadData', h4('Save as csv'),HTML('{background-color: #cd4e37;}') )),#,class="btn-danger"
                      div(style="display: inline-block;vertical-align:top; width: 150px;",
                          radioButtons(inputId = "csvjson",label = "table type",choices = list("csv","json"))))
 
