@@ -474,7 +474,7 @@ server <- function(input, output,session) {
         rectangleOptions =FALSE,
         circleMarkerOptions =FALSE)%>%#
         addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
-        addLayersControl(overlayGroups = c('draw'),
+        addLayersControl(overlayGroups = c('draw'),baseGroups = c("OSM","SAT"),
                          options = layersControlOptions(collapsed = FALSE),position = "topleft")
        
       if(is.null(polygon_coordinates)){
