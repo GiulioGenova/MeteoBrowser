@@ -559,8 +559,11 @@ server <- function(input, output,session) {
         round=input$round
         nstat=D$documents[[1]]$SCODE %>% unique %>% length %>% as.character 
         #paste0(station,'_',round,'_',startdate,'_',enddate,'.csv')
+        if(input$csvjson=="csv"){
         paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.csv')#,round
-        
+        }else{
+          paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.json')#,round
+          }
       }, error = function(e){"error.csv"})#
       
     },
@@ -580,7 +583,7 @@ server <- function(input, output,session) {
       if(input$csvjson=="csv"){
       write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA")
         }else{
-      write_json(toJSON(db))
+      write_json(toJSON(db),con)
       }
       
     }
