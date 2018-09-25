@@ -110,7 +110,7 @@ server <- function(input, output,session) {
                          radioButtons(inputId = "csvjson",label = "table type",choices = list("csv","json"))))
 
 })
-    savecsvjson
+    
   output$Data  <- renderMenu({
     sidebarMenu(
   menuItem(as.character(translation[grep("menuData",translation$key),input$language]), tabName = "Data", icon = icon("bar-chart-o"))
