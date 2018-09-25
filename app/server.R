@@ -281,14 +281,14 @@ server <- function(input, output,session) {
   output$table<-DT::renderDT({
     
     if(input$language=="it"){
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_D,-DESC_D)%>%
-      rename(NAME_I=NOME,TYPE=SENSORE,ALT=ALTITUDINE)
+    tot_tab<-tot_tab%>%dplyr::select(-NAME_D,-DESC_D)#%>%
+      #rename(NAME_I=NOME,TYPE=SENSORE,ALT=ALTITUDINE)
     }else if(input$language=="de"){
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)%>%
-      rename(TYPE=SENSOR)
+    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)#%>%
+      #rename(TYPE=SENSOR)
     }else{
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)%>%
-      rename(NAME_D=NAME,TYPE=SENSOR,ALT=ELEVATION)
+    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)#%>%
+      #rename(NAME_D=NAME,TYPE=SENSOR,ALT=ELEVATION)
     }
     
     dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
@@ -297,14 +297,14 @@ server <- function(input, output,session) {
     
     if(input$language=="it"){
     dt<-dt%>% 
-      formatStyle(c("SENSORE",  "DESC_I","UNIT"),
+      formatStyle(c("TYPE",  "DESC_I","UNIT"),
                   backgroundColor = "#edf5e1")
     }else if(input$language=="de"){
     dt<-dt%>% 
-      formatStyle(c("SENSOR", "DESC_D", "UNIT"),
+      formatStyle(c("TYPE", "DESC_D", "UNIT"),
                   backgroundColor = "#edf5e1")
     }else{
-    formatStyle(c("SENSOR", "DESC_D", "UNIT"),
+    formatStyle(c("TYPE", "DESC_D", "UNIT"),
                   backgroundColor = "#edf5e1")
     }
     
@@ -349,9 +349,9 @@ server <- function(input, output,session) {
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     sensors<-unique(tot_tab$TYPE[ids])%>%as.character
     if(input$language=="it"){
-      stationName<-unique(tot_tab$NOME[ids])%>%as.character
+      stationName<-unique(tot_tab$NAME_I[ids])%>%as.character
       }else {
-       stationName<-unique(tot_tab$NAME[ids])%>%as.character
+       stationName<-unique(tot_tab$NAME_D[ids])%>%as.character
     
     }
     #########################################################
