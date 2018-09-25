@@ -107,7 +107,7 @@ server <- function(input, output,session) {
                  div(style="display: inline-block;vertical-align:top; width: 40%;",
                      downloadButton('downloadData', h4(as.character(translation[grep("savecsvjson",translation$key),input$language])) ,class="butt")),#
                      div(style="display: inline-block;vertical-align:top; width: 45%;",
-                         radioButtons(inputId = "csvjson",label = h4(as.character(translation[grep("tableType",translation$key),input$language])),choices = list("csv","json"))))
+                         radioButtons(inputId = "csvjson",label = as.character(translation[grep("tableType",translation$key),input$language]),choices = list("csv","json"))))
 
 })
     
