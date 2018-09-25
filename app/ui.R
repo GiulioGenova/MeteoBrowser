@@ -173,7 +173,7 @@ header
                     #selectInput("round",label = h4("Time aggregation"),
                     #            choices = list("raw","hour","day","week","month","year")),
                     
-                    div(style="display: inline-block;vertical-align:top; width: 45%;",uiOutput("round")),
+                    div(style="display: inline-block;vertical-align:top; width: 35%;",uiOutput("round")),
                     
                     #actionButton(label= "update selection","refresh"),
                     
@@ -181,7 +181,7 @@ header
                     #            label = h4("Choose between long or wide table format"),
                     #            choices = list("wide","long")),
                     
-                    div(style="display: inline-block;vertical-align:top; width: 45%;",uiOutput("gather")),
+                    div(style="display: inline-block;vertical-align:top; width: 60%;",uiOutput("gather")),
                     div(style="display: inline-block;vertical-align:top; width: 10%;",checkboxInput("spatialSelection", label = "",
                                 value = FALSE)),
                     div(style="display: inline-block;vertical-align:top; width: 80%;",verbatimTextOutput("spatSel"))
