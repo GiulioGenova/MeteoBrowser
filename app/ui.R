@@ -47,11 +47,11 @@ scr <- tags$script(HTML(
 # then our new app can do something like this
 
 header <- dashboardHeader(titleWidth = 480)
-anchor <- tags$a(tags$style(HTML(".tit { color: black; padding-right: 5px;font-weight: bold;font-family: Arial;}")),#;font-size: 1vw;;font-size: 1.05em
-                 tags$style(HTML(".tit:hover { color: #cd4e37;}")),
-                 href='http://www.eurac.edu/',
-                 tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
-                 'Meteo Browser South Tyrol',class='tit')
+#anchor <- tags$a(tags$style(HTML(".tit { color: black; padding-right: 5px;font-weight: bold;font-family: Arial;}")),#;font-size: 1vw;;font-size: 1.05em
+#                 tags$style(HTML(".tit:hover { color: #cd4e37;}")),
+#                 href='http://www.eurac.edu/',
+#                 tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
+#                 'Meteo Browser South Tyrol',class='tit')
 
 stile<-tags$li(class = "dropdown",
            tags$style( ".skin-blue .main-header .logo {
@@ -70,12 +70,18 @@ stile<-tags$li(class = "dropdown",
             tags$style(".main-header .logo {height: 75px ; padding-top: 10px}"),
             tags$style(".skin-blue .main-header .navbar .sidebar-toggle:hover{
                         background-color:  	#cd4e37;
-                                            }")
+                                            }"),
+tags$a(tags$style(HTML(".tit { color: black; padding-right: 5px;font-weight: bold;font-family: Arial;}")),#;font-size: 1vw;;font-size: 1.05em
+                 tags$style(HTML(".tit:hover { color: #cd4e37;}")),
+                 href='http://www.eurac.edu/',
+                 tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
+                 'Meteo Browser South Tyrol',class='tit')
+
     )
 
 header$children[[2]]$children <- tags$div(
     tags$head(tags$style(HTML(".name { color: black }"))),
-    anchor,stile,
+    stile,#anchor,
     class = 'name')
 
 
