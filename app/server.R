@@ -583,7 +583,7 @@ server <- function(input, output,session) {
       if(input$csvjson=="csv"){
       write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA")
         }else{
-      write_json(toJSON(db),con)
+      write_json(toJSON(db,dataframe = 'rows',Date = 'ISO8601',factor = 'string',pretty=T),con)
       }
       
     }
