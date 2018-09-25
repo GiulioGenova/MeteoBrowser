@@ -281,11 +281,14 @@ server <- function(input, output,session) {
   output$table<-DT::renderDT({
     
     if(input$language=="it"){
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_D,-DESC_D)%>%dplyr::rename(NAME_I="NOME",TYPE="SENSORE",ALT="ALTITUDINE")
+    tot_tab<-tot_tab%>%dplyr::select(-NAME_D,-DESC_D)%>%
+      rename(NAME_I="NOME",TYPE="SENSORE",ALT="ALTITUDINE")
     }else if(input$language=="de"){
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)%>%dplyr::rename(TYPE="SENSOR")
+    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)%>%
+      rename(TYPE="SENSOR")
     }else{
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)%>%dplyr::rename(NAME_D="NAME",TYPE="SENSOR",ALT="ELEVATION")
+    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)%>%
+      rename(NAME_D="NAME",TYPE="SENSOR",ALT="ELEVATION")
     }
     
     dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
