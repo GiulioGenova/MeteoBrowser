@@ -67,7 +67,10 @@ stile<-tags$li(class = "dropdown",
            #             background-color: #cd4e37;
            #                                 }"),
             #tags$style(".main-header {max-height: 75px}"),
-            tags$style(".main-header .logo {height: 75px ; padding-top: 10px}")
+            tags$style(".main-header .logo {height: 75px ; padding-top: 10px}"),
+            tags$style(".skin-blue .main-header .navbar .sidebar-toggle:hover{
+                        background-color:  	#cd4e37;
+                                            }")
     )
 
 header$children[[2]]$children <- tags$div(
