@@ -155,7 +155,7 @@ header
                     #                                         end = Sys.Date()+1)
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Update selection","updateSelection")),
                     
-                    uiOutput("refresh"),
+                    div(style="display: inline-block;vertical-align:top; width: 55%;",uiOutput("refresh")),
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Download selected data","refresh")) ,
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton( "stop",label = "Stop Download (reload page)",class="btn-danger")),#,onclick="Shiny.onInputChange('stopThis',true)"
                     uiOutput("save"),
