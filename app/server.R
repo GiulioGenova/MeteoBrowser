@@ -129,7 +129,7 @@ server <- function(input, output,session) {
     #if(datestart<=dateend){actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")}
     
     conditionalPanel(condition = "output.rightdate",br(),
-                     div(style="display: inline-block;vertical-align:top; width: 60%;",actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh"))) 
+                     div(style="display: inline-block;vertical-align:top; width: 50%;",actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh"))) 
   })
   
   output$deletebtn  <- renderUI({
