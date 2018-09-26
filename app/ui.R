@@ -184,7 +184,7 @@ header
                     div(style="display: inline-block;vertical-align:top; width: 55%;",uiOutput("gather")),
                     div(style="display: inline-block;vertical-align:top; width: 10%;",checkboxInput("spatialSelection", label = "",
                                 value = FALSE)),
-                    div(style="display: inline-block;vertical-align:top; width: 80%;",verbatimTextOutput("spatSel")),
+                    div(style="display: inline-block;vertical-align:top; width: 80%;",textOutput("spatSel")),
                     htmlOutput("tableInstructions")
                     
                     
