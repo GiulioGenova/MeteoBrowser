@@ -124,7 +124,6 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
         unite(Sensor, Sensor, Variable,sep="") %>% 
         ungroup
     
-    sum(is.na(Value))
     
     db_na<-df%>%
         group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
