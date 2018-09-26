@@ -1,9 +1,9 @@
 key,en,de,it
 menuData,Data overview,Datenübersicht,Panoramica sui dati
 menuReadme,Readme,Liesmich,Leggimi
-daterange,Pick a date range,Datumsbereich ausw\x252Chlen,Scegli data di inizio e fine
+daterange,Pick a date range,Datumsbereich ausw&uuml;Chlen,Scegli data di inizio e fine
 messageDate,Error in selecting the date range. First date must be earlier than last date,Fehler beim Datumsbereich auswählen. Das erste Datum muss vor dem letzten Datum liegen,Errore nella selezione delle date. La prima data deve essere precedente all'ultima
-refresh,Download selected data,Ausgew\x252Chlte Daten herunterladen,Scarica dati selezionati
+refresh,Download selected data,Ausgew&uuml;Chlte Daten herunterladen,Scarica dati selezionati
 savecsvjson,save,speichern,salva
 tableType,Table type,Tabellentyp,Tipo di tabella
 downloadInstructions,First click download selected data then save as csv or json,Zuerst klicken auf die ausgewählten Daten und speichern sie als csv oder json, Prima clicca Scarica dati selezionati poi salva come csv o json
