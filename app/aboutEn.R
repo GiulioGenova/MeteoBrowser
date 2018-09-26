@@ -39,7 +39,7 @@ In wide data you get a column for every sensor, in long data you get a factor co
     p("Special thanks to Mattia Rossi who has developed the R package \x22MonalisR\x22 which plays and important role in the backend of this application. You can find the package here:"),
     
     p(a( href='https://gitlab.inf.unibz.it/earth_observation_public/MonalisR', 
-         target='_blank','MonalisR'))
+         target='_blank','MonalisR')),
     br(),
     h3("Disclaimer"),
     p("Meteorologial data downloaded form this app comes with no warranty and has not been validated by the data 
