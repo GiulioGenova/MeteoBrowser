@@ -415,7 +415,7 @@ server <- function(input, output,session) {
     sensors<-StatSens$sensors
     
     datestart<-as.character(input$daterange[1])
-    dateend<-as.character(input$daterange[2])
+    dateend<-as.character(as_date(input$daterange[2])+1)
     
     round=input$round
     
@@ -561,7 +561,7 @@ server <- function(input, output,session) {
         
         #station=as.character(input$Station)
         startdate<-as.character(min(as_date(D$documents[[1]]$TimeStamp)))
-        enddate<-as.character(max(as_date(D$documents[[1]]$TimeStamp)+1))
+        enddate<-as.character(max(as_date(D$documents[[1]]$TimeStamp)))
         gather<-as.character(translation[grep(input$gather,translation[,input$language]),"key"])
         #gather<-input$gather
         round=input$round
