@@ -143,8 +143,8 @@ server <- function(input, output,session) {
   #})
   
   
-  output$downloadInstructions <- renderText({
-    as.character(translation[grep("downloadInstructions",translation$key),input$language])
+  output$downloadInstructions <- renderUI({
+    HTML(as.character(translation[grep("downloadInstructions",translation$key),input$language]))
     })
   
   output$tableInstructions  <- renderText({
