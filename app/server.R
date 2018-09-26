@@ -289,7 +289,7 @@ server <- function(input, output,session) {
     }else{
     tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)%>%
       #dplyr::mutate(DESC_D=translation[grep(DESC_D,translation[,"de"]),"en"])
-      dplyr::mutate(DESC_D=translation[which(translation[,"de"]==DESC_D),"en"])
+      dplyr::mutate(DESC_D=translation[which(substr(translation$de,start = 1,stop = nchar(translation$de)-1)==DESC_D),"en"])
       #rename(NAME_D=NAME,TYPE=SENSOR,ALT=ELEVATION)
     }
     
