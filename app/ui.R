@@ -58,10 +58,10 @@ stile<-tags$li(class = "dropdown",
                         background-color: White; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;
                                             }"),
            tags$style( ".skin-blue .main-header .navbar {
-                              background-color: #dae0e0; 
+                              background-color: White; 
                               }  "),
            tags$style( ".skin-blue .main-header .logo:hover {
-                        background-color:  	#dae0e0;
+                        background-color:  	White;
                                             }"),
            #tags$style( ".skin-blue .main-header {
            #             background-color: #cd4e37;
