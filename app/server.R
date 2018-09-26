@@ -289,9 +289,9 @@ server <- function(input, output,session) {
     }else{
     tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)%>%
       #dplyr::mutate(DESC_D=translation[which(substr(translation$de,start = 1,stop = nchar(translation$de)-1)==DESC_D),"en"])
-      dplyr::mutate(DESC_D=ifelse(as.character(DESC_D)=="relative Luftfeuchte","Relative humidity",
-       ifelse(as.character(DESC_D)=="Niederschlag"),"Precipitation",
-       ifelse(as.character(DESC_D)=="Windgeschwindigkeit","Wind speed",DESC_D)))
+      dplyr::mutate(DESC_D=ifelse(DESC_D=="relative Luftfeuchte","Relative humidity",
+                     ifelse(DESC_D=="Niederschlag","Precipitation",
+                     ifelse(DESC_D=="Windgeschwindigkeit","Wind speed",DESC_D))))
       #rename(NAME_D=NAME,TYPE=SENSOR,ALT=ELEVATION)
       
     }
