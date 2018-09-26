@@ -209,7 +209,7 @@ header
 
                 #helpText("Select stations and parameters you want to dowload by filtering the table below.",
                 #         "To stop the download refresh the page"),
-                verbatimTextOutput("tableInstructions"),
+                htmlOutput("tableInstructions"),
                 DTOutput('table')
                
               )
