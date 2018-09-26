@@ -30,6 +30,8 @@ In wide data you get a column for every sensor, in long data you get a factor co
 provider nor by the authors of the app. This app is intended only to facilitate retrieving data from the Meteorologial 
 Open Data Suedtirol API"),
   
+    br(),
+    
     h3("Run the app locally: Download from Github"),
     p("The source code is stored here:"),
     p(a( href='https://github.com/GiulioGenova/ODBZ/',
