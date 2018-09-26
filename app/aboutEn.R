@@ -17,6 +17,12 @@ and sum values for each sensor in the selected timespan. You can also choose bet
 In wide data you get a column for every sensor, in long data you get a factor column called \x22Sensor\x22 and a column
 \x22Value\x22 which stores the measurements."),
     br(),
+  
+    h3("Disclaimer"),
+    p("Meteorologial data downloaded form this app comes with no warranty and has not been validated by the data 
+provider nor by the authors of the app. This app is intended only to facilitate data retrieving from the Meteorologial 
+Open Data Suedtirol API"),
+  
     h3("Run the app locally: Download from Github"),
     p("The source code is stored here:"),
     p(a( href='https://github.com/GiulioGenova/ODBZ/',
@@ -28,6 +34,7 @@ In wide data you get a column for every sensor, in long data you get a factor co
     p("=========================================================================="),
     p("This will automatically install the packages needed on your machine (the first time you run it only) and then run the app."),
     br(),
+    
     h3("Author"),
     p(a( href='https://github.com/GiulioGenova/',
          target='_blank','Giulio Genova' )),
@@ -39,11 +46,7 @@ In wide data you get a column for every sensor, in long data you get a factor co
     p("Special thanks to Mattia Rossi who has developed the R package \x22MonalisR\x22 which plays and important role in the backend of this application. You can find the package here:"),
     
     p(a( href='https://gitlab.inf.unibz.it/earth_observation_public/MonalisR', 
-         target='_blank','MonalisR')),
-    br(),
-    h3("Disclaimer"),
-    p("Meteorologial data downloaded form this app comes with no warranty and has not been validated by the data 
-provider nor by the authors of the app. This app is intended only to facilitate data retrieving from the Meteorologial 
-Open Data Suedtirol API")
+         target='_blank','MonalisR'))
+    
   )
 )
