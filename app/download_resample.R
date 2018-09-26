@@ -129,7 +129,7 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
         group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor,NAME_D,NAME_I,NAME_L,NAME_E,ALT,LONG,LAT)%>%
         summarise(na=sum(is.na(Value))) %>% 
         gather(Variable, Value, -Sensor,-TimeStamp,-SCODE,-NAME_D,-NAME_I,-NAME_L,-NAME_E,-ALT,-LONG,-LAT) %>%
-        unite(Sensor, Sensor, Variable,sep="") %>% 
+        unite(Sensor, Sensor, Variable,sep="_") %>% 
         ungroup
     
     db_final<-bind_rows(db_sum,db_mean,db_min_max,db_wind,db_na) %>% mutate(Value=ifelse(Value%in%c(-Inf,Inf,NaN),NA,Value))#
