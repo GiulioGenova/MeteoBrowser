@@ -561,7 +561,7 @@ server <- function(input, output,session) {
         
         #station=as.character(input$Station)
         startdate<-as.character(min(as_date(D$documents[[1]]$TimeStamp)))
-        enddate<-as.character(max(as_date(D$documents[[1]]$TimeStamp)))
+        enddate<-as.character(max(as_date(D$documents[[1]]$TimeStamp)+1))
         gather<-as.character(translation[grep(input$gather,translation[,input$language]),"key"])
         #gather<-input$gather
         round=input$round
