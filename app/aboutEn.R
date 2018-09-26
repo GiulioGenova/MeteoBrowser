@@ -20,7 +20,7 @@ In wide data you get a column for every sensor, in long data you get a factor co
   
     h3("Disclaimer"),
     p("Meteorologial data downloaded form this app comes with no warranty and has not been validated by the data 
-provider nor by the authors of the app. This app is intended only to facilitate data retrieving from the Meteorologial 
+provider nor by the authors of the app. This app is intended only to facilitate retrieving data from the Meteorologial 
 Open Data Suedtirol API"),
   
     h3("Run the app locally: Download from Github"),
