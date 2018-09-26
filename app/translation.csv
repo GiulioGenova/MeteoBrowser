@@ -17,7 +17,7 @@ year,year,year,annuale
 wide,wide,wide,larga
 long,long,long,lunga
 gatherLabel,Compact or wider table format,deutsch,Formato un di tabella lungo o largo
-tableInstructions,Select stations and parameters you want to dowload by filtering the table below,deutsch,Seleziona stazioni e parametri che vuoi scaricare filtrando la tabella sottostante
+tableInstructions,Select stations and parameters you want to dowload by filtering the table below<br> SCODE: Station code<br>NAME_D: German Name<br>ALT: Elevation<br>TYPE: Type of measurement code,deutsch,Seleziona stazioni e parametri che vuoi scaricare filtrando la tabella sottostante
 formatSelection,Choose between long or wide table format,deutsch,Scegli tra formato un di tabella lungo o largo
 spatialSelection,Enable spatial selection (Draw a polygon in the map),deutsch,Abilita la selezione tramite poligono (disegna poligono nella mappa)
 deletebtn,Remove drawn polygons,deutsch,Cancella poligoni disegnati
