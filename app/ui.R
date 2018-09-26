@@ -70,6 +70,9 @@ stile<-tags$li(class = "dropdown",
             tags$style(".main-header .logo {height: 75px ; padding-top: 10px}"),
             tags$style(".skin-blue .main-header .navbar .sidebar-toggle{
                         background-color:  	#cd4e37;
+                                            }"),
+               tags$style(".skin-blue .main-header .navbar .sidebar-toggle:hover{
+                        background-color:  	#cd4e37;
                                             }")
 
     )
