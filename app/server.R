@@ -289,7 +289,7 @@ server <- function(input, output,session) {
     }else{
     tot_tab<-tot_tab%>%dplyr::select(-DESC_I)%>%#,-NAME_I
       #dplyr::mutate(DESC_D=translation[which(substr(translation$de,start = 1,stop = nchar(translation$de)-1)==DESC_D),"en"])
-      dplyr::mutate(DESC_D=ifelse(DESC_D=="relative Luftfeuchte","Relative humidity",
+      dplyr::mutate(DESC_D=as.factor(ifelse(DESC_D=="relative Luftfeuchte","Relative humidity",
                               ifelse(DESC_D=="Niederschlag","Precipitation",
                                      ifelse(DESC_D=="Windgeschwindigkeit","Wind speed",
                                             ifelse(DESC_D=="Windrichtung","Wind direction",
@@ -298,11 +298,11 @@ server <- function(input, output,session) {
                                                                  ifelse(DESC_D=="Globalstrahlung","Solar Radiation",
                                                                         ifelse(DESC_D=="Sonnenscheindauer","Sunshine hours",
                                                                                ifelse(DESC_D=="Schneehöhe","Snow height",
-                                                                               ifelse(DESC_D=="Wassertemperatur","Water temperature",
-                                                                                      ifelse(DESC_D=="Durchfluss","Water flow",
+                                                                               ifelse(DESC_D=="Wassertemperatur","Air temperature",
+                                                                                      ifelse(DESC_D=="Lufttemperatur","Water flow",
                                                                                              ifelse(DESC_D=="Durchfluss","Water flow",
                                                                                                     ifelse(DESC_D=="Wasserstand","Water level",
-                                                                                                           ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown")))))))))))))))
+                                                                                                           ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))
       #rename(NAME_D=NAME,TYPE=SENSOR,ALT=ELEVATION)
       
     }
