@@ -50,7 +50,7 @@ tags$html(
     p("2018-09-26"),
     br(),
     h3("Ringraziamenti"),
-    p("Rignaziamo Mattia Rossi il quale ha sviluppato il pacchetto R\x22MonalisR\x22 che svolge un ruolo fondamentale nel backend di questa pplicazione. Il pacchetto pu\xf9 essere trovato al seguente link:"),
+    p("Rignaziamo Mattia Rossi il quale ha sviluppato il pacchetto R\x22MonalisR\x22 che svolge un ruolo fondamentale nel backend di questa pplicazione. Il pacchetto pu\xf2 essere trovato al seguente link:"),
     
     p(a( href='https://gitlab.inf.unibz.it/earth_observation_public/MonalisR', 
          target='_blank','MonalisR'))
