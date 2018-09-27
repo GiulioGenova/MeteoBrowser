@@ -1,0 +1,49 @@
+key,en,de,it
+menuData,Data overview,Datenübersicht,Panoramica sui dati
+menuReadme,Readme,Liesmich,Leggimi
+daterange,Pick a date range,Datumsbereich auswählen,Scegli data di inizio e fine
+messageDate,Error in selecting the date range. First date must be earlier than last date,Fehler beim Datumsbereich auswählen. Das erste Datum muss vor dem letzten Datum liegen,Errore nella selezione delle date. La prima data deve essere precedente all'ultima
+refresh,Download selected data,Ausgewählte Daten herunterladen,Scarica dati selezionati
+savecsvjson,save,speichern,salva
+tableType,Table type,Tabellentyp,Tipo di tabella
+downloadInstructions,First click download selected data then save as csv or json,Zuerst klicken auf die ausgewählten Daten und speichern sie als csv oder json, Prima clicca Scarica dati selezionati poi salva come csv o json
+roundLabel,Time aggregation,Zeitaggregation,Aggregazione temporale
+raw,raw,roh,grezza
+hour,hourly,stündlich,oraria
+day,daily,täglich,giornaliera
+week,weekly,wöchentlich,settimanale
+month,monthly,monatlich,mensile
+year,yearly,Jährlich,annuale
+wide,wide,breit,larga
+long,long,lange,lunga
+gatherLabel,Compact or wider table format,Kompaktes oder breiteres Tabellenformat,Formato un di tabella lungo o largo
+tableInstructions,<b> Select stations and parameters you want to download by filtering the table below and/or drawing a polygon in the map </b> <br> <i><b>Legend:</b></i> <br> <i>SCODE</i>: Station code <br> <i>NAME_D</i>: German Name <br><i>NAME_I</i>: Italian Name <br> <i>ALT</i>: Elevation <br> <i>TYPE</i>: Type of measurement code <br> <i>DESC_D</i>: Type of measurement description <br><i>UNIT</i>: Unit of measure<br>,<b>Wählen Stationen und Parameter zum herunterladen bei  filtern die Tabelle unten / oder beim Polygon in der Karte zeichnen</b> <br> <i><b>Legende:</b></i> <br> <i>SCODE</i>: Stationscode <br> <i>NAME_D</i>: Deutscher Name <br> <i>ALT</i>: Höhe <br> <i>TYPE</i>: Messcode <br> <i>DESC_D</i>: Messung Beschreibung <br><i>UNIT</i>: Maßeinheit<br>,<b>Seleziona stazioni e parametri che vuoi scaricare filtrando la tabella sottostante e/o disegnando un poligono nella mappa</b></b> <br> <i><b>Legenda:</b></i> <br> <i>SCODE</i>: Codice stazione <br> <i>NAME_I</i>: Nome italiano <br> <i>ALT</i>: Altitudine <br> <i>TYPE</i>: Codice del tipo di misurazione <br> <i>DESC_I</i>: Descrizione del tipo di misurazione <br><i>UNIT</i>: Unit of measure<br>  
+formatSelection,Choose between long or wide table format,Wählen zwischen langen oder breiten Tabellenformat,Scegli tra formato un di tabella lungo o largo
+spatialSelection,Enable spatial selection (Draw a polygon in the map),Räumliche Auswahl aktivieren (Zeichen ein Polygon in der Karte),Abilita la selezione tramite poligono (disegna poligono nella mappa)
+deletebtn,Remove drawn polygons,Gezeichnete Polygone entfernen,Cancella poligoni disegnati
+youvSelected,You have selected n.,Sie haben gewählt n.,Hai selezionato n.
+aaa,station,station,stazione
+bbb,stations,stationen,stazioni
+ccc,sensor,sensor,sensore
+ddd,sensors,sensoren,sensori
+Sensorsand,and,und,e
+youSelStations,You have selected the following stations:,Die folgende Stationen würden ausgewählt:,Hai selezionato le seguenti stazioni:
+andSensors,And the following sensors:,Und die folgenden Sensoren:,E i seguenti sensori:
+code,Code:,Code:,Codice:
+nameDe,Name (German):,Name (Deutsch):,Nome (Tedesco)
+nameIt,Name (Italian):,Name (Italienisch):,Nome (Italiano)
+altitude,Elevation:,Höhe:,Altitudine
+latestRecorded,Latest recorded measurements:,Zuletzt aufgezeichnete Messungen:,Ultime misurazioni registrate:
+airTemp,Air temperature:,Lufttemperatur:,Temperatura dell'aria:
+  reHum,Relative humidity:,relative Luftfeuchte:,Umidita relativa:
+  precipitation,Precipitation:,Niederschlag:,Precipitazione:
+  windSpeed,Wind speed:,Windgeschwindigkeit:,Velocita del vento:
+  windDir,Wind direction:,Windrichtung:,Direzione del vento:
+  windGuts,Wind gust:,Windböe:,Velocita raffica:
+  atmPress,Atmospheric perssion:,Luftdruck:,Pressione atmosferica:
+  solarRad,Solar Radiation:,Globalstrahlung:,Radiazione globale:
+  sunsHour,Sunshine hours:,Sonnenscheindauer:,Durata soleggiamento:
+  snowH,Snow height:,Schneehöhe:,Altezza neve al suolo:
+  watTemp,Water temperature:,Wassertemperatur:,Temperatura acqua:
+  watFlow,Water flow:,Durchfluss:,Portata:
+  watLevel,Water level:,Wasserstand:,Livello idrometrico:
