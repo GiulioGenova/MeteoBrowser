@@ -106,13 +106,13 @@ server <- function(input, output,session) {
 
   output$about_out  <- renderUI({
   if(input$language=="en"){
-  includeHTML(file.path(getwd(),"about_EN.html"))
+  x <- includeHTML(file.path(getwd(),"about_EN.html"))
   }else if(input$language=="de"){
-  includeHTML(file.path(getwd(),"about_DE.html"))
+  x <- includeHTML(file.path(getwd(),"about_DE.html"))
   }else if(input$language=="it"){
-  includeHTML(file.path(getwd(),"about_IT.html"))
+  x <- includeHTML(file.path(getwd(),"about_IT.html"))
   } 
-  
+  x
   })
   
   ### moved from UI due to multilanguage
