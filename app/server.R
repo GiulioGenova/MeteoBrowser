@@ -309,7 +309,7 @@ server <- function(input, output,session) {
                                                                                              ifelse(DESC_D=="Durchfluss","Water flow",
                                                                                                     ifelse(DESC_D=="Wasserstand","Water level",
                                                                                                            ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))%>%
-      rename(DESC_D=DESC_E)
+      rename(DESC_D="DESC_E")
       
     }
     
