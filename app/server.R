@@ -92,19 +92,24 @@ library = "ion", markerColor = "blue")
 
 server <- function(input, output,session) {
   
-  output$about_out  <- renderUI({
-  if(input$language=="en"){
-  about = source(file.path(getwd(),'about_EN.R'))
-  }else if(input$language=="de"){
-  about = source(file.path(getwd(),'aboutDe.R'))
-  }else if(input$language=="it"){
-  about = source(file.path(getwd(),'about_IT.R'))
-  }
-    
-  
-  about$value
-  })
+  #output$about_out  <- renderUI({
+  #if(input$language=="en"){
+  #about = source(file.path(getwd(),'about_EN.R'))
+  #}else if(input$language=="de"){
+  #about = source(file.path(getwd(),'aboutDe.R'))
+  #}else if(input$language=="it"){
+  #about = source(file.path(getwd(),'about_IT.R'))
+   
+  #}
+  #about$value
+  #})
 
+  output$about_out  <- renderUI({
+  
+  includeHTML("about_EN.html")  
+  
+  })
+  
   ### moved from UI due to multilanguage
   output$save  <- renderMenu({
   conditionalPanel(condition = "output.tablebuilt",#br(),#"input.daterange[1]<=input.daterange[2]"
