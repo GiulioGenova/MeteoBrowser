@@ -62,7 +62,7 @@ source(file.path(getwd(),"download_resample.R"))
 source(file.path(getwd(),"MonalisR.R"))
 translation<-read.csv(file.path(getwd(),"translationNew.csv"),header = T,sep = ",",stringsAsFactors = F)
 
-tr <- function(key,t=translation,l){ # translates text into current language
+tr <- function(key,l,t=translation){ # translates text into current language
   x<-as.character(t[grep(key,t$key),l])
   return(x)
   }
