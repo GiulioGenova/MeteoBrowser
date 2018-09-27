@@ -29,22 +29,9 @@ library(DT)
 #library(rgdal)
 #library(shinyBS)
 #about = source(file.path(getwd(),'about.R'))
-#translation<-read.csv(file.path(getwd(),"translation.csv"),header = T,sep = ",",stringsAsFactors = F)
-#scr <- tags$script(HTML(
-#  "
-#  Shiny.addCustomMessageHandler(
-#  'removeleaflet',
-#  function(x){
-#  console.log('deleting',x)
-#  // get leaflet map
-#  var map = HTMLWidgets.find('#' + x.elid).getMap();
-#  // remove
-#  map.removeLayer(map._layers[x.layerid])
-#  })
-#  "
-#))
 
 header <- dashboardHeader(titleWidth = 480)
+
 anchor <- tags$a(href='http://www.eurac.edu/',
                  tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
                  'Meteo Browser South Tyrol',class='tit')
@@ -54,8 +41,8 @@ header$children[[2]]$children <- tags$div(anchor,class = 'name')
 
 ui <- dashboardPage(#useShinyjs(),
   title= "Meteo Browser",
-    
   skin = "blue",
+  
   header             
     ,
   dashboardSidebar(
