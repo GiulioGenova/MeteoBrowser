@@ -165,27 +165,27 @@ server <- function(input, output,session) {
   
   output$round<-renderUI({
     
-   selectInput("round",label = h4(as.character(translation[grep("roundLabel",translation$key),input$language])),
-                               choices = list(as.character(translation[grep("raw",translation$key),input$language]),
-                                              as.character(translation[grep("hour",translation$key),input$language]),
-                                              as.character(translation[grep("day",translation$key),input$language]),
-                                              as.character(translation[grep("week",translation$key),input$language]),
-                                              as.character(translation[grep("month",translation$key),input$language]),
-                                              as.character(translation[grep("year",translation$key),input$language])
+   selectInput("round",label = h4(tr("roundLabel",input$language)),
+                               choices = list(tr("raw",input$language),
+                                              tr("hour",input$language),
+                                              tr("day",input$language),
+                                              tr("week",input$language),
+                                              tr("month",input$language),
+                                              tr("year",input$language)
                                              ))
     })
   
    output$gather<-renderUI({
     
-   selectInput("gather", label= h4(as.character(translation[grep("gatherLabel",translation$key),input$language])),
-                                choices = list(as.character(translation[grep("wide",translation$key),input$language]),
-                                                as.character(translation[grep("long",translation$key),input$language])
+   selectInput("gather", label= h4(tr("gatherLabel",input$language)),
+                                choices = list(tr("wide",input$language),
+                                                tr("long",input$language)
                                               ))
    })
   
   output$spatSel<-renderText({
     
-  as.character(translation[grep("spatialSelection",translation$key),input$language])
+  tr("spatialSelection",input$language)
                               
   })
   #output$spatialSelection<-renderUI({
