@@ -17,7 +17,7 @@ tags$html(
     p("Per tutte le variabili misurate si avrà il numero totale di dati mancanti per il periodo selezionato."),
     p("per tutte le variabili misurate, fatta eccezione per la precipitazione e direzione del vento è compiuta la media aritmetica per la specifica aggregazione temporale. "),
     p("Precipitazione e temperatura dell'aria avranno anche la somma totale riferita alla specifica aggregazione temporale."), 
-    p("Temperatura dell'aria e umidità relativa avranno anche i valori minimi e massimi riferiti alla specifica aggregazione temporale."),
+    p(HTML("Temperatura dell'aria e umidità relativa avranno anche i valori minimi e massimi riferiti alla specifica aggregazione temporale.")),
     p("La direzione del vento è riclassificata con i seguenti codici numerici e il píu frequente sarà assegnato:"), 
     p("1 = N; 2 = NE; 3 = E; 4 = SE; 5 = S; 6 = SO; 7 = O; 8 = NO."), 
     p("Si può scegliere tra diversi formati di tabella,\x22larga\x22 or \x22lunga\x22.
