@@ -309,7 +309,7 @@ server <- function(input, output,session) {
                                                                                              ifelse(DESC_D=="Durchfluss","Water flow",
                                                                                                     ifelse(DESC_D=="Wasserstand","Water level",
                                                                                                            ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))%>%
-      dplyr::rename(DESC_D = DESC_E)
+      dplyr::rename(DESC_E = DESC_D)
       
     }
     
@@ -326,8 +326,8 @@ server <- function(input, output,session) {
       formatStyle(c("TYPE", "DESC_D", "UNIT"),
                   backgroundColor = "#edf5e1")
     }else{
-    #dt<-dt%>%formatStyle(c("TYPE", "DESC_E", "UNIT"),
-    #              backgroundColor = "#edf5e1")
+    dt<-dt%>%formatStyle(c("TYPE", "DESC_E", "UNIT"),
+                  backgroundColor = "#edf5e1")
     }
     
     dt
