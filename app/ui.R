@@ -53,29 +53,29 @@ anchor <- tags$a(tags$style(HTML(".tit { color: black; padding-right: 5px;font-w
                  tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
                  'Meteo Browser South Tyrol',class='tit')
 
-stile<-tags$li(class = "dropdown",
-           tags$style( ".skin-blue .main-header .logo {
-                        background-color: White; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;
-                                            }"),
-           tags$style( ".skin-blue .main-header .navbar {
-                              background-color: White; 
-                              }  "),
-           tags$style( ".skin-blue .main-header .logo:hover {
-                        background-color:  	White;
-                                            }"),
-           #tags$style( ".skin-blue .main-header {
-           #             background-color: #cd4e37;
-           #                                 }"),
-            #tags$style(".main-header {max-height: 75px}"),
-            tags$style(".main-header .logo {height: 75px ; padding-top: 10px}"),
-            tags$style(".skin-blue .main-header .navbar .sidebar-toggle{
-                        background-color:  	#cd4e37;
-                                            }"),
-               tags$style(".skin-blue .main-header .navbar .sidebar-toggle:hover{
-                        background-color:  	#cd4e37;
-                                            }")
-
-    )
+#stile<-tags$li(class = "dropdown",
+#           tags$style( ".skin-blue .main-header .logo {
+#                        background-color: White; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;
+#                                            }"),
+#           tags$style( ".skin-blue .main-header .navbar {
+#                              background-color: White; 
+#                              }  "),
+#           tags$style( ".skin-blue .main-header .logo:hover {
+#                        background-color:  	White;
+#                                            }"),
+#           #tags$style( ".skin-blue .main-header {
+#           #             background-color: #cd4e37;
+#           #                                 }"),
+#            #tags$style(".main-header {max-height: 75px}"),
+#            tags$style(".main-header .logo {height: 75px ; padding-top: 10px}"),
+#            tags$style(".skin-blue .main-header .navbar .sidebar-toggle{
+#                        background-color:  	#cd4e37;
+#                                            }"),
+#               tags$style(".skin-blue .main-header .navbar .sidebar-toggle:hover{
+#                        background-color:  	#cd4e37;
+#                                            }")
+#
+#    )
 
 header$children[[2]]$children <- tags$div(
     tags$head(tags$style(HTML(".name { color: black }"))),
