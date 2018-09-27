@@ -122,7 +122,7 @@ server <- function(input, output,session) {
   
   output$about  <- renderMenu({
     sidebarMenu(
-  menuItem(as.character(translation[grep("menuReadme",translation$key),input$language]), tabName = "about", icon = icon("info-circle"))
+  menuItem(tr("menuReadme",input$language), tabName = "about", icon = icon("info-circle"))
       )
   })
   
@@ -132,12 +132,12 @@ server <- function(input, output,session) {
     #if(datestart<=dateend){actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")}
     
     conditionalPanel(condition = "output.rightdate",#br(),
-                     actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")) 
+                     actionButton(label= tr("refresh",input$language),"refresh")) 
   })
   
   output$deletebtn  <- renderUI({
   if(input$spatialSelection==TRUE){
-    actionButton("deletebtn", as.character(translation[grep("deletebtn",translation$key),input$language]))}
+    actionButton("deletebtn", tr("deletebtn",input$language))}
   })
   
   #output$deletebtn  <- renderUI({
@@ -147,18 +147,18 @@ server <- function(input, output,session) {
   
   
   output$downloadInstructions <- renderText({
-    as.character(translation[grep("downloadInstructions",translation$key),input$language])
+    tr("downloadInstructions",input$language)
     })
   
   output$tableInstructions  <- renderText({
-    as.character(translation[grep("tableInstructions",translation$key),input$language])
+    tr("tableInstructions",input$language)
     
     #tr(text="tableInstructions",lenguage=as.character(input$lenguage),translation=translation)
     })
   
   output$daterange<-renderUI({
     
-   dateRangeInput(label = h4(as.character(translation[grep("daterange",translation$key),input$language])),inputId = "daterange",separator = " - ",min = "2000-01-01",#
+   dateRangeInput(label = h4(tr("daterange",input$language)),inputId = "daterange",separator = " - ",min = "2000-01-01",#
                                                              start = Sys.Date()-3,
                                                              end = Sys.Date()+1,language=input$language)
    })
