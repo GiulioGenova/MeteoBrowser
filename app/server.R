@@ -115,7 +115,7 @@ server <- function(input, output,session) {
     
   output$Data  <- renderMenu({
     sidebarMenu(
-  menuItem(tr(key="menuData",l=input$language), tabName = "Data", icon = icon("bar-chart-o"))
+  menuItem(tr("menuData",input$language), tabName = "Data", icon = icon("bar-chart-o"))
     )
   })
   
