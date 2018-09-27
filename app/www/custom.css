@@ -1,0 +1,21 @@
+.tit { color: black; padding-right: 5px;font-weight: bold;font-family: Arial;}
+.tit:hover { color: black;}
+.skin-blue .main-header .logo {
+                        background-color: White; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;
+                                            }
+.skin-blue .main-header .navbar {
+                              background-color: White; 
+                              }
+.skin-blue .main-header .logo:hover {
+                        background-color:  	White;
+                                            }
+.main-header .logo {height: 75px ; padding-top: 10px}
+.skin-blue .main-header .navbar .sidebar-toggle{
+                        background-color:  	#cd4e37;
+                                            }
+.skin-blue .main-header .navbar .sidebar-toggle:hover{
+                        background-color:  	#cd4e37;
+                                            }
+.name { color: black }
+.left-side, .main-sidebar {padding-top: 110px}
+.butt{background-color:#cd4e37;} .butt{color: white;}
