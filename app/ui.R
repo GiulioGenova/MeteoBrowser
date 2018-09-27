@@ -30,19 +30,19 @@ library(DT)
 #library(shinyBS)
 #about = source(file.path(getwd(),'about.R'))
 #translation<-read.csv(file.path(getwd(),"translation.csv"),header = T,sep = ",",stringsAsFactors = F)
-scr <- tags$script(HTML(
-  "
-  Shiny.addCustomMessageHandler(
-  'removeleaflet',
-  function(x){
-  console.log('deleting',x)
-  // get leaflet map
-  var map = HTMLWidgets.find('#' + x.elid).getMap();
-  // remove
-  map.removeLayer(map._layers[x.layerid])
-  })
-  "
-))
+#scr <- tags$script(HTML(
+#  "
+#  Shiny.addCustomMessageHandler(
+#  'removeleaflet',
+#  function(x){
+#  console.log('deleting',x)
+#  // get leaflet map
+#  var map = HTMLWidgets.find('#' + x.elid).getMap();
+#  // remove
+#  map.removeLayer(map._layers[x.layerid])
+#  })
+#  "
+#))
 
 header <- dashboardHeader(titleWidth = 480)
 anchor <- tags$a(href='http://www.eurac.edu/',
@@ -77,13 +77,8 @@ ui <- dashboardPage(#useShinyjs(),
   dashboardBody(
     tags$head(
       tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
-      #tags$script(src = scr)
       tags$link(rel = "script", type = "js", href = "scr.js")
       ),
-    
-#    tagList(
-#  scr
-#    ),
     
     # Boxes need to be put in a row (or column)
     tabItems(
