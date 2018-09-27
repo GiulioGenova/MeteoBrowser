@@ -62,6 +62,11 @@ source(file.path(getwd(),"download_resample.R"))
 source(file.path(getwd(),"MonalisR.R"))
 translation<-read.csv(file.path(getwd(),"translationNew.csv"),header = T,sep = ",",stringsAsFactors = F)
 
+tr <- function(key){ # translates text into current language
+  x<-as.character(translation[grep(key,translation$key),input$language])
+  return(x)
+  }
+
 leaf.proj <- "+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +a=6378137 +b=6378137 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
 LL <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
 
@@ -82,6 +87,7 @@ se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>%
 c1 <- awesomeIcons(icon = "ios-close", iconColor = "black", 
 library = "ion", markerColor = "blue")
 
+
 server <- function(input, output,session) {
   
   output$about_out  <- renderUI({
@@ -96,12 +102,8 @@ server <- function(input, output,session) {
   
   about$value
   })
-  #tr <- function(text,lenguage,translation){ # translates text into current language
-  #x<-as.character(translation[grep(text,translation$key),lenguage])
-  #return(x)
-  #}
-  
-  # UI
+
+  ### moved from UI due to multilanguage
   output$save  <- renderMenu({
   conditionalPanel(condition = "output.tablebuilt",#br(),#"input.daterange[1]<=input.daterange[2]"
                  div(style="display: inline-block;vertical-align:top; width: 40%;",
@@ -113,8 +115,9 @@ server <- function(input, output,session) {
     
   output$Data  <- renderMenu({
     sidebarMenu(
-  menuItem(as.character(translation[grep("menuData",translation$key),input$language]), tabName = "Data", icon = icon("bar-chart-o"))
-      )
+  #menuItem(as.character(translation[grep("menuData",translation$key),input$language]), tabName = "Data", icon = icon("bar-chart-o"))
+  menuItem(tr("menuData"), tabName = "Data", icon = icon("bar-chart-o"))
+    )
   })
   
   output$about  <- renderMenu({
@@ -276,6 +279,7 @@ server <- function(input, output,session) {
     
   })
   
+  ### end of moved from UI due to multilanguage
   ###############
   
   output$table<-DT::renderDT({
