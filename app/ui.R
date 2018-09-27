@@ -44,85 +44,22 @@ scr <- tags$script(HTML(
   "
 ))
 
-# then our new app can do something like this
-
 header <- dashboardHeader(titleWidth = 480)
-anchor <- tags$a(#tags$style(HTML(".tit { color: black; padding-right: 5px;font-weight: bold;font-family: Arial;}")),#;font-size: 1vw;;font-size: 1.05em
-                 #tags$style(HTML(".tit:hover { color: black;}")),
-                 href='http://www.eurac.edu/',
+anchor <- tags$a(href='http://www.eurac.edu/',
                  tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
                  'Meteo Browser South Tyrol',class='tit')
 
-#stile<-tags$li(class = "dropdown",
-#           tags$style( ".skin-blue .main-header .logo {
-#                        background-color: White; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;
-#                                            }"),
-#           tags$style( ".skin-blue .main-header .navbar {
-#                              background-color: White; 
-#                              }  "),
-#           tags$style( ".skin-blue .main-header .logo:hover {
-#                        background-color:  	White;
-#                                            }"),
-#           #tags$style( ".skin-blue .main-header {
-#           #             background-color: #cd4e37;
-#           #                                 }"),
-#            #tags$style(".main-header {max-height: 75px}"),
-#            tags$style(".main-header .logo {height: 75px ; padding-top: 10px}"),
-#            tags$style(".skin-blue .main-header .navbar .sidebar-toggle{
-#                        background-color:  	#cd4e37;
-#                                            }"),
-#               tags$style(".skin-blue .main-header .navbar .sidebar-toggle:hover{
-#                        background-color:  	#cd4e37;
-#                                            }")
-#
-#    )
-
-header$children[[2]]$children <- tags$div(
-    #tags$head(tags$style(HTML(".name { color: black }"))),
-    anchor,#stile,
-    class = 'name')
-
+header$children[[2]]$children <- tags$div(anchor,class = 'name')
 
 
 ui <- dashboardPage(#useShinyjs(),
   title= "Meteo Browser",
     
   skin = "blue",
-  #dashboardHeader(tags$li(class = "dropdown",
-  #         tags$style( ".skin-blue .main-header .logo {
-  #                      background-color: #cd4e37;
-  #                                          }"),
-  #         tags$style( ".skin-blue .main-header .navbar {
-  #                            background-color: #dae0e0;
-  #                            }  "),
-  #         tags$style( ".skin-blue .main-header .logo:hover {
-  #                      background-color:  	#dae0e0;
-  #                                          }"),
-  #         #tags$style( ".skin-blue .main-header {
-  #         #             background-color: #cd4e37;
-  #         #                                 }"),
-  #          tags$style(".main-header {max-height: 100px}"),
-  #          tags$style(".main-header .logo {height: 100px ; padding-top: 10px}")
-  #  ),
-     
-    #title =loadingLogo('http://www.eurac.edu/Style%20Library/','logoEURAC.jpg','buffpowa.gif')
-    #title = tags$a(href='http://www.eurac.edu/',
-    #               #tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'))#,
-    #               tags$img(src='logoMeteoBrowser.jpg'),'Meteo Browser South Tyrol')
-    ##  titleWidth = 320
-     #            ),
-                  
-    #title =  tags$a(href='http://www.eurac.edu/',
-     #  #tags$img(src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'))#,
-     #  tags$img(src='logoMeteoBrowser.jpg'))
-    #  titleWidth = 320
- #                 ),
-header             
+  header             
     ,
   dashboardSidebar(
-    #tags$style(".left-side, .main-sidebar {padding-top: 110px}"),
     disable = F,
-                   
     sidebarMenuOutput("Data"),
     sidebarMenuOutput("about"),
     sidebarMenu(
@@ -144,7 +81,7 @@ header
     
     tagList(
   scr
-),
+    ),
     
     # Boxes need to be put in a row (or column)
     tabItems(
@@ -166,7 +103,6 @@ header
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Download selected data","refresh")) ,
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton( "stop",label = "Stop Download (reload page)",class="btn-danger")),#,onclick="Shiny.onInputChange('stopThis',true)"
                     div(style="display: inline-block;vertical-align:top; width: 45%;",uiOutput("save")),
-                    #tags$head(tags$style(".butt{background-color:#cd4e37;} .butt{color: white;}")),
                     #conditionalPanel(condition = "output.tablebuilt",br(),#"input.daterange[1]<=input.daterange[2]"
                     #                 downloadButton('downloadData', h4('Save as csv'), class="btn-danger" ) 
                     #),
