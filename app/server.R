@@ -60,7 +60,7 @@ library(sp)
 
 source(file.path(getwd(),"download_resample.R"))
 source(file.path(getwd(),"MonalisR.R"))
-load(file.path(getwd(),"translationNew.R"))
+load(file.path(getwd(),"translationNew.RDATA"))
 #translation<-read.csv(file.path(getwd(),"translationNew.csv"),header = T,sep = ",",stringsAsFactors = F,encoding = "UTF-8")#
 
 tr <- function(key,l,t=translation){ # translates text into current language
