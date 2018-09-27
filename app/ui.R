@@ -138,6 +138,10 @@ header
                      #menuItem("Data detail", tabName = "detail", icon = icon("bar-chart-o"))
                    )),
   dashboardBody(
+    tags$head(
+      tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+      ),
+    
     tagList(
   scr
 ),
