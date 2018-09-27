@@ -98,7 +98,7 @@ server <- function(input, output,session) {
   }else if(input$language=="de"){
   about = source(file.path(getwd(),'aboutDe.R'))
   }else if(input$language=="it"){
-  about = source(file.path(getwd(),'aboutIt.R'))
+  about = source(file.path(getwd(),'about_IT.R'))
   }
     
   
