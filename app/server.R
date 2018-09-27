@@ -326,7 +326,7 @@ server <- function(input, output,session) {
       formatStyle(c("TYPE", "DESC_D", "UNIT"),
                   backgroundColor = "#edf5e1")
     }else{
-    dt<-dt%>%formatStyle(c("TYPE", "DESC_D", "UNIT"),
+    dt<-dt%>%formatStyle(c("TYPE", "DESC_E", "UNIT"),
                   backgroundColor = "#edf5e1")
     }
     
