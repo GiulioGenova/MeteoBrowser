@@ -1,0 +1,54 @@
+<html>
+  <body>
+    <h3>Informazioni sui dati</h3>
+    <p>
+      Questa applicazione fornisce un'interfaccia user-friendly per scaricare i dati meteorologici del potale Open Data Alto Adige</p>
+    <p>L'API Open Data Alto Adige e la relativa documentazione sono disponibili sul sito web della Provincia di Bolzano.</p>
+    <p>
+      <a href="http://daten.buergernetz.bz.it/it/dataset/misure-meteo-e-idrografiche" target="_blank">Open Data Alto Adige - Meteo data web service</a>
+    </p>
+    <p>Una volta selezionate le stazioni e i sensori, filtrando la tabella e / o disegnando un poligono sulla mappa, e scelto l'arco temporale d'interesse (i dati disponibili si riferiscono agli ultimi tre anni).</p>
+    <p>Quando lo scarico dati è completato, un'icona "salva" vine mostrata e si può scegliere di salvare la tabella di dati in formato csv o json. 
+      Si puo scegliere tra diverse aggregazioni temporali. "grezzo" mantiene l'originale risoluzione d'acquisizione dei dati
+      (tipicamente 5 o 10 minuti). Per le altre opzioni di aggregazione temporale (medie orarie, giornaliere, ecc.) si avranno diverse statistiche per le diverse variabili.</p>
+    <p>Per tutte le variabili misurate si avrà il numero totale di dati mancanti per il periodo selezionato.</p>
+    <p>per tutte le variabili misurate, fatta eccezione per la precipitazione e direzione del vento è compiuta la media aritmetica per la specifica aggregazione temporale. </p>
+    <p>Precipitazione e temperatura dell'aria avranno anche la somma totale riferita alla specifica aggregazione temporale.</p>
+    <p>Temperatura dell'aria e umidità relativa avranno anche i valori minimi e massimi riferiti alla specifica aggregazione temporale.</p>
+    <p>La direzione del vento è riclassificata con i seguenti codici numerici e il più frequente sarà assegnato:</p>
+    <p>1 = N; 2 = NE; 3 = E; 4 = SE; 5 = S; 6 = SO; 7 = O; 8 = NO.</p>
+    <p>Si può scegliere tra diversi formati di tabella,"larga" or "lunga".
+      Nel formato di tabella largo si ottengono una colonna per ogni variabile misurata. Nel formato di tabella lungo si ottengono  una colonna che identifica la misura "Sensor" e una colonna 
+      "Value" che corrisponde alle misure.</p>
+    <br/>
+    <h3>Dichiarazione di esclusione di responsabilità</h3>
+    <p>Dei dati metereologici scaricati con questa applicazione non ne sono garantiti la qualità in quanto non validati dal fornitore dei dati, tanto meno dagli svliuppatori di questa WebApp. 
+      La seguente WebApp ha il solo intento di facilitare l'accesso ai dati metereologici e idrologici del portale Open Data Alto Adige</p>
+    <br/>
+    <h3>Lancia l'applicazione in locale: Scaricata da Github</h3>
+    <p>Il codice sorgente è ottenibile nel seguente link:</p>
+    <p>
+      <a href="https://github.com/GiulioGenova/ODBZ/" target="_blank">Giulio Genova - ODBZ</a>
+    </p>
+    <p>Per lanciare l'applicazione in locale, eseguire la seguente stringa di codice:</p>
+    <p>==========================================================================</p>
+    <p>if (!require("shiny")) install.packages("shiny")</p>
+    <p>shiny::runGitHub('GiulioGenova/ODBZ',subdir="app",launch.browser = TRUE)</p>
+    <p>==========================================================================</p>
+    <p>Questo installerà automaticamente tutti i pacchetti necessari sul vostro computer (necessario solo la prima volta che viene eseguito) e lanciera l'applicazione web.</p>
+    <br/>
+    <h3>Autore</h3>
+    <p>
+      <a href="https://github.com/GiulioGenova/" target="_blank">Giulio Genova</a>
+    </p>
+    <p>Eurac - Istituto per l'Ambiente Alpino</p>
+    <p>e-mail: giulio.genova@eurac.edu</p>
+    <p>2018-09-26</p>
+    <br/>
+    <h3>Ringraziamenti</h3>
+    <p>Rignaziamo Mattia Rossi il quale ha sviluppato il pacchetto R"MonalisR" che svolge un ruolo fondamentale nel backend di questa pplicazione. Il pacchetto può essere trovato al seguente link:</p>
+    <p>
+      <a href="https://gitlab.inf.unibz.it/earth_observation_public/MonalisR" target="_blank">MonalisR</a>
+    </p>
+  </body>
+</html>
