@@ -62,8 +62,8 @@ source(file.path(getwd(),"download_resample.R"))
 source(file.path(getwd(),"MonalisR.R"))
 translation<-read.csv(file.path(getwd(),"translationNew.csv"),header = T,sep = ",",stringsAsFactors = F)
 
-tr <- function(key){ # translates text into current language
-  x<-as.character(translation[grep(key,translation$key),input$language])
+tr <- function(key,trns,leng){ # translates text into current language
+  x<-as.character(trns[grep(key,trns$key),leng])
   return(x)
   }
 
@@ -116,7 +116,7 @@ server <- function(input, output,session) {
   output$Data  <- renderMenu({
     sidebarMenu(
   #menuItem(as.character(translation[grep("menuData",translation$key),input$language]), tabName = "Data", icon = icon("bar-chart-o"))
-  menuItem(tr("menuData"), tabName = "Data", icon = icon("bar-chart-o"))
+  menuItem(tr(key="menuData",trns=translation,leng=input$leng), tabName = "Data", icon = icon("bar-chart-o"))
     )
   })
   
