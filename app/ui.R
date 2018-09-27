@@ -76,12 +76,13 @@ ui <- dashboardPage(#useShinyjs(),
                    )),
   dashboardBody(
     tags$head(
-      tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+      tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
+      src
       ),
     
-    tagList(
-  scr
-    ),
+#    tagList(
+#  scr
+#    ),
     
     # Boxes need to be put in a row (or column)
     tabItems(
