@@ -77,7 +77,8 @@ ui <- dashboardPage(#useShinyjs(),
   dashboardBody(
     tags$head(
       tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
-      src
+      #tags$script(src = scr)
+      tags$link(rel = "script", type = "js", href = "scr.js")
       ),
     
 #    tagList(
