@@ -94,7 +94,7 @@ server <- function(input, output,session) {
   
   output$about_out  <- renderUI({
   if(input$language=="en"){
-  about = source(file.path(getwd(),'aboutEn.R'))
+  about = source(file.path(getwd(),'about_EN.R'))
   }else if(input$language=="de"){
   about = source(file.path(getwd(),'aboutDe.R'))
   }else if(input$language=="it"){
