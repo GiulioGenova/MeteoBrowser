@@ -308,8 +308,8 @@ server <- function(input, output,session) {
                                                                                       ifelse(DESC_D=="Lufttemperatur","Water flow",
                                                                                              ifelse(DESC_D=="Durchfluss","Water flow",
                                                                                                     ifelse(DESC_D=="Wasserstand","Water level",
-                                                                                                           ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))
-      #rename(NAME_D=NAME,TYPE=SENSOR,ALT=ELEVATION)
+                                                                                                           ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))%>%
+      rename(DESC_D=DESC_E)
       
     }
     
