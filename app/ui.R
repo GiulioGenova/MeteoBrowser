@@ -78,7 +78,7 @@ anchor <- tags$a(tags$style(HTML(".tit { color: black; padding-right: 5px;font-w
 #    )
 
 header$children[[2]]$children <- tags$div(
-    tags$head(tags$style(HTML(".name { color: black }"))),
+    #tags$head(tags$style(HTML(".name { color: black }"))),
     anchor,#stile,
     class = 'name')
 
@@ -120,7 +120,7 @@ ui <- dashboardPage(#useShinyjs(),
 header             
     ,
   dashboardSidebar(
-    tags$style(".left-side, .main-sidebar {padding-top: 110px}"),
+    #tags$style(".left-side, .main-sidebar {padding-top: 110px}"),
     disable = F,
                    
     sidebarMenuOutput("Data"),
@@ -166,7 +166,7 @@ header
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Download selected data","refresh")) ,
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton( "stop",label = "Stop Download (reload page)",class="btn-danger")),#,onclick="Shiny.onInputChange('stopThis',true)"
                     div(style="display: inline-block;vertical-align:top; width: 45%;",uiOutput("save")),
-                    tags$head(tags$style(".butt{background-color:#cd4e37;} .butt{color: white;}")),
+                    #tags$head(tags$style(".butt{background-color:#cd4e37;} .butt{color: white;}")),
                     #conditionalPanel(condition = "output.tablebuilt",br(),#"input.daterange[1]<=input.daterange[2]"
                     #                 downloadButton('downloadData', h4('Save as csv'), class="btn-danger" ) 
                     #),
