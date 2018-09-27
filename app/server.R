@@ -206,7 +206,7 @@ server <- function(input, output,session) {
       #as.character(translation[grep("messageDate",translation$key),input$language]))
       
       conditionalPanel(condition = "output.rightdate==false",br(),
-      renderText(as.character(translation[grep("messageDate",translation$key),input$language])))
+      renderText(tr("messageDate",input$language)))
                              
                              
                              
@@ -224,21 +224,21 @@ server <- function(input, output,session) {
     #station<-StatSens()[[1]]
     #sensors<-StatSens()[[2]]
     
-    station<-StatSens$station
-    sensors<-StatSens$sensors
+    station <- StatSens$station
+    sensors <- StatSens$sensors
     
-    nstation<-length(station)%>%as.numeric
-    nsensors<-length(sensors)%>%as.numeric
+    nstation <- length(station)%>%as.numeric
+    nsensors <- length(sensors)%>%as.numeric
     
-    if(nstation==1){ stat<-as.character(translation[grep("aaa",translation$key),input$language])}
-    else{stat<- as.character(translation[grep("bbb",translation$key),input$language])}
+    if(nstation==1){ stat <- tr("aaa",input$language)}
+    else{stat <- tr("bbb",input$language)}
     
-    if(nsensors==1){param<-as.character(translation[grep("ccc",translation$key),input$language])}
-    else{param<- as.character(translation[grep("ddd",translation$key),input$language])}
+    if(nsensors==1){param<-tr("ccc",input$language)}
+    else{param <- tr("ddd",input$language)}
     
-    youHave<-as.character(translation[grep("youvSelected",translation$key),input$language])
-    and<-as.character(translation[grep("Sensorsand",translation$key),input$language])
-    mssg<- paste(youHave,
+    youHave <- tr("youvSelected",input$language)
+    and <- tr("Sensorsand",input$language)
+    mssg <- paste(youHave,
                  nstation,stat,
                  and,
                  nsensors,param
@@ -267,15 +267,15 @@ server <- function(input, output,session) {
   })
   
   
-  output$youSelStations<-renderText({
+  output$youSelStations <- renderText({
     
-    as.character(translation[grep("youSelStations",translation$key),input$language])
+    tr("youSelStations",input$language)
     
   })
   
-  output$andSensors<-renderText({
+  output$andSensors <- renderText({
     
-    as.character(translation[grep("andSensors",translation$key),input$language])
+    tr("andSensors",input$language)
     
   })
   
