@@ -477,10 +477,7 @@ server <- function(input, output,session) {
   
   
  observe({
-   
-   proxy <- leafletProxy("map")
-   proxy %>% clearShapes()
-   
+
   ids<-input$table_rows_all
   stationTab<-unique(tot_tab$SCODE[ids])%>%as.character
   station<-StatSens$station
@@ -492,6 +489,9 @@ server <- function(input, output,session) {
     stations<-left_join(stations_sel,se_spread)
   stationsSelNot<-left_join(stations_selNot,se_spread) 
   
+   proxy <- leafletProxy("map")
+   proxy %>% clearShapes()
+   proxy %>% clearControls()
    # "output.spatialSelection"
   # input$spatialSelection 
   if(input$spatialSelection){#FALSE
