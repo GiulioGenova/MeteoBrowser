@@ -89,7 +89,7 @@ se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>%
     green <- awesomeIcons(icon = "ios-close", iconColor = "black", 
 library = "ion", markerColor = "green")
   grey <- awesomeIcons(icon = "ios-close", iconColor = "black", 
-library = "ion", markerColor = "gray")
+library = "ion", markerColor = "lightgray")
     blu <- awesomeIcons(icon = "ios-close", iconColor = "black", 
 library = "ion", markerColor = "blue")
 
