@@ -521,18 +521,11 @@ observeEvent(
   })
   
   
-  observeEvent(input$stop,{
-    session$reload()
-    return()
-  })
+ # observeEvent(input$stop,{
+ #   session$reload()
+ #   return()
+ # })
   
-  
-observeEvent(
-    input$deletebtn,
-    {
-      proxy <- leafletProxy("map")%>% removeShape('draw')
-    }
-)
   
  observe({
 
@@ -547,7 +540,7 @@ observeEvent(
     stations<-left_join(stations_sel,se_spread)
   stationsSelNot<-left_join(stations_selNot,se_spread) 
   
-   proxy <- leafletProxy("map")%>% clearMarkers() %>% removeDrawToolbar(clearFeatures = TRUE)
+   proxy <- leafletProxy("map")%>% clearMarkers() #%>% removeDrawToolbar(clearFeatures = TRUE)
    
    #proxy %>% removeControl('draw')
    #proxy %>% clearGroup('draw')
