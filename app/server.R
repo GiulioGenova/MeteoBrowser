@@ -489,7 +489,7 @@ server <- function(input, output,session) {
     stations<-left_join(stations_sel,se_spread)
   stationsSelNot<-left_join(stations_selNot,se_spread) 
   
-   proxy <- leafletProxy("map")%>% clearMarkers() %>% removeDrawToolbar(clearFeatures = T)
+   proxy <- leafletProxy("map")%>% clearMarkers() %>% removeDrawToolbar()
    
    #proxy %>% removeControl('draw')
    #proxy %>% clearGroup('draw')
@@ -500,18 +500,10 @@ server <- function(input, output,session) {
     polygon_coordinates <-polyCoord()
     
     
-    proxy <- proxy %>% addDrawToolbar(
-      
-      #targetLayerId ='draw',
-      targetGroup='draw',
-      polylineOptions=FALSE,
-      markerOptions = FALSE,
-      circleOptions = FALSE,
-      rectangleOptions =FALSE,
-      circleMarkerOptions =FALSE)%>%#
-      addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
-      addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
-                       options = layersControlOptions(collapsed = FALSE),position = "topleft")
+    #proxy <- proxy %>%#
+     # addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
+      #addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
+       #                options = layersControlOptions(collapsed = FALSE),position = "topleft")
     
     if(is.null(polygon_coordinates)){
       
@@ -606,7 +598,15 @@ server <- function(input, output,session) {
   output$map<-renderLeaflet({
 
   m<-plotMeteoLeaflet()#stations_sel
-    m
+    m%>% addDrawToolbar(
+      
+      #targetLayerId ='draw',
+      targetGroup='draw',
+      polylineOptions=FALSE,
+      markerOptions = FALSE,
+      circleOptions = FALSE,
+      rectangleOptions =FALSE,
+      circleMarkerOptions =FALSE)
 })
   
   #######
