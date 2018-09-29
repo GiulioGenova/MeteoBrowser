@@ -532,6 +532,7 @@ server <- function(input, output,session) {
                                     #"Ground water level:",stations$WT, "W.ABST"
   # "output.spatialSelection"
   # input$spatialSelection   
+                      ))
   if(input$spatialSelection){#FALSE
     polygon_coordinates <-polyCoord()
     
