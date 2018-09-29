@@ -476,9 +476,11 @@ server <- function(input, output,session) {
   })
   
   
-  output$map<-renderLeaflet({
-
-    
+ observe({
+   
+   proxy <- leafletProxy("map")
+   proxy %>% clearShapes()
+   
   ids<-input$table_rows_all
   stationTab<-unique(tot_tab$SCODE[ids])%>%as.character
   station<-StatSens$station
@@ -488,15 +490,17 @@ server <- function(input, output,session) {
   stations_selNot<-stations_selNot%>%filter(!SCODE%in%stationTab)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
   
     stations<-left_join(stations_sel,se_spread)
-  stationsSelNot<-left_join(stations_selNot,se_spread)
-  m<-plotMeteoLeaflet()#stations_sel
-  # "output.spatialSelection"
+  stationsSelNot<-left_join(stations_selNot,se_spread) 
+  
+   # "output.spatialSelection"
   # input$spatialSelection 
   if(input$spatialSelection){#FALSE
     polygon_coordinates <-polyCoord()
     
     
-    m <- m %>% addDrawToolbar(
+    proxy <- proxy %>% addDrawToolbar(
+      
+      
       targetGroup='draw',
       polylineOptions=FALSE,
       markerOptions = FALSE,
@@ -513,11 +517,11 @@ server <- function(input, output,session) {
       drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
       sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
       
-      m <- m %>% addPolygons(data=sp,fillOpacity=0.4)
+      proxy <- proxy %>% addPolygons(data=sp,fillOpacity=0.4)
     }
     
   }
-  m<- m %>% 
+  proxy<- proxy %>% 
     addAwesomeMarkers(lng = stationsSelNot$LONG %>% as.character %>% as.numeric, lat = stationsSelNot$LAT %>% 
                         as.character %>% as.numeric, icon = grey, 
                       popup = paste(tr("code",input$language),stationsSelNot$SCODE, "<br>", 
@@ -593,9 +597,14 @@ server <- function(input, output,session) {
                                             tr("watLevel",input$language),stations$W, "<br>"#,
                                             #"Ground water level:",stations$WT, "W.ABST"
                               ))
-    
-    m
   
+  
+  })
+  
+  output$map<-renderLeaflet({
+
+  m<-plotMeteoLeaflet()#stations_sel
+    m
 })
   
   #######
