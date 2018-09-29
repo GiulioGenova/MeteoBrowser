@@ -479,7 +479,7 @@ server <- function(input, output,session) {
 observeEvent(
     input$deletebtn,
     {
-      proxy <- leafletProxy("map")%>% clearShapes()
+      proxy <- leafletProxy("map")%>% removeShape('draw')
     }
 )
   
