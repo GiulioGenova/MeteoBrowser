@@ -569,8 +569,8 @@ library = "ion", markerColor = "blue")
                                     tr("watLevel",input$language),stationsSelNot$W, "<br>"#,
                                     #"Ground water level:",stations$WT, "W.ABST"
     
-                      ))
-    %>%
+                      ))%>%
+    
     addAwesomeMarkers(lng = stations_selNotTab$LONG %>% as.character %>% as.numeric, lat = stations_selNotTab$LAT %>% 
                         as.character %>% as.numeric, icon = blu, 
                       popup = paste(tr("code",input$language),stations_selNotTab$SCODE, "<br>", 
