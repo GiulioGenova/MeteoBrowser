@@ -478,8 +478,18 @@ server <- function(input, output,session) {
   
  observe({
    if(!input$spatialSelection){#FALSE
-   proxy <- leafletProxy("map") %>% 
-   removeDrawToolbar(clearFeatures = TRUE)
+   #proxy <- leafletProxy("map") %>% 
+   #removeDrawToolbar(clearFeatures = TRUE)
+     print(drawnshapes)
+      lapply(
+        drawnshapes,
+        function(todelete) {
+          session$sendCustomMessage(
+            "removeleaflet",
+            list(elid="map", layerid=todelete)
+          )
+        }
+)
    }
   })
  observe({
