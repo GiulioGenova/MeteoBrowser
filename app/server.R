@@ -491,8 +491,8 @@ server <- function(input, output,session) {
   
    proxy <- leafletProxy("map")
    proxy %>% clearShapes()
-   #proxy %>% clearControls()
-   proxy %>% clearGroup('draw')
+   proxy %>% removeControl('draw')
+   #proxy %>% clearGroup('draw')
    # "output.spatialSelection"
   # input$spatialSelection 
   if(input$spatialSelection){#FALSE
@@ -501,7 +501,7 @@ server <- function(input, output,session) {
     
     proxy <- proxy %>% addDrawToolbar(
       
-      
+      targetLayerId ='draw',
       targetGroup='draw',
       polylineOptions=FALSE,
       markerOptions = FALSE,
