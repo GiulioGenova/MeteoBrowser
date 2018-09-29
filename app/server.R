@@ -507,7 +507,15 @@ observeEvent(
     polygon_coordinates <-polyCoord()
     
     
-    #proxy <- proxy #%>%
+    proxy <- proxy%>% addDrawToolbar(
+      
+      #targetLayerId ='draw',
+      targetGroup='draw',
+      polylineOptions=FALSE,
+      markerOptions = FALSE,
+      circleOptions = FALSE,
+      rectangleOptions =FALSE,
+      circleMarkerOptions =FALSE) #%>%
      # addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
       #addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
        #                options = layersControlOptions(collapsed = FALSE),position = "topleft")
@@ -605,15 +613,7 @@ observeEvent(
   output$map<-renderLeaflet({
 
   m<-plotMeteoLeaflet()#stations_sel
-    m%>% addDrawToolbar(
-      
-      #targetLayerId ='draw',
-      targetGroup='draw',
-      polylineOptions=FALSE,
-      markerOptions = FALSE,
-      circleOptions = FALSE,
-      rectangleOptions =FALSE,
-      circleMarkerOptions =FALSE)
+    m
 })
   
   #######
@@ -637,26 +637,26 @@ observeEvent(
   )
   
   # observe our simple little button to remove
-  observeEvent(
-    input$deletebtn,
-    {
-      print(drawnshapes)
-      lapply(
-        drawnshapes,
-        function(todelete) {
-          session$sendCustomMessage(
-            "removeleaflet",
-            list(elid="map", layerid=todelete)
-          )
-        }
-      )
-    }
-  )
+  #observeEvent(
+  #  input$deletebtn,
+  #  {
+  #    print(drawnshapes)
+  #    lapply(
+  #      drawnshapes,
+  #      function(todelete) {
+  #        session$sendCustomMessage(
+  #          "removeleaflet",
+  #          list(elid="map", layerid=todelete)
+  #        )
+  #      }
+  #    )
+  #  }
+  #)
   
   observeEvent(
     input$deletebtn,
     {
-      proxy <- leafletProxy("map") %>% removeShape(drawnshapes)
+      proxy <- leafletProxy("map") %>% removeShape(as.character(drawnshapes))
     }
   )
   
