@@ -491,7 +491,8 @@ server <- function(input, output,session) {
   
    proxy <- leafletProxy("map")
    proxy %>% clearShapes()
-   proxy %>% clearControls()
+   #proxy %>% clearControls()
+   proxy %>% clearGroup('draw')
    # "output.spatialSelection"
   # input$spatialSelection 
   if(input$spatialSelection){#FALSE
