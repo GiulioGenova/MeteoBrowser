@@ -656,8 +656,9 @@ observeEvent(
   observeEvent(
     input$deletebtn,
     {
-      proxy <- leafletProxy("map") %>% 
+      proxy <- leafletProxy("map") %>% removeShape(as.character(drawnshapes[[1]]))
       #removeShape(input$map_draw_all_features$features$properties)
+      
       print(input$map_draw_all_features$features$properties)
       print(drawnshapes)
       str(drawnshapes)
