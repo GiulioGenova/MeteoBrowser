@@ -478,7 +478,7 @@ server <- function(input, output,session) {
     station<-unique(tot_tab$SCODE[ids])%>%as.character
     stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
     stations<-left_join(stations_sel,se_spread)
-    m<-plotMeteoLeaflet(stations_sel)
+    m<-plotMeteoLeaflet()#stations_sel
     m<- m %>% addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
                         as.character %>% as.numeric, icon = c1, 
                                 popup = paste(tr("code",input$language),stations$SCODE, "<br>", 
