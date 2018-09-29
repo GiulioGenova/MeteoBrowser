@@ -355,19 +355,70 @@ server <- function(input, output,session) {
    # return(polygon_coordinates)
   #})
   polyCoord <- reactiveVal(NULL)
+  polyId <- reactiveVal(NULL)
   
   observeEvent(input$deletebtn,{
     polygon_coordinates = NULL
     polyCoord(polygon_coordinates)
+    
     })
   
+observeEvent(
+    input$deletebtn,
+    {
+      proxy <- leafletProxy("map") %>% removeShape(polyId())
+      #removeShape(input$map_draw_all_features$features$properties)
+      print(input$map_draw_all_features$features$properties)
+      print("drawnshapes")
+      print(drawnshapes)
+      print("polyId")
+      print(polyId())
+      
+    }
+  )
   #observeEvent(req(input$map_draw_stop),{
     observe({
     req(input$map_draw_stop)
       polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
     polyCoord(polygon_coordinates)
+      polygon_id = input$map_draw_new_feature$features$properties$`_leaflet_id`
+    polyId(polygon_id)
     })
   
+  drawnshapes <- list()
+  
+  # we are fortunate here since we get an event
+  #   draw_all_features
+  observeEvent(
+    input$map_draw_all_features,
+    {
+      drawnshapes <<- lapply(
+        input$map_draw_all_features$features,
+        function(ftr) {
+          ftr$properties$`_leaflet_id`
+        }
+      )
+      # seeing is believing
+      str(drawnshapes)
+    }
+  )
+  
+  # observe our simple little button to remove
+  #observeEvent(
+  #  input$deletebtn,
+  #  {
+  #    print(drawnshapes)
+  #    lapply(
+  #      drawnshapes,
+  #      function(todelete) {
+  #        session$sendCustomMessage(
+  #          "removeleaflet",
+  #          list(elid="map", layerid=todelete)
+  #        )
+  #      }
+  #    )
+  #  }
+  #)
   
 
   
@@ -618,57 +669,7 @@ observeEvent(
   
   #######
   
-  drawnshapes <- list()
   
-  # we are fortunate here since we get an event
-  #   draw_all_features
-  observeEvent(
-    input$map_draw_all_features,
-    {
-      drawnshapes <<- lapply(
-        input$map_draw_all_features$features,
-        function(ftr) {
-          ftr$properties$`_leaflet_id`
-        }
-      )
-      # seeing is believing
-      str(drawnshapes)
-    }
-  )
-  
-  # observe our simple little button to remove
-  #observeEvent(
-  #  input$deletebtn,
-  #  {
-  #    print(drawnshapes)
-  #    lapply(
-  #      drawnshapes,
-  #      function(todelete) {
-  #        session$sendCustomMessage(
-  #          "removeleaflet",
-  #          list(elid="map", layerid=todelete)
-  #        )
-  #      }
-  #    )
-  #  }
-  #)
-  
-  observeEvent(
-    input$deletebtn,
-    {
-      proxy <- leafletProxy("map") %>% removeShape(c(as.character(drawnshapes[[1]])))
-      #removeShape(input$map_draw_all_features$features$properties)
-      
-      print(input$map_draw_all_features$features$properties)
-      print(drawnshapes)
-      str(drawnshapes)
-      print(as.character(drawnshapes[[1]]))
-    }
-  )
-  
-  
-  
-
   
   
   output$rightdate <-reactive({
