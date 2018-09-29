@@ -483,6 +483,32 @@ server <- function(input, output,session) {
   stations<-left_join(stations_sel,se_spread)
   stationsSelNot<-left_join(stations_selNot,se_spread)
   m<-plotMeteoLeaflet()#stations_sel
+  
+  if(input$spatialSelection){#FALSE
+    polygon_coordinates <-polyCoord()
+    
+    
+    m <- m %>% addDrawToolbar(
+      targetGroup='draw',
+      polylineOptions=FALSE,
+      markerOptions = FALSE,
+      circleOptions = FALSE,
+      rectangleOptions =FALSE,
+      circleMarkerOptions =FALSE)%>%#
+      addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
+      addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
+                       options = layersControlOptions(collapsed = FALSE),position = "topleft")
+    
+    if(is.null(polygon_coordinates)){
+      
+    }else{  
+      drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+      sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+      
+      m <- m %>% addPolygons(data=sp,fillOpacity=0.4)
+    }
+    
+  }
   m<- m %>% addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
                                 as.character %>% as.numeric, icon = c1, 
                               popup = paste(tr("code",input$language),stations$SCODE, "<br>", 
@@ -533,32 +559,8 @@ server <- function(input, output,session) {
   # "output.spatialSelection"
   # input$spatialSelection   
                       ))
-  if(input$spatialSelection){#FALSE
-    polygon_coordinates <-polyCoord()
     
-    
-    m <- m %>% addDrawToolbar(
-      targetGroup='draw',
-      polylineOptions=FALSE,
-      markerOptions = FALSE,
-      circleOptions = FALSE,
-      rectangleOptions =FALSE,
-      circleMarkerOptions =FALSE)%>%#
-      addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
-      addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
-                       options = layersControlOptions(collapsed = FALSE),position = "topleft")
-    
-    if(is.null(polygon_coordinates)){
-      
-    }else{  
-      drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
-      sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
-      
-      m <- m %>% addPolygons(data=sp,fillOpacity=0.4)
-    }
-    
-  }
-  m
+    m
   
 })
   
