@@ -86,11 +86,12 @@ se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>%
   unite(VALUE,VALUE,DATE,sep=" ") %>% 
   spread(TYPE,VALUE)
 
-c1 <- awesomeIcons(icon = "ios-close", iconColor = "black", 
+    green <- awesomeIcons(icon = "ios-close", iconColor = "black", 
+library = "ion", markerColor = "green")
+  grey <- awesomeIcons(icon = "ios-close", iconColor = "black", 
+library = "ion", markerColor = "#D3D3D3")
+    blu <- awesomeIcons(icon = "ios-close", iconColor = "black", 
 library = "ion", markerColor = "blue")
-
-c2 <- awesomeIcons(icon = "ios-close", iconColor = "black", 
-library = "ion", markerColor = "grey")
 
 server <- function(input, output,session) {
   
@@ -476,12 +477,7 @@ server <- function(input, output,session) {
   
   
   output$map<-renderLeaflet({
-    green <- awesomeIcons(icon = "ios-close", iconColor = "black", 
-library = "ion", markerColor = "green")
-  grey <- awesomeIcons(icon = "ios-close", iconColor = "black", 
-library = "ion", markerColor = "grey")
-    blu <- awesomeIcons(icon = "ios-close", iconColor = "black", 
-library = "ion", markerColor = "blue")
+
     
   ids<-input$table_rows_all
   stationTab<-unique(tot_tab$SCODE[ids])%>%as.character
