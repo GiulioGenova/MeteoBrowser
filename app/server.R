@@ -476,8 +476,9 @@ server <- function(input, output,session) {
   
   
   output$map<-renderLeaflet({
-  ids<-input$table_rows_all
-  station<-unique(tot_tab$SCODE[ids])%>%as.character
+  #ids<-input$table_rows_all
+  #station<-unique(tot_tab$SCODE[ids])%>%as.character
+  station<-StatSens$station
   stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
   stations_selNot<-getMeteoStat(format = "spatial")%>%filter(!SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
   stations<-left_join(stations_sel,se_spread)
