@@ -476,22 +476,24 @@ server <- function(input, output,session) {
   })
   
   
- observe({
-   if(!input$spatialSelection){#FALSE
+ #observe({
+ #  if(!input$spatialSelection){#FALSE
    #proxy <- leafletProxy("map") %>% 
    #removeDrawToolbar(clearFeatures = TRUE)
-     print(drawnshapes)
-      lapply(
-        drawnshapes,
-        function(todelete) {
-          session$sendCustomMessage(
-            "removeleaflet",
-            list(elid="map", layerid=todelete)
-          )
-        }
-)
-   }
-  })
+#     print(drawnshapes)
+#      lapply(
+#        drawnshapes,
+#        function(todelete) {
+#          session$sendCustomMessage(
+#            "removeleaflet",
+#            list(elid="map", layerid=todelete)
+#          )
+#        }
+#)
+#   }
+#  })
+  
+  
  observe({
 
   ids<-input$table_rows_all
