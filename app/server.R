@@ -395,7 +395,7 @@ observeEvent(
       drawnshapes <<- lapply(
         input$map_draw_all_features$features,
         function(ftr) {
-          ftr$properties$`_leaflet_id`
+          as.character(ftr$properties$`_leaflet_id`)
         }
       )
       # seeing is believing
