@@ -89,6 +89,8 @@ se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>%
 c1 <- awesomeIcons(icon = "ios-close", iconColor = "black", 
 library = "ion", markerColor = "blue")
 
+c2 <- awesomeIcons(icon = "ios-close", iconColor = "black", 
+library = "ion", markerColor = "grey")
 
 server <- function(input, output,session) {
   
@@ -325,7 +327,7 @@ server <- function(input, output,session) {
     
     dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
               options = list(autoWidth = F,scrollX=T,
-                            searchCols = list(NULL, NULL, NULL, NULL,#list(search = '["83200MS"]')
+                            searchCols = list(list(search = '["83200MS"]'), NULL, NULL, NULL,#
                                       NULL, NULL, NULL )
                             )
     ) 
@@ -474,65 +476,90 @@ server <- function(input, output,session) {
   
   
   output$map<-renderLeaflet({
-    ids<-input$table_rows_all
-    station<-unique(tot_tab$SCODE[ids])%>%as.character
-    stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
-    stations<-left_join(stations_sel,se_spread)
-    m<-plotMeteoLeaflet()#stations_sel
-    m<- m %>% addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
-                        as.character %>% as.numeric, icon = c1, 
-                                popup = paste(tr("code",input$language),stations$SCODE, "<br>", 
-                                              tr("nameDe",input$language),stations$NAME_D,"<br>",
-                                              tr("nameIt",input$language), stations$NAME_I, "<br>",
-                                              tr("altitude",input$language),stations$ALT, "<br>",
-                                              "<br>",
-                                              tr("latestRecorded",input$language), 
-                                              "<br>",
-                                              tr("airTemp",input$language),stations$LT, "<br>",
-                                              tr("reHum",input$language),stations$LF, "<br>",
-                                              tr("precipitation",input$language),stations$N, "<br>",
-                                              tr("windSpeed",input$language),stations$WG, "<br>",
-                                              tr("windDir",input$language),stations$WR, "<br>",
-                                              tr("windGuts",input$language),stations$WG.BOE, "<br>",
-                                              tr("atmPress",input$language),stations$LD.RED, "<br>",
-                                              tr("solarRad",input$language),stations$GS, "<br>",
-                                              tr("sunsHour",input$language),stations$SD, "<br>",
-                                              tr("snowH",input$language),stations$HS, "<br>",
-                                              tr("watTemp",input$language),stations$WT, "<br>",
-                                              tr("watFlow",input$language),stations$Q, "<br>",
-                                              tr("watLevel",input$language),stations$W, "<br>"#,
-                                                                              #"Ground water level:",stations$WT, "W.ABST"
-))
-# "output.spatialSelection"
-# input$spatialSelection   
-    if(input$spatialSelection){#FALSE
-      polygon_coordinates <-polyCoord()
-      
-
-      m <- m %>% addDrawToolbar(
-        targetGroup='draw',
-        polylineOptions=FALSE,
-        markerOptions = FALSE,
-        circleOptions = FALSE,
-        rectangleOptions =FALSE,
-        circleMarkerOptions =FALSE)%>%#
-        addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
-        addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
-                         options = layersControlOptions(collapsed = FALSE),position = "topleft")
-       
-      if(is.null(polygon_coordinates)){
-          
-          }else{  
-        drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
-        sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
-        
-        m <- m %>% addPolygons(data=sp,fillOpacity=0.4)
-          }
-      
-    }
-    m
+  ids<-input$table_rows_all
+  station<-unique(tot_tab$SCODE[ids])%>%as.character
+  stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
+  stations_selNot<-getMeteoStat(format = "spatial")%>%filter(!SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
+  stations<-left_join(stations_sel,se_spread)
+  stationsSelNot<-left_join(stations_selNot,se_spread)
+  m<-plotMeteoLeaflet()#stations_sel
+  m<- m %>% addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
+                                as.character %>% as.numeric, icon = c1, 
+                              popup = paste(tr("code",input$language),stations$SCODE, "<br>", 
+                                            tr("nameDe",input$language),stations$NAME_D,"<br>",
+                                            tr("nameIt",input$language), stations$NAME_I, "<br>",
+                                            tr("altitude",input$language),stations$ALT, "<br>",
+                                            "<br>",
+                                            tr("latestRecorded",input$language), 
+                                            "<br>",
+                                            tr("airTemp",input$language),stations$LT, "<br>",
+                                            tr("reHum",input$language),stations$LF, "<br>",
+                                            tr("precipitation",input$language),stations$N, "<br>",
+                                            tr("windSpeed",input$language),stations$WG, "<br>",
+                                            tr("windDir",input$language),stations$WR, "<br>",
+                                            tr("windGuts",input$language),stations$WG.BOE, "<br>",
+                                            tr("atmPress",input$language),stations$LD.RED, "<br>",
+                                            tr("solarRad",input$language),stations$GS, "<br>",
+                                            tr("sunsHour",input$language),stations$SD, "<br>",
+                                            tr("snowH",input$language),stations$HS, "<br>",
+                                            tr("watTemp",input$language),stations$WT, "<br>",
+                                            tr("watFlow",input$language),stations$Q, "<br>",
+                                            tr("watLevel",input$language),stations$W, "<br>"#,
+                                            #"Ground water level:",stations$WT, "W.ABST"
+                              ))%>%
+    addAwesomeMarkers(lng = stationsSelNot$LONG %>% as.character %>% as.numeric, lat = stationsSelNot$LAT %>% 
+                        as.character %>% as.numeric, icon = c2, 
+                      popup = paste(tr("code",input$language),stationsSelNot$SCODE, "<br>", 
+                                    tr("nameDe",input$language),stationsSelNot$NAME_D,"<br>",
+                                    tr("nameIt",input$language), stationsSelNot$NAME_I, "<br>",
+                                    tr("altitude",input$language),stationsSelNot$ALT, "<br>",
+                                    "<br>",
+                                    tr("latestRecorded",input$language), 
+                                    "<br>",
+                                    tr("airTemp",input$language),stationsSelNot$LT, "<br>",
+                                    tr("reHum",input$language),stationsSelNot$LF, "<br>",
+                                    tr("precipitation",input$language),stationsSelNot$N, "<br>",
+                                    tr("windSpeed",input$language),stationsSelNot$WG, "<br>",
+                                    tr("windDir",input$language),stationsSelNot$WR, "<br>",
+                                    tr("windGuts",input$language),stationsSelNot$WG.BOE, "<br>",
+                                    tr("atmPress",input$language),stationsSelNot$LD.RED, "<br>",
+                                    tr("solarRad",input$language),stationsSelNot$GS, "<br>",
+                                    tr("sunsHour",input$language),stationsSelNot$SD, "<br>",
+                                    tr("snowH",input$language),stationsSelNot$HS, "<br>",
+                                    tr("watTemp",input$language),stationsSelNot$WT, "<br>",
+                                    tr("watFlow",input$language),stationsSelNot$Q, "<br>",
+                                    tr("watLevel",input$language),stationsSelNot$W, "<br>"#,
+                                    #"Ground water level:",stations$WT, "W.ABST"
+  # "output.spatialSelection"
+  # input$spatialSelection   
+  if(input$spatialSelection){#FALSE
+    polygon_coordinates <-polyCoord()
     
-  })
+    
+    m <- m %>% addDrawToolbar(
+      targetGroup='draw',
+      polylineOptions=FALSE,
+      markerOptions = FALSE,
+      circleOptions = FALSE,
+      rectangleOptions =FALSE,
+      circleMarkerOptions =FALSE)%>%#
+      addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
+      addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
+                       options = layersControlOptions(collapsed = FALSE),position = "topleft")
+    
+    if(is.null(polygon_coordinates)){
+      
+    }else{  
+      drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+      sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+      
+      m <- m %>% addPolygons(data=sp,fillOpacity=0.4)
+    }
+    
+  }
+  m
+  
+})
   
   #######
   
