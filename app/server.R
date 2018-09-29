@@ -507,15 +507,7 @@ observeEvent(
     polygon_coordinates <-polyCoord()
     
     
-    proxy <- proxy %>% addDrawToolbar(
-      
-      #targetLayerId ='draw',
-      targetGroup='draw',
-      polylineOptions=FALSE,
-      markerOptions = FALSE,
-      circleOptions = FALSE,
-      rectangleOptions =FALSE,
-      circleMarkerOptions =FALSE)#%>%
+    #proxy <- proxy #%>%
      # addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
       #addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
        #                options = layersControlOptions(collapsed = FALSE),position = "topleft")
@@ -613,7 +605,15 @@ observeEvent(
   output$map<-renderLeaflet({
 
   m<-plotMeteoLeaflet()#stations_sel
-    m
+    m%>% addDrawToolbar(
+      
+      #targetLayerId ='draw',
+      targetGroup='draw',
+      polylineOptions=FALSE,
+      markerOptions = FALSE,
+      circleOptions = FALSE,
+      rectangleOptions =FALSE,
+      circleMarkerOptions =FALSE)
 })
   
   #######
