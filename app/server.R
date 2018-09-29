@@ -489,7 +489,7 @@ server <- function(input, output,session) {
     stations<-left_join(stations_sel,se_spread)
   stationsSelNot<-left_join(stations_selNot,se_spread) 
   
-   proxy <- leafletProxy("map")%>% clearMarkers()%>% removeDrawToolbar('draw')
+   proxy <- leafletProxy("map")%>% clearMarkers() %>% removeDrawToolbar(clearFeatures = T)
    
    #proxy %>% removeControl('draw')
    #proxy %>% clearGroup('draw')
