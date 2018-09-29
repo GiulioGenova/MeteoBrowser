@@ -531,14 +531,14 @@ server <- function(input, output,session) {
       #addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
        #                options = layersControlOptions(collapsed = FALSE),position = "topleft")
     
-    if(is.null(polygon_coordinates)){
+    #if(is.null(polygon_coordinates)){
       
-    }else{  
-      drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
-      sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
+    #}else{  
+    #  drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
+    #  sp <- SpatialPolygons(list(Polygons(list(drawn_polygon),"drawn_polygon")))
       
-      proxy <- proxy %>% addPolygons(data=sp,fillOpacity=0.4)
-    }
+    #  proxy <- proxy %>% addPolygons(data=sp,fillOpacity=0.4)
+    #}
     
   }
   proxy<- proxy %>% 
