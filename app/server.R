@@ -500,7 +500,15 @@ server <- function(input, output,session) {
     polygon_coordinates <-polyCoord()
     
     
-    #proxy <- proxy %>%#
+    proxy <- proxy %>% addDrawToolbar(
+      
+      #targetLayerId ='draw',
+      targetGroup='draw',
+      polylineOptions=FALSE,
+      markerOptions = FALSE,
+      circleOptions = FALSE,
+      rectangleOptions =FALSE,
+      circleMarkerOptions =FALSE)#%>%
      # addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
       #addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
        #                options = layersControlOptions(collapsed = FALSE),position = "topleft")
@@ -598,15 +606,7 @@ server <- function(input, output,session) {
   output$map<-renderLeaflet({
 
   m<-plotMeteoLeaflet()#stations_sel
-    m%>% addDrawToolbar(
-      
-      #targetLayerId ='draw',
-      targetGroup='draw',
-      polylineOptions=FALSE,
-      markerOptions = FALSE,
-      circleOptions = FALSE,
-      rectangleOptions =FALSE,
-      circleMarkerOptions =FALSE)
+    m
 })
   
   #######
