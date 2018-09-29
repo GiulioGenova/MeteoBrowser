@@ -89,7 +89,7 @@ se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>%
     green <- awesomeIcons(icon = "ios-close", iconColor = "black", 
 library = "ion", markerColor = "green")
   grey <- awesomeIcons(icon = "ios-close", iconColor = "black", 
-library = "ion", markerColor = "gray")
+library = "ion", markerColor = "gainsboro")
     blu <- awesomeIcons(icon = "ios-close", iconColor = "black", 
 library = "ion", markerColor = "blue")
 
@@ -517,30 +517,7 @@ server <- function(input, output,session) {
     }
     
   }
-  m<- m %>% addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
-                                as.character %>% as.numeric, icon = green, 
-                              popup = paste(tr("code",input$language),stations$SCODE, "<br>", 
-                                            tr("nameDe",input$language),stations$NAME_D,"<br>",
-                                            tr("nameIt",input$language), stations$NAME_I, "<br>",
-                                            tr("altitude",input$language),stations$ALT, "<br>",
-                                            "<br>",
-                                            tr("latestRecorded",input$language), 
-                                            "<br>",
-                                            tr("airTemp",input$language),stations$LT, "<br>",
-                                            tr("reHum",input$language),stations$LF, "<br>",
-                                            tr("precipitation",input$language),stations$N, "<br>",
-                                            tr("windSpeed",input$language),stations$WG, "<br>",
-                                            tr("windDir",input$language),stations$WR, "<br>",
-                                            tr("windGuts",input$language),stations$WG.BOE, "<br>",
-                                            tr("atmPress",input$language),stations$LD.RED, "<br>",
-                                            tr("solarRad",input$language),stations$GS, "<br>",
-                                            tr("sunsHour",input$language),stations$SD, "<br>",
-                                            tr("snowH",input$language),stations$HS, "<br>",
-                                            tr("watTemp",input$language),stations$WT, "<br>",
-                                            tr("watFlow",input$language),stations$Q, "<br>",
-                                            tr("watLevel",input$language),stations$W, "<br>"#,
-                                            #"Ground water level:",stations$WT, "W.ABST"
-                              ))%>%
+  m<- m %>% 
     addAwesomeMarkers(lng = stationsSelNot$LONG %>% as.character %>% as.numeric, lat = stationsSelNot$LAT %>% 
                         as.character %>% as.numeric, icon = grey, 
                       popup = paste(tr("code",input$language),stationsSelNot$SCODE, "<br>", 
@@ -591,7 +568,31 @@ server <- function(input, output,session) {
                                     tr("watLevel",input$language),stations_selNotTab$W, "<br>"#,
                                     #"Ground water level:",stations$WT, "W.ABST"
    
-                      ))
+                      ))%>%
+    addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
+                                as.character %>% as.numeric, icon = green, 
+                              popup = paste(tr("code",input$language),stations$SCODE, "<br>", 
+                                            tr("nameDe",input$language),stations$NAME_D,"<br>",
+                                            tr("nameIt",input$language), stations$NAME_I, "<br>",
+                                            tr("altitude",input$language),stations$ALT, "<br>",
+                                            "<br>",
+                                            tr("latestRecorded",input$language), 
+                                            "<br>",
+                                            tr("airTemp",input$language),stations$LT, "<br>",
+                                            tr("reHum",input$language),stations$LF, "<br>",
+                                            tr("precipitation",input$language),stations$N, "<br>",
+                                            tr("windSpeed",input$language),stations$WG, "<br>",
+                                            tr("windDir",input$language),stations$WR, "<br>",
+                                            tr("windGuts",input$language),stations$WG.BOE, "<br>",
+                                            tr("atmPress",input$language),stations$LD.RED, "<br>",
+                                            tr("solarRad",input$language),stations$GS, "<br>",
+                                            tr("sunsHour",input$language),stations$SD, "<br>",
+                                            tr("snowH",input$language),stations$HS, "<br>",
+                                            tr("watTemp",input$language),stations$WT, "<br>",
+                                            tr("watFlow",input$language),stations$Q, "<br>",
+                                            tr("watLevel",input$language),stations$W, "<br>"#,
+                                            #"Ground water level:",stations$WT, "W.ABST"
+                              ))
     
     m
   
