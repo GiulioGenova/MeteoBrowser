@@ -555,6 +555,8 @@ observeEvent(
       
       #targetLayerId ='draw',
       targetGroup='draw',
+      polygonOptions = drawPolygonOptions(),
+      editOptions = editToolbarOptions(),
       polylineOptions=FALSE,
       markerOptions = FALSE,
       circleOptions = FALSE,
