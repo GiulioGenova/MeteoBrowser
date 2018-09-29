@@ -504,7 +504,7 @@ observeEvent(
    # "output.spatialSelection"
   # input$spatialSelection 
   if(input$spatialSelection){#FALSE
-    polygon_coordinates <-polyCoord()
+    #polygon_coordinates <-polyCoord()
     
     
     proxy <- proxy%>% addDrawToolbar(
