@@ -661,7 +661,7 @@ observeEvent(
       print(input$map_draw_all_features$features$properties)
       print(drawnshapes)
       str(drawnshapes)
-      print(as.character(str(drawnshapes)))
+      print(as.character(drawnshapes[[1]]))
     }
   )
   
