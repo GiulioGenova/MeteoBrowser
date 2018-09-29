@@ -324,7 +324,10 @@ server <- function(input, output,session) {
     }
     
     dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
-              options = list(autoWidth = F,scrollX=T)
+              options = list(autoWidth = F,scrollX=T,
+                            searchCols = list(list(search = '["83200MS"]'), NULL, NULL, NULL,
+                                      NULL, NULL, NULL )
+                            )
     ) 
     
     if(input$language=="it"){
