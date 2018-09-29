@@ -502,7 +502,7 @@ server <- function(input, output,session) {
     proxy <- proxy %>% addDrawToolbar(
       
       targetLayerId ='draw',
-      targetGroup='draw',
+      #targetGroup='draw',
       polylineOptions=FALSE,
       markerOptions = FALSE,
       circleOptions = FALSE,
