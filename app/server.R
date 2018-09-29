@@ -489,11 +489,11 @@ server <- function(input, output,session) {
     stations<-left_join(stations_sel,se_spread)
   stationsSelNot<-left_join(stations_selNot,se_spread) 
   
-   proxy <- leafletProxy("map")
-   proxy %>% clearShapes()
+   proxy <- leafletProxy("map")%>% clearShapes()%>% removeDrawToolbar()
+   
    #proxy %>% removeControl('draw')
    #proxy %>% clearGroup('draw')
-   proxy %>% removeDrawToolbar()
+   
    # "output.spatialSelection"
   # input$spatialSelection 
   if(input$spatialSelection){#FALSE
