@@ -477,6 +477,12 @@ server <- function(input, output,session) {
   
   
  observe({
+   if(!input$spatialSelection){#FALSE
+   proxy <- leafletProxy("map") %>% 
+   removeDrawToolbar(clearFeatures = TRUE)
+   }
+  })
+ observe({
 
   ids<-input$table_rows_all
   stationTab<-unique(tot_tab$SCODE[ids])%>%as.character
