@@ -325,7 +325,7 @@ server <- function(input, output,session) {
     
     dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
               options = list(autoWidth = F,scrollX=T,
-                            searchCols = list(list(search = '["83200MS"]'), NULL, NULL, NULL,
+                            searchCols = list(NULL, NULL, NULL, NULL,#list(search = '["83200MS"]')
                                       NULL, NULL, NULL )
                             )
     ) 
