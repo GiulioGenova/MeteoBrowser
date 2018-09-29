@@ -476,15 +476,26 @@ server <- function(input, output,session) {
   
   
   output$map<-renderLeaflet({
-  #ids<-input$table_rows_all
-  #station<-unique(tot_tab$SCODE[ids])%>%as.character
+    green <- awesomeIcons(icon = "ios-close", iconColor = "black", 
+library = "ion", markerColor = "green")
+  grey <- awesomeIcons(icon = "ios-close", iconColor = "black", 
+library = "ion", markerColor = "grey")
+    blu <- awesomeIcons(icon = "ios-close", iconColor = "black", 
+library = "ion", markerColor = "blue")
+    
+  ids<-input$table_rows_all
+  stationTab<-unique(tot_tab$SCODE[ids])%>%as.character
   station<-StatSens$station
   stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
   stations_selNot<-getMeteoStat(format = "spatial")%>%filter(!SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
-  stations<-left_join(stations_sel,se_spread)
+  stations_selNotTab<-stations_selNot%>%filter(SCODE%in%stationTab)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
+  stations_selNot<-stations_selNot%>%filter(!SCODE%in%stationTab)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
+  
+    stations<-left_join(stations_sel,se_spread)
   stationsSelNot<-left_join(stations_selNot,se_spread)
   m<-plotMeteoLeaflet()#stations_sel
-  
+  # "output.spatialSelection"
+  # input$spatialSelection 
   if(input$spatialSelection){#FALSE
     polygon_coordinates <-polyCoord()
     
@@ -511,7 +522,7 @@ server <- function(input, output,session) {
     
   }
   m<- m %>% addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
-                                as.character %>% as.numeric, icon = c1, 
+                                as.character %>% as.numeric, icon = green, 
                               popup = paste(tr("code",input$language),stations$SCODE, "<br>", 
                                             tr("nameDe",input$language),stations$NAME_D,"<br>",
                                             tr("nameIt",input$language), stations$NAME_I, "<br>",
@@ -535,7 +546,7 @@ server <- function(input, output,session) {
                                             #"Ground water level:",stations$WT, "W.ABST"
                               ))%>%
     addAwesomeMarkers(lng = stationsSelNot$LONG %>% as.character %>% as.numeric, lat = stationsSelNot$LAT %>% 
-                        as.character %>% as.numeric, icon = c2, 
+                        as.character %>% as.numeric, icon = grey, 
                       popup = paste(tr("code",input$language),stationsSelNot$SCODE, "<br>", 
                                     tr("nameDe",input$language),stationsSelNot$NAME_D,"<br>",
                                     tr("nameIt",input$language), stationsSelNot$NAME_I, "<br>",
@@ -557,8 +568,33 @@ server <- function(input, output,session) {
                                     tr("watFlow",input$language),stationsSelNot$Q, "<br>",
                                     tr("watLevel",input$language),stationsSelNot$W, "<br>"#,
                                     #"Ground water level:",stations$WT, "W.ABST"
-  # "output.spatialSelection"
-  # input$spatialSelection   
+    
+                      ))
+    %>%
+    addAwesomeMarkers(lng = stations_selNotTab$LONG %>% as.character %>% as.numeric, lat = stations_selNotTab$LAT %>% 
+                        as.character %>% as.numeric, icon = blu, 
+                      popup = paste(tr("code",input$language),stations_selNotTab$SCODE, "<br>", 
+                                    tr("nameDe",input$language),stations_selNotTab$NAME_D,"<br>",
+                                    tr("nameIt",input$language), stations_selNotTab$NAME_I, "<br>",
+                                    tr("altitude",input$language),stations_selNotTab$ALT, "<br>",
+                                    "<br>",
+                                    tr("latestRecorded",input$language), 
+                                    "<br>",
+                                    tr("airTemp",input$language),stations_selNotTab$LT, "<br>",
+                                    tr("reHum",input$language),stations_selNotTab$LF, "<br>",
+                                    tr("precipitation",input$language),stations_selNotTab$N, "<br>",
+                                    tr("windSpeed",input$language),stations_selNotTab$WG, "<br>",
+                                    tr("windDir",input$language),stations_selNotTab$WR, "<br>",
+                                    tr("windGuts",input$language),stations_selNotTab$WG.BOE, "<br>",
+                                    tr("atmPress",input$language),stations_selNotTab$LD.RED, "<br>",
+                                    tr("solarRad",input$language),stations_selNotTab$GS, "<br>",
+                                    tr("sunsHour",input$language),stations_selNotTab$SD, "<br>",
+                                    tr("snowH",input$language),stations_selNotTab$HS, "<br>",
+                                    tr("watTemp",input$language),stations_selNotTab$WT, "<br>",
+                                    tr("watFlow",input$language),stations_selNotTab$Q, "<br>",
+                                    tr("watLevel",input$language),stations_selNotTab$W, "<br>"#,
+                                    #"Ground water level:",stations$WT, "W.ABST"
+   
                       ))
     
     m
