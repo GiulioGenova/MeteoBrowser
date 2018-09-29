@@ -385,7 +385,7 @@ observeEvent(
     polyId(polygon_id)
     })
   
-  drawnshapes <- list()
+  drawnshapes <- reactiveVal(list())
   
   # we are fortunate here since we get an event
   #   draw_all_features
