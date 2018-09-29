@@ -404,21 +404,21 @@ observeEvent(
   )
   
   # observe our simple little button to remove
-  #observeEvent(
-  #  input$deletebtn,
-  #  {
-  #    print(drawnshapes)
-  #    lapply(
-  #      drawnshapes,
-  #      function(todelete) {
-  #        session$sendCustomMessage(
-  #          "removeleaflet",
-  #          list(elid="map", layerid=todelete)
-  #        )
-  #      }
-  #    )
-  #  }
-  #)
+  observeEvent(
+    input$deletebtn,
+    {
+      print(drawnshapes)
+      lapply(
+        drawnshapes,
+        function(todelete) {
+          session$sendCustomMessage(
+            "removeleaflet",
+            list(elid="map", layerid=todelete)
+          )
+        }
+      )
+    }
+  )
   
 
   
