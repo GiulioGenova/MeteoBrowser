@@ -658,7 +658,7 @@ observeEvent(
     {
       proxy <- leafletProxy("map") %>% 
       removeShape(input$map_draw_all_features$features$properties$`_leaflet_id`)
-      print(input$map_draw_all_features$features$properties$`_leaflet_id`)
+      print(input$map_draw_all_features$features$properties)
     }
   )
   
