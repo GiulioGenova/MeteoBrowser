@@ -72,7 +72,7 @@ plotMeteoLeaflet<-function (stations = NULL, addPoints = NULL, addBuff = F, widt
   c1 <- awesomeIcons(icon = "ios-close", iconColor = "black", 
                      library = "ion", markerColor = "blue")
   c2 <- awesomeIcons(icon = "ios-close", iconColor = "black", 
-                     library = "ion", markerColor = "red")
+                     library = "ion", markerColor = "grey")
   
   m <- leaflet() %>%addSearchOSM()%>%
     #htmlwidgets::onRender(".leaflet-control {
