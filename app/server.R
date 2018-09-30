@@ -319,11 +319,13 @@ output$tabChoice  <- renderUI({
     
     if(input$language=="it"){
     tot_tab<-tot_tab%>%dplyr::select(-DESC_D)%>%#-NAME_D,
-      unite(DESC_I,DESC_I,UNIT,sep=" - ") 
+      unite(DESC_I,DESC_I,UNIT,sep=" - ")%>%
+      dplyr::mutate(DESC_I = as.factor(DESC_I))
       #rename(NAME_I=NOME,TYPE=SENSORE,ALT=ALTITUDINE)
     }else if(input$language=="de"){
     tot_tab<-tot_tab%>%dplyr::select(-DESC_I)%>%#-NAME_I,
-      unite(DESC_E,DESC_E,UNIT,sep=" - ")
+      unite(DESC_D,DESC_D,UNIT,sep=" - ")%>%
+      dplyr::mutate(DESC_D = as.factor(DESC_D))
       #rename(TYPE=SENSOR)
     }else{
     tot_tab<-tot_tab%>%dplyr::select(-DESC_I)%>%#,-NAME_I
@@ -343,7 +345,8 @@ output$tabChoice  <- renderUI({
                                                                                                     ifelse(DESC_D=="Wasserstand","Water level",
                                                                                                            ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))%>%
       unite(DESC_D,DESC_D,UNIT,sep=" - ") %>% 
-      dplyr::rename(DESC_E = DESC_D)
+      dplyr::rename(DESC_E = DESC_D)%>%
+      dplyr::mutate(DESC_E = as.factor(DESC_E))
       
     }
     
