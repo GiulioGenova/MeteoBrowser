@@ -394,7 +394,8 @@ server <- function(input, output,session) {
        req(input$map_draw_edited_features)
        polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
        print("second")
-       print(input$map_draw_new_feature$geometry)
+       print(input$map_draw_edited_feature$geometry)
+       print(input$map_draw_edited_features$geometry)
     polyCoord(polygon_coordinates)
     })
   })
