@@ -315,6 +315,7 @@ output$tabChoice  <- renderUI({
   ###############
   
   output$table<-DT::renderDT({
+    tot_tab<-tot_tab%>%dplyr::select(-SCODE,-TYPE)
     
     if(input$language=="it"){
     tot_tab<-tot_tab%>%dplyr::select(-NAME_D,-DESC_D)#%>%
