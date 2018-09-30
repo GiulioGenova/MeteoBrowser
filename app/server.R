@@ -390,14 +390,14 @@ server <- function(input, output,session) {
       #input$map_draw_all_features
       polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
     polyCoord(polygon_coordinates)
-     observe({ 
-       req(input$map_draw_edited_features)
-       polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
-       print("second")
-       print(input$map_draw_edited_feature$geometry)
-       print(input$map_draw_edited_features$geometry)
-    polyCoord(polygon_coordinates)
-    })
+     #observe({ 
+     #  req(input$map_draw_edited_features)
+     #  polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
+     #  print("second")
+     #  print(input$map_draw_edited_feature$geometry)
+     #  print(input$map_draw_edited_features$geometry)
+    #polyCoord(polygon_coordinates)
+    #})
   })
   #drawnshapes <- reactiveVal(list())
   
@@ -570,7 +570,7 @@ server <- function(input, output,session) {
       #targetLayerId ='draw',
       targetGroup='draw',
       polygonOptions = drawPolygonOptions(),
-      editOptions = editToolbarOptions(),
+      editOptions = editToolbarOptions(edit=FALSE),
       polylineOptions=FALSE,
       markerOptions = FALSE,
       circleOptions = FALSE,
