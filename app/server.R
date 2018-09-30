@@ -603,21 +603,11 @@ output$tabChoice  <- renderUI({
    
    # "output.spatialSelection"
   # input$spatialSelection 
-  if(input$spatialSelection){#FALSE
+ # #if(input$spatialSelection){#FALSE
     #polygon_coordinates <-polyCoord()
     
     
-    proxy <- proxy%>% addDrawToolbar(
-      
-      #targetLayerId ='draw',
-      targetGroup='draw',
-      polygonOptions = drawPolygonOptions(),
-      editOptions = editToolbarOptions(edit=FALSE),
-      polylineOptions=FALSE,
-      markerOptions = FALSE,
-      circleOptions = FALSE,
-      rectangleOptions =FALSE,
-      circleMarkerOptions =FALSE) #%>%
+    #proxy <- proxy #%>%
      # addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
       #addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
        #                options = layersControlOptions(collapsed = FALSE),position = "topleft")
@@ -631,7 +621,7 @@ output$tabChoice  <- renderUI({
     #  proxy <- proxy %>% addPolygons(data=sp,fillOpacity=0.4)
     #}
     
-  }
+ ## }
   proxy<- proxy %>% 
     addAwesomeMarkers(lng = stationsSelNot$LONG %>% as.character %>% as.numeric, lat = stationsSelNot$LAT %>% 
                         as.character %>% as.numeric, icon = grey, 
@@ -715,7 +705,17 @@ output$tabChoice  <- renderUI({
   output$map<-renderLeaflet({
 
   m<-plotMeteoLeaflet()#stations_sel
-    m
+    m%>% addDrawToolbar(
+      
+      #targetLayerId ='draw',
+      targetGroup='draw',
+      polygonOptions = drawPolygonOptions(),
+      editOptions = editToolbarOptions(edit=FALSE),
+      polylineOptions=FALSE,
+      markerOptions = FALSE,
+      circleOptions = FALSE,
+      rectangleOptions =FALSE,
+      circleMarkerOptions =FALSE)
 })
   
   #######
