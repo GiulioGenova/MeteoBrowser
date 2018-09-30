@@ -562,11 +562,11 @@ server <- function(input, output,session) {
   stationTab<-unique(tot_tab$SCODE[ids])%>%as.character
   station<-StatSens$station
   
-   stations_sel<-se_spread%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
+   stations<-se_spread%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
   stations_selNot<-se_spread%>%filter(!SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
   
    stations_selNotTab<-stations_selNot%>%filter(SCODE%in%stationTab)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
-  stations_selNot<-stations_selNot%>%filter(!SCODE%in%stationTab)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
+  stationsSelNot<-stations_selNot%>%filter(!SCODE%in%stationTab)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
   
     #stations<-left_join(stations_sel,se_spread)
   #stationsSelNot<-left_join(stations_selNot,se_spread) 
