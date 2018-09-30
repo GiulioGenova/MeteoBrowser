@@ -124,11 +124,13 @@ server <- function(input, output,session) {
   ### moved from UI due to multilanguage
   output$save  <- renderMenu({
   conditionalPanel(condition = "output.tablebuilt",#br(),#"input.daterange[1]<=input.daterange[2]"
-                 div(style="width: 100%;",div(style="width: 40%;",#display: inline-block;vertical-align:top; 
+                 #div(style="width: 100%;",
+                     div(style="width: 40%;",#display: inline-block;vertical-align:top; 
                      downloadButton('downloadData', h4(tr("savecsvjson",input$language)) ,class="butt")),#
                      div(style=" width: 45%;",#display: inline-block;vertical-align:top;
                          radioButtons(inputId = "csvjson",label = tr("tableType",input$language),
-                                      choices = list("csv","json")))))
+                                      choices = list("csv","json"))))
+                  #)
 
 })
     
