@@ -343,8 +343,8 @@ output$tabChoice  <- renderUI({
                                                                  ifelse(DESC_D=="Globalstrahlung","Solar Radiation",
                                                                         ifelse(DESC_D=="Sonnenscheindauer","Sunshine hours",
                                                                                ifelse(DESC_D=="Schneehöhe","Snow height",
-                                                                               ifelse(DESC_D=="Wassertemperatur","Air temperature",
-                                                                                      ifelse(DESC_D=="Lufttemperatur","Water flow",
+                                                                               ifelse(DESC_D=="Wassertemperatur","Water temperature",
+                                                                                      ifelse(DESC_D=="Lufttemperatur","Air temperature",
                                                                                              ifelse(DESC_D=="Durchfluss","Water flow",
                                                                                                     ifelse(DESC_D=="Wasserstand","Water level",
                                                                                                            ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))%>%
