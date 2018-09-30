@@ -80,7 +80,21 @@ u <- GET(url) %>% content
 se<-bind_rows(u)
 st<-getMeteoStat()
 tot_tab<-full_join(st,se)%>%dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALUE,-LAT,-LONG,-VALUE)%>%
-  mutate_if(is.character, funs(as.factor(.)))#%>%as.data.frame()
+  mutate_if(is.character, funs(as.factor(.)))%>%
+dplyr::mutate(DESC_E=as.factor(ifelse(DESC_D=="relative Luftfeuchte","Relative humidity",
+                              ifelse(DESC_D=="Niederschlag","Precipitation",
+                                     ifelse(DESC_D=="Windgeschwindigkeit","Wind speed",
+                                            ifelse(DESC_D=="Windrichtung","Wind direction",
+                                                   ifelse(DESC_D=="Windgeschwindigkeit Böe","Wind direction",
+                                                          ifelse(DESC_D=="Luftdruck","Atmospheric perssion",
+                                                                 ifelse(DESC_D=="Globalstrahlung","Solar Radiation",
+                                                                        ifelse(DESC_D=="Sonnenscheindauer","Sunshine hours",
+                                                                               ifelse(DESC_D=="Schneehöhe","Snow height",
+                                                                               ifelse(DESC_D=="Wassertemperatur","Water temperature",
+                                                                                      ifelse(DESC_D=="Lufttemperatur","Air temperature",
+                                                                                             ifelse(DESC_D=="Durchfluss","Water flow",
+                                                                                                    ifelse(DESC_D=="Wasserstand","Water level",
+                                                                                                           ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))
 
 se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>% 
   dplyr::mutate(DATE=paste0("(",as_datetime(DATE),")"))%>%
@@ -322,34 +336,21 @@ output$tabChoice  <- renderUI({
     tot_tab<-tot_tab%>%dplyr::select(-SCODE,-TYPE)
     
     if(input$language=="it"){
-    tot_tab<-tot_tab%>%dplyr::select(-DESC_D)%>%#-NAME_D,
+    tot_tab<-tot_tab%>%dplyr::select(-DESC_D,-DESC_E)%>%#-NAME_D,
       unite(DESC_I,DESC_I,UNIT,sep=" - ")%>%
       dplyr::mutate(DESC_I = as.factor(DESC_I))
       #rename(NAME_I=NOME,TYPE=SENSORE,ALT=ALTITUDINE)
     }else if(input$language=="de"){
-    tot_tab<-tot_tab%>%dplyr::select(-DESC_I)%>%#-NAME_I,
+    tot_tab<-tot_tab%>%dplyr::select(-DESC_I,-DESC_E)%>%#-NAME_I,
       unite(DESC_D,DESC_D,UNIT,sep=" - ")%>%
       dplyr::mutate(DESC_D = as.factor(DESC_D))
       #rename(TYPE=SENSOR)
     }else{
-    tot_tab<-tot_tab%>%dplyr::select(-DESC_I)%>%#,-NAME_I
+    tot_tab<-tot_tab%>%dplyr::select(-DESC_I,-DESC_D)%>%#,-NAME_I
       #dplyr::mutate(DESC_D=translation[which(substr(translation$de,start = 1,stop = nchar(translation$de)-1)==DESC_D),"en"])
-      dplyr::mutate(DESC_D=as.factor(ifelse(DESC_D=="relative Luftfeuchte","Relative humidity",
-                              ifelse(DESC_D=="Niederschlag","Precipitation",
-                                     ifelse(DESC_D=="Windgeschwindigkeit","Wind speed",
-                                            ifelse(DESC_D=="Windrichtung","Wind direction",
-                                                   ifelse(DESC_D=="Windgeschwindigkeit Böe","Wind direction",
-                                                          ifelse(DESC_D=="Luftdruck","Atmospheric perssion",
-                                                                 ifelse(DESC_D=="Globalstrahlung","Solar Radiation",
-                                                                        ifelse(DESC_D=="Sonnenscheindauer","Sunshine hours",
-                                                                               ifelse(DESC_D=="Schneehöhe","Snow height",
-                                                                               ifelse(DESC_D=="Wassertemperatur","Water temperature",
-                                                                                      ifelse(DESC_D=="Lufttemperatur","Air temperature",
-                                                                                             ifelse(DESC_D=="Durchfluss","Water flow",
-                                                                                                    ifelse(DESC_D=="Wasserstand","Water level",
-                                                                                                           ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))%>%
-      unite(DESC_D,DESC_D,UNIT,sep=" - ") %>% 
-      dplyr::rename(DESC_E = DESC_D)%>%
+      
+      unite(DESC_E,DESC_E,UNIT,sep=" - ") %>% 
+      #dplyr::rename(DESC_E = DESC_D)%>%
       dplyr::mutate(DESC_E = as.factor(DESC_E))
       
     }
