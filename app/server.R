@@ -125,15 +125,26 @@ server <- function(input, output,session) {
   output$save  <- renderMenu({
   conditionalPanel(condition = "output.tablebuilt",#br(),#"input.daterange[1]<=input.daterange[2]"
                  #div(style="width: 100%;",
-                     div(style="width: 30%;",#display: inline-block;vertical-align:top; 
-                     downloadButton('downloadData', h4(tr("savecsvjson",input$language)) ,class="butt")),#
-                     div(style=" width: 25%;",#display: inline-block;vertical-align:top;
-                         radioButtons(inputId = "csvjson",label = tr("tableType",input$language),
-                                      choices = list("csv","json"))))
+                     #div(style="width: 30%;",#display: inline-block;vertical-align:top; 
+                     downloadButton('downloadData', h4(tr("savecsvjson",input$language)) ,class="butt")
+                      #  )
+                   
+                  )
                   #)
 
 })
-    
+
+output$tabChoice  <- renderMenu({
+  conditionalPanel(condition = "output.tablebuilt",
+                     #div(style=" width: 25%;",#display: inline-block;vertical-align:top;
+                         radioButtons(inputId = "csvjson",label = tr("tableType",input$language),
+                                      choices = list("csv","json"))
+                        #)
+                  )
+                  #)
+})  
+  
+  
   output$Data  <- renderMenu({
     sidebarMenu(
   menuItem(tr("menuData",input$language), tabName = "Data", icon = icon("bar-chart-o"))
@@ -150,10 +161,10 @@ server <- function(input, output,session) {
     #datestart<- input$daterange[1] %>% as.character %>% as_date
     #dateend<- input$daterange[2] %>% as.character %>% as_date
     #if(datestart<=dateend){actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")}
-    div(style="width: 40%;",
+    #div(style="width: 40%;",
     conditionalPanel(condition = "output.rightdate",#br(),
                      actionButton(label= tr("refresh",input$language),"refresh"))
-        )
+     #   )
   })
   
   #output$deletebtn  <- renderUI({
