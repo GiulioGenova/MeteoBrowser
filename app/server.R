@@ -318,10 +318,12 @@ output$tabChoice  <- renderUI({
     tot_tab<-tot_tab%>%dplyr::select(-SCODE,-TYPE)
     
     if(input$language=="it"){
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_D,-DESC_D)#%>%
+    tot_tab<-tot_tab%>%dplyr::select(-DESC_D)%>%#-NAME_D,
+      unite(DESC_I,DESC_I,UNIT,sep=" - ") 
       #rename(NAME_I=NOME,TYPE=SENSORE,ALT=ALTITUDINE)
     }else if(input$language=="de"){
-    tot_tab<-tot_tab%>%dplyr::select(-NAME_I,-DESC_I)#%>%
+    tot_tab<-tot_tab%>%dplyr::select(-DESC_I)%>%#-NAME_I,
+      unite(DESC_E,DESC_E,UNIT,sep=" - ")
       #rename(TYPE=SENSOR)
     }else{
     tot_tab<-tot_tab%>%dplyr::select(-DESC_I)%>%#,-NAME_I
@@ -340,28 +342,29 @@ output$tabChoice  <- renderUI({
                                                                                              ifelse(DESC_D=="Durchfluss","Water flow",
                                                                                                     ifelse(DESC_D=="Wasserstand","Water level",
                                                                                                            ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))%>%
+      unite(DESC_E,DESC_E,UNIT,sep=" - ") %>% 
       dplyr::rename(DESC_E = DESC_D)
       
     }
     
     dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
               options = list(autoWidth = F,scrollX=T
-                             #,
-                            #searchCols = list( NULL, NULL, NULL,#search = list('["83200MS"]'),
-                             #         NULL, NULL, NULL )
+                             ,
+                            searchCols = list( search = list('["Bozen"]'),NULL, NULL, NULL,#,
+                                      NULL, NULL, NULL )
                             )
     ) 
     
     if(input$language=="it"){
     dt<-dt%>% 
-      formatStyle(c( "DESC_I","UNIT"),#"TYPE",
+      formatStyle(c( "DESC_I"),#"TYPE",,"UNIT"
                   backgroundColor = "#edf5e1")
     }else if(input$language=="de"){
     dt<-dt%>% 
-      formatStyle(c( "DESC_D", "UNIT"),#"TYPE",
+      formatStyle(c( "DESC_D"),#"TYPE",, "UNIT"
                   backgroundColor = "#edf5e1")
     }else{
-    dt<-dt%>%formatStyle(c( "DESC_E", "UNIT"),#"TYPE",
+    dt<-dt%>%formatStyle(c( "DESC_E"),#"TYPE",, "UNIT"
                   backgroundColor = "#edf5e1")
     }
     
