@@ -504,7 +504,7 @@ output$tabChoice  <- renderUI({
       if(input$language=="it"){
       sensorsName<-unique(tot_tab$DESC_I[ids])%>%as.character
       }else if(input$language=="de"){
-       sensorsName<-unique(tot_tab$NAME_D[ids])%>%as.character
+       sensorsName<-unique(tot_tab$DESC_D[ids])%>%as.character
       }
         else{
         sensorsName<-unique(tot_tab$DESC_E[ids])%>%as.character
