@@ -84,7 +84,11 @@ ui <- dashboardPage(#useShinyjs(),
                     #                                         end = Sys.Date()+1)
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Update selection","updateSelection")),
                     
-                    div(style=" width: 40%;",uiOutput("refresh")),#display: inline-block;vertical-align:top;
+                    #div(style=" width: 40%;",
+                        uiOutput("refresh")
+                     #  )
+                    
+                    ,#display: inline-block;vertical-align:top;
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Download selected data","refresh")) ,
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton( "stop",label = "Stop Download (reload page)",class="btn-danger")),#,onclick="Shiny.onInputChange('stopThis',true)"
                     #div(style=" width: 55%;",
