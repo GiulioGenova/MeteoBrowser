@@ -500,7 +500,7 @@ output$tabChoice  <- renderUI({
     }
     #########################################################
     #input$spatialSelection
-      if(input$spatialSelection){#FALSE
+      if(!is.null(polyCoord())){#FALSE
       #req(input$map_draw_stop)
       stations_sp <- getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)
       
@@ -510,7 +510,7 @@ output$tabChoice  <- renderUI({
       #polygon_coordinates <- input$map_draw_new_feature$geometry$coordinates[[1]]
       #polygon_coordinates <- polyCoord$polygon_coordinates
       polygon_coordinates <-polyCoord()
-      if(is.null(polygon_coordinates)|is.null(ids)){
+      if(is.null(ids)){#is.null(polygon_coordinates)|
           station<-NULL;sensors<-NULL;stationName<-NULL
           }else{
       drawn_polygon <- Polygon(do.call(rbind,lapply(polygon_coordinates,function(x){c(x[[1]][1],x[[2]][1])})))
