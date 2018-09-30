@@ -356,12 +356,12 @@ server <- function(input, output,session) {
   #})
   polyCoord <- reactiveVal(NULL)
   
-  observeEvent(input$deletebtn,{
+  #observeEvent(input$deletebtn,{
+  #  
+  #  polygon_coordinates = NULL
+  #  polyCoord(polygon_coordinates)
     
-    polygon_coordinates = NULL
-    polyCoord(polygon_coordinates)
-    
-    })
+  #  })
   
   observe({
   input$map_draw_deleted_features
@@ -386,6 +386,7 @@ server <- function(input, output,session) {
     req(input$map_draw_stop)
     input$map_draw_edited_features
     input$map_draw_new_feature
+      input$map_draw_all_features
       polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
     polyCoord(polygon_coordinates)
       
