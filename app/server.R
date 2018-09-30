@@ -392,13 +392,13 @@ server <- function(input, output,session) {
     input$map_draw_new_feature
       #input$map_draw_all_features
      res <- input$map_draw_all_features
-      print(res)
+      #print(res)
     if (is.null(res) || length(res[['features']]) == 0) {
       res <-(NULL)
     } else {
       res <-(res[['features']][[1]])
     }
-    print(res)
+    #print(res)
       polygon_coordinates = res$geometry$coordinates[[1]]
     #polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
     polyCoord(polygon_coordinates)
