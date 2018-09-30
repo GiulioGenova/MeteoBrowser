@@ -150,10 +150,10 @@ server <- function(input, output,session) {
                      actionButton(label= tr("refresh",input$language),"refresh")) 
   })
   
-  output$deletebtn  <- renderUI({
-  if(input$spatialSelection==TRUE){
-    actionButton("deletebtn", tr("deletebtn",input$language))}
-  })
+  #output$deletebtn  <- renderUI({
+  #if(input$spatialSelection==TRUE){
+  #  actionButton("deletebtn", tr("deletebtn",input$language))}
+  #})
   
   #output$deletebtn  <- renderUI({
   #conditionalPanel(condition = "output.spatialSelection",br(),
