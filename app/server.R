@@ -392,8 +392,10 @@ server <- function(input, output,session) {
     polyCoord(polygon_coordinates)
      observe({ 
      req(input$map_draw_deleted_features)
+     polygon_coordinates = NULL
+     polyCoord(polygon_coordinates)
        #  req(input$map_draw_edited_features)
-       polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
+       #polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
      #  print("second")
      #  print(input$map_draw_edited_feature$geometry)
      #  print(input$map_draw_edited_features$geometry)
