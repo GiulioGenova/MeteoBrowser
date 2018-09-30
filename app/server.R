@@ -391,11 +391,12 @@ output$tabChoice  <- renderUI({
     
   #  })
   
-  observeEvent(input$map_draw_deleted_features,{
-  input$map_draw_deleted_features
-  polygon_coordinates = NULL
-  polyCoord(polygon_coordinates)
-  })
+  #observeEvent(input$map_draw_deleted_features,{
+  #input$map_draw_deleted_features
+  #polygon_coordinates = NULL
+  #polyCoord(polygon_coordinates)
+  #})
+  
 #observeEvent(
 #    input$deletebtn,
 #    {
