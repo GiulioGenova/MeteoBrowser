@@ -384,14 +384,17 @@ server <- function(input, output,session) {
   #observeEvent(req(input$map_draw_stop),{
     observe({
     req(input$map_draw_stop)
-    input$map_draw_edited_features
+    
     input$map_draw_new_feature
-      input$map_draw_all_features
+      #input$map_draw_all_features
       polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
     polyCoord(polygon_coordinates)
-      
+     observe({ 
+       input$map_draw_edited_features
+       polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[2]]
+    polyCoord(polygon_coordinates)
     })
-  
+  })
   #drawnshapes <- reactiveVal(list())
   
   # we are fortunate here since we get an event
