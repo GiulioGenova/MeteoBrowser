@@ -385,6 +385,7 @@ server <- function(input, output,session) {
     observe({
     req(input$map_draw_stop)
     input$map_draw_edited_features
+    input$map_draw_new_feature
       polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
     polyCoord(polygon_coordinates)
       
