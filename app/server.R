@@ -218,11 +218,12 @@ output$tabChoice  <- renderUI({
                                               ))
    })
   
-  output$spatSel<-renderText({
+  #output$spatSel<-renderText({
     
-  tr("spatialSelection",input$language)
+  #tr("spatialSelection",input$language)
                               
-  })
+  #})
+  
   #output$spatialSelection<-renderUI({
   #checkboxInput("spatialSelection", label = as.character(translation[grep("spatialSelection",translation$key),input$language]),
   #                              value = FALSE)
@@ -356,7 +357,7 @@ output$tabChoice  <- renderUI({
     dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
               options = list(autoWidth = F,scrollX=T
                              ,
-                            searchCols = list( list(search ='["Bozen"]'),NULL, NULL, NULL,#,
+                            searchCols = list( list(search ='["Salurn"]'),NULL, NULL, NULL,#,
                                       NULL, NULL, NULL )
                             )
     ) 
