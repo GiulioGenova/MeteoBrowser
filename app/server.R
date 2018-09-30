@@ -345,9 +345,10 @@ output$tabChoice  <- renderUI({
     }
     
     dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
-              options = list(autoWidth = F,scrollX=T,
-                            searchCols = list(list( NULL, NULL, NULL,#search = '["83200MS"]'),
-                                      NULL, NULL, NULL )
+              options = list(autoWidth = F,scrollX=T
+                             #,
+                            #searchCols = list( NULL, NULL, NULL,#search = list('["83200MS"]'),
+                             #         NULL, NULL, NULL )
                             )
     ) 
     
