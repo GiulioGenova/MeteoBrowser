@@ -342,7 +342,7 @@ output$tabChoice  <- renderUI({
                                                                                              ifelse(DESC_D=="Durchfluss","Water flow",
                                                                                                     ifelse(DESC_D=="Wasserstand","Water level",
                                                                                                            ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))%>%
-      unite(DESC_E,DESC_E,UNIT,sep=" - ") %>% 
+      unite(DESC_D,DESC_D,UNIT,sep=" - ") %>% 
       dplyr::rename(DESC_E = DESC_D)
       
     }
