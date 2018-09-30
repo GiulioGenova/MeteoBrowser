@@ -111,9 +111,11 @@ ui <- dashboardPage(#useShinyjs(),
                     #            choices = list("wide","long")),
                     
                     div(style="display: inline-block;vertical-align:top; width: 61%;",uiOutput("gather")),
-                    div(style="display: inline-block;vertical-align:top; width: 5%;",checkboxInput("spatialSelection", label = "",
+                    div(style="width: 100%;",
+                        div(style="display: inline-block;vertical-align:top; width: 5%;",checkboxInput("spatialSelection", label = "",
                                 value = FALSE)),
-                    div(style="display: inline-block;vertical-align:top; width: 80%;",textOutput("spatSel")),
+                        div(style="display: inline-block;vertical-align:top; width: 80%;",textOutput("spatSel"))
+                       ),
                     htmlOutput("tableInstructions")
                     
                     
