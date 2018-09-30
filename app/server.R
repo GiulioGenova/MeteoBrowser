@@ -346,21 +346,21 @@ output$tabChoice  <- renderUI({
     
     dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
               options = list(autoWidth = F,scrollX=T,
-                            searchCols = list(list(search = '["83200MS"]'), NULL, NULL, NULL,#
+                            searchCols = list(list( NULL, NULL, NULL,#search = '["83200MS"]'),
                                       NULL, NULL, NULL )
                             )
     ) 
     
     if(input$language=="it"){
     dt<-dt%>% 
-      formatStyle(c("TYPE",  "DESC_I","UNIT"),
+      formatStyle(c( "DESC_I","UNIT"),#"TYPE",
                   backgroundColor = "#edf5e1")
     }else if(input$language=="de"){
     dt<-dt%>% 
-      formatStyle(c("TYPE", "DESC_D", "UNIT"),
+      formatStyle(c( "DESC_D", "UNIT"),#"TYPE",
                   backgroundColor = "#edf5e1")
     }else{
-    dt<-dt%>%formatStyle(c("TYPE", "DESC_E", "UNIT"),
+    dt<-dt%>%formatStyle(c( "DESC_E", "UNIT"),#"TYPE",
                   backgroundColor = "#edf5e1")
     }
     
