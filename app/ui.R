@@ -84,11 +84,11 @@ ui <- dashboardPage(#useShinyjs(),
                     #                                         end = Sys.Date()+1)
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Update selection","updateSelection")),
                     
-                    div(style="display: inline-block;vertical-align:top; width: 40%;",uiOutput("refresh")),
+                    div(style=" width: 40%;",uiOutput("refresh")),#display: inline-block;vertical-align:top;
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Download selected data","refresh")) ,
                     #conditionalPanel(condition = "output.rightdate",br(),actionButton( "stop",label = "Stop Download (reload page)",class="btn-danger")),#,onclick="Shiny.onInputChange('stopThis',true)"
-                    div(style="display: inline-block;vertical-align:top; width: 55%;
-                    padding-left: 10px;",uiOutput("save")),
+                    div(style=" width: 55%;
+                    ",uiOutput("save")),#display: inline-block;vertical-align:top;padding-left: 10px;
                     #conditionalPanel(condition = "output.tablebuilt",br(),#"input.daterange[1]<=input.daterange[2]"
                     #                 downloadButton('downloadData', h4('Save as csv'), class="btn-danger" ) 
                     #),
