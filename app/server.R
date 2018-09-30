@@ -350,7 +350,7 @@ output$tabChoice  <- renderUI({
     dt<-datatable(tot_tab, filter = 'top',rownames=F,selection="none",
               options = list(autoWidth = F,scrollX=T
                              ,
-                            searchCols = list( search = list('["Bozen"]'),NULL, NULL, NULL,#,
+                            searchCols = list( list(search ='["Bozen"]'),NULL, NULL, NULL,#,
                                       NULL, NULL, NULL )
                             )
     ) 
