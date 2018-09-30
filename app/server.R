@@ -363,11 +363,11 @@ server <- function(input, output,session) {
     
   #  })
   
-  #observe({
-  #input$map_draw_deleted_features
-  #  polygon_coordinates = NULL
-  #  polyCoord(polygon_coordinates)
-  #  })
+  observeEvent(input$map_draw_deleted_features,{
+  input$map_draw_deleted_features
+  polygon_coordinates = NULL
+  polyCoord(polygon_coordinates)
+  })
 #observeEvent(
 #    input$deletebtn,
 #    {
@@ -390,17 +390,17 @@ server <- function(input, output,session) {
       #input$map_draw_all_features
       polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
     polyCoord(polygon_coordinates)
-     observe({ 
-     req(input$map_draw_deleted_features)
-     polygon_coordinates = NULL
-     polyCoord(polygon_coordinates)
+     #observe({ 
+     #req(input$map_draw_deleted_features)
+     #polygon_coordinates = NULL
+     #polyCoord(polygon_coordinates)
        #  req(input$map_draw_edited_features)
        #polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
      #  print("second")
      #  print(input$map_draw_edited_feature$geometry)
      #  print(input$map_draw_edited_features$geometry)
-    polyCoord(polygon_coordinates)
-    })
+    #polyCoord(polygon_coordinates)
+    #})
   })
   #drawnshapes <- reactiveVal(list())
   
