@@ -122,7 +122,7 @@ server <- function(input, output,session) {
   })
   
   ### moved from UI due to multilanguage
-  output$save  <- renderMenu({
+  output$save  <- renderUI({
   conditionalPanel(condition = "output.tablebuilt",#br(),#"input.daterange[1]<=input.daterange[2]"
                  #div(style="width: 100%;",
                      #div(style="width: 30%;",#display: inline-block;vertical-align:top; 
@@ -134,7 +134,7 @@ server <- function(input, output,session) {
 
 })
 
-output$tabChoice  <- renderMenu({
+output$tabChoice  <- renderUI({
   conditionalPanel(condition = "output.tablebuilt",
                      #div(style=" width: 25%;",#display: inline-block;vertical-align:top;
                          radioButtons(inputId = "csvjson",label = tr("tableType",input$language),
