@@ -310,7 +310,7 @@ output$tabChoice  <- renderUI({
   output$selected_listSensors<-renderText({
     
     #station<-StatSens()[[3]]
-    sensors<-StatSens$sensors
+    sensors<-StatSens$sensorsName
     
     mssg<- paste(sensors,collapse="; ")
     
@@ -481,7 +481,7 @@ output$tabChoice  <- renderUI({
   
   D <- reactiveValues(documents = NULL)
   
-  StatSens<-reactiveValues(station= c(),sensors= c(),stationName = c())#station= NULL,sensors= NULL,stationName = NULL  
+  StatSens<-reactiveValues(station= c(),sensors= c(),stationName = c(),sensorsName=c())#station= NULL,sensors= NULL,stationName = NULL  
   
   #reactive({
   observe({#input$updateSelection
@@ -500,6 +500,16 @@ output$tabChoice  <- renderUI({
        stationName<-unique(tot_tab$NAME_D[ids])%>%as.character
     
     }
+    
+      if(input$language=="it"){
+      sensorsName<-unique(tot_tab$DESC_I[ids])%>%as.character
+      }else if(input$language=="de"){
+       sensorsName<-unique(tot_tab$NAME_D[ids])%>%as.character
+      }
+        else{
+        sensorsName<-unique(tot_tab$NAME_E[ids])%>%as.character
+      }
+      
     #########################################################
     #input$spatialSelection
       if(!is.null(polyCoord())){#FALSE
@@ -535,15 +545,27 @@ output$tabChoice  <- renderUI({
       }else {
        stationName<-unique(sp_sel$NAME_D) %>% as.character
         }
-      
+        
       filterForSensor<-tot_tab[ids,]%>% dplyr::filter(SCODE%in%station)
       sensors<-unique(filterForSensor$TYPE)%>%as.character
+        
+        if(input$language=="it"){
+      sensorsName<-unique(filterForSensor$DESC_I)%>%as.character
+      }else if(input$language=="de"){
+       sensorsName<-unique(filterForSensor$DESC_D)%>%as.character
+      }
+        else{
+        sensorsName<-unique(filterForSensor$DESC_E)%>%as.character
+      }
+        
+        
     }
       }
     #return(list(station,sensors,stationName))
     StatSens$station<-station
     StatSens$sensors<-sensors
     StatSens$stationName<-stationName
+      StatSens$sensorsName<-sensorsName
   })
     })
   
