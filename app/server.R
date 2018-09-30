@@ -384,7 +384,8 @@ server <- function(input, output,session) {
   #observeEvent(req(input$map_draw_stop),{
     observe({
     req(input$map_draw_stop)
-    
+    print("first")
+      print(input$map_draw_new_feature$geometry)
     input$map_draw_new_feature
       #input$map_draw_all_features
       polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
@@ -392,6 +393,8 @@ server <- function(input, output,session) {
      observe({ 
        req(input$map_draw_edited_features)
        polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
+       print("second")
+       print(input$map_draw_new_feature$geometry)
     polyCoord(polygon_coordinates)
     })
   })
