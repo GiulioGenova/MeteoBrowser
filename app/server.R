@@ -507,7 +507,7 @@ output$tabChoice  <- renderUI({
        sensorsName<-unique(tot_tab$NAME_D[ids])%>%as.character
       }
         else{
-        sensorsName<-unique(tot_tab$NAME_E[ids])%>%as.character
+        sensorsName<-unique(tot_tab$DESC_E[ids])%>%as.character
       }
       
     #########################################################
