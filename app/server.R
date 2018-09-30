@@ -388,7 +388,14 @@ server <- function(input, output,session) {
     #  print(input$map_draw_new_feature$geometry)
     input$map_draw_new_feature
       #input$map_draw_all_features
-      polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
+     res <- input$map_draw_all_features
+    if (is.null(res) || length(res[['features']]) == 0) {
+      return(NULL)
+    } else {
+      return(res[['features']][[1]])
+    }
+    polygon_coordinates = res$geometry$coordinates[[1]]
+    #polygon_coordinates = input$map_draw_new_feature$geometry$coordinates[[1]]
     polyCoord(polygon_coordinates)
      #observe({ 
      #req(input$map_draw_deleted_features)
