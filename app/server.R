@@ -86,6 +86,9 @@ se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>%
   unite(VALUE,VALUE,DATE,sep=" ") %>% 
   spread(TYPE,VALUE)
 
+sspat<-getMeteoStat(format = "spatial")
+se_spread<-left_join(sspat,se_spread)
+
     green <- awesomeIcons(icon = "ios-close", iconColor = "black", 
 library = "ion", markerColor = "green")
   grey <- awesomeIcons(icon = "ios-close", iconColor = "black", 
@@ -558,13 +561,15 @@ server <- function(input, output,session) {
   ids<-input$table_rows_all
   stationTab<-unique(tot_tab$SCODE[ids])%>%as.character
   station<-StatSens$station
-  stations_sel<-getMeteoStat(format = "spatial")%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
-  stations_selNot<-getMeteoStat(format = "spatial")%>%filter(!SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
-  stations_selNotTab<-stations_selNot%>%filter(SCODE%in%stationTab)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
+  
+   stations_sel<-se_spread%>%filter(SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
+  stations_selNot<-se_spread%>%filter(!SCODE%in%station)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
+  
+   stations_selNotTab<-stations_selNot%>%filter(SCODE%in%stationTab)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
   stations_selNot<-stations_selNot%>%filter(!SCODE%in%stationTab)#NAME_D%in%input$Station get spatial stations database (Province) with the seleced SCODEs
   
-    stations<-left_join(stations_sel,se_spread)
-  stationsSelNot<-left_join(stations_selNot,se_spread) 
+    #stations<-left_join(stations_sel,se_spread)
+  #stationsSelNot<-left_join(stations_selNot,se_spread) 
   
    proxy <- leafletProxy("map")%>% clearMarkers() #%>% removeDrawToolbar(clearFeatures = TRUE)
    
