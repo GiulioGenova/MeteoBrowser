@@ -344,7 +344,7 @@ output$tabChoice  <- renderUI({
   output$legend_tab <- DT::renderDT({
   
     legendDt<-datatable(legend_tab, filter = 'top',rownames=F,selection="none",
-              options = list(autoWidth = F,scrollX=T)
+              options = list(autoWidth = F,scrollX=T))
     legendDt
   })
   
