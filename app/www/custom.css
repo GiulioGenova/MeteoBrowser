@@ -19,3 +19,8 @@
 .name { color: black }
 .left-side, .main-sidebar {padding-top: 110px}
 .butt{background-color:#cd4e37;} .butt{color: white;}
+.table {
+    width: 75%;
+    max-width: 75%;
+    margin-bottom: 20px;
+}
