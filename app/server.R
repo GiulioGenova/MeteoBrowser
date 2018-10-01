@@ -99,7 +99,7 @@ dplyr::mutate(DESC_E=as.factor(ifelse(DESC_D=="relative Luftfeuchte","Relative h
 
 tot_tab<-legend_tab%>%dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,-LAT,-LONG,-VALUE)
 
-legend_tab<-legend_tab%>%(-DATE,-VALUE)%>%
+legend_tab<-legend_tab%>%dplyr::select(-DATE,-VALUE)
 
 se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>% 
   dplyr::mutate(DATE=paste0("(",as_datetime(DATE),")"))%>%
