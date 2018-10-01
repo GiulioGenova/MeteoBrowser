@@ -50,7 +50,7 @@ ui <- dashboardPage(#useShinyjs(),
     disable = F,
     sidebarMenuOutput("Data"),
     sidebarMenuOutput("about"),
-    sidebarMenuOutput("legend"),
+    #sidebarMenuOutput("legend"),
     sidebarMenu(
                      #uiOutput("Data"),
                      #menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o")),
@@ -166,9 +166,9 @@ ui <- dashboardPage(#useShinyjs(),
                           #about$value
                          htmlOutput("about_out")
                          ))
-    ),
-      tabItem(# the about page
-    tabName = "legend",
-    DTOutput('legend_tab')
-    )
+    )#,
+    #  tabItem(# the about page
+    #tabName = "legend",
+    #DTOutput('legend_tab')
+    #)
 )))
