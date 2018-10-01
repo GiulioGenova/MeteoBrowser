@@ -79,7 +79,7 @@ url <- "http://daten.buergernetz.bz.it/services/meteo/v1/sensors"
 u <- GET(url) %>% content
 se<-bind_rows(u)
 st<-getMeteoStat()
-tot_tab<-full_join(st,se)%>%dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALUE,-LAT,-LONG,-VALUE)%>%
+legend_tab<-full_join(st,se)%>%#dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALUE,-LAT,-LONG,-VALUE)%>%
   mutate_if(is.character, funs(as.factor(.)))%>%
 dplyr::mutate(DESC_E=as.factor(ifelse(DESC_D=="relative Luftfeuchte","Relative humidity",
                               ifelse(DESC_D=="Niederschlag","Precipitation",
@@ -95,6 +95,9 @@ dplyr::mutate(DESC_E=as.factor(ifelse(DESC_D=="relative Luftfeuchte","Relative h
                                                                                              ifelse(DESC_D=="Durchfluss","Water flow",
                                                                                                     ifelse(DESC_D=="Wasserstand","Water level",
                                                                                                            ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))
+
+
+tot_tab<-legend_tab%>%dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALUE,-LAT,-LONG,-VALUE)
 
 se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>% 
   dplyr::mutate(DATE=paste0("(",as_datetime(DATE),")"))%>%
@@ -171,6 +174,12 @@ output$tabChoice  <- renderUI({
   output$about  <- renderMenu({
     sidebarMenu(
   menuItem(tr("menuReadme",input$language), tabName = "about", icon = icon("info-circle"))
+      )
+  })
+  
+  output$legend  <- renderMenu({
+    sidebarMenu(
+  menuItem(tr("LegTab",input$language), tabName = "legend", icon = icon("info-circle"))
       )
   })
   
@@ -331,6 +340,13 @@ output$tabChoice  <- renderUI({
   
   ### end of moved from UI due to multilanguage
   ###############
+  
+  output$legend_tab <- DT::renderDT({
+  
+    legendDt<-datatable(legend_tab, filter = 'top',rownames=F,selection="none",
+              options = list(autoWidth = F,scrollX=T)
+    legendDt
+  })
   
   output$table<-DT::renderDT({
     tot_tab<-tot_tab%>%dplyr::select(-SCODE,-TYPE)
