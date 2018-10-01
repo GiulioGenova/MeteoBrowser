@@ -15,7 +15,7 @@ This will automatically install the packages needed on your machine (the first t
 
 A stable online version is available here:
 
-https://euracalpenv.shinyapps.io/MeteoOpenDataSouthTyrol/
+https://euracalpenv.shinyapps.io/MeteoBrowserSouthTyrol/
 
 And a dev version here:
 
