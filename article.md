@@ -8,13 +8,13 @@ tags:
 authors:
   - name: Giulio Genova
     orcid: 0000-0003-0872-7098
-    affiliation: 1 # (Multiple affiliations must be quoted)
+    affiliation: 1
   - name: Mattia Rossi
     orcid: 0000-0000-0000-0000
     affiliation: 2
   - name: Georg Niedrist
     orcid: 0000-0003-0872-7098
-    affiliation: 1 # (Multiple affiliations must be quoted)
+    affiliation: 1
   - name: Stefano Della Chiesa
     orcid: 0000-0000-0000-0000
     affiliation: 1
