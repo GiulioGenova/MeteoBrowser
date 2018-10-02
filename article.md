@@ -88,3 +88,5 @@ The repository is at the following link:
 
 This work was supported by the farming consulting centre for fruticulture and
 viticulture “Südtiroler Beratungsring für Obst und Weinbau”, South Tyrol, Italy.
+
+#References
