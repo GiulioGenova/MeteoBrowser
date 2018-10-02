@@ -1,13 +1,33 @@
-SoilCalibrationRegression: R interface to retrieve soil moisture regression to
-calibrate sensor measurement vs soil moisture gravimetric measurement.
+---
+title: 'SoilCalibrationRegression: R interface to retrieve soil moisture regression to
+calibrate sensor measurement vs soil moisture gravimetric measurement.'
+tags:
+  - Open Data
+  - R
+  - Shiny
+authors:
+  - name: Giulio Genova
+    orcid: 0000-0003-0872-7098
+    affiliation: 1 # (Multiple affiliations must be quoted)
+  - name: Mattia Rossi
+    orcid: 0000-0000-0000-0000
+    affiliation: 2
+  - name: Georg Niedrist
+    orcid: 0000-0003-0872-7098
+    affiliation: 1 # (Multiple affiliations must be quoted)
+  - name: Stefano Della Chiesa
+    orcid: 0000-0000-0000-0000
+    affiliation: 1
+affiliations:
+ - name: eurac research, Institute for Alpine Environment, Bolzano/Bozen, Italy.
+   index: 1
+ - name: eurac research, Institute for Earth Observation, Bolzano/Bozen, Italy.
+   index: 2
+date: 02 October 2018
+bibliography: paper.bib
+---
 
-**Giulio Genova1, Mattia Rossi2, Georg Niedrist1, Stefano Della Chiesa1**
-
-1eurac research, Institute for Alpine Environment, Bolzano/Bozen, Italy.
-
-2eurac research, Institute for Earth Observation, Bolzano/Bozen, Italy.
-
-**Summary**
+#Summary
 
 Promoting open data framework with a comprehensive data infrastructure increases
 publicly available knowledge and provide new unexplored benefits (Janssen,
@@ -64,12 +84,12 @@ The repository is at the following link:
 
 [https://github.com/GiulioGenova/MeteoBrowser](https://github.com/GiulioGenova/ODBZ)
 
-**Acknowledgement**
+#Acknowledgement
 
 This work was supported by the farming consulting centre for fruticulture and
 viticulture “Südtiroler Beratungsring für Obst und Weinbau”, South Tyrol, Italy.
 
-**References**
+#References
 
 Chang, W., Cheng, J., Allaire, J. J., Xie, Y., & McPherson, J. (2015). Shiny:
 web application framework for R. R Package Version 0.11, 1(4), 106.
