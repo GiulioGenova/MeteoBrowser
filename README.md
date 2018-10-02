@@ -1,7 +1,7 @@
 # Meteo Browser South Tyrol
 A Shiny App to download the meteorological time series from the Open Data - Province of Bozen 
 
-To run the application run the following code:
+To run the application execute the following R code:
 
 ==========================================================================
 ```R
@@ -11,7 +11,7 @@ shiny::runGitHub('GiulioGenova/ODBZ',subdir="app",launch.browser = TRUE)
 ```
 ==========================================================================
 
-This will automatically install the packages needed on your machine (the first time you run it only) and then run the app.
+This will automatically install the packages needed on your machine (the first time you need it only) and then run the app.
 
 A stable online version is available here:
 
@@ -40,3 +40,8 @@ API (further documentation http://daten.buergernetz.bz.it/it/dataset/misure-mete
 Special thanks to Mattia Rossi who has developed the R package "MonalisR" which plays and important role in the backend of this
 application. You can find the package here:
 https://gitlab.inf.unibz.it/earth_observation_public/MonalisR
+
+Disclaimer:
+
+Meteorologial data downloaded form this app comes with no warranty and has not been validated by the data provider nor by the authors of the app.
+This app is intended only to facilitate retrieving data from the Meteorologial Open Data Suedtirol API
