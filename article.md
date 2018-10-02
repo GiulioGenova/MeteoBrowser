@@ -24,7 +24,7 @@ affiliations:
  - name: eurac research, Institute for Earth Observation, Bolzano/Bozen, Italy.
    index: 2
 date: 02 October 2018
-bibliography: paper.bib
+bibliography: reference.bib
 ---
 
 #Summary
@@ -88,20 +88,3 @@ The repository is at the following link:
 
 This work was supported by the farming consulting centre for fruticulture and
 viticulture “Südtiroler Beratungsring für Obst und Weinbau”, South Tyrol, Italy.
-
-#References
-
-Chang, W., Cheng, J., Allaire, J. J., Xie, Y., & McPherson, J. (2015). Shiny:
-web application framework for R. R Package Version 0.11, 1(4), 106.
-
-Janssen, M., Charalabidis, Y., & Zuiderwijk, A. (2012). Benefits, Adoption
-Barriers and Myths of Open Data and Open Government. Information Systems
-Management, 29(4), 258–268. https://doi.org/10.1080/10580530.2012.716740
-
-Team, R. C. (2018). R: A Language and Environment for Statistical Computing.
-
-Wickham, H. (2014). Tidy Data. Journal of Statistical Software, 59(10).
-
-Zuiderwijk, A., Janssen, M., & Davis, C. (2014). Innovation with open data:
-Essential elements of open data ecosystems. Information Polity, 19(1–2), 17–33.
-https://doi.org/10.3233/IP-140329
