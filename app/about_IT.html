@@ -21,6 +21,118 @@
   Nel formato di tabella largo si ottengono una colonna per ogni variabile misurata. Nel formato di tabella lungo si ottengono  una colonna che identifica la misura "Sensor" e una colonna 
   "Value" che corrisponde alle misure.</p>
   <br/>
+<div>
+  <div style="display: inline-block;vertical-align:top;width: 50%;">
+<h3>Legenda della tabella scaricata</h3>
+    <p>Il significato dei nomi delle colonne o dei codici delle misurazioni è presentato nella seguente tabella:</p>  
+  <table class="table table-bordered table-hover table-condensed">
+<thead><tr><th title="Field #1"></th>
+<th title="Field #2">significato</th>
+</tr></thead>
+<tbody><tr>
+<td>TimeStamp</td>
+<td>Data/orario misurazione</td>
+</tr>
+<tr>
+<td>SCODE</td>
+<td>Codice univoco stazione</td>
+</tr>
+<tr>
+<td>NAME_D</td>
+<td>Nome stazione tedesco</td>
+</tr>
+<tr>
+<td>NAME_I</td>
+<td>Nome stazione italiano</td>
+</tr>
+<tr>
+<td>NAME_L</td>
+<td>Nome stazione ladino</td>
+</tr>
+<tr>
+<td>NAME_E</td>
+<td>Nome stazione inglese</td>
+</tr>
+<tr>
+<td>ALT</td>
+<td>Altitudine stazione</td>
+</tr>
+<tr>
+<td>LONG</td>
+<td>Longitudine stazione</td>
+</tr>
+<tr>
+<td>LAT</td>
+<td>Latitudine stazione</td>
+</tr>
+<tr>
+<td>GS</td>
+<td>Radiazione globale</td>
+</tr>
+<tr>
+<td>HS</td>
+<td>Altezza neve al suolo</td>
+</tr>
+<tr>
+<td>LD.RED</td>
+<td>Pressione atmosferica</td>
+</tr>
+<tr>
+<td>LF</td>
+<td>Umidita relativa</td>
+</tr>
+<tr>
+<td>LT</td>
+<td>Temperatura dell&#39;aria</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Precipitazione</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>Portata</td>
+</tr>
+<tr>
+<td>SD</td>
+<td>Durata soleggiamento</td>
+</tr>
+<tr>
+<td>W</td>
+<td>Temperatura acqua</td>
+</tr>
+<tr>
+<td>WG</td>
+<td>Velocita del vento</td>
+</tr>
+<tr>
+<td>WG.BOE</td>
+<td>Velocita raffica</td>
+</tr>
+<tr>
+<td>WR</td>
+<td>Direzione del vento</td>
+</tr>
+<tr>
+<td>WT</td>
+<td>Temperatura acqua</td>
+</tr>
+</tbody></table>
+    <br/>
+</div>
+<div style="display: inline-block;vertical-align:top;width: 50%;">
+    <p>Nel formato di tabella "lungo" sarà presente una colonna "Sensor" con il nome della misurazione (LT,N,WG etc.)</p>
+    <p>e una colonna "Value" con il valore numerico della misurazione</p>
+    <p>Se scarichi dati <b>non</b> "grezzi" nel nome delle misurazioni ci sarà una desinenza che indica il tipo di statistica eseguita sull'arco temporale scelto. Di seguito le desinenze indicate:</p>
+    <p>*<b>_mean</b> : la media dei valori nell'arco temporale</p>
+    <p>*<b>_sum</b> : la somma dei valori nell'arco temporale</p>
+    <p>*<b>_max</b> : il valore massimo nell'arco temporale</p>
+    <p>*<b>_min</b> : il valore minimo nell'arco temporale</p>
+    <p>*<b>_na</b> : the number of missing values in the timespan</p>
+    <p>*<b>_Dir</b> : la direzione del vento calssificata come segue:</p>
+    <p>1 = N; 2 = NE; 3 = E; 4 = SE; 5 = S; 6 = SW; 7 = W; 8 = NW</p>
+</div>
+</div>  
   <h3>Dichiarazione di esclusione di responsabilità</h3>
   <p>Dei dati metereologici scaricati con questa applicazione non ne sono garantiti la qualità in quanto non validati dal fornitore dei dati, tanto meno dagli svliuppatori di questa WebApp. 
   La seguente WebApp ha il solo intento di facilitare l'accesso ai dati metereologici e idrologici del portale Open Data Alto Adige</p>

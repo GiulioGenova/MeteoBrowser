@@ -99,7 +99,11 @@ legend_tab<-full_join(st,se)%>%#dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALU
                                                                                                                 ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))
 
 
-tot_tab<-legend_tab%>%dplyr::select(-NAME_L,-DESC_L,-DATE,-LAT,-LONG,-VALUE)
+tot_tab<-legend_tab%>%dplyr::select(-NAME_L,-DESC_L,-DATE,-LAT,-LONG,-VALUE) %>%
+  dplyr::unite(NAME,NAME_D,NAME_I,sep=" / ") %>%
+  dplyr::mutate(DESC_D = paste(DESC_D,UNIT,sep=" - ")) %>%
+  dplyr::mutate(DESC_I = paste(DESC_I,UNIT,sep=" - ")) %>%
+  dplyr::unite(DESC_E,DESC_E,UNIT,sep=" - ")
 
 legend_tab<-legend_tab%>%dplyr::select(-DATE,-VALUE)
 
@@ -306,7 +310,7 @@ server <- function(input, output,session) {
   
   output$statlist <- renderUI({
     
-    statlist <- sort(unique(as.vector(tot_tab$NAME_E)), decreasing = FALSE)
+    statlist <- sort(unique(as.vector(tot_tab$NAME)), decreasing = FALSE)
     #statlist <- append(statlist, "All", after =  0)
     selectizeInput("selStation", h4(tags$b("Select station:")), statlist,
                    multiple = TRUE,
@@ -329,7 +333,7 @@ server <- function(input, output,session) {
   
   output$altitudelist <- renderUI({
     
-    sliderInput("selAltitude", label = h4(tags$b("Select Elevation range")), min = 0, 
+    sliderInput("selAltitude", label = h4(tags$b("Select Elevation range [m]")), min = 0, 
                 max = max(tot_tab$ALT,na.rm = T), value = c(300, 750))
     
     
@@ -347,26 +351,52 @@ server <- function(input, output,session) {
     #if ("All"%in%input$selStation) {
     if (is.null(input$selStation)) {
       
-      filt1 <- quote(NAME_E != "@?><")
+      filt1 <- quote(NAME != "@?><")
       
       
     } else {
     
       
-      filt1 <- quote(NAME_E %in% input$selStation)
+      filt1 <- quote(NAME %in% input$selStation)
       
     }
     
     
     #if ("All"%in%input$selSensor) {
-    if (is.null(input$selSensor)) { 
-       
-      filt2 <- quote(DESC_E != "@?><")
+    if (is.null(input$selSensor)) {
+      
+      if(input$language=="it"){
+        
+        filt2 <- quote(DESC_I != "@?><")
+        
+      }else if(input$language=="de"){
+        
+        filt2 <- quote(DESC_D != "@?><")
+        
+      }
+      else{
+        
+        filt2 <- quote(DESC_E != "@?><")
+      }
+      
       
       
     } else {
       
-      filt2 <- quote(DESC_E %in% input$selSensor)
+      if(input$language=="it"){
+        
+        filt2 <- quote(DESC_I %in% input$selSensor)
+        
+      }else if(input$language=="de"){
+        
+        filt2 <- quote(DESC_D %in% input$selSensor)
+        
+      }
+      else{
+        
+        filt2 <- quote(DESC_E %in% input$selSensor)
+      }
+      
       
     }
     
