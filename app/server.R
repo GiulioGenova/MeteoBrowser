@@ -100,10 +100,10 @@ legend_tab<-full_join(st,se)%>%#dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALU
 
 
 tot_tab<-legend_tab%>%dplyr::select(-NAME_L,-DESC_L,-DATE,-LAT,-LONG,-VALUE) %>%
-  dplyr::unite(NAME,NAME_D,NAME_I,sep=" / ") %>%
+  dplyr::mutate(NAME = paste(NAME_D,NAME_I,sep=" / ")) %>%
   dplyr::mutate(DESC_D = paste(DESC_D,UNIT,sep=" - ")) %>%
   dplyr::mutate(DESC_I = paste(DESC_I,UNIT,sep=" - ")) %>%
-  dplyr::unite(DESC_E,DESC_E,UNIT,sep=" - ")
+  unite(DESC_E,DESC_E,UNIT,sep=" - ")
 
 legend_tab<-legend_tab%>%dplyr::select(-DATE,-VALUE)
 
@@ -321,8 +321,20 @@ server <- function(input, output,session) {
   
   
   output$sensorlist <- renderUI({
+    if(input$language=="it"){
+      
+      sensorlist <- sort(unique(as.vector(tot_tab$DESC_I)), decreasing = FALSE)
+      
+    }else if(input$language=="de"){
+      
+      sensorlist <- sort(unique(as.vector(tot_tab$DESC_D)), decreasing = FALSE)
+      
+    }
+    else{
+      
+      sensorlist <- sort(unique(as.vector(tot_tab$DESC_E)), decreasing = FALSE)
+    }
     
-    sensorlist <- sort(unique(as.vector(tot_tab$DESC_E)), decreasing = FALSE)
     #sensorlist <- append(sensorlist, "All", 0)
     selectizeInput("selSensor", h4(tags$b("Select measurement:")), sensorlist,
                    multiple = TRUE,
