@@ -88,7 +88,7 @@ legend_tab<-full_join(st,se)%>%#dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALU
                                    ifelse(DESC_D=="Windgeschwindigkeit","Wind speed",
                                           ifelse(DESC_D=="Windrichtung","Wind direction",
                                                  ifelse(DESC_D=="Windgeschwindigkeit Böe","Wind direction",
-                                                        ifelse(DESC_D=="Luftdruck","Atmospheric perssion",
+                                                        ifelse(DESC_D=="Luftdruck","Atmospheric pression",
                                                                ifelse(DESC_D=="Globalstrahlung","Solar Radiation",
                                                                       ifelse(DESC_D=="Sonnenscheindauer","Sunshine hours",
                                                                              ifelse(DESC_D=="Schneehöhe","Snow height",
@@ -138,6 +138,14 @@ server <- function(input, output,session) {
   })
   
   ### moved from UI due to multilanguage
+  output$d1scla1mer <- renderUI({
+    tags$b(tr("d1scla1mer",input$language))
+  })
+  
+  output$Disclaimer <- renderText({
+    tr("Disclaimer",input$language)
+  })
+    
   output$save  <- renderUI({
     conditionalPanel(condition = "output.tablebuilt",#br(),#"input.daterange[1]<=input.daterange[2]"
                      #div(style="width: 100%;",
@@ -314,8 +322,9 @@ server <- function(input, output,session) {
     #statlist <- append(statlist, "All", after =  0)
     selectizeInput("selStation", h4(tags$b("Select station:")), statlist,
                    multiple = TRUE,
+                   selected = "Salurn / Salorno",
                    options = list(
-                     placeholder = 'Default is All Stations'))
+                   placeholder = 'Default is All Stations'))
     
   })
   
@@ -346,7 +355,7 @@ server <- function(input, output,session) {
   output$altitudelist <- renderUI({
     
     sliderInput("selAltitude", label = h4(tags$b("Select Elevation range [m]")), min = 0, 
-                max = max(tot_tab$ALT,na.rm = T), value = c(300, 750))
+                max = max(tot_tab$ALT,na.rm = T), value = c(0, max(tot_tab$ALT,na.rm = T)))
     
     
   })
@@ -639,10 +648,10 @@ server <- function(input, output,session) {
     proxy<- proxy %>% 
       addAwesomeMarkers(lng = stationsSelNot$LONG %>% as.character %>% as.numeric, lat = stationsSelNot$LAT %>% 
                           as.character %>% as.numeric, icon = grey, 
-                        popup = paste(tr("code",input$language),stationsSelNot$SCODE, "<br>", 
-                                      tr("nameDe",input$language),stationsSelNot$NAME_D,"<br>",
+                        popup = paste(tr("nameDe",input$language),stationsSelNot$NAME_D,"<br>",
                                       tr("nameIt",input$language), stationsSelNot$NAME_I, "<br>",
                                       tr("altitude",input$language),stationsSelNot$ALT, "<br>",
+                                      tr("code",input$language),stationsSelNot$SCODE, "<br>", 
                                       "<br>",
                                       tr("latestRecorded",input$language), 
                                       "<br>",
@@ -665,10 +674,10 @@ server <- function(input, output,session) {
       
       addAwesomeMarkers(lng = stations_selNotTab$LONG %>% as.character %>% as.numeric, lat = stations_selNotTab$LAT %>% 
                           as.character %>% as.numeric, icon = blu, 
-                        popup = paste(tr("code",input$language),stations_selNotTab$SCODE, "<br>", 
-                                      tr("nameDe",input$language),stations_selNotTab$NAME_D,"<br>",
+                        popup = paste(tr("nameDe",input$language),stations_selNotTab$NAME_D,"<br>",
                                       tr("nameIt",input$language), stations_selNotTab$NAME_I, "<br>",
                                       tr("altitude",input$language),stations_selNotTab$ALT, "<br>",
+                                      tr("code",input$language),stations_selNotTab$SCODE, "<br>", 
                                       "<br>",
                                       tr("latestRecorded",input$language), 
                                       "<br>",
@@ -690,10 +699,10 @@ server <- function(input, output,session) {
                         ))%>%
       addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
                           as.character %>% as.numeric, icon = green, 
-                        popup = paste(tr("code",input$language),stations$SCODE, "<br>", 
-                                      tr("nameDe",input$language),stations$NAME_D,"<br>",
+                        popup = paste(tr("nameDe",input$language),stations$NAME_D,"<br>",
                                       tr("nameIt",input$language), stations$NAME_I, "<br>",
                                       tr("altitude",input$language),stations$ALT, "<br>",
+                                      tr("code",input$language),stations$SCODE, "<br>", 
                                       "<br>",
                                       tr("latestRecorded",input$language), 
                                       "<br>",

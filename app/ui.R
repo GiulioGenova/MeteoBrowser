@@ -56,7 +56,7 @@ ui <- dashboardPage(#useShinyjs(),
                      #menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o")),
                      #uiOutput("about"),
                      #menuItem("README", tabName = "about", icon = icon("info-circle")),
-                     radioButtons("language", "Language",
+                     radioButtons("language", NULL,
                                   c("English" = "en",
                                     "Deutsch" = "de",
                                     "Italiano" = "it"))
@@ -83,8 +83,8 @@ ui <- dashboardPage(#useShinyjs(),
                     uiOutput("altitudelist"),
                     uiOutput("daterange"),
                     uiOutput("message"),
-                    div(style="display: inline-block;vertical-align:top; width: 38%;",uiOutput("round")),
-                    div(style="display: inline-block;vertical-align:top; width: 61%;",uiOutput("gather")),
+                    div(style="display: inline-block;vertical-align:top; width: 43%;",uiOutput("round")),
+                    div(style="display: inline-block;vertical-align:top; width: 55%;",uiOutput("gather")),
                     
                     textOutput("downloadInstructions"),
                     div(style=" width: 40%;",
@@ -129,7 +129,18 @@ ui <- dashboardPage(#useShinyjs(),
                 #htmlOutput("tableInstructions"),
                 DTOutput('table')
                
-              )
+              ),
+            
+              htmlOutput("d1scla1mer"),
+              textOutput("Disclaimer")
+              # ,
+              # tags$a(href='http://www.provinz.bz.it/',
+              #        tags$img(style="vertical-align: bottom;width: 200px;padding-right: 20px;padding-top: 20px;float: right;",
+              #                 src='http://www.provinz.bz.it/news/de/news.asp?news_action=300&news_image_id=924130'),
+              #        href='http://www.eurac.edu/',
+              #        tags$img(style="vertical-align: bottom;width: 200px;padding-right: 20px;padding-top: 20px;float: left;",
+              #                 src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg')
+              #        )
       
       )
       ,
