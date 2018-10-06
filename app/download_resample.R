@@ -151,5 +151,5 @@ resample_provBz_data<-function(df,round="hour",spread=FALSE){
   }
   
   #df_with_names<-left_join(db_final,getMeteoStat(),by="SCODE")
-  df_with_names<-db_final %>% as.data.frame
+  df_with_names<-db_final %>% dplyr::arrange(TimeStamp) %>% as.data.frame
 }

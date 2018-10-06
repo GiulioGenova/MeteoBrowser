@@ -79,8 +79,8 @@ plotMeteoLeaflet<-function (stations = NULL, addPoints = NULL, addBuff = F, widt
     #                     float: left;
     #                    clear: both;}")%>% 
     #addTiles()%>% 
-    addProviderTiles("OpenStreetMap.Mapnik", group = "OSM")%>% 
-    addProviderTiles("Esri.WorldImagery", group = "SAT") %>%
+    addProviderTiles("OpenStreetMap.Mapnik", group = "Street Map")%>% 
+    addProviderTiles("Esri.WorldImagery", group = "Satellite") %>%
     addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
                         as.character %>% as.numeric, icon = c1, popup = paste("Code:",stations$SCODE, "<br>", 
                                                                               "Name GER:", stations$NAME_D,"<br>",
@@ -117,7 +117,7 @@ plotMeteoLeaflet<-function (stations = NULL, addPoints = NULL, addBuff = F, widt
       #rectangleOptions =FALSE,
       #circleMarkerOptions =FALSE)%>%#
     addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
-    addLayersControl(baseGroups = c("OSM","SAT"),#overlayGroups = c('draw'),
+    addLayersControl(baseGroups = c("Street Map","Satellite"),#overlayGroups = c('draw'),
                      options = layersControlOptions(collapsed = FALSE),position = "topleft")
   
   if (!is.null(addPoints)) {

@@ -33,15 +33,16 @@ library(DT)
 header <- dashboardHeader(titleWidth = 480)
 
 anchor <- tags$a(href='http://www.eurac.edu/',
-                 tags$img(style="vertical-align: bottom;width: 140px;padding-right: 20px;",
-                          src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
+                 tags$img(style="vertical-align: bottom;width: 270px;padding-right: 10px;",
+                          #src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
+                          src='LogoProvEurac.PNG'),
                  'Meteo Browser South Tyrol',class='tit')
 
 header$children[[2]]$children <- tags$div(anchor,class = 'name')
 
 
 ui <- dashboardPage(#useShinyjs(),
-  title= "Meteo Browser",
+  title= "Meteo Browser Südtirol",
   skin = "blue",
   
   header             
@@ -56,7 +57,7 @@ ui <- dashboardPage(#useShinyjs(),
                      #menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o")),
                      #uiOutput("about"),
                      #menuItem("README", tabName = "about", icon = icon("info-circle")),
-                     radioButtons("language", "Language",
+                     radioButtons("language", NULL,
                                   c("English" = "en",
                                     "Deutsch" = "de",
                                     "Italiano" = "it"))
@@ -78,20 +79,20 @@ ui <- dashboardPage(#useShinyjs(),
                 
                 box(width = 4,collapsible = T,
                     
+                    uiOutput("statlist"),
+                    uiOutput("sensorlist"),
+                    uiOutput("altitudelist"),
                     uiOutput("daterange"),
+                    uiOutput("message"),
+                    div(style="display: inline-block;vertical-align:top; width: 43%;",uiOutput("round")),
+                    div(style="display: inline-block;vertical-align:top; width: 55%;",uiOutput("gather")),
                     
-                    #dateRangeInput(label = h4("Pick a date range"),inputId = "daterange",separator = " - ",min = "2000-01-01",
-                    #                                         start = Sys.Date()-3,
-                    #                                         end = Sys.Date()+1)
-                    #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Update selection","updateSelection")),
-                    
+                    textOutput("downloadInstructions"),
                     div(style=" width: 40%;",
                         uiOutput("refresh")
                        )
                     
-                    ,#display: inline-block;vertical-align:top;
-                    #conditionalPanel(condition = "output.rightdate",br(),actionButton(label= "Download selected data","refresh")) ,
-                    #conditionalPanel(condition = "output.rightdate",br(),actionButton( "stop",label = "Stop Download (reload page)",class="btn-danger")),#,onclick="Shiny.onInputChange('stopThis',true)"
+                    ,
                     div(style=" width: 100%;",
                     div(style="display: inline-block;vertical-align:top; width: 55%;",
                         uiOutput("save")
@@ -100,44 +101,17 @@ ui <- dashboardPage(#useShinyjs(),
                         uiOutput("tabChoice")
                         )
                    )
-                    ,#display: inline-block;vertical-align:top;padding-left: 10px;
-                    #conditionalPanel(condition = "output.tablebuilt",br(),#"input.daterange[1]<=input.daterange[2]"
-                    #                 downloadButton('downloadData', h4('Save as csv'), class="btn-danger" ) 
-                    #),
-                    #helpText("First click \"download selected data\" then \"save as csv\""),
-                    #verbatimTextOutput("message"),
-                    uiOutput("message"),
-                    textOutput("downloadInstructions"),
                     
-                    verbatimTextOutput("selected"),
+                   #,
                     
-                    #selectInput("round",label = h4("Time aggregation"),
-                    #            choices = list("raw","hour","day","week","month","year")),
-                    
-                    div(style="display: inline-block;vertical-align:top; width: 38%;",uiOutput("round")),
-                    
-                    #actionButton(label= "update selection","refresh"),
-                    
-                    #selectInput("gather",
-                    #            label = h4("Choose between long or wide table format"),
-                    #            choices = list("wide","long")),
-                    
-                    div(style="display: inline-block;vertical-align:top; width: 61%;",uiOutput("gather")),
-                    #div(style="width: 100%;",
-                    #    div(style="display: inline-block;vertical-align:top; width: 5%;",checkboxInput("spatialSelection", label = "",
-                    #            value = FALSE)),
-                    #    div(style="display: inline-block;vertical-align:top; width: 80%;",textOutput("spatSel"))
-                    #   ),
-                    htmlOutput("tableInstructions")
+                    #htmlOutput("tableInstructions")
                     
                     
-                    #uiOutput("spatialSelection")
-                    #selectInput("spatialSelection",
-                    #            label = h4("Enable spatial selection"),
-                  # choices = list("NO","YES"))
+                  
               ),
                    
                 box(width = 8,
+                    verbatimTextOutput("selected"),
                     leafletOutput("map"),
                     #uiOutput("map"),
                     #conditionalPanel(condition ="output.spatialSelection",actionButton("deletebtn", "remove drawn")),
@@ -156,7 +130,18 @@ ui <- dashboardPage(#useShinyjs(),
                 #htmlOutput("tableInstructions"),
                 DTOutput('table')
                
-              )
+              ),
+            
+              htmlOutput("d1scla1mer"),
+              textOutput("Disclaimer")
+              # ,
+              # tags$a(href='http://www.provinz.bz.it/',
+              #        tags$img(style="vertical-align: bottom;width: 200px;padding-right: 20px;padding-top: 20px;float: right;",
+              #                 src='http://www.provinz.bz.it/news/de/news.asp?news_action=300&news_image_id=924130'),
+              #        href='http://www.eurac.edu/',
+              #        tags$img(style="vertical-align: bottom;width: 200px;padding-right: 20px;padding-top: 20px;float: left;",
+              #                 src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg')
+              #        )
       
       )
       ,
