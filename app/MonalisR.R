@@ -53,6 +53,7 @@ downloadMeteo<-function (sensor_code, station_code ,   datestart,
                                                           .before = 2)
     colnames(DAT) <- c("TimeStamp", "SCODE", "Sensor", 
                        "Value")
+    DAT$TimeStamp<-as_datetime(DAT$TimeStamp)
     if (path != "") {
       myfile = paste0(path, "/", station_code, "_", sensor_code, 
                       "_", dates[1], "_", dates[2])

@@ -147,7 +147,7 @@ server <- function(input, output,session) {
   output$Disclaimer <- renderText({
     tr("Disclaimer",input$language)
   })
-    
+  
   output$save  <- renderUI({
     conditionalPanel(condition = "output.tablebuilt",#br(),#"input.daterange[1]<=input.daterange[2]"
                      #div(style="width: 100%;",
@@ -326,7 +326,7 @@ server <- function(input, output,session) {
                    multiple = TRUE,
                    selected = "Salurn / Salorno",
                    options = list(
-                   placeholder = tr("d3falutStat",input$language)))
+                     placeholder = tr("d3falutStat",input$language)))
     
   })
   
@@ -378,7 +378,7 @@ server <- function(input, output,session) {
       
       
     } else {
-    
+      
       
       filt1 <- quote(NAME %in% input$selStation)
       
@@ -583,14 +583,21 @@ server <- function(input, output,session) {
     datestart<-as.character(input$daterange[1])
     dateend<-as.character(as_date(input$daterange[2])+1)
     
-    round=input$round
-    
+    round<-as.character(translation[grep(input$round,translation[,input$language]),"key"])
+    #round<-input$round
+    gather<-as.character(translation[grep(input$gather,translation[,input$language]),"key"])
+    if(gather=="wide"){
+      spread=TRUE}else{
+        spread=FALSE
+      }
     nstations<-length(station)%>%as.numeric*length(sensors)%>%as.numeric
     
     
     if(as_date(datestart)<=dateend){
       withProgress(message = 'Getting data', value = 0, {
-        db<-dwnld(station=station,datestart=datestart,dateend=dateend,sensors=sensors,nstations=nstations)#round=round,
+        db<-dwnld(station=station,datestart=datestart,
+                  dateend=dateend,sensors=sensors,nstations=nstations,
+                  round=round,spread=spread)#
       })#
     }else{db<-"Error in selecting the date range. First date must be earlier than last date"}
     D$documents <- list(db)
@@ -787,12 +794,13 @@ server <- function(input, output,session) {
       #gather<-input$gather
       df=D$documents[[1]] 
       
-      if(gather=="wide"){
-        spread=TRUE}else{
-          spread=FALSE
-        }
+      #if(gather=="wide"){
+      #  spread=TRUE}else{
+      #    spread=FALSE
+      #  }
       
-      db=resample_provBz_data(df=df,round=round,spread=spread)
+      #db=resample_provBz_data(df=df,round=round,spread=spread)
+      db=df
       if(input$csvjson=="csv"){
         write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA")
       }else{
