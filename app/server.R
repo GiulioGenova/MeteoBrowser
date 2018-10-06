@@ -598,6 +598,11 @@ server <- function(input, output,session) {
         db<-dwnld(station=station,datestart=datestart,
                   dateend=dateend,sensors=sensors,nstations=nstations,
                   round=round,spread=spread)#
+        
+        
+        tab<-tot_tab %>% dplyr::select(SCODE,NAME)
+        db<-left_join(db,tab,.before=2)
+        
       })#
     }else{db<-"Error in selecting the date range. First date must be earlier than last date"}
     D$documents <- list(db)
