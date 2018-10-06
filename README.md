@@ -7,7 +7,7 @@ To run the application execute the following R code:
 ```R
 if (!require("shiny")) install.packages("shiny")
 
-shiny::runGitHub('GiulioGenova/ODBZ',subdir="app",launch.browser = TRUE)
+shiny::runGitHub('GiulioGenova/MeteoBrowser',subdir="app",launch.browser = TRUE)
 ```
 ==========================================================================
 
