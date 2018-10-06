@@ -117,8 +117,10 @@ se_spread<-se %>% dplyr::select(SCODE,TYPE,UNIT,VALUE,DATE) %>%
 sspat<-getMeteoStat(format = "spatial")
 se_spread<-left_join(sspat,se_spread)
 
-green <- awesomeIcons(icon = "ios-close", iconColor = "black", 
+
+green <- awesomeIcons(icon = "ios-close", iconColor = "black",
                       library = "ion", markerColor = "green")
+#green <- makeIcon(green,iconWidth = 5, iconHeight = 7)
 grey <- awesomeIcons(icon = "ios-close", iconColor = "black", 
                      library = "ion", markerColor = "lightgray")
 blu <- awesomeIcons(icon = "ios-close", iconColor = "black", 
@@ -320,11 +322,11 @@ server <- function(input, output,session) {
     
     statlist <- sort(unique(as.vector(tot_tab$NAME)), decreasing = FALSE)
     #statlist <- append(statlist, "All", after =  0)
-    selectizeInput("selStation", h4(tags$b("Select station:")), statlist,
+    selectizeInput("selStation", h4(tags$b(tr("s3l3ctStatTitle",input$language))), statlist,
                    multiple = TRUE,
                    selected = "Salurn / Salorno",
                    options = list(
-                   placeholder = 'Default is All Stations'))
+                   placeholder = tr("d3falutStat",input$language)))
     
   })
   
@@ -345,16 +347,16 @@ server <- function(input, output,session) {
     }
     
     #sensorlist <- append(sensorlist, "All", 0)
-    selectizeInput("selSensor", h4(tags$b("Select measurement:")), sensorlist,
+    selectizeInput("selSensor", h4(tags$b(tr("s3l3ctParamTitle",input$language))), sensorlist,
                    multiple = TRUE,
                    options = list(
-                     placeholder = 'Default is All Sensors'))
+                     placeholder = tr("d3falutParam",input$language)))
     
   }) 
   
   output$altitudelist <- renderUI({
     
-    sliderInput("selAltitude", label = h4(tags$b("Select Elevation range [m]")), min = 0, 
+    sliderInput("selAltitude", label = h4(tags$b(tr("s3lelevrange",input$language))), min = 0, #, h4(),tags$sub("[m]"))
                 max = max(tot_tab$ALT,na.rm = T), value = c(0, max(tot_tab$ALT,na.rm = T)))
     
     
