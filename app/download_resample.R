@@ -35,7 +35,7 @@ dwnld<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor
                 
                 db_sum<-df%>%filter(Sensor%in%c("N","LT")) %>% #
                   group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
-                  summarise(sum=sum(Value,na.rm = T)) %>% 
+                  summarise(sum=round(sum(Value,na.rm = T),2)) %>% 
                   gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
                   unite(Sensor, Sensor, Variable,sep="") %>% 
                   ungroup
@@ -43,14 +43,15 @@ dwnld<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor
                 
                 db_mean<-df%>%filter(!Sensor%in%c("N","WR")) %>% 
                   group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
-                  summarise(mean=mean(Value,na.rm = T)) %>% 
+                  summarise(mean=round(mean(Value,na.rm = T),2)) %>% 
                   gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
                   unite(Sensor, Sensor, Variable,sep="") %>% 
                   ungroup
                 
                 db_min_max<-df%>%filter(Sensor%in%c("LT","LF")) %>% 
                   group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
-                  summarise(min=min(Value,na.rm = T),max=max(Value,na.rm = T)) %>% 
+                  summarise(min=round(min(Value,na.rm = T),2),
+                            max=round(max(Value,na.rm = T),2)) %>% 
                   gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
                   unite(Sensor, Sensor, Variable,sep="") %>% 
                   ungroup

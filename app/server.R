@@ -127,6 +127,8 @@ grey <- awesomeIcons(icon = "ios-close", iconColor = "black",
 blu <- awesomeIcons(icon = "ios-close", iconColor = "black", 
                     library = "ion", markerColor = "blue")
 
+refcols <- c("TimeStamp", "NAME")#,"SCODE"
+
 server <- function(input, output,session) {
   
   output$about_out  <- renderUI({
@@ -602,7 +604,11 @@ server <- function(input, output,session) {
         
         
         tab<-tot_tab %>% dplyr::select(SCODE,NAME)
-        db<-left_join(db,tab,.before=2)
+        
+        db<-left_join(db,tab,.before=2) %>% dplyr::select(-SCODE) %>% 
+          dplyr::arrange(TimeStamp) %>% unique()
+        
+        db <- db[, c(refcols, setdiff(names(db), refcols))]
         
       })#
     }else{db<-"Error in selecting the date range. First date must be earlier than last date"}
