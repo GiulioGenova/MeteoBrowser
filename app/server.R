@@ -118,11 +118,12 @@ sspat<-getMeteoStat(format = "spatial")
 se_spread<-left_join(sspat,se_spread)
 
 
-green <- awesomeIcons(icon = "ios-close", iconColor = "black",
+green <- awesomeIcons(icon = "ios-checkmark", iconColor = "black",
                       library = "ion", markerColor = "green")
-#green <- makeIcon(green,iconWidth = 5, iconHeight = 7)
+
 grey <- awesomeIcons(icon = "ios-close", iconColor = "black", 
                      library = "ion", markerColor = "lightgray")
+
 blu <- awesomeIcons(icon = "ios-close", iconColor = "black", 
                     library = "ion", markerColor = "blue")
 
