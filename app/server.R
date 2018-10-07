@@ -227,8 +227,8 @@ server <- function(input, output,session) {
                                tr("day",input$language),
                                tr("week",input$language),
                                tr("month",input$language),
-                               tr("year",input$language)
-                ))
+                               tr("year",input$language)),
+                selected = tr("hour",input$language))
   })
   
   output$gather<-renderUI({
