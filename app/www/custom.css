@@ -9,7 +9,7 @@
 .skin-blue .main-header .logo:hover {
                         background-color:  	White;
                                             }
-.main-header .logo {height: 75px ; padding-top: 10px}
+.main-header .logo {height: 110px ; padding-top: 10px}
 .skin-blue .main-header .navbar .sidebar-toggle{
                         background-color:  	#cd4e37;
                                             }
@@ -23,4 +23,12 @@
     width: 75%;
     max-width: 75%;
     margin-bottom: 20px;
+}
+.skin-blue .sidebar-menu > li.active > a, .skin-blue .sidebar-menu > li:hover > a{
+color: #fff;
+
+background: #1e282c;
+
+border-left-color: #cd4e37;
+  
 }
