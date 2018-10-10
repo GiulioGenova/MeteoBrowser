@@ -37,7 +37,7 @@ dwnld<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor
                   group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
                   summarise(sum=round(sum(Value,na.rm = T),2)) %>% 
                   gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
-                  unite(Sensor, Sensor, Variable,sep="") %>% 
+                  unite(Sensor, Sensor, Variable,sep="_") %>% 
                   ungroup
                 
                 
@@ -45,7 +45,7 @@ dwnld<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor
                   group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
                   summarise(mean=round(mean(Value,na.rm = T),2)) %>% 
                   gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
-                  unite(Sensor, Sensor, Variable,sep="") %>% 
+                  unite(Sensor, Sensor, Variable,sep="_") %>% 
                   ungroup
                 
                 db_min_max<-df%>%filter(Sensor%in%c("LT","LF")) %>% 
@@ -53,7 +53,7 @@ dwnld<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor
                   summarise(min=round(min(Value,na.rm = T),2),
                             max=round(max(Value,na.rm = T),2)) %>% 
                   gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
-                  unite(Sensor, Sensor, Variable,sep="") %>% 
+                  unite(Sensor, Sensor, Variable,sep="_") %>% 
                   ungroup
                 
                 
@@ -72,7 +72,7 @@ dwnld<-function(station,datestart,dateend,sensors=unique(getMeteoSensor()$Sensor
                   
                   summarise(Dir=as.numeric(names(which.max(table(Value,useNA = "no"))))) %>% 
                   gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
-                  unite(Sensor, Sensor, Variable,sep="") %>% 
+                  unite(Sensor, Sensor, Variable,sep="_") %>% 
                   ungroup
                 
                 
