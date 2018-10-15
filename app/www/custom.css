@@ -9,7 +9,7 @@
 .skin-blue .main-header .logo:hover {
                         background-color:  	White;
                                             }
-.main-header .logo {height: 110px ; padding-top: 10px}
+/*.main-header .logo {height: 110px ; }padding-top: 10px*/
 .skin-blue .main-header .navbar .sidebar-toggle{
                         background-color:  	#cd4e37;
                                             }
@@ -17,7 +17,7 @@
                         background-color:  	#cd4e37;
                                             }
 .name { color: black }
-.left-side, .main-sidebar {padding-top: 110px}
+/*.left-side, .main-sidebar {padding-top: 110px}*/
 .butt{background-color:#cd4e37;} .butt{color: white;}
 .table {
     /*width: 50%;
@@ -32,3 +32,11 @@ background: #1e282c;
 border-left-color: #cd4e37;
   
 }
+
+
+.main-header {max-height: 100px}
+.main-header .logo {height: 100px;}
+.sidebar-toggle {height: 25px; padding-top: 1px !important;}
+.navbar {min-height:25px !important}
+.left-side, .main-sidebar {padding-top: 130px}
+

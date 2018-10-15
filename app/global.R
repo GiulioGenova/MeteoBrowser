@@ -43,10 +43,10 @@ library(DT)
 source(file.path(getwd(),"download_resample.R"))
 source(file.path(getwd(),"MonalisR.R"))
 
-header <- dashboardHeader(titleWidth = 350)
+header <- dashboardHeader(titleWidth = 260)
 
 anchor <- tags$a(href='http://www.eurac.edu/',
-                 tags$img(style="vertical-align: bottom;width: 320px;",#padding-right: 10px;
+                 tags$img(style="vertical-align: bottom;width: 250px;",#padding-right: 10px;
                           #src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg'),#, height='60', width='50'
                           src='LogoProvEuracN.PNG'),
                  #'Meteo Browser South Tyrol',
