@@ -34,7 +34,7 @@ getMeteoSensor<-function (url = NULL, SCODE = NULL, onlySensor = F)
 
 
 downloadMeteo<-function (sensor_code, station_code ,   datestart, 
-          dateend,dburl = NULL, path = "", csv = FALSE) 
+                         dateend,dburl = NULL, path = "", csv = FALSE) 
 {
   if (is.null(dburl)) 
     dburl <- "http://daten.buergernetz.bz.it/services/meteo/v1/timeseries"
@@ -75,11 +75,12 @@ plotMeteoLeaflet<-function (stations = NULL, addPoints = NULL, addBuff = F, widt
   c2 <- awesomeIcons(icon = "ios-close", iconColor = "black", 
                      library = "ion", markerColor = "grey")
   
-  m <- leaflet() %>%addSearchOSM()%>%
-    #htmlwidgets::onRender(".leaflet-control {
-    #                     float: left;
-    #                    clear: both;}")%>% 
-    #addTiles()%>% 
+  m <- leaflet() %>%
+    addSearchOSM()%>%
+    addEasyButton(easyButton(
+      icon = "fa-crosshairs", title = "Locate Me",
+      onClick = JS("function(btn, map){ map.locate({setView: true}); }"))) %>%
+    addFullscreenControl()%>%
     addProviderTiles("OpenStreetMap.Mapnik", group = "Street Map")%>% 
     addProviderTiles("Esri.WorldImagery", group = "Satellite") %>%
     addAwesomeMarkers(lng = stations$LONG %>% as.character %>% as.numeric, lat = stations$LAT %>% 
@@ -89,14 +90,14 @@ plotMeteoLeaflet<-function (stations = NULL, addPoints = NULL, addBuff = F, widt
                                                                               "Altitude:",stations$ALT, "<br>",
                                                                               "<br>",
                                                                               "Latest recorded measurements:", "<br>",
-                                                                             "Air temperature:",stations$LT, "<br>",
+                                                                              "Air temperature:",stations$LT, "<br>",
                                                                               "Relative humidity:",stations$LF, "<br>",
                                                                               
                                                                               "Precipitation:",stations$N, "<br>",
                                                                               "Wind speed:",stations$WG, "<br>",
                                                                               "Wind direction:",stations$WR, "<br>",
                                                                               "Wind guts:",stations$WG.BOE, "<br>",
-                                                                             "Atmospheric perssion:",stations$LD.RED, "<br>",
+                                                                              "Atmospheric perssion:",stations$LD.RED, "<br>",
                                                                               "Solar Radiation:",stations$GS, "<br>",
                                                                               "Sunshine hours:",stations$SD, "<br>",
                                                                               "Snow height:",stations$HS, "<br>",
@@ -104,20 +105,20 @@ plotMeteoLeaflet<-function (stations = NULL, addPoints = NULL, addBuff = F, widt
                                                                               "Water flow:",stations$Q, "<br>",
                                                                               "Water level:",stations$W, "<br>"#,
                                                                               #"Ground water level:",stations$WT, "W.ABST"
-                                                                              ))%>%
+                        ))%>%
     
     #  ""     ""       ""          "SSTF"      
     #addEasyButton(easyButton(icon="fa-crosshairs", title="Locate Me",
     #                        onClick=JS("function(btn, map){ map.locate({setView: true}); }")))%>%
     
     #addDrawToolbar(
-      #targetGroup='draw',
-      #polylineOptions=FALSE,
-      #markerOptions = FALSE,
-      #circleOptions = FALSE,
-      #rectangleOptions =FALSE,
-      #circleMarkerOptions =FALSE)%>%#
-    addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
+    #targetGroup='draw',
+    #polylineOptions=FALSE,
+    #markerOptions = FALSE,
+    #circleOptions = FALSE,
+    #rectangleOptions =FALSE,
+  #circleMarkerOptions =FALSE)%>%#
+  addMeasure(position = "topleft",primaryLengthUnit = "meters")%>%
     addLayersControl(baseGroups = c("Street Map","Satellite"),#overlayGroups = c('draw'),
                      options = layersControlOptions(collapsed = FALSE),position = "topleft")
   

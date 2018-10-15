@@ -39,4 +39,4 @@ border-left-color: #cd4e37;
 .sidebar-toggle {height: 25px; padding-top: 1px !important;}
 .navbar {min-height:25px !important}
 .left-side, .main-sidebar {padding-top: 130px}
-
+#map {height: calc(100vh - 535px) !important;}
