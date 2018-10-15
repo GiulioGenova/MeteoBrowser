@@ -40,3 +40,5 @@ border-left-color: #cd4e37;
 .navbar {min-height:25px !important}
 .left-side, .main-sidebar {padding-top: 130px}
 #map {height: 430px !important;}/*calc(100vh - 50vh)*/
+.left-side, .main-sidebar {width: 150px;}
+.content-wrapper, .main-footer, .right-side {margin-left: 150px;}
