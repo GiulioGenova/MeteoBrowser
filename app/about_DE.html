@@ -20,7 +20,7 @@
   Das breite Tabellenformat enthält für alle Messgrößen eine entsprechende Spalte. Das lange Tabellenformat beinhaltet eine Spalte, die die Größe "Sensor" identifiziert und eine Spalte "Value" die den Messgrößen entspricht.</p>
     <br/>
 <div>
-  <div style="display: inline-block;vertical-align:top;">
+  <div>
 <h3>Legenda della tabella scaricata</h3>
     <p>Il significato dei nomi delle colonne o dei codici delle misurazioni è presentato nella seguente tabella:</p>  
   <table class="table table-bordered table-hover table-condensed">
@@ -90,7 +90,7 @@
 </tbody></table>
     <br/>
 </div>
-<div style="display: inline-block;vertical-align:top;width: 50%;">
+<div>
     <p>Nel formato di tabella "lungo" sarà presente una colonna "Sensor" con il nome della misurazione (LT,N,WG etc.)</p>
     <p>e una colonna "Value" con il valore numerico della misurazione</p>
     <p>Se scarichi dati <b>non</b> "grezzi" nel nome delle misurazioni ci sarà una desinenza che indica il tipo di statistica eseguita sull'arco temporale scelto. Di seguito le desinenze indicate:</p>
@@ -113,10 +113,10 @@
     <a href="https://github.com/GiulioGenova/ODBZ/" target="_blank">Giulio Genova - ODBZ</a>
     </p>
     <p>Um die Anwendung zu starten, führen Sie die folgende Zeichenkette aus:</p>
-    <p>==========================================================================</p>
-    <p>if (!require("shiny")) install.packages("shiny")</p>
-    <p>shiny::runGitHub('GiulioGenova/ODBZ',subdir="app",launch.browser = TRUE)</p>
-    <p>==========================================================================</p>
+    <pre><code>
+    <p>if (!require("shiny")) install.packages("shiny")
+shiny::runGitHub('GiulioGenova/ODBZ',subdir="app",launch.browser = TRUE)</p>
+    </code></pre>
     <p>Dadurch werden automatisch alle notwendigen Pakete auf Ihrem Computer installiert (nur bei der ersten Ausführung erforderlich) und die Webanwendung wird gestartet.</p>
     <br/>
     <h3>Autor</h3>
