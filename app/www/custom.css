@@ -36,9 +36,63 @@ border-left-color: #cd4e37;
 
 .main-header {max-height: 100px}
 .main-header .logo {height: 100px;}
-.sidebar-toggle {height: 25px; padding-top: 1px !important;}
-.navbar {min-height:25px !important}
-.left-side, .main-sidebar {padding-top: 130px}
-#map {height: 430px !important;}/*calc(100vh - 50vh)*/
-.left-side, .main-sidebar {width: 150px;}
-.content-wrapper, .main-footer, .right-side {margin-left: 150px;}
+.sidebar-toggle {height: 22px; padding-top: 1px !important;}
+.navbar {min-height:22px !important}
+
+/*#map {height: 430px !important;}calc(100vh - 50vh)*/
+
+.content-wrapper,.main-footer,.right-side {
+ -webkit-transition:-webkit-transform .3s ease-in-out,margin .3s ease-in-out;
+ -moz-transition:-moz-transform .3s ease-in-out,margin .3s ease-in-out;
+ -o-transition:-o-transform .3s ease-in-out,margin .3s ease-in-out;
+ transition:transform .3s ease-in-out,margin .3s ease-in-out;
+ margin-left:180px;
+ z-index:820
+}
+
+@media (max-width:767px) {
+ .content-wrapper,.main-footer,.right-side {
+  margin-left:0
+ }
+}
+
+@media (min-width:768px) {
+ .sidebar-collapse .content-wrapper,.sidebar-collapse .main-footer,.sidebar-collapse .right-side {
+  margin-left:0;
+ }
+}
+
+@media (max-width:767px) {
+ .sidebar-open .content-wrapper,.sidebar-open .main-footer,.sidebar-open .right-side {
+  -webkit-transform:translate(180px,0);
+  -ms-transform:translate(180px,0);
+  -o-transform:translate(180px,0);
+  transform:translate(180px,0)
+ }
+}
+
+
+.left-side,.main-sidebar {
+ position:absolute;
+ top:0;
+ left:0;
+ padding-top:100px;
+ min-height:100%;
+ width:180px;
+ z-index:810;
+ -webkit-transition:-webkit-transform .3s ease-in-out,width .3s ease-in-out;
+ -moz-transition:-moz-transform .3s ease-in-out,width .3s ease-in-out;
+ -o-transition:-o-transform .3s ease-in-out,width .3s ease-in-out;
+ transition:transform .3s ease-in-out,width .3s ease-in-out
+}
+
+
+@media (max-width:767px) {
+ .left-side,.main-sidebar {
+  padding-top:122px
+ }
+}
+
+@media (max-width:767px) {
+.content-wrapper, .main-footer, .right-side{padding-top:20px;}
+}
