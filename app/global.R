@@ -70,6 +70,7 @@ LL <- "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
 url <- "http://daten.buergernetz.bz.it/services/meteo/v1/sensors"
 u <- GET(url) %>% content
 se<-bind_rows(u)
+se <-se[!duplicated(se[ , 1:2 ]), ]
 st<-getMeteoStat()
 legend_tab<-full_join(st,se)%>%#dplyr::select(-NAME_L,-NAME_E,-DESC_L,-DATE,VALUE,-LAT,-LONG,-VALUE)%>%
   mutate_if(is.character, funs(as.factor(.)))%>%
