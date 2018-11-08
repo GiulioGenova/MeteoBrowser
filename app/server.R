@@ -84,7 +84,9 @@ server <- function(input, output,session) {
   
   output$daterange<-renderUI({
     
-    dateRangeInput(label = h4(tags$b(tr("daterange",input$language))),inputId = "daterange",separator = " - ",min = "2000-01-01",#
+    dateRangeInput(label = h4(tags$b(tr("daterange",input$language))),
+                   inputId = "daterange",separator = " - ",
+                   min = Sys.Date()-1100,#"2000-01-01"
                    start = Sys.Date()-3,
                    end = Sys.Date()+1,language=input$language)
   })
@@ -476,7 +478,7 @@ server <- function(input, output,session) {
         tab<-tot_tab %>% dplyr::select(SCODE,NAME)
         
         db<-left_join(db,tab,.before=2) %>% dplyr::select(-SCODE) %>% 
-          dplyr::arrange(TimeStamp) %>% unique()
+          dplyr::arrange(NAME,TimeStamp) %>% unique()
         
         db <- db[, c(refcols, setdiff(names(db), refcols))]
         
