@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "Giulio.Genova@eurac.edu")
 Description: What the package does (one paragraph).
-License: GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
