@@ -1,0 +1,12 @@
+name: MeteoBrowserSouthTyrol
+title: MeteoBrowserSouthTyrol
+username:
+account: euracalpenv
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 472991
+bundleId: 1689167
+url: https://euracalpenv.shinyapps.io/MeteoBrowserSouthTyrol/
+when: 1541665791.84115
+asMultiple: FALSE
+asStatic: FALSE

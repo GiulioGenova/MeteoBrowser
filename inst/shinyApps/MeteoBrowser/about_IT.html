@@ -1,0 +1,142 @@
+<html>
+  <body>
+  <h3>Informazioni sui dati</h3>
+  <p>
+  Questa applicazione fornisce un'interfaccia user-friendly per scaricare i dati meteorologici del potale Open Data Alto Adige</p>
+<p>L'API Open Data Alto Adige e la relativa documentazione sono disponibili sul sito web della Provincia di Bolzano.</p>
+  <p>
+  <a href="http://daten.buergernetz.bz.it/it/dataset/misure-meteo-e-idrografiche" target="_blank">Open Data Alto Adige - Meteo data web service</a>
+    </p>
+    <p>Si possono scaricare i dati una volta selezionate le stazioni e i sensori, filtrando la tabella e / o disegnando un poligono sulla mappa, e scelto l'arco temporale d'interesse (i dati disponibili si riferiscono agli ultimi tre anni).</p>
+    <p>Quando lo scarico dati è completato, un'icona "salva" vine mostrata e si può scegliere di salvare la tabella di dati in formato csv o json. 
+  Si puo scegliere tra diverse aggregazioni temporali. "grezzo" mantiene l'originale risoluzione d'acquisizione dei dati
+  (tipicamente 5 o 10 minuti). Per le altre opzioni di aggregazione temporale (medie orarie, giornaliere, ecc.) si avranno diverse statistiche per le diverse variabili.</p>
+  <p>Per tutte le variabili misurate si avrà il numero totale di dati mancanti per il periodo selezionato.</p>
+  <p>per tutte le variabili misurate, fatta eccezione per la precipitazione e direzione del vento è compiuta la media aritmetica per la specifica aggregazione temporale. </p>
+  <p>Precipitazione e temperatura dell'aria avranno anche la somma totale riferita alla specifica aggregazione temporale.</p>
+    <p>Temperatura dell'aria e umidità relativa avranno anche i valori minimi e massimi riferiti alla specifica aggregazione temporale.</p>
+  <p>La direzione del vento è riclassificata con i seguenti codici numerici e il più frequente sarà assegnato:</p>
+  <p>1 = N; 2 = NE; 3 = E; 4 = SE; 5 = S; 6 = SO; 7 = O; 8 = NO.</p>
+  <p>Si può scegliere tra diversi formati di tabella,"larga" or "lunga".
+  Nel formato di tabella largo si ottengono una colonna per ogni variabile misurata. Nel formato di tabella lungo si ottengono  una colonna che identifica la misura "Sensor" e una colonna 
+  "Value" che corrisponde alle misure.</p>
+  <br/>
+<div>
+  <div>
+<h3>Legenda della tabella scaricata</h3>
+    <p>Il significato dei nomi delle colonne o dei codici delle misurazioni è presentato nella seguente tabella:</p>  
+  <table class="table table-bordered table-hover table-condensed">
+<thead><tr><th title="Field #1"></th>
+<th title="Field #2">Significato</th>
+</tr></thead>
+<tbody><tr>
+<td>TimeStamp</td>
+<td>Data/orario misurazione</td>
+</tr>
+<tr>
+<td>SCODE</td>
+<td>Codice univoco stazione</td>
+</tr>
+<tr>
+<td>NAME</td>
+<td>Nome stazione</td>
+</tr>
+<tr>
+<td>GS</td>
+<td>Radiazione globale</td>
+</tr>
+<tr>
+<td>HS</td>
+<td>Altezza neve al suolo</td>
+</tr>
+<tr>
+<td>LD.RED</td>
+<td>Pressione atmosferica</td>
+</tr>
+<tr>
+<td>LF</td>
+<td>Umidita relativa</td>
+</tr>
+<tr>
+<td>LT</td>
+<td>Temperatura dell&#39;aria</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Precipitazione</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>Portata</td>
+</tr>
+<tr>
+<td>SD</td>
+<td>Durata soleggiamento</td>
+</tr>
+<tr>
+<td>W</td>
+<td>Temperatura acqua</td>
+</tr>
+<tr>
+<td>WG</td>
+<td>Velocita del vento</td>
+</tr>
+<tr>
+<td>WG.BOE</td>
+<td>Velocita raffica</td>
+</tr>
+<tr>
+<td>WR</td>
+<td>Direzione del vento</td>
+</tr>
+<tr>
+<td>WT</td>
+<td>Temperatura acqua</td>
+</tr>
+</tbody></table>
+    <br/>
+</div>
+<div>
+    <p>Nel formato di tabella "lungo" sarà presente una colonna "Sensor" con il nome della misurazione (LT,N,WG etc.)</p>
+    <p>e una colonna "Value" con il valore numerico della misurazione</p>
+    <p>Se scarichi dati <b>non</b> "grezzi" nel nome delle misurazioni ci sarà una desinenza che indica il tipo di statistica eseguita sull'arco temporale scelto. Di seguito le desinenze indicate:</p>
+    <p>*<b>_mean</b> : la media dei valori nell'arco temporale</p>
+    <p>*<b>_sum</b> : la somma dei valori nell'arco temporale</p>
+    <p>*<b>_max</b> : il valore massimo nell'arco temporale</p>
+    <p>*<b>_min</b> : il valore minimo nell'arco temporale</p>
+    <p>*<b>_na</b> : the number of missing values in the timespan</p>
+    <p>*<b>_Dir</b> : la direzione del vento calssificata come segue:</p>
+    <p>1 = N; 2 = NE; 3 = E; 4 = SE; 5 = S; 6 = SW; 7 = W; 8 = NW</p>
+</div>
+</div>  
+  <h3>Dichiarazione di esclusione di responsabilità</h3>
+  <p>Dei dati metereologici scaricati con questa applicazione non ne sono garantiti la qualità in quanto non validati dal fornitore dei dati, tanto meno dagli svliuppatori di questa WebApp. 
+  La seguente WebApp ha il solo intento di facilitare l'accesso ai dati metereologici e idrologici del portale Open Data Alto Adige.</p>
+    <br/>
+    <h3>Lancia l'applicazione in locale: Scaricata da Github</h3>
+  <p>Il codice sorgente è ottenibile nel seguente link:</p>
+  <p>
+  <a href="https://github.com/GiulioGenova/ODBZ/" target="_blank">Giulio Genova - ODBZ</a>
+  </p>
+  <p>Per lanciare l'applicazione in locale, eseguire la seguente stringa di codice:</p>
+    <pre><code>
+    <p>if (!require("shiny")) install.packages("shiny")
+shiny::runGitHub('GiulioGenova/ODBZ',subdir="app",launch.browser = TRUE)</p>
+    </code></pre>
+    <p>Questo installerà automaticamente tutti i pacchetti necessari sul vostro computer (necessario solo la prima volta che viene eseguito) e lanciera l'applicazione web.</p>
+    <br/>
+    <h3>Autore</h3>
+    <p>
+    <a href="https://github.com/GiulioGenova/" target="_blank">Giulio Genova</a>
+    </p>
+    <p>Eurac - Istituto per l'Ambiente Alpino</p>
+    <p>e-mail: giulio.genova@eurac.edu</p>
+    <p>2018-09-26</p>
+    <br/>
+    <h3>Ringraziamenti</h3>
+    <p>Rignaziamo Mattia Rossi il quale ha sviluppato il pacchetto R "MonalisR" che svolge un ruolo fondamentale nel backend di questa applicazione. Il pacchetto può essere trovato al seguente link:</p>
+    <p>
+      <a href="https://gitlab.inf.unibz.it/earth_observation_public/MonalisR" target="_blank">MonalisR</a>
+    </p>
+  </body>
+</html>
