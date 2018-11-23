@@ -13,10 +13,10 @@ LazyData: true
 RoxygenNote: 6.1.1
 Depends: R (>= 3.5.0)
 Remotes: 
-  GiulioGenova/MonalisR
+  GiulioGenova/MonalisR,
+  rstudio/leaflet,
+  bhaskarvk/leaflet.extras
 Imports:
-  leaflet.extras,
-  leaflet,
   raster,
   pbapply,
   httr,
