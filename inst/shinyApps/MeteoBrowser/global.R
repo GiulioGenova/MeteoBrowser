@@ -1,4 +1,4 @@
-library(MeteoBrowser)
+
 library(shiny)
 library(shinydashboard)
 library(leaflet)
@@ -7,5 +7,6 @@ library(DT)
 library(lubridate)
 library(sp)
 library(dplyr)
+library(MeteoBrowser)
 
 initializeApp()
