@@ -7,6 +7,7 @@ library(DT)
 library(lubridate)
 library(sp)
 library(dplyr)
+#library(MonalisR)
 library(MeteoBrowser)
 
 initializeApp()
