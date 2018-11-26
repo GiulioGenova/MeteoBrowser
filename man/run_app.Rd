@@ -15,8 +15,6 @@ run_app(app, launchBrowser = T)
 Get data from province of Bozen monitoring stations.
 }
 \examples{
-\dontrun{
 run_app('MeteoBrowser')
-}
 
 }

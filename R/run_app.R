@@ -2,9 +2,8 @@
 #' @param app character string with the name of the app.
 #' @param launchBrowser whether to launch the application with the browser or not.
 #' @export
-#' @examples \dontrun{
+#' @examples
 #' run_app('MeteoBrowser')
-#' }
 #'
 
 run_app <- function(app,launchBrowser=T) {
