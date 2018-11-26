@@ -2,6 +2,11 @@
 #' @param app character string with the name of the app.
 #' @param launchBrowser whether to launch the application with the browser or not.
 #' @export
+#' @examples \dontrun{
+#' run_app('MeteoBrowser')
+#' }
+#'
+
 run_app <- function(app,launchBrowser=T) {
   # locate all the shiny app examples that exist
   validExamples <- list.files(system.file("shinyApps", package = "MeteoBrowser"))
