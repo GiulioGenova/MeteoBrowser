@@ -16,7 +16,7 @@ run_app <- function(app,launchBrowser=T) {
   if (missing(app) || !nzchar(app) ||
       !app %in% validExamples) {
     stop(
-      'Please run `runExample()` with a valid example app as an argument.\n',
+      'Please run `run_app()` with a valid example app as an argument.\n',
       validExamplesMsg,
       call. = FALSE)
   }
