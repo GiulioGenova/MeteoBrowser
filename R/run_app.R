@@ -1,3 +1,6 @@
+#' Get data from province of Bozen monitoring stations.
+#' @param app character string with the name of the app.
+#' @param launchBrowser whether to launch the application with the browser or not.
 #' @export
 run_app <- function(app,launchBrowser=T) {
   # locate all the shiny app examples that exist
