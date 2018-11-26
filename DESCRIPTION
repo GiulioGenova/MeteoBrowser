@@ -34,4 +34,5 @@ Imports:
   shiny,
   readr,
   DT,
-  MonalisR
+  MonalisR,
+  tidyr
