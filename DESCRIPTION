@@ -28,6 +28,7 @@ Imports:
   shinyjs,
   sp,
   dplyr,
+  spdplyr,
   lubridate,
   shinydashboard,
   shiny,
