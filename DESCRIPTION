@@ -32,4 +32,5 @@ Imports:
   shinydashboard,
   shiny,
   readr,
-  DT
+  DT,
+  MonalisR
