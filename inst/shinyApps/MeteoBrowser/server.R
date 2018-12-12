@@ -673,7 +673,7 @@ server <- function(input, output,session) {
         gather<-as.character(translation[grep(input$gather,translation[,input$language]),"key"])
         #gather<-input$gather
         round=input$round
-        nstat=D$documents[[1]]$SCODE %>% unique %>% length %>% as.character
+        nstat=D$documents[[1]]$NAME %>% unique %>% length %>% as.character
         #paste0(station,'_',round,'_',startdate,'_',enddate,'.csv')
         if(input$csvjson=="csv"){
           paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.csv')#,round
