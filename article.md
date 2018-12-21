@@ -1,5 +1,5 @@
-﻿---
-title: "SoilCalibrationRegression: R interface to retrieve soil moisture regression to calibrate sensor measurement vs soil moisture gravimetric measurement."
+---
+title: 'SoilCalibrationRegression: R interface to retrieve soil moisture regression to calibrate sensor measurement vs soil moisture gravimetric measurement.'
 tags:
   - Open Data
   - R
