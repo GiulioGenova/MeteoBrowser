@@ -6,7 +6,7 @@ To run the application install the library:
 ```R
 if(!require(devtools)) install.packages("devtools")
 
-devtools::install_github("GiulioGenova/MeteoBrowser",ref = "package")
+devtools::install_github("GiulioGenova/MeteoBrowser")
 ```
 and then use the function run_app
 
