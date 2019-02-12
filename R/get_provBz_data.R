@@ -61,7 +61,7 @@ get_provBz_data<-function(station_sensor,
         }else{
 
 
-          db_sum<-df%>%filter(Sensor%in%c("N","LT")) %>% #
+          db_sum<-df%>%filter(Sensor%in%c("N","LT","SD")) %>% #
             group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
             summarise(sum=round(sum(Value,na.rm = T),2)) %>%
             gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
@@ -69,7 +69,7 @@ get_provBz_data<-function(station_sensor,
             ungroup
 
 
-          db_mean<-df%>%filter(!Sensor%in%c("N","WR")) %>%
+          db_mean<-df%>%filter(!Sensor%in%c("N","WR","SD")) %>%
             group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
             summarise(mean=round(mean(Value,na.rm = T),2)) %>%
             gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%

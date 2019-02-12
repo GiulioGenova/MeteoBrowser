@@ -41,7 +41,7 @@ initializeApp <- function(){
                                 ifelse(DESC_D=="Niederschlag","Precipitation",
                                        ifelse(DESC_D=="Windgeschwindigkeit","Wind speed",
                                               ifelse(DESC_D=="Windrichtung","Wind direction",
-                                                     ifelse(DESC_D=="Windgeschwindigkeit Böe","Wind direction",
+                                                     ifelse(DESC_D=="Windgeschwindigkeit Böe","Wind gust",
                                                             ifelse(DESC_D=="Luftdruck","Atmospheric pression",
                                                                    ifelse(DESC_D=="Globalstrahlung","Solar Radiation",
                                                                           ifelse(DESC_D=="Sonnenscheindauer","Sunshine hours",
