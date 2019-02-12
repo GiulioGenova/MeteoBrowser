@@ -2,8 +2,8 @@
 ui <- dashboardPage(#useShinyjs(),
   title= "Meteo Browser Südtirol",
   skin = "blue",
-  
-  header             
+
+  header
     ,
   dashboardSidebar(
     disable = F,
@@ -27,29 +27,29 @@ ui <- dashboardPage(#useShinyjs(),
       tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
       tags$link(rel = "script", type = "js", href = "scr.js")
       ),
-    
+
     # Boxes need to be put in a row (or column)
     tabItems(
-      
+
       tabItem(tabName = "Data",
-              
+
               fluidRow(
-                
+
                 box(width = 4,collapsible = T,
-                    
+
                     uiOutput("statlist"),
-                    uiOutput("sensorlist"),
                     uiOutput("altitudelist"),
+                    uiOutput("sensorlist"),
                     uiOutput("daterange"),
                     uiOutput("message"),
                     div(style="display: inline-block;vertical-align:top; width: 43%;",uiOutput("round")),
                     div(style="display: inline-block;vertical-align:top; width: 55%;",uiOutput("gather")),
-                    
+
                     textOutput("downloadInstructions"),
                     div(style=" width: 40%;",
                         uiOutput("refresh")
                        )
-                    
+
                     ,
                     div(style=" width: 100%;",
                     div(style="display: inline-block;vertical-align:top; width: 55%;",
@@ -59,15 +59,15 @@ ui <- dashboardPage(#useShinyjs(),
                         uiOutput("tabChoice")
                         )
                    )
-                    
+
                    #,
-                    
+
                     #htmlOutput("tableInstructions")
-                    
-                    
-                  
+
+
+
               ),
-                   
+
                 box(width = 8,
                     verbatimTextOutput("selected"),
                     leafletOutput("map"),
@@ -79,7 +79,7 @@ ui <- dashboardPage(#useShinyjs(),
                     textOutput("andSensors"),
                     verbatimTextOutput("selected_listSensors"),
                     collapsible = T)
-                    
+
               )
               ,fluidRow(
 
@@ -87,9 +87,9 @@ ui <- dashboardPage(#useShinyjs(),
                 #         "To stop the download refresh the page"),
                 #htmlOutput("tableInstructions"),
                 DTOutput('table')
-               
+
               ),
-            
+
               htmlOutput("d1scla1mer"),
               textOutput("Disclaimer")
               # ,
@@ -100,7 +100,7 @@ ui <- dashboardPage(#useShinyjs(),
               #        tags$img(style="vertical-align: bottom;width: 200px;padding-right: 20px;padding-top: 20px;float: left;",
               #                 src='http://www.eurac.edu/Style%20Library/logoEURAC.jpg')
               #        )
-      
+
       )
       ,
       tabItem(# the about page
