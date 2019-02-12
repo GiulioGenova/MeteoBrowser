@@ -4,7 +4,7 @@
                         background-color: White; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;
                                             }
 .skin-blue .main-header .navbar {
-                              background-color: White; 
+                              background-color: White;
                               }
 .skin-blue .main-header .logo:hover {
                         background-color:  	White;
@@ -30,7 +30,7 @@ color: #fff;
 background: #1e282c;
 
 border-left-color: #cd4e37;
-  
+
 }
 
 
@@ -95,4 +95,10 @@ border-left-color: #cd4e37;
 
 @media (max-width:767px) {
 .content-wrapper, .main-footer, .right-side{padding-top:20px;}
+}
+
+#refresh {
+  color: white;
+  background-color:#428bca;
+
 }
