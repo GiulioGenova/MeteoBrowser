@@ -4,29 +4,29 @@ ui <- dashboardPage(#useShinyjs(),
   skin = "blue",
 
   header
-    ,
+  ,
   dashboardSidebar(
     disable = F,
     sidebarMenuOutput("Data"),
     sidebarMenuOutput("about"),
     #sidebarMenuOutput("legend"),
     sidebarMenu(
-                     #uiOutput("Data"),
-                     #menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o")),
-                     #uiOutput("about"),
-                     #menuItem("README", tabName = "about", icon = icon("info-circle")),
-                     radioButtons("language", NULL,
-                                  c("English" = "en",
-                                    "Deutsch" = "de",
-                                    "Italiano" = "it"))
-                     #menuItem("map", tabName = "map", icon = icon("info-circle"))#,
-                     #menuItem("Data detail", tabName = "detail", icon = icon("bar-chart-o"))
-                   )),
+      #uiOutput("Data"),
+      #menuItem("Data overwiev", tabName = "Data", icon = icon("bar-chart-o")),
+      #uiOutput("about"),
+      #menuItem("README", tabName = "about", icon = icon("info-circle")),
+      radioButtons("language", NULL,
+                   c("Deutsch" = "de",
+                     "Italiano" = "it",
+                     "English" = "en"))
+      #menuItem("map", tabName = "map", icon = icon("info-circle"))#,
+      #menuItem("Data detail", tabName = "detail", icon = icon("bar-chart-o"))
+    )),
   dashboardBody(
     tags$head(
       tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
       tags$link(rel = "script", type = "js", href = "scr.js")
-      ),
+    ),
 
     # Boxes need to be put in a row (or column)
     tabItems(
@@ -49,25 +49,25 @@ ui <- dashboardPage(#useShinyjs(),
                     textOutput("downloadInstructions"),
                     div(style=" width: 40%;",
                         uiOutput("refresh")
-                       )
+                    )
 
                     ,
                     div(style=" width: 100%;",
-                    div(style="display: inline-block;vertical-align:top; width: 55%;",
-                        uiOutput("save")
+                        div(style="display: inline-block;vertical-align:top; width: 55%;",
+                            uiOutput("save")
                         ),
-                    div(style="display: inline-block;vertical-align:top; width: 40%;",
-                        uiOutput("tabChoice")
+                        div(style="display: inline-block;vertical-align:top; width: 40%;",
+                            uiOutput("tabChoice")
                         )
-                   )
+                    )
 
-                   #,
+                    #,
 
                     #htmlOutput("tableInstructions")
 
 
 
-              ),
+                ),
 
                 box(width = 8,
                     verbatimTextOutput("selected"),
@@ -105,14 +105,14 @@ ui <- dashboardPage(#useShinyjs(),
       )
       ,
       tabItem(# the about page
-    tabName = "about",
-    tabPanel("About", box(width = NULL,
-                          #about$value
-                         htmlOutput("about_out")
-                         ))
-    )#,
-    #  tabItem(# the about page
-    #tabName = "legend",
-    #DTOutput('legend_tab')
-    #)
-)))
+        tabName = "about",
+        tabPanel("About", box(width = NULL,
+                              #about$value
+                              htmlOutput("about_out")
+        ))
+      )#,
+      #  tabItem(# the about page
+      #tabName = "legend",
+      #DTOutput('legend_tab')
+      #)
+    )))
