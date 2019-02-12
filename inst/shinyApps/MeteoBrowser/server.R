@@ -214,7 +214,7 @@ server <- function(input, output,session) {
 
     statlist <- sort(unique(as.vector(tot_tab$NAME)), decreasing = FALSE)
     #statlist <- append(statlist, "All", after =  0)
-    selectizeInput("selStation", h4(tags$b(tr("s3l3ctStatTitle",input$language))), c(statlist,"All"),
+    selectizeInput("selStation", h4(tags$b(tr("s3l3ctStatTitle",input$language))), c("All",statlist),
                    multiple = TRUE,
                    #selected = "Salurn / Salorno",
                    options = list(
