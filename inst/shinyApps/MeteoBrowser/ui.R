@@ -42,6 +42,7 @@ ui <- dashboardPage(#useShinyjs(),
                     uiOutput("sensorlist"),
                     uiOutput("daterange"),
                     uiOutput("message"),
+                    uiOutput("messageStatSens"),
                     div(style="display: inline-block;vertical-align:top; width: 43%;",uiOutput("round")),
                     div(style="display: inline-block;vertical-align:top; width: 55%;",uiOutput("gather")),
 

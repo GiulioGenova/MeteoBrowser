@@ -53,5 +53,6 @@ airTemp,Air temperature:,Lufttemperatur:,Temperatura dell'aria:
 s3l3ctStatTitle,Select station:,Station wählen:,Seleziona stazione:
 s3l3ctParamTitle,Select measurement:,Parameter wählen:,Seleziona misurazione:
 s3lelevrange,Select elevation range [m],Wählen Sie den Höhenbereich [m],Seleziona il range [m] altitudinale
-d3falutStat,All stations,Alle Stationen,Tutte le stazioni
+d3falutStat,Select one or more stations,Wählen Sie eine oder mehrere Stationen aus,Seleziona una o più stazioni
 d3falutParam,All sensors,Alle Parameter,Tutte i sensori
+messageStatSens,Select at least one station and one parameter,Wählen Sie mindestens eine Station und einen Parameter aus,Seleziona almeno una statione e un parametro

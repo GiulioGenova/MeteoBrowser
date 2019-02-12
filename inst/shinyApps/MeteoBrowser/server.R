@@ -75,7 +75,7 @@ server <- function(input, output,session) {
     #dateend<- input$daterange[2] %>% as.character %>% as_date
     #if(datestart<=dateend){actionButton(label= as.character(translation[grep("refresh",translation$key),input$language]),"refresh")}
     #div(style="width: 40%;",
-    conditionalPanel(condition = "output.rightdate",#br(),
+    conditionalPanel(condition = "output.rightdate && output.rightStationSensor",#br(),
                      actionButton(label= tr("refresh",input$language),"refresh"))
     #   )
   })
@@ -130,6 +130,15 @@ server <- function(input, output,session) {
   })
 
 
+
+  output$messageStatSens<-renderUI({
+
+    conditionalPanel(condition = "output.rightStationSensor==false",br(),
+                     renderText(tr("messageStatSens",input$language)))
+
+
+
+  })
 
   output$selected<-renderText({
 
@@ -205,9 +214,9 @@ server <- function(input, output,session) {
 
     statlist <- sort(unique(as.vector(tot_tab$NAME)), decreasing = FALSE)
     #statlist <- append(statlist, "All", after =  0)
-    selectizeInput("selStation", h4(tags$b(tr("s3l3ctStatTitle",input$language))), statlist,
+    selectizeInput("selStation", h4(tags$b(tr("s3l3ctStatTitle",input$language))), c(statlist,"All"),
                    multiple = TRUE,
-                   selected = "Salurn / Salorno",
+                   #selected = "Salurn / Salorno",
                    options = list(
                      placeholder = tr("d3falutStat",input$language)))
 
@@ -254,11 +263,14 @@ server <- function(input, output,session) {
     input$selAltitude
 
 
-    #if ("All"%in%input$selStation) {
+
     if (is.null(input$selStation)) {
 
-      filt1 <- quote(NAME != "@?><")
+      filt1 <- quote(NAME == "@?><")
 
+    } else if("All"%in%input$selStation) {
+
+      filt1 <- quote(NAME != "@?><")
 
     } else {
 
@@ -479,7 +491,7 @@ server <- function(input, output,session) {
       dplyr::filter(SCODE %in% station,Sensor %in% sensors) %>%
       dplyr::select(SCODE,Sensor)
 
-    if(as_date(datestart)<=dateend){
+    if(as_date(datestart)<=dateend & length(station)!=0){
       withProgress(message = 'Getting data', value = 0, {
         db<-get_provBz_data(station_sensor=station_sensor,
                                datestart=datestart,
@@ -658,6 +670,12 @@ server <- function(input, output,session) {
 
   })
 
+  output$rightStationSensor <-reactive({
+
+    return(length(StatSens$station)!=0 & length(StatSens$sensors)!=0)
+
+  })
+
   output$tablebuilt <-reactive({
     return(!is.null(D$documents))
     #return(any(D$documents[[1]]))
@@ -711,4 +729,5 @@ server <- function(input, output,session) {
 
   outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
   outputOptions(output, 'rightdate', suspendWhenHidden=FALSE)
+  outputOptions(output, 'rightStationSensor', suspendWhenHidden=FALSE)
 }
