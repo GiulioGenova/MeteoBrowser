@@ -1,11 +1,11 @@
 green <- awesomeIcons(icon = "ios-checkmark", iconColor = "black",
-                       library = "ion", markerColor = "green")
+                      library = "ion", markerColor = "green")
 
 grey <- awesomeIcons(icon = "ios-close", iconColor = "black",
-                      library = "ion", markerColor = "lightgray")
+                     library = "ion", markerColor = "lightgray")
 
 blu <- awesomeIcons(icon = "ios-close", iconColor = "black",
-                     library = "ion", markerColor = "blue")
+                    library = "ion", markerColor = "blue")
 
 server <- function(input, output,session) {
 
@@ -223,6 +223,42 @@ server <- function(input, output,session) {
   })
 
 
+  # observe({
+  #
+  #   if (!is.null(input$selSensor)) {
+  #
+  #     if(input$language=="it"){
+  #
+  #       x=tot_tab[tot_tab$DESC_I%in%input$selSensor,"NAME"]
+  #
+  #     }else if(input$language=="de"){
+  #
+  #       x=tot_tab[tot_tab$DESC_D%in%input$selSensor,"NAME"]
+  #
+  #     }else{
+  #
+  #       x=tot_tab[tot_tab$DESC_E%in%input$selSensor,"NAME"]
+  #
+  #     }
+  #
+  #     x=unique(x)
+  #
+  #     updateSelectInput(session, "selStation",
+  #                       choices = x
+  #     )
+  #   }else{
+  #
+  #     x <- sort(unique(as.vector(tot_tab$NAME)), decreasing = FALSE)
+  #
+  #     updateSelectInput(session, "selStation",
+  #                       choices = c("All",x)
+  #     )
+  #
+  #   }
+  #
+  # })
+
+
   output$sensorlist <- renderUI({
     if(input$language=="it"){
 
@@ -245,6 +281,45 @@ server <- function(input, output,session) {
                      placeholder = tr("d3falutParam",input$language)))
 
   })
+
+  observe({
+
+    if(input$language=="it"){
+      column="DESC_I"
+      vector=tot_tab$DESC_I
+    }else if(input$language=="de"){
+      column="DESC_D"
+      vector=tot_tab$DESC_D
+    }else{
+      column="DESC_E"
+      vector=tot_tab$DESC_E
+    }
+
+    if (is.null(input$selStation) || input$selStation=="All") {
+
+
+      x <- sort(unique(as.vector(vector)), decreasing = FALSE)
+
+      updateSelectInput(session, "selSensor",
+                        choices = x
+      )
+
+    }else{
+
+      x=tot_tab[tot_tab$NAME%in%input$selStation,
+                column]
+
+      x=unique(x)
+
+      updateSelectInput(session, "selSensor",
+                        choices = x
+      )
+
+
+    }
+
+  })
+
 
   output$altitudelist <- renderUI({
 
@@ -494,9 +569,9 @@ server <- function(input, output,session) {
     if(as_date(datestart)<=dateend & length(station)!=0){
       withProgress(message = 'Getting data', value = 0, {
         db<-get_provBz_data(station_sensor=station_sensor,
-                               datestart=datestart,
-                               dateend=dateend,nstations=nstations,
-                               round=round,spread=spread)#
+                            datestart=datestart,
+                            dateend=dateend,nstations=nstations,
+                            round=round,spread=spread)#
 
 
         tab<-tot_tab %>% dplyr::select(SCODE,NAME)

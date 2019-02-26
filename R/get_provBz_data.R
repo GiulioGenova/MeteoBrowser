@@ -61,7 +61,7 @@ get_provBz_data<-function(station_sensor,
         }else{
 
 
-          db_sum<-df%>%filter(Sensor%in%c("N","LT","SD")) %>% #
+          db_sum<-df%>%filter(Sensor%in%c("N","SD")) %>% #"LT",
             group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
             summarise(sum=round(sum(Value,na.rm = T),2)) %>%
             gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
@@ -69,7 +69,7 @@ get_provBz_data<-function(station_sensor,
             ungroup
 
 
-          db_mean<-df%>%filter(!Sensor%in%c("N","WR","SD")) %>%
+          db_mean<-df%>%filter(!Sensor%in%c("N","WR","SD","WG.BOE")) %>%
             group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
             summarise(mean=round(mean(Value,na.rm = T),2)) %>%
             gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
@@ -104,14 +104,15 @@ get_provBz_data<-function(station_sensor,
             ungroup
 
 
-          db_na<-df%>%
-            group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
-            summarise(na=sum(is.na(Value))) %>%
-            gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
-            unite(Sensor, Sensor, Variable,sep="_") %>%
-            ungroup
+#           db_na<-df%>%
+#             group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+#             summarise(na=sum(is.na(Value))) %>%
+#             gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
+#             unite(Sensor, Sensor, Variable,sep="_") %>%
+#             ungroup
 
-          db_final<-bind_rows(db_sum,db_mean,db_min_max,db_wind,db_na) %>% mutate(Value=ifelse(Value%in%c(-Inf,Inf,NaN),NA,Value))#
+          db_final<-bind_rows(db_sum,db_mean,db_min_max,db_wind) %>%
+            mutate(Value=ifelse(Value%in%c(-Inf,Inf,NaN),NA,Value))#,db_na
 
         }
 
