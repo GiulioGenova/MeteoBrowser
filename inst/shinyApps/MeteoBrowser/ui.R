@@ -41,8 +41,10 @@ ui <- dashboardPage(#useShinyjs(),
                     uiOutput("altitudelist"),
                     uiOutput("sensorlist"),
                     uiOutput("daterange"),
-                    uiOutput("message"),
-                    uiOutput("messageStatSens"),
+                    div(style="color: red;",
+                    uiOutput("message")
+                    ),
+
                     div(style="display: inline-block;vertical-align:top; width: 43%;",uiOutput("round")),
                     div(style="display: inline-block;vertical-align:top; width: 55%;",uiOutput("gather")),
 
@@ -52,6 +54,9 @@ ui <- dashboardPage(#useShinyjs(),
                     )
 
                     ,
+                    div(style="color: red;",
+                        uiOutput("messageStatSens")
+                    ),
                     div(style=" width: 100%;",
                         div(style="display: inline-block;vertical-align:top; width: 55%;",
                             uiOutput("save")

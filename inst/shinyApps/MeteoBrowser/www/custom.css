@@ -18,7 +18,15 @@
                                             }
 .name { color: black }
 /*.left-side, .main-sidebar {padding-top: 110px}*/
+
+.btn-default {
+    background-color: #428bca;
+    color: white;
+    border-color: #ddd;
+}
+
 .butt{background-color:#cd4e37;} .butt{color: white;}
+
 .table {
     /*width: 50%;
     max-width: 50%;*/
@@ -97,8 +105,10 @@ border-left-color: #cd4e37;
 .content-wrapper, .main-footer, .right-side{padding-top:20px;}
 }
 
-#refresh {
+/*#refresh {
   color: white;
   background-color:#428bca;
 
-}
+}*/
+
+

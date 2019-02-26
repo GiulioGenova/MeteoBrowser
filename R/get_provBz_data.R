@@ -6,7 +6,7 @@
 #' @param spread whether to spread the table or leave it in long format
 #' @param round the timestamp of the resample. defalutl is "hour" . write "raw" for no resample
 #' @export
-#' @importFrom lubridate as_date  as_datetime floor_date ceiling_date
+#' @importFrom lubridate as_date  as_datetime floor_date ceiling_date with_tz
 #' @importFrom tidyr gather unite spread
 #' @importFrom dplyr bind_rows bind_cols mutate select summarise group_by ungroup filter full_join
 #' @importFrom magrittr %>%
@@ -22,7 +22,8 @@ get_provBz_data<-function(station_sensor,
                           #sensors=unique(get_provBz_sensors()$Sensor),
                           round="hour",spread=FALSE,
                           nstations=NULL,
-                          notScode=FALSE){#
+                          notScode=FALSE,
+                          inshiny=FALSE){#
 
   dateend=as_date(dateend)+1
 
@@ -30,7 +31,7 @@ get_provBz_data<-function(station_sensor,
     n<-nstations
     #datestart <- as_date(datestart)
     #dateend <- as_date(dateend)
-    download<-function(station,datestart,dateend,
+    download_station<-function(station,datestart,dateend,
                        sensors=unique(get_provBz_sensors()$Sensor),
                        round="hour",spread=FALSE,
                        notScode=FALSE){
@@ -41,9 +42,12 @@ get_provBz_data<-function(station_sensor,
                                   notScode=FALSE){
           tryCatch({
 
-            incProgress(amount = 1/n,message = "Downloading... (SCODE-Sensor):",
-                        detail = paste(station,sensor,sep=" - ") )
+            if(inshiny){
 
+              incProgress(amount = 1/n,message = "Downloading... (SCODE-Sensor):",
+                          detail = paste(station,sensor,sep=" - ") )
+
+            }
             data<-downloadMeteo(station_code = station,sensor_code = sensor,
                                 datestart = datestart,dateend = dateend)
 
@@ -55,10 +59,16 @@ get_provBz_data<-function(station_sensor,
 
               df$TimeStamp<-as_datetime(df$TimeStamp,tz="Europe/Berlin")
 
+              df$TimeStamp <- with_tz(df$TimeStamp,tzone = "Etc/GMT-1")
+
+              df$TimeStamp[duplicated(df$TimeStamp,fromLast = T)]<-df$TimeStamp[duplicated(df$TimeStamp,fromLast = T)]-3600
+
               if(round=="raw"){
                 db_final<-df
 
               }else{
+
+                #df= unique( df[ ,  ] )
 
                 sumList = c("N","SD")
 
@@ -77,7 +87,7 @@ get_provBz_data<-function(station_sensor,
                 windList = c("WR")
 
                 db_sum<-df%>%filter(Sensor%in%sumList) %>% #"LT",
-                  group_by(TimeStamp=ceiling_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+                  group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
                   summarise(sum=round(sum(Value,na.rm = T),2)) %>%
                   gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
                   unite(Sensor, Sensor, Variable,sep="_") %>%
@@ -85,14 +95,14 @@ get_provBz_data<-function(station_sensor,
 
 
                 db_mean<-df%>%filter(!Sensor%in%notmeanList) %>%
-                  group_by(TimeStamp=ceiling_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+                  group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
                   summarise(mean=round(mean(Value,na.rm = T),2)) %>%
                   gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
                   unite(Sensor, Sensor, Variable,sep="_") %>%
                   ungroup
 
                 db_min_max<-df%>%filter(Sensor%in%minmaxList) %>%
-                  group_by(TimeStamp=ceiling_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+                  group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
                   summarise(min=round(min(Value,na.rm = T),2),
                             max=round(max(Value,na.rm = T),2)) %>%
                   gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
@@ -111,7 +121,7 @@ get_provBz_data<-function(station_sensor,
                                                                                 ifelse(Value>292.5 & Value<=337.5,8,
                                                                                        ifelse(Value>292.5 & Value<=360,1,NA))))))))))%>%
 
-                  group_by(TimeStamp=ceiling_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+                  group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
 
                   summarise(Dir=as.numeric(names(which.max(table(Value,useNA = "no"))))) %>%
                   gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
@@ -120,7 +130,7 @@ get_provBz_data<-function(station_sensor,
 
 
                 #           db_na<-df%>%
-                #             group_by(TimeStamp=ceiling_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+                #             group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
                 #             summarise(na=sum(is.na(Value))) %>%
                 #             gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
                 #             unite(Sensor, Sensor, Variable,sep="_") %>%
@@ -154,7 +164,7 @@ get_provBz_data<-function(station_sensor,
       }, error = function(e){NULL})
     }
 
-    db<-pblapply(unique(station_sensor$SCODE), download,datestart = datestart,dateend = dateend,
+    db<-pblapply(unique(station_sensor$SCODE), download_station,datestart = datestart,dateend = dateend,
                  sensors=sensors,round=round,spread=spread,
                  notScode=notScode)
 
@@ -163,30 +173,30 @@ get_provBz_data<-function(station_sensor,
     db_all <- db_all %>%
       filter(TimeStamp < dateend)
 
-    db_all$TimeStamp<-as_datetime(db_all$TimeStamp,tz="Europe/Berlin")
-
+    #db_all$TimeStamp<-as_datetime(db_all$TimeStamp,tz="Europe/Berlin")
+    #db_all$TimeStamp <- with_tz(db_all$TimeStamp,tzone = "Europe/Berlin")
     if(spread){
 
-      if(round=="raw"){
-
-        splitted<-split(db_all,db_all$Sensor)
-
-        splitted_rowid<-lapply(splitted, function(x) {
-          x %>% mutate(idrow = row_number()) %>%
-            spread(key = Sensor,value = Value) %>%
-            select(-idrow)
-        })
-
-        merged<-Reduce(function(...) merge(..., all = TRUE),
-                       splitted_rowid)
-        db_all<-merged
-
-      }else{
+      # if(round=="raw"){
+      #
+      #   splitted<-split(db_all,db_all$Sensor)
+      #
+      #   splitted_rowid<-lapply(splitted, function(x) {
+      #     x %>% mutate(idrow = row_number()) %>%
+      #       spread(key = Sensor,value = Value) %>%
+      #       select(-idrow)
+      #   })
+      #
+      #   merged<-Reduce(function(...) merge(..., all = TRUE),
+      #                  splitted_rowid)
+      #   db_all<-merged
+      #
+      # }else{
 
         db_all<-db_all %>%
           spread(Sensor, Value)
 
-      }
+      #}
     }
 
     db_all

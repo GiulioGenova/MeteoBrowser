@@ -551,8 +551,8 @@ server <- function(input, output,session) {
     sensors<-StatSens$sensors
 
     datestart<-as.character(input$daterange[1])
-    dateend<-as.character(as_date(input$daterange[2])+1)
-
+    dateend<-as.character(input$daterange[2])
+    #dateend<-as.character(as_date(input$daterange[2])+1)
     round<-as.character(translation[grep(input$round,translation[,input$language]),"key"])
     #round<-input$round
     gather<-as.character(translation[grep(input$gather,translation[,input$language]),"key"])
@@ -571,7 +571,8 @@ server <- function(input, output,session) {
         db<-get_provBz_data(station_sensor=station_sensor,
                             datestart=datestart,
                             dateend=dateend,nstations=nstations,
-                            round=round,spread=spread)#
+                            round=round,spread=spread,
+                            inshiny=TRUE)#
 
 
         tab<-tot_tab %>% dplyr::select(SCODE,NAME)
