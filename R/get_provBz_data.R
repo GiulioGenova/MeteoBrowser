@@ -6,7 +6,7 @@
 #' @param spread whether to spread the table or leave it in long format
 #' @param round the timestamp of the resample. defalutl is "hour" . write "raw" for no resample
 #' @export
-#' @importFrom lubridate as_date  as_datetime floor_date
+#' @importFrom lubridate as_date  as_datetime floor_date ceiling_date
 #' @importFrom tidyr gather unite spread
 #' @importFrom dplyr bind_rows bind_cols mutate select summarise group_by ungroup filter full_join
 #' @importFrom magrittr %>%
@@ -62,7 +62,7 @@ get_provBz_data<-function(station_sensor,
 
 
           db_sum<-df%>%filter(Sensor%in%c("N","SD")) %>% #"LT",
-            group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+            group_by(TimeStamp=ceiling_date(TimeStamp,unit = round),SCODE,Sensor)%>%
             summarise(sum=round(sum(Value,na.rm = T),2)) %>%
             gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
             unite(Sensor, Sensor, Variable,sep="_") %>%
@@ -70,14 +70,14 @@ get_provBz_data<-function(station_sensor,
 
 
           db_mean<-df%>%filter(!Sensor%in%c("N","WR","SD","WG.BOE")) %>%
-            group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+            group_by(TimeStamp=ceiling_date(TimeStamp,unit = round),SCODE,Sensor)%>%
             summarise(mean=round(mean(Value,na.rm = T),2)) %>%
             gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
             unite(Sensor, Sensor, Variable,sep="_") %>%
             ungroup
 
           db_min_max<-df%>%filter(Sensor%in%c("LT","LF")) %>%
-            group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+            group_by(TimeStamp=ceiling_date(TimeStamp,unit = round),SCODE,Sensor)%>%
             summarise(min=round(min(Value,na.rm = T),2),
                       max=round(max(Value,na.rm = T),2)) %>%
             gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
@@ -96,7 +96,7 @@ get_provBz_data<-function(station_sensor,
                                                                           ifelse(Value>292.5 & Value<=337.5,8,
                                                                                  ifelse(Value>292.5 & Value<=360,1,NA))))))))))%>%
 
-            group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+            group_by(TimeStamp=ceiling_date(TimeStamp,unit = round),SCODE,Sensor)%>%
 
             summarise(Dir=as.numeric(names(which.max(table(Value,useNA = "no"))))) %>%
             gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
@@ -105,7 +105,7 @@ get_provBz_data<-function(station_sensor,
 
 
 #           db_na<-df%>%
-#             group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+#             group_by(TimeStamp=ceiling_date(TimeStamp,unit = round),SCODE,Sensor)%>%
 #             summarise(na=sum(is.na(Value))) %>%
 #             gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
 #             unite(Sensor, Sensor, Variable,sep="_") %>%
