@@ -611,7 +611,24 @@ server <- function(input, output,session) {
     #stations<-left_join(stations_sel,se_spread)
     #stationsSelNot<-left_join(stations_selNot,se_spread)
 
-    proxy <- leafletProxy("map")%>% clearMarkers() #%>% removeDrawToolbar(clearFeatures = TRUE)
+    proxy <- leafletProxy("map")%>% clearMarkers()
+
+
+
+    if(length(stations)!= 0){
+
+      proxy <- proxy %>%
+        fitBounds(lng1 = max(stations$LONG),lat1 = max(stations$LAT),
+                  lng2 = min(stations$LONG),lat2 = min(stations$LAT))
+
+    }else{
+
+      proxy <- proxy %>%
+      fitBounds(lng1 = max(stationsSelNot$LONG),lat1 = max(stationsSelNot$LAT),
+                lng2 = min(stationsSelNot$LONG),lat2 = min(stationsSelNot$LAT))
+
+    }
+    #%>% removeDrawToolbar(clearFeatures = TRUE)
 
     #proxy %>% removeControl('draw')
     #proxy %>% clearGroup('draw')
