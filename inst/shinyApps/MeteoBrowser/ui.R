@@ -89,15 +89,16 @@ ui <- dashboardPage(#useShinyjs(),
                     verbatimTextOutput("selected_listSensors"),
                     collapsible = T)
 
-              )
-              ,fluidRow(
-
-                #helpText("Select stations and parameters you want to dowload by filtering the table below.",
-                #         "To stop the download refresh the page"),
-                #htmlOutput("tableInstructions"),
-                DTOutput('table')
-
               ),
+
+              # fluidRow(
+              #
+              #   #helpText("Select stations and parameters you want to dowload by filtering the table below.",
+              #   #         "To stop the download refresh the page"),
+              #   #htmlOutput("tableInstructions"),
+              #   DTOutput('table')
+              #
+              # ),
 
               htmlOutput("d1scla1mer"),
               textOutput("Disclaimer")

@@ -214,12 +214,12 @@ server <- function(input, output,session) {
   ### end of moved from UI due to multilanguage
   ###############
 
-  output$legend_tab <- DT::renderDT({
-
-    legendDt<-datatable(legend_tab, filter = 'top',rownames=F,selection="none",
-                        options = list(autoWidth = F,scrollX=T))
-    legendDt
-  })
+  # output$legend_tab <- DT::renderDT({
+  #
+  #   legendDt<-datatable(legend_tab, filter = 'top',rownames=F,selection="none",
+  #                       options = list(autoWidth = F,scrollX=T))
+  #   legendDt
+  # })
 
 
   output$statlist <- renderUI({
