@@ -310,13 +310,39 @@ server <- function(input, output,session) {
 
     if (is.null(input$selStation) || input$selStation=="All") {
 
+      if(is.null(input$selSensor)){
 
-      x <- sort(unique(as.vector(vector)), decreasing = FALSE)
+        x <- sort(unique(as.vector(vector)), decreasing = FALSE)
 
-      updateSelectInput(session, "selSensor",
-                        choices = x
-      )
+        updateSelectInput(session, "selSensor",
+                          choices = x
+        )
+      }else{
 
+        if(input$language=="it"){
+
+          tab_sel= tot_tab %>% filter(DESC_I %in% input$selSensor,
+                                      NAME %in% input$selStation)
+          x <- sort(unique(as.vector(tab_sel$DESC_I)), decreasing = FALSE)
+
+        }else if(input$language=="de"){
+
+          tab_sel= tot_tab %>% filter(DESC_D %in% input$selSensor,
+                                      NAME %in% input$selStation)
+          x <- sort(unique(as.vector(tab_sel$DESC_D)), decreasing = FALSE)
+        }
+        else{
+
+          tab_sel= tot_tab %>% filter(DESC_E %in% input$selSensor,
+                                      NAME %in% input$selStation)
+          x <- sort(unique(as.vector(tab_sel$DESC_E)), decreasing = FALSE)
+        }
+
+
+        updateSelectInput(session, "selSensor",
+                          choices = x,selected = input$selSensor
+        )
+      }
     }else{
 
       x=tot_tab[tot_tab$NAME%in%input$selStation,
@@ -325,7 +351,7 @@ server <- function(input, output,session) {
       x=unique(x)
 
       updateSelectInput(session, "selSensor",
-                        choices = x
+                        choices = x,selected = input$selSensor
       )
 
 
@@ -633,8 +659,8 @@ server <- function(input, output,session) {
 
       proxy <- proxy %>%
         flyToBounds(lng1 = max(stations$LONG),lat1 = max(stations$LAT),
-                  lng2 = min(stations$LONG),lat2 = min(stations$LAT),
-                  options = list(maxZoom = 12))
+                    lng2 = min(stations$LONG),lat2 = min(stations$LAT),
+                    options = list(maxZoom = 12))
 
     }else{
 
