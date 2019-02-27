@@ -28,6 +28,16 @@ ui <- dashboardPage(#useShinyjs(),
       tags$link(rel = "script", type = "js", href = "scr.js")
     ),
 
+    tags$a(
+      href="https://github.com/GiulioGenova/MeteoBrowser",
+      tags$img(style="position: absolute; top: 0; right: 0; border: 0;z-index: 5;z-index: 5000;",
+               src="https://github.blog/wp-content/uploads/2008/12/forkme_right_green_007200.png?resize=135%2C135",
+               alt="Fork me on GitHub",
+               width="135",
+               height="135",
+               class="attachment-full size-full"
+      )
+    ),
     # Boxes need to be put in a row (or column)
     tabItems(
 
@@ -42,7 +52,7 @@ ui <- dashboardPage(#useShinyjs(),
                     uiOutput("sensorlist"),
                     uiOutput("daterange"),
                     div(style="color: red;",
-                    uiOutput("message")
+                        uiOutput("message")
                     ),
 
                     div(style="display: inline-block;vertical-align:top; width: 43%;",uiOutput("round")),
@@ -65,7 +75,7 @@ ui <- dashboardPage(#useShinyjs(),
                             uiOutput("tabChoice")
                         ),
                         div(style="display: inline-block;vertical-align:top; width: 28%;",
-                        uiOutput("dst")
+                            uiOutput("dst")
                         )
                     )
 
