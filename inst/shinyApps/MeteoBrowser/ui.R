@@ -58,11 +58,14 @@ ui <- dashboardPage(#useShinyjs(),
                         uiOutput("messageStatSens")
                     ),
                     div(style=" width: 100%;",
-                        div(style="display: inline-block;vertical-align:top; width: 55%;",
+                        div(style="display: inline-block;vertical-align:top; width: 40%;",
                             uiOutput("save")
                         ),
-                        div(style="display: inline-block;vertical-align:top; width: 40%;",
+                        div(style="display: inline-block;vertical-align:top; width: 22%;",
                             uiOutput("tabChoice")
+                        ),
+                        div(style="display: inline-block;vertical-align:top; width: 28%;",
+                        uiOutput("dst")
                         )
                     )
 

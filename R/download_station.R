@@ -20,7 +20,7 @@
 
 download_station<-function(station,station_sensor,datestart,dateend,
                            sensors=unique(get_provBz_sensors()$Sensor),
-                           round="hour",spread=FALSE,
+                           round="hour",
                            notScode=FALSE,
                            inshiny=FALSE,
                            nstations=NULL){
@@ -30,7 +30,7 @@ download_station<-function(station,station_sensor,datestart,dateend,
     db<-lapply(sensors,
                download_sensor,
                station = station,datestart = datestart,
-               dateend = dateend,round=round,spread=spread,
+               dateend = dateend,round=round,
                notScode=notScode,inshiny=inshiny,nstations=nstations)
 
     db_all<-bind_rows(db)

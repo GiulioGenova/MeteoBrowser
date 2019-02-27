@@ -36,7 +36,7 @@ get_provBz_data<-function(station_sensor,
                  download_station,
                  station_sensor=station_sensor,
                  datestart = datestart,dateend = dateend,
-                 sensors=sensors,round=round,spread=spread,
+                 sensors=sensors,round=round,
                  notScode=notScode,inshiny=inshiny,nstations=nstations)
 
     db_all<-bind_rows(db)

@@ -7,6 +7,8 @@ library(DT)
 library(lubridate)
 library(sp)
 library(dplyr)
+library(tidyr)
+library(jsonlite)
 library(MonalisR)
 library(MeteoBrowser)
 

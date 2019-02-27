@@ -56,3 +56,5 @@ s3lelevrange,Select elevation range [m],Wählen Sie den Höhenbereich [m],Selezi
 d3falutStat,Select one or more stations,Wählen Sie eine oder mehrere Stationen aus,Seleziona una o più stazioni
 d3falutParam,All sensors,Alle Parameter,Tutti i parametri
 messageStatSens,Select at least one station and one parameter,Wählen Sie mindestens eine Station und einen Parameter aus,Seleziona almeno una statione e un parametro
+d5t,daylight saving time,sommerzeit, ora legale
+a11st,-All- for all stations,-All- für alle Stationen,-All- per tutte le stazioni

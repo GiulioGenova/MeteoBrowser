@@ -51,6 +51,16 @@ server <- function(input, output,session) {
     #)
   })
 
+  output$dst <- renderUI({
+
+    conditionalPanel(condition = "output.tablebuilt",
+
+                     checkboxInput(inputId = "isdst",
+                                   label = tr("d5t",input$language),value = T)
+
+    )
+
+  })
 
   output$Data  <- renderMenu({
     sidebarMenu(
@@ -200,6 +210,7 @@ server <- function(input, output,session) {
 
   })
 
+
   ### end of moved from UI due to multilanguage
   ###############
 
@@ -210,11 +221,13 @@ server <- function(input, output,session) {
     legendDt
   })
 
+
   output$statlist <- renderUI({
 
     statlist <- sort(unique(as.vector(tot_tab$NAME)), decreasing = FALSE)
     #statlist <- append(statlist, "All", after =  0)
-    selectizeInput("selStation", h4(tags$b(tr("s3l3ctStatTitle",input$language))), c("All",statlist),
+    selectizeInput("selStation", tags$div(h4(tags$b(tr("s3l3ctStatTitle",input$language))),h6(tr("a11st",input$language))),#tags$div(h4(tags$b(tr("s3l3ctStatTitle",input$language))),"casta")
+                   c("All",statlist),
                    multiple = TRUE,
                    #selected = "Salurn / Salorno",
                    options = list(
@@ -556,10 +569,10 @@ server <- function(input, output,session) {
     round<-as.character(translation[grep(input$round,translation[,input$language]),"key"])
     #round<-input$round
     gather<-as.character(translation[grep(input$gather,translation[,input$language]),"key"])
-    if(gather=="wide"){
-      spread=TRUE}else{
-        spread=FALSE
-      }
+    # if(gather=="wide"){
+    #   spread=TRUE}else{
+    #     spread=FALSE
+    #   }
     nstations<-length(station)%>%as.numeric*length(sensors)%>%as.numeric
 
     station_sensor<- get_provBz_sensors() %>%
@@ -571,7 +584,7 @@ server <- function(input, output,session) {
         db<-get_provBz_data(station_sensor=station_sensor,
                             datestart=datestart,
                             dateend=dateend,nstations=nstations,
-                            round=round,spread=spread,
+                            round=round,#spread=spread,
                             inshiny=TRUE)#
 
 
@@ -619,14 +632,15 @@ server <- function(input, output,session) {
     if(length(stations)!= 0){
 
       proxy <- proxy %>%
-        fitBounds(lng1 = max(stations$LONG),lat1 = max(stations$LAT),
-                  lng2 = min(stations$LONG),lat2 = min(stations$LAT))
+        flyToBounds(lng1 = max(stations$LONG),lat1 = max(stations$LAT),
+                  lng2 = min(stations$LONG),lat2 = min(stations$LAT),
+                  options = list(maxZoom = 12))
 
     }else{
 
       proxy <- proxy %>%
-      fitBounds(lng1 = max(stationsSelNot$LONG),lat1 = max(stationsSelNot$LAT),
-                lng2 = min(stationsSelNot$LONG),lat2 = min(stationsSelNot$LAT))
+        fitBounds(lng1 = max(stationsSelNot$LONG),lat1 = max(stationsSelNot$LAT),
+                  lng2 = min(stationsSelNot$LONG),lat2 = min(stationsSelNot$LAT))
 
     }
     #%>% removeDrawToolbar(clearFeatures = TRUE)
@@ -799,15 +813,25 @@ server <- function(input, output,session) {
       #round<-input$round
       gather<-as.character(translation[grep(input$gather,translation[,input$language]),"key"])
       #gather<-input$gather
-      df=D$documents[[1]]
+      db=D$documents[[1]]
 
-      #if(gather=="wide"){
-      #  spread=TRUE}else{
-      #    spread=FALSE
-      #  }
+      if(gather=="wide"){
+        spread=TRUE}else{
+          spread=FALSE
+        }
 
+      if(spread){
+
+        db<-db %>%
+          spread(Sensor, Value)
+
+      }
+
+      if(input$isdst){
+        db$TimeStamp <- with_tz(db$TimeStamp,tzone = "Europe/Berlin")
+      }
       #db=resample_provBz_data(df=df,round=round,spread=spread)
-      db=df
+
       if(input$csvjson=="csv"){
         write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA")
       }else{

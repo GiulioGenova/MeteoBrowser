@@ -5,8 +5,7 @@
 \title{internal function Get data one sensor-sation at a time from province of Bozen monitoring stations.}
 \usage{
 download_sensor(sensor, station, datestart, dateend, round = "hour",
-  spread = FALSE, notScode = FALSE, inshiny = FALSE,
-  nstations = NULL)
+  notScode = FALSE, inshiny = FALSE, nstations = NULL)
 }
 \arguments{
 \item{sensor}{Sensor code}
@@ -19,9 +18,9 @@ download_sensor(sensor, station, datestart, dateend, round = "hour",
 
 \item{round}{the timestamp of the resample. defalutl is "hour" . write "raw" for no resample}
 
-\item{spread}{whether to spread the table or leave it in long format}
-
 \item{notScode}{if TRUE SCODE column is deleted}
+
+\item{spread}{whether to spread the table or leave it in long format}
 }
 \description{
 internal function Get data one sensor-sation at a time from province of Bozen monitoring stations.

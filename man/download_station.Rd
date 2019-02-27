@@ -6,8 +6,7 @@
 \usage{
 download_station(station, station_sensor, datestart, dateend,
   sensors = unique(get_provBz_sensors()$Sensor), round = "hour",
-  spread = FALSE, notScode = FALSE, inshiny = FALSE,
-  nstations = NULL)
+  notScode = FALSE, inshiny = FALSE, nstations = NULL)
 }
 \arguments{
 \item{station}{SCODE of the station}
@@ -18,11 +17,11 @@ download_station(station, station_sensor, datestart, dateend,
 
 \item{round}{the timestamp of the resample. defalutl is "hour" . write "raw" for no resample}
 
-\item{spread}{whether to spread the table or leave it in long format}
-
 \item{notScode}{if TRUE SCODE column is deleted}
 
 \item{sensor}{Sensor code}
+
+\item{spread}{whether to spread the table or leave it in long format}
 }
 \description{
 internal function Get data form one sation and multiple sensors from province of Bozen monitoring stations.
