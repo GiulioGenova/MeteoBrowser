@@ -113,8 +113,11 @@
     </p>
     <p>To run the application locally run the following code:</p>
     <pre><code>
-    <p>if (!require("shiny")) install.packages("shiny")
-shiny::runGitHub('GiulioGenova/MeteoBrowser',subdir="app",launch.browser = TRUE)</p>
+    <p>if(!require(devtools)) install.packages("devtools")
+
+devtools::install_github("GiulioGenova/MeteoBrowser")
+
+run_app('MeteoBrowser')</p>
     </code></pre>
     <p>This will automatically install the packages needed on your machine (the first time you run it only) and then run the app.</p>
     <br/>

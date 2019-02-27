@@ -114,8 +114,11 @@
     </p>
     <p>Um die Anwendung zu starten, führen Sie die folgende Zeichenkette aus:</p>
     <pre><code>
-    <p>if (!require("shiny")) install.packages("shiny")
-shiny::runGitHub('GiulioGenova/MeteoBrowser',subdir="app",launch.browser = TRUE)</p>
+    <p>if(!require(devtools)) install.packages("devtools")
+
+devtools::install_github("GiulioGenova/MeteoBrowser")
+
+run_app('MeteoBrowser')</p>
     </code></pre>
     <p>Dadurch werden automatisch alle notwendigen Pakete auf Ihrem Computer installiert (nur bei der ersten Ausführung erforderlich) und die Webanwendung wird gestartet.</p>
     <br/>
