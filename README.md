@@ -16,11 +16,7 @@ run_app('MeteoBrowser')
 
 A stable online version is available here:
 
-https://euracalpenv.shinyapps.io/MeteoBrowserSouthTyrol/
-
-And a dev version here:
-
-https://giuliogenova.shinyapps.io/ODBZ/
+http://meteobrowser.eurac.edu/
 
 
 How to:
