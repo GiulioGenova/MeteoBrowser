@@ -236,42 +236,6 @@ server <- function(input, output,session) {
   })
 
 
-  # observe({
-  #
-  #   if (!is.null(input$selSensor)) {
-  #
-  #     if(input$language=="it"){
-  #
-  #       x=tot_tab[tot_tab$DESC_I%in%input$selSensor,"NAME"]
-  #
-  #     }else if(input$language=="de"){
-  #
-  #       x=tot_tab[tot_tab$DESC_D%in%input$selSensor,"NAME"]
-  #
-  #     }else{
-  #
-  #       x=tot_tab[tot_tab$DESC_E%in%input$selSensor,"NAME"]
-  #
-  #     }
-  #
-  #     x=unique(x)
-  #
-  #     updateSelectInput(session, "selStation",
-  #                       choices = x
-  #     )
-  #   }else{
-  #
-  #     x <- sort(unique(as.vector(tot_tab$NAME)), decreasing = FALSE)
-  #
-  #     updateSelectInput(session, "selStation",
-  #                       choices = c("All",x)
-  #     )
-  #
-  #   }
-  #
-  # })
-
-
   output$sensorlist <- renderUI({
     if(input$language=="it"){
 
@@ -295,70 +259,158 @@ server <- function(input, output,session) {
 
   })
 
+
   observe({
 
     if(input$language=="it"){
       column="DESC_I"
-      vector=tot_tab$DESC_I
+      vectorSens=tot_tab$DESC_I
     }else if(input$language=="de"){
       column="DESC_D"
-      vector=tot_tab$DESC_D
+      vectorSens=tot_tab$DESC_D
     }else{
       column="DESC_E"
-      vector=tot_tab$DESC_E
+      vectorSens=tot_tab$DESC_E
     }
 
-    if (is.null(input$selStation) || input$selStation=="All") {
-
-      if(is.null(input$selSensor)){
-
-        x <- sort(unique(as.vector(vector)), decreasing = FALSE)
-
-        updateSelectInput(session, "selSensor",
-                          choices = x
-        )
-      }else{
-
-        if(input$language=="it"){
-
-          tab_sel= tot_tab %>% filter(DESC_I %in% input$selSensor,
-                                      NAME %in% input$selStation)
-          x <- sort(unique(as.vector(tab_sel$DESC_I)), decreasing = FALSE)
-
-        }else if(input$language=="de"){
-
-          tab_sel= tot_tab %>% filter(DESC_D %in% input$selSensor,
-                                      NAME %in% input$selStation)
-          x <- sort(unique(as.vector(tab_sel$DESC_D)), decreasing = FALSE)
-        }
-        else{
-
-          tab_sel= tot_tab %>% filter(DESC_E %in% input$selSensor,
-                                      NAME %in% input$selStation)
-          x <- sort(unique(as.vector(tab_sel$DESC_E)), decreasing = FALSE)
-        }
 
 
-        updateSelectInput(session, "selSensor",
-                          choices = x,selected = input$selSensor
-        )
-      }
-    }else{
+    if ((is.null(input$selStation) ) & is.null(input$selSensor)) {#|| input$selStation=="All"
 
-      x=tot_tab[tot_tab$NAME%in%input$selStation,
-                column]
 
-      x=unique(x)
+      selectedStat <- sort(unique(as.vector(tot_tab$NAME)), decreasing = FALSE)
 
-      updateSelectInput(session, "selSensor",
-                        choices = x,selected = input$selSensor
+      selectedSens <- sort(unique(as.vector(vectorSens)), decreasing = FALSE)
+
+
+      updateSelectInput(session, "selStation",
+                        choices = c("All",selectedStat),selected = NULL
       )
 
+
+      updateSelectInput(session, "selSensor",
+                        choices = selectedSens,selected = NULL
+      )
+
+
+
+    }else if(!is.null(input$selStation) & is.null(input$selSensor)){
+      #all
+      if(any(c("All")%in%input$selStation)){
+
+        selectedStat <- sort(unique(as.vector(tot_tab$NAME)), decreasing = FALSE)
+
+        selectedSens <- sort(unique(as.vector(vectorSens)), decreasing = FALSE)
+
+
+        updateSelectInput(session, "selStation",
+                          choices = c("All",selectedStat),selected = "All"
+        )
+
+
+        updateSelectInput(session, "selSensor",
+                          choices = selectedSens,selected = NULL
+        )
+
+
+      }else{
+
+        selectedStat <- sort(unique(as.vector(tot_tab$NAME)), decreasing = FALSE)
+
+        sel = tot_tab$NAME %in% input$selStation
+        sel = tot_tab[sel,column]
+        selectedSens <- sort(unique(as.vector(sel[[1]])), decreasing = FALSE)
+
+
+        updateSelectInput(session, "selStation",
+                          choices = c("All",selectedStat),selected = input$selStation
+        )
+
+
+        updateSelectInput(session, "selSensor",
+                          choices = selectedSens,selected = NULL
+        )
+
+      }
+
+    }else if(is.null(input$selStation) & !is.null(input$selSensor)){
+
+      if(input$language=="it"){
+        sel = tot_tab %>% filter(DESC_I %in% input$selSensor)
+      }else if(input$language=="de"){
+        sel = tot_tab %>% filter(DESC_D %in% input$selSensor)
+      }else{
+        sel = tot_tab %>% filter(DESC_E %in% input$selSensor)
+      }
+
+      sel = sel$NAME
+
+      selectedStat <- sort(unique(as.vector(sel)), decreasing = FALSE)
+
+      selectedSens <- sort(unique(as.vector(vectorSens)), decreasing = FALSE)
+
+
+      updateSelectInput(session, "selStation",
+                        choices = c("All",selectedStat),selected = NULL
+      )
+
+
+      updateSelectInput(session, "selSensor",
+                        choices = selectedSens,selected = input$selSensor
+      )
+
+
+    }else if(!is.null(input$selStation) & !is.null(input$selSensor)){
+      #all
+      if(any(c("All")%in%input$selStation)){
+
+        selectedStat <- sort(unique(as.vector(tot_tab$NAME)), decreasing = FALSE)
+
+        selectedSens <- sort(unique(as.vector(vectorSens)), decreasing = FALSE)
+
+
+        updateSelectInput(session, "selStation",
+                          choices = c("All",selectedStat),selected = "All"
+        )
+
+
+        updateSelectInput(session, "selSensor",
+                          choices = selectedSens,selected = input$selSensor
+        )
+
+      }else {
+
+
+        if(input$language=="it"){
+          sel1 = tot_tab %>% filter(DESC_I %in% input$selSensor)
+        }else if(input$language=="de"){
+          sel1 = tot_tab %>% filter(DESC_D %in% input$selSensor)
+        }else{
+          sel1 = tot_tab %>% filter(DESC_E %in% input$selSensor)
+        }
+
+        sel1 = sel1$NAME
+
+        selectedStat <- sort(unique(as.vector(sel1)), decreasing = FALSE)
+
+        sel2 = tot_tab$NAME %in% input$selStation
+        sel2 = tot_tab[sel2,column]
+        selectedSens <- sort(unique(as.vector(sel2[[1]])), decreasing = FALSE)
+
+
+        updateSelectInput(session, "selStation",
+                          choices = c("All",selectedStat),selected = input$selStation
+        )
+
+
+        updateSelectInput(session, "selSensor",
+                          choices = selectedSens,selected = input$selSensor
+        )
+      }
 
     }
 
   })
-
 
   output$altitudelist <- renderUI({
 
@@ -873,4 +925,5 @@ server <- function(input, output,session) {
   outputOptions(output, 'tablebuilt', suspendWhenHidden=FALSE)
   outputOptions(output, 'rightdate', suspendWhenHidden=FALSE)
   outputOptions(output, 'rightStationSensor', suspendWhenHidden=FALSE)
+  outputOptions(output, "statlist", priority = 1)
 }
