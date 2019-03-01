@@ -15,7 +15,7 @@ resample_provBz_data<-function(df,round="hour"){
 
   df$TimeStamp <- with_tz(df$TimeStamp,tzone = "Etc/GMT-1")
 
-  df$TimeStamp[duplicated(df$TimeStamp,fromLast = T)]<-df$TimeStamp[duplicated(df$TimeStamp,fromLast = T)]-3600
+  df$TimeStamp[duplicated(df$TimeStamp,fromLast = F)]<-df$TimeStamp[duplicated(df$TimeStamp,fromLast = F)]-3600
 
   if(round=="raw"){
     db_final<-df
