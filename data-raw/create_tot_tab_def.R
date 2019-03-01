@@ -1,6 +1,9 @@
 library(dplyr)
+library(tidyr)
 library(httr)
-library(stringi)
+#library(stringi)
+library(MonalisR)
+library(MeteoBrowser)
 
 u <- tryCatch({
   GET("http://daten.buergernetz.bz.it/services/meteo/v1/sensors") %>% content
@@ -29,15 +32,15 @@ u <- tryCatch({
                                                                                                                   ifelse(DESC_D=="Grundwasserstand","Groundwater level","unknown"))))))))))))))))
 
 
-  tot_tab<<-legend_tab%>%select(-NAME_L,-DESC_L,-DATE,-LAT,-LONG,-VALUE) %>%
+  tot_tab<-legend_tab%>%select(-NAME_L,-DESC_L,-DATE,-LAT,-LONG,-VALUE) %>%
     mutate(NAME = paste(NAME_D,NAME_I,sep=" / ")) %>%
     mutate(DESC_D = paste(DESC_D,UNIT,sep=" - ")) %>%
     mutate(DESC_I = paste(DESC_I,UNIT,sep=" - ")) %>%
     unite(DESC_E,DESC_E,UNIT,sep=" - ")
 
 
-  library(stringi)
-  tot_tab[] <- lapply(tot_tab, function(x) stri_encode(x, "", "UTF-8"))
+  # library(stringi)
+  # tot_tab[] <- lapply(tot_tab, function(x) stri_encode(x, "", "UTF-8"))
 
   tot_tab_def <- tot_tab
 
