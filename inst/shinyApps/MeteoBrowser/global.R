@@ -9,6 +9,7 @@ library(sp)
 library(dplyr)
 library(tidyr)
 library(jsonlite)
+#library(stringi)
 library(MonalisR)
 library(MeteoBrowser)
 

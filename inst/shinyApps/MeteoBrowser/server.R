@@ -616,6 +616,8 @@ server <- function(input, output,session) {
             sensorsName<-unique(filterForSensor$DESC_E)%>%as.character
           }
 
+        #stri_encode(stationName, "", "UTF-8")
+        #stri_encode(sensorsName, "", "UTF-8")
 
         }
       }
@@ -911,7 +913,7 @@ server <- function(input, output,session) {
       #db=resample_provBz_data(df=df,round=round,spread=spread)
 
       if(input$csvjson=="csv"){
-        write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA")
+        write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA",fileEncoding = "UTF-8")
       }else{
         write_json(db,con)
       }
