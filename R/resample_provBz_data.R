@@ -28,12 +28,13 @@ resample_provBz_data<-function(df,round="hour"){
 
     if(round!="hour"){
 
-      minmaxList = c("LT","LF","LD.RED")
+      minList = c("LT","LF","LD.RED")
+      maxList = c("LT","LF","LD.RED","WG.BOE")
 
     }else{
 
-      minmaxList = c()
-
+      minList = c()
+      maxList = c("WG.BOE")
     }
 
     windList = c("WR")
@@ -55,14 +56,19 @@ resample_provBz_data<-function(df,round="hour"){
         unite(Sensor, Sensor, Variable,sep="_") %>%
         ungroup
 
-      db_min_max<-df%>%filter(Sensor%in%minmaxList) %>%
+      db_min<-df%>%filter(Sensor%in%minList) %>%
         group_by(TimeStamp=ceiling_date(TimeStamp,unit = round),SCODE,Sensor)%>%
-        summarise(min=round(min(Value,na.rm = T),2),
-                  max=round(max(Value,na.rm = T),2)) %>%
+        summarise(min=round(min(Value,na.rm = T),2)) %>%
         gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
         unite(Sensor, Sensor, Variable,sep="_") %>%
         ungroup
 
+      db_max<-df%>%filter(Sensor%in%maxList) %>%
+        group_by(TimeStamp=ceiling_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+        summarise(max=round(max(Value,na.rm = T),2)) %>%
+        gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
+        unite(Sensor, Sensor, Variable,sep="_") %>%
+        ungroup
 
       db_wind<-df%>%filter(Sensor%in%windList) %>%
         mutate(Value=ifelse(Value>0 & Value<=22.5,1,
@@ -101,14 +107,19 @@ resample_provBz_data<-function(df,round="hour"){
         unite(Sensor, Sensor, Variable,sep="_") %>%
         ungroup
 
-      db_min_max<-df%>%filter(Sensor%in%minmaxList) %>%
+      db_min<-df%>%filter(Sensor%in%minList) %>%
         group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
-        summarise(min=round(min(Value,na.rm = T),2),
-                  max=round(max(Value,na.rm = T),2)) %>%
+        summarise(min=round(min(Value,na.rm = T),2)) %>%
         gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
         unite(Sensor, Sensor, Variable,sep="_") %>%
         ungroup
 
+      db_max<-df%>%filter(Sensor%in%maxList) %>%
+        group_by(TimeStamp=floor_date(TimeStamp,unit = round),SCODE,Sensor)%>%
+        summarise(max=round(max(Value,na.rm = T),2)) %>%
+        gather(Variable, Value, -Sensor,-TimeStamp,-SCODE) %>%
+        unite(Sensor, Sensor, Variable,sep="_") %>%
+        ungroup
 
       db_wind<-df%>%filter(Sensor%in%windList) %>%
         mutate(Value=ifelse(Value>0 & Value<=22.5,1,
@@ -138,7 +149,7 @@ resample_provBz_data<-function(df,round="hour"){
     #             unite(Sensor, Sensor, Variable,sep="_") %>%
     #             ungroup
 
-    db_final<-bind_rows(db_sum,db_mean,db_min_max,db_wind) %>%
+    db_final<-bind_rows(db_sum,db_mean,db_min,db_max,db_wind) %>%
       mutate(Value=ifelse(Value%in%c(-Inf,Inf,NaN),NA,Value))#,db_na
 
   }
