@@ -14,7 +14,7 @@ devtools::install_github("GiulioGenova/MeteoBrowser")
 and then use the function run_app
 
 ```R
-run_app('MeteoBrowser')
+MeteoBrowser::run_app('MeteoBrowser')
 ```
 
 A stable online version is available here:
@@ -32,8 +32,10 @@ You can choose between different time aggregations. "raw" preserves the timestam
 downloading (usually 5 or 10 minutes). For the other time aggregation options you will get different statistics
 for each measurement in the selected timespan.
 
+![](MeteoBrowser.png)
 
-#Acknowledgements:
+Acknowledgements:
+-------
 
 The application retrieves meteorological and hydrological time series from the South Tyrolean Meteo Open Data 
 API (further documentation http://daten.buergernetz.bz.it/it/dataset/misure-meteo-e-idrografiche)
@@ -42,7 +44,8 @@ Special thanks to Mattia Rossi who has developed the R package "MonalisR" which 
 application. You can find the package here:
 https://gitlab.inf.unibz.it/earth_observation_public/MonalisR
 
-#Disclaimer:
+Disclaimer:
+-------
 
 Meteorologial data downloaded form this app comes with no warranty and has not been validated by the data provider nor by the authors of the app.
 This app is intended only to facilitate retrieving data from the Meteorologial Open Data Suedtirol API
