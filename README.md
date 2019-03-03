@@ -1,4 +1,7 @@
-## Meteo Browser South Tyrol
+Meteo Browser South Tyrol
+========================
+
+
 A Shiny App to download the meteorological time series from the Open Data - Province of Bozen 
 
 To run the application install the library:
@@ -19,7 +22,8 @@ A stable online version is available here:
 http://meteobrowser.eurac.edu/
 
 
-#How to:
+How to:
+-------
 
 Once selected the stations and sensors (also possbile to draw a polygon on the map)  and chosen a date range, 
 you are ready to download (the dataset available refers to the last three years).
