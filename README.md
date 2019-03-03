@@ -37,12 +37,12 @@ for each measurement in the selected timespan.
 In the "Readme" page of the application you will find further information about the app and the data source.
 
 
-# Getting help
+### Getting help
 
 If you encounter a clear bug, please describe it and file it on 
 [github](https://github.com/GiulioGenova/MeteoBrowser/issues).
 
-# Contributing
+### Contributing
 
 If you would like to contribute, please create a [Pull
 Request](https://github.com/GiulioGenova/MeteoBrowser/pulls) and make
