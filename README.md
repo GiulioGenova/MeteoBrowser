@@ -4,7 +4,7 @@ Meteo Browser South Tyrol
 
 A Shiny App to download the meteorological time series from the Open Data - Province of Bozen 
 
-To run the application install the library:
+To run the application install the package:
 
 ```R
 if(!require(devtools)) install.packages("devtools")
@@ -25,7 +25,7 @@ http://meteobrowser.eurac.edu/
 How to:
 -------
 
-Once selected the stations and sensors (also possbile to draw a polygon on the map)  and chosen a date range, 
+Once selected the stations and measurements (also possible to draw a polygon on the map) and chosen a date range, 
 you are ready to download (the dataset available refers to the last three years).
 When download is complete, a "save" icon pops up and you can choose to save a csv or a json file.
 You can choose between different time aggregations. "raw" preserves the timestamp of the sensor you are
@@ -33,6 +33,20 @@ downloading (usually 5 or 10 minutes). For the other time aggregation options yo
 for each measurement in the selected timespan.
 
 ![](https://github.com/GiulioGenova/MeteoBrowser/blob/master/MeteoBrowser.PNG)
+
+In the "Readme" page of the application you will find further information about the app and the data source.
+
+
+## Getting help
+
+If you encounter a clear bug, please describe it and file it on 
+[github](https://github.com/GiulioGenova/MeteoBrowser/issues).
+
+## Contributing
+
+If you would like to contribute, please create a [Pull
+Request](https://github.com/GiulioGenova/MeteoBrowser/pulls) and make
+appropriate applicable changes for review.
 
 Acknowledgements:
 -------
