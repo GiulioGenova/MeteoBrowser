@@ -32,7 +32,7 @@ You can choose between different time aggregations. "raw" preserves the timestam
 downloading (usually 5 or 10 minutes). For the other time aggregation options you will get different statistics
 for each measurement in the selected timespan.
 
-![](MeteoBrowser.png)
+![](https://github.com/GiulioGenova/MeteoBrowser/blob/master/MeteoBrowser.PNG)
 
 Acknowledgements:
 -------
