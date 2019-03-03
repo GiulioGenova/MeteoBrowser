@@ -1,9 +1,9 @@
 #' Get data from province of Bozen monitoring stations.
 #'
-#' @param station_sensor a table with SCODE and Sensor columns.
-#' @param datestart starting date of the timeseries.
-#' @param dateend ending date of the timeseries.
-#' @param spread whether to spread the table or leave it in long format
+#' @param station_sensor a table with SCODE and Sensor columns. You can check SCODES station names and sensors typing MeteoBrowser::tot_tab_def
+#' @param datestart starting date of the timeseries. format "YYYY-MM-DD"
+#' @param dateend ending date of the timeseries. format "YYYY-MM-DD"
+#' @param spread whether to spread the table or leave it in long format. Default is FALSE
 #' @param round the timestamp of the resample. defalutl is "hour" . write "raw" for no resample
 #' @export
 #' @importFrom lubridate as_date  as_datetime floor_date ceiling_date with_tz

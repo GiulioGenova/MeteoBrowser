@@ -1,6 +1,6 @@
-#' translates text into current language
+#' Internal function for the shiny app. Translates text into current language
 #'
-#' @export
+#'@export
 #'
 
 tr <- function(key,l,t=translation){

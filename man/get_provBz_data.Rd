@@ -9,15 +9,15 @@ get_provBz_data(station_sensor, datestart = Sys.Date() - 1,
   nstations = NULL, notScode = FALSE, inshiny = FALSE)
 }
 \arguments{
-\item{station_sensor}{a table with SCODE and Sensor columns.}
+\item{station_sensor}{a table with SCODE and Sensor columns. You can check SCODES station names and sensors typing MeteoBrowser::tot_tab_def}
 
-\item{datestart}{starting date of the timeseries.}
+\item{datestart}{starting date of the timeseries. format "YYYY-MM-DD"}
 
-\item{dateend}{ending date of the timeseries.}
+\item{dateend}{ending date of the timeseries. format "YYYY-MM-DD"}
 
 \item{round}{the timestamp of the resample. defalutl is "hour" . write "raw" for no resample}
 
-\item{spread}{whether to spread the table or leave it in long format}
+\item{spread}{whether to spread the table or leave it in long format. Default is FALSE}
 }
 \description{
 Get data from province of Bozen monitoring stations.

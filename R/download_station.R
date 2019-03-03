@@ -7,7 +7,7 @@
 #' @param spread whether to spread the table or leave it in long format
 #' @param round the timestamp of the resample. defalutl is "hour" . write "raw" for no resample
 #' @param notScode if TRUE SCODE column is deleted
-#' @export
+#'
 #' @importFrom lubridate as_date  as_datetime floor_date ceiling_date with_tz
 #' @importFrom tidyr gather unite spread
 #' @importFrom dplyr bind_rows bind_cols mutate select summarise group_by ungroup filter full_join
