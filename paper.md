@@ -23,7 +23,7 @@ affiliations:
  - name: eurac research, Institute for Earth Observation, Bolzano/Bozen, Italy.
    index: 2
 date: 14 March 2019
-bibliography: article.bib
+bibliography: paper.bib
 ---
 
 # Summary
