@@ -1,6 +1,6 @@
 Meteo Browser South Tyrol
 ========================
-
+[![DOI](https://zenodo.org/badge/135680776.svg)](https://zenodo.org/badge/latestdoi/135680776)
 
 A Shiny App to download the meteorological time series from the Open Data - Province of Bozen 
 
