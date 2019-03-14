@@ -2,10 +2,10 @@
 % Please edit documentation in R/tr.R
 \name{tr}
 \alias{tr}
-\title{translates text into current language}
+\title{Internal function for the shiny app. Translates text into current language}
 \usage{
 tr(key, l, t = translation)
 }
 \description{
-translates text into current language
+Internal function for the shiny app. Translates text into current language
 }
