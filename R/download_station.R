@@ -24,7 +24,7 @@ download_station<-function(station,station_sensor,datestart,dateend,
                            notScode=FALSE,
                            inshiny=FALSE,
                            nstations=NULL){
-  tryCatch({
+  #tryCatch({
     sensors=station_sensor[which(station_sensor$SCODE==station),]$Sensor
 
     db<-lapply(sensors,
@@ -40,5 +40,5 @@ download_station<-function(station,station_sensor,datestart,dateend,
       db_all
     }
 
-  }, error = function(e){NULL})
+  #}, error = function(e){NULL})
 }

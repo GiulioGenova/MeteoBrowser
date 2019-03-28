@@ -27,7 +27,7 @@ get_provBz_data<-function(station_sensor,
 
   dateend=as_date(dateend)+1
 
-  tryCatch({
+  #tryCatch({
     #datestart <- as_date(datestart)
     #dateend <- as_date(dateend)
 
@@ -55,5 +55,5 @@ get_provBz_data<-function(station_sensor,
 
     db_all
 
-  }, error = function(e){NULL})#
+  #}, error = function(e){NULL})#
 }

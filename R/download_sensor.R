@@ -23,7 +23,7 @@ download_sensor<-function(sensor,station,datestart,dateend,
                           round="hour",
                           notScode=FALSE,
                           inshiny=FALSE,nstations=NULL){
-  tryCatch({
+  #tryCatch({
 
     if(inshiny){
 
@@ -42,5 +42,5 @@ download_sensor<-function(sensor,station,datestart,dateend,
     data<-resample_provBz_data(df=data,round=round)
 
 
-  }, error = function(e){NULL})
+  #}, error = function(e){NULL})
 }
