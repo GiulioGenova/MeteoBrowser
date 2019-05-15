@@ -61,7 +61,7 @@ RUN R -e "devtools::install_github('GiulioGenova/MeteoBrowser')"
 RUN mkdir /root/MeteoBrowser
 COPY /MeteoBrowser /root/MeteoBrowser
 
-COPY Rprofile.site /usr/lib/R/etc/
+COPY Rprofile.site /root/MeteoBrowser
   
   EXPOSE 3838
 
