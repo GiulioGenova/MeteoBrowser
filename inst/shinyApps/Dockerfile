@@ -61,8 +61,9 @@ RUN R -e "devtools::install_github('GiulioGenova/MeteoBrowser')"
 RUN mkdir /root/MeteoBrowser
 COPY /MeteoBrowser /root/MeteoBrowser
 
-COPY Rprofile.site /root/MeteoBrowser
-  
-  EXPOSE 3838
+COPY Rprofile.site /usr/lib/R/etc/
+COPY Rprofile.site /root/MeteoBrowser/
+                           
+EXPOSE 3838
 
-CMD ["R", "-e", "shiny::runApp('/root/MeteoBrowser')"]
+CMD ["R", "-e", "shiny::runApp('/root/MeteoBrowser',host='0.0.0.0',port=3838)"]
