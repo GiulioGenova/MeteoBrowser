@@ -27,7 +27,7 @@ download_station<-function(station,station_sensor,datestart,dateend,
   #tryCatch({
   sensors=station_sensor[which(station_sensor$SCODE==station),]$Sensor
 
-  name_tab=getMeteoStat() %>% filter(SCODE==station)
+  name_tab=MonalisR::getMeteoStat() %>% dplyr::filter(SCODE==station)
   name= paste(as.character(name_tab$NAME_D),as.character(name_tab$NAME_I),sep="/")
 
   db<-lapply(sensors,
