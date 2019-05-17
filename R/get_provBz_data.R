@@ -39,21 +39,21 @@ get_provBz_data<-function(station_sensor,
                  sensors=sensors,round=round,
                  notScode=notScode,inshiny=inshiny,nstations=nstations)
 
-    db_all<-bind_rows(db)
+    db<-bind_rows(db)
 
-    db_all <- db_all %>%
+    db <- db %>%
       filter(TimeStamp < dateend)
 
     #db_all$TimeStamp<-as_datetime(db_all$TimeStamp,tz="Europe/Berlin")
     #db_all$TimeStamp <- with_tz(db_all$TimeStamp,tzone = "Europe/Berlin")
     if(spread){
 
-      db_all<-db_all %>%
+      db<-db %>%
         spread(Sensor, Value)
 
     }
 
-    db_all
+    return(db)
 
   #}, error = function(e){NULL})#
 }

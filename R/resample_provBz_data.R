@@ -18,7 +18,7 @@ resample_provBz_data<-function(df,round="hour"){
   df$TimeStamp[duplicated(df$TimeStamp,fromLast = F)]<-df$TimeStamp[duplicated(df$TimeStamp,fromLast = F)]-3600
 
   if(round=="raw"){
-    db_final<-df
+    #db_final<-df
 
   }else{
 
@@ -149,10 +149,10 @@ resample_provBz_data<-function(df,round="hour"){
     #             unite(Sensor, Sensor, Variable,sep="_") %>%
     #             ungroup
 
-    db_final<-bind_rows(db_sum,db_mean,db_min,db_max,db_wind) %>%
+    df<-bind_rows(db_sum,db_mean,db_min,db_max,db_wind) %>%
       mutate(Value=ifelse(Value%in%c(-Inf,Inf,NaN),NA,Value))#,db_na
-
+    remove(db_sum,db_mean,db_min,db_max,db_wind)
   }
 
-  df<-db_final %>% as.data.frame
+  df<- df %>% as.data.frame
 }

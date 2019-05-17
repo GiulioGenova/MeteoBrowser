@@ -668,11 +668,11 @@ server <- function(input, output,session) {
                             inshiny=TRUE)#
 
 
-        tab<-tot_tab %>% dplyr::select(SCODE,NAME)
+        #tab<-tot_tab %>% dplyr::select(SCODE,NAME)
 
-        db<-left_join(db,tab,.before=2) %>% dplyr::select(-SCODE) %>%
-          dplyr::arrange(NAME,TimeStamp) %>% unique()
-
+        #db<-left_join(db,tab,.before=2) %>% dplyr::select(-SCODE) %>%
+        #  dplyr::arrange(NAME,TimeStamp) %>% unique()
+        db<- db %>% dplyr::select(-SCODE)
         db <- db[, c(refcols, setdiff(names(db), refcols))]
 
       })#

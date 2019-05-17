@@ -25,20 +25,25 @@ download_station<-function(station,station_sensor,datestart,dateend,
                            inshiny=FALSE,
                            nstations=NULL){
   #tryCatch({
-    sensors=station_sensor[which(station_sensor$SCODE==station),]$Sensor
+  sensors=station_sensor[which(station_sensor$SCODE==station),]$Sensor
 
-    db<-lapply(sensors,
-               download_sensor,
-               station = station,datestart = datestart,
-               dateend = dateend,round=round,
-               notScode=notScode,inshiny=inshiny,nstations=nstations)
+  name_tab=getMeteoStat() %>% filter(SCODE==station)
+  name= paste(as.character(name_tab$NAME_D),as.character(name_tab$NAME_I),sep="/")
 
-    db_all<-bind_rows(db)
-    if(notScode){
-      db_all<- db_all %>% select(-SCODE)
-    }else{
-      db_all
-    }
+  db<-lapply(sensors,
+             download_sensor,
+             station = station,datestart = datestart,
+             dateend = dateend,round=round,
+             notScode=notScode,inshiny=inshiny,nstations=nstations)
 
+  db<-bind_rows(db)
+  if(notScode){
+    db<- db %>% select(-SCODE)
+  }else{
+    db
+  }
+
+  db$NAME=name
+  return(db)
   #}, error = function(e){NULL})
 }
