@@ -43,7 +43,7 @@ download_station<-function(station,station_sensor,datestart,dateend,
     db
   }
 
-  db$NAME=name
+  db["NAME"]=name
   return(db)
   #}, error = function(e){NULL})
 }
