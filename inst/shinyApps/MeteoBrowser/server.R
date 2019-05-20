@@ -664,7 +664,8 @@ server <- function(input, output,session) {
         db<-get_provBz_data(station_sensor=station_sensor,
                             datestart=datestart,
                             dateend=dateend,nstations=nstations,
-                            round=round,#spread=spread,
+                            round=round,
+                            notScode=TRUE,#spread=spread,
                             inshiny=TRUE)#
 
 
@@ -672,7 +673,7 @@ server <- function(input, output,session) {
 
         #db<-left_join(db,tab,.before=2) %>% dplyr::select(-SCODE) %>%
         #  dplyr::arrange(NAME,TimeStamp) %>% unique()
-        db<- db %>% dplyr::select(-SCODE)
+        #db<- db %>% dplyr::select(-SCODE)
         db <- db[, c(refcols, setdiff(names(db), refcols))]
 
       })#
