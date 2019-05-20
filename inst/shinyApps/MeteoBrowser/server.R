@@ -637,8 +637,12 @@ server <- function(input, output,session) {
     #ids<-input$table_rows_all
     ids <- ids()
 
-    #station<-StatSens()[[1]]
-    #sensors<-StatSens()[[2]]
+    gather<-as.character(translation[grep(input$gather,translation[,input$language]),"key"])
+
+    if(gather=="wide"){
+      spread=TRUE}else{
+        spread=FALSE
+      }
 
     station<-StatSens$station
     sensors<-StatSens$sensors
@@ -665,7 +669,7 @@ server <- function(input, output,session) {
                             datestart=datestart,
                             dateend=dateend,nstations=nstations,
                             round=round,
-                            notScode=TRUE,#spread=spread,
+                            notScode=TRUE,spread=FALSE,sort=FALSE,
                             inshiny=TRUE)#
 
 
@@ -896,17 +900,17 @@ server <- function(input, output,session) {
       #gather<-input$gather
       db=D$documents[[1]]
 
-      if(gather=="wide"){
-        spread=TRUE}else{
-          spread=FALSE
-        }
+       if(gather=="wide"){
+         spread=TRUE}else{
+           spread=FALSE
+         }
 
-      if(spread){
+       if(spread){
 
-        db<-db %>%
-          spread(Sensor, Value)
+         db<-db %>%
+           spread(Sensor, Value)
 
-      }
+       }
 
       if(input$isdst){
         db$TimeStamp <- with_tz(db$TimeStamp,tzone = "Europe/Berlin")

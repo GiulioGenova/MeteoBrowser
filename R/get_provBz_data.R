@@ -23,7 +23,8 @@ get_provBz_data<-function(station_sensor,
                           round="hour",spread=FALSE,
                           nstations=NULL,
                           notScode=FALSE,
-                          inshiny=FALSE){#
+                          inshiny=FALSE,
+                          sort=TRUE){#
 
   dateend=as_date(dateend)+1
 
@@ -37,7 +38,8 @@ get_provBz_data<-function(station_sensor,
                  station_sensor=station_sensor,
                  datestart = datestart,dateend = dateend,
                  sensors=sensors,round=round,
-                 notScode=notScode,inshiny=inshiny,nstations=nstations)
+                 notScode=notScode,inshiny=inshiny,nstations=nstations,
+                 spread=spread,sort=sort)
 
     db<-bind_rows(db)
 
@@ -46,12 +48,12 @@ get_provBz_data<-function(station_sensor,
 
     #db_all$TimeStamp<-as_datetime(db_all$TimeStamp,tz="Europe/Berlin")
     #db_all$TimeStamp <- with_tz(db_all$TimeStamp,tzone = "Europe/Berlin")
-    if(spread){
-
-      db<-db %>%
-        spread(Sensor, Value)
-
-    }
+    # if(spread){
+    #
+    #   db<-db %>%
+    #     spread(Sensor, Value)
+    #
+    # }
 
     return(db)
 

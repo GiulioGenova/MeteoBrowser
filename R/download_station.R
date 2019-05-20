@@ -23,7 +23,9 @@ download_station<-function(station,station_sensor,datestart,dateend,
                            round="hour",
                            notScode=FALSE,
                            inshiny=FALSE,
-                           nstations=NULL){
+                           nstations=NULL,
+                           spread=FALSE,
+                           sort=TRUE){
   #tryCatch({
   sensors=station_sensor[which(station_sensor$SCODE==station),]$Sensor
 
@@ -43,7 +45,20 @@ download_station<-function(station,station_sensor,datestart,dateend,
     db
   }
 
+  if(spread){
+
+    db<-db %>%
+      spread(Sensor, Value)
+
+  }
+
+
   db["NAME"]=name
+
+  if(sort){
+    db <- db %>% dplyr::arrange(NAME)
+
+  }
 
   return(db)
   #}, error = function(e){NULL})

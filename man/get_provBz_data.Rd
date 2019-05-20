@@ -6,7 +6,7 @@
 \usage{
 get_provBz_data(station_sensor, datestart = Sys.Date() - 1,
   dateend = Sys.Date() + 1, round = "hour", spread = FALSE,
-  nstations = NULL, notScode = FALSE, inshiny = FALSE)
+  nstations = NULL, notScode = FALSE, inshiny = FALSE, sort = TRUE)
 }
 \arguments{
 \item{station_sensor}{a table with SCODE and Sensor columns. You can check SCODES station names and sensors typing MeteoBrowser::tot_tab_def}
