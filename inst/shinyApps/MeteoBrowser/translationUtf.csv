@@ -58,3 +58,5 @@ d3falutParam,All sensors,Alle Parameter,Tutti i parametri
 messageStatSens,Select at least one station and one parameter,Wählen Sie mindestens eine Station und einen Parameter aus,Seleziona almeno una statione e un parametro
 d5t,daylight saving time,Sommerzeit, ora legale
 a11st,-All- for all stations,-All- für alle Stationen,-All- per tutte le stazioni
+limitMessageTitle,Oops! Too much data requested in one query,Hoppla! In einer Abfrage wurden zu viele Daten angefordert,Ooops! Troppi dati richiesti in una query
+limitMessageMessage,Please break down your query into sub-queries. Try to decrease the number of stations - parameters - days or time aggregation,Bitte teilen Sie Ihre Anfrage in Unterabfragen auf. Versuchen Sie"," die Anzahl der Stationen - Parameter - Tage oder die Zeitaggregation zu verringern.,Per favore dividi la query in pi"ù" richieste. Prova a diminuire il numero di stazioni - parametri - giorni o l'aggregazione temporale.

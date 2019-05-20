@@ -616,8 +616,8 @@ server <- function(input, output,session) {
             sensorsName<-unique(filterForSensor$DESC_E)%>%as.character
           }
 
-        #stri_encode(stationName, "", "UTF-8")
-        #stri_encode(sensorsName, "", "UTF-8")
+          #stri_encode(stationName, "", "UTF-8")
+          #stri_encode(sensorsName, "", "UTF-8")
 
         }
       }
@@ -663,26 +663,59 @@ server <- function(input, output,session) {
       dplyr::filter(SCODE %in% station,Sensor %in% sensors) %>%
       dplyr::select(SCODE,Sensor)
 
-    if(as_date(datestart)<=dateend & length(station)!=0){
-      withProgress(message = 'Getting data', value = 0, {
-        db<-get_provBz_data(station_sensor=station_sensor,
-                            datestart=datestart,
-                            dateend=dateend,nstations=nstations,
-                            round=round,
-                            notScode=TRUE,spread=FALSE,sort=FALSE,
-                            inshiny=TRUE)#
+    days=as_date(dateend)-as_date(datestart)
+
+    if(round=="raw"){
+      aggregation = 288
+    }else if(round=="hour"){
+      aggregation = 24
+    }else if(round=="day"){
+      aggregation = 1
+    }else if(round=="week"){
+      aggregation = 1/4.5
+    }else if(round=="month"){
+      aggregation = 1/60
+    }else if(round=="year"){
+      aggregation = 1/365
+    }
+
+    mb=((length(sensors)*length(station)*days*aggregation)+(length(station)*days*aggregation*2))*0.00001
+
+    if(mb<=25){
+
+      if(as_date(datestart)<=dateend & length(station)!=0){
+        withProgress(message = 'Getting data', value = 0, {
+          db<-get_provBz_data(station_sensor=station_sensor,
+                              datestart=datestart,
+                              dateend=dateend,nstations=nstations,
+                              round=round,
+                              notScode=TRUE,spread=FALSE,sort=FALSE,
+                              inshiny=TRUE)#
 
 
-        #tab<-tot_tab %>% dplyr::select(SCODE,NAME)
+          #tab<-tot_tab %>% dplyr::select(SCODE,NAME)
 
-        #db<-left_join(db,tab,.before=2) %>% dplyr::select(-SCODE) %>%
-        #  dplyr::arrange(NAME,TimeStamp) %>% unique()
-        #db<- db %>% dplyr::select(-SCODE)
-        db <- db[, c(refcols, setdiff(names(db), refcols))]
+          #db<-left_join(db,tab,.before=2) %>% dplyr::select(-SCODE) %>%
+          #  dplyr::arrange(NAME,TimeStamp) %>% unique()
+          #db<- db %>% dplyr::select(-SCODE)
+          db <- db[, c(refcols, setdiff(names(db), refcols))]
 
-      })#
-    }else{db<-"Error in selecting the date range. First date must be earlier than last date"}
-    D$documents <- list(db)
+        })#
+      }else{db<-"Error in selecting the date range. First date must be earlier than last date"}
+
+      D$documents <- list(db)
+
+    }else{
+
+      showModal(modalDialog(
+        title = tr("limitMessageTitle",input$language),
+        tr("limitMessageMessage",input$language),
+        easyClose = TRUE,
+        footer = NULL
+      ))
+
+    }
+
 
   })
 
@@ -900,17 +933,17 @@ server <- function(input, output,session) {
       #gather<-input$gather
       db=D$documents[[1]]
 
-       if(gather=="wide"){
-         spread=TRUE}else{
-           spread=FALSE
-         }
+      if(gather=="wide"){
+        spread=TRUE}else{
+          spread=FALSE
+        }
 
-       if(spread){
+      if(spread){
 
-         db<-db %>%
-           spread(Sensor, Value)
+        db<-db %>%
+          spread(Sensor, Value)
 
-       }
+      }
 
       if(input$isdst){
         db$TimeStamp <- with_tz(db$TimeStamp,tzone = "Europe/Berlin")
