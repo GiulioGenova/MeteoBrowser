@@ -912,7 +912,7 @@ server <- function(input, output,session) {
         db$TimeStamp <- with_tz(db$TimeStamp,tzone = "Europe/Berlin")
       }
       #db=resample_provBz_data(df=df,round=round,spread=spread)
-
+      db <- db %>% dplyr::arrange(NAME)
       if(input$csvjson=="csv"){
         write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA",fileEncoding = "UTF-8")
       }else{

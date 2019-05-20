@@ -44,7 +44,7 @@ download_station<-function(station,station_sensor,datestart,dateend,
   }
 
   db["NAME"]=name
-  db <- db %>% dplyr::arrange(NAME)
+
   return(db)
   #}, error = function(e){NULL})
 }
