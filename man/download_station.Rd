@@ -6,7 +6,8 @@
 \usage{
 download_station(station, station_sensor, datestart, dateend,
   sensors = unique(get_provBz_sensors()$Sensor), round = "hour",
-  notScode = FALSE, inshiny = FALSE, nstations = NULL)
+  notScode = FALSE, inshiny = FALSE, nstations = NULL,
+  spread = FALSE, sort = TRUE)
 }
 \arguments{
 \item{station}{SCODE of the station}
@@ -19,9 +20,9 @@ download_station(station, station_sensor, datestart, dateend,
 
 \item{notScode}{if TRUE SCODE column is deleted}
 
-\item{sensor}{Sensor code}
-
 \item{spread}{whether to spread the table or leave it in long format}
+
+\item{sensor}{Sensor code}
 }
 \description{
 internal function Get data form one sation and multiple sensors from province of Bozen monitoring stations.

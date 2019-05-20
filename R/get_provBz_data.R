@@ -23,11 +23,12 @@ get_provBz_data<-function(station_sensor,
                           round="hour",spread=FALSE,
                           nstations=NULL,
                           notScode=FALSE,
-                          inshiny=FALSE){#
+                          inshiny=FALSE,
+                          sort=TRUE){#
 
   dateend=as_date(dateend)+1
 
-  tryCatch({
+  #tryCatch({
     #datestart <- as_date(datestart)
     #dateend <- as_date(dateend)
 
@@ -37,23 +38,24 @@ get_provBz_data<-function(station_sensor,
                  station_sensor=station_sensor,
                  datestart = datestart,dateend = dateend,
                  sensors=sensors,round=round,
-                 notScode=notScode,inshiny=inshiny,nstations=nstations)
+                 notScode=notScode,inshiny=inshiny,nstations=nstations,
+                 spread=spread,sort=sort)
 
-    db_all<-bind_rows(db)
+    db<-bind_rows(db)
 
-    db_all <- db_all %>%
+    db <- db %>%
       filter(TimeStamp < dateend)
 
     #db_all$TimeStamp<-as_datetime(db_all$TimeStamp,tz="Europe/Berlin")
     #db_all$TimeStamp <- with_tz(db_all$TimeStamp,tzone = "Europe/Berlin")
-    if(spread){
+    # if(spread){
+    #
+    #   db<-db %>%
+    #     spread(Sensor, Value)
+    #
+    # }
 
-      db_all<-db_all %>%
-        spread(Sensor, Value)
+    return(db)
 
-    }
-
-    db_all
-
-  }, error = function(e){NULL})#
+  #}, error = function(e){NULL})#
 }

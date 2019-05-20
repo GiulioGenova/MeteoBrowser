@@ -55,6 +55,7 @@ RUN sudo R -e "install.packages(c('devtools','remotes','pbapply','httr','jsonlit
 
 
 # install MeteoBrowser package
+
 RUN R -e "devtools::install_github('GiulioGenova/MeteoBrowser')"
 
 # copy the app to the image

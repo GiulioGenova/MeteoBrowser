@@ -637,8 +637,12 @@ server <- function(input, output,session) {
     #ids<-input$table_rows_all
     ids <- ids()
 
-    #station<-StatSens()[[1]]
-    #sensors<-StatSens()[[2]]
+    gather<-as.character(translation[grep(input$gather,translation[,input$language]),"key"])
+
+    if(gather=="wide"){
+      spread=TRUE}else{
+        spread=FALSE
+      }
 
     station<-StatSens$station
     sensors<-StatSens$sensors
@@ -664,15 +668,16 @@ server <- function(input, output,session) {
         db<-get_provBz_data(station_sensor=station_sensor,
                             datestart=datestart,
                             dateend=dateend,nstations=nstations,
-                            round=round,#spread=spread,
+                            round=round,
+                            notScode=TRUE,spread=FALSE,sort=FALSE,
                             inshiny=TRUE)#
 
 
-        tab<-tot_tab %>% dplyr::select(SCODE,NAME)
+        #tab<-tot_tab %>% dplyr::select(SCODE,NAME)
 
-        db<-left_join(db,tab,.before=2) %>% dplyr::select(-SCODE) %>%
-          dplyr::arrange(NAME,TimeStamp) %>% unique()
-
+        #db<-left_join(db,tab,.before=2) %>% dplyr::select(-SCODE) %>%
+        #  dplyr::arrange(NAME,TimeStamp) %>% unique()
+        #db<- db %>% dplyr::select(-SCODE)
         db <- db[, c(refcols, setdiff(names(db), refcols))]
 
       })#
@@ -895,23 +900,23 @@ server <- function(input, output,session) {
       #gather<-input$gather
       db=D$documents[[1]]
 
-      if(gather=="wide"){
-        spread=TRUE}else{
-          spread=FALSE
-        }
+       if(gather=="wide"){
+         spread=TRUE}else{
+           spread=FALSE
+         }
 
-      if(spread){
+       if(spread){
 
-        db<-db %>%
-          spread(Sensor, Value)
+         db<-db %>%
+           spread(Sensor, Value)
 
-      }
+       }
 
       if(input$isdst){
         db$TimeStamp <- with_tz(db$TimeStamp,tzone = "Europe/Berlin")
       }
       #db=resample_provBz_data(df=df,round=round,spread=spread)
-
+      db <- db %>% dplyr::arrange(NAME)
       if(input$csvjson=="csv"){
         write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA",fileEncoding = "UTF-8")
       }else{
