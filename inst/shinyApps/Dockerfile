@@ -16,7 +16,7 @@ libxt-dev \
 libssl-dev \
 libssh2-1-dev \
 #libssl1.0.0 \
-libgit2-dev\
+libgit2-dev \
 libmpfr-dev \
 lbzip2 \
 libfftw3-dev \
