@@ -26,40 +26,40 @@ download_station<-function(station,station_sensor,datestart,dateend,
                            nstations=NULL,
                            spread=FALSE,
                            sort=TRUE){
-  #tryCatch({
-  sensors=station_sensor[which(station_sensor$SCODE==station),]$Sensor
+  tryCatch({
+    sensors=station_sensor[which(station_sensor$SCODE==station),]$Sensor
 
-  name_tab=MonalisR::getMeteoStat() %>% dplyr::filter(SCODE==station)
-  name= paste(as.character(name_tab$NAME_D),as.character(name_tab$NAME_I),sep="/")
+    name_tab=MonalisR::getMeteoStat() %>% dplyr::filter(SCODE==station)
+    name= paste(as.character(name_tab$NAME_D),as.character(name_tab$NAME_I),sep="/")
 
-  db<-lapply(sensors,
-             download_sensor,
-             station = station,datestart = datestart,
-             dateend = dateend,round=round,
-             notScode=notScode,inshiny=inshiny,nstations=nstations)
+    db<-lapply(sensors,
+               download_sensor,
+               station = station,datestart = datestart,
+               dateend = dateend,round=round,
+               notScode=notScode,inshiny=inshiny,nstations=nstations)
 
-  db<-bind_rows(db)
-  if(notScode){
-    db<- db %>% select(-SCODE)
-  }else{
-    db
-  }
+    db<-bind_rows(db)
+    if(notScode){
+      db<- db %>% select(-SCODE)
+    }else{
+      db
+    }
 
-  if(spread){
+    if(spread){
 
-    db<-db %>%
-      spread(Sensor, Value)
+      db<-db %>%
+        spread(Sensor, Value)
 
-  }
+    }
 
 
-  db["NAME"]=name
+    db["NAME"]=name
 
-  if(sort){
-    db <- db %>% dplyr::arrange(NAME)
+    if(sort){
+      db <- db %>% dplyr::arrange(NAME)
 
-  }
+    }
 
-  return(db)
-  #}, error = function(e){NULL})
+    return(db)
+  }, error = function(e){NULL})
 }
