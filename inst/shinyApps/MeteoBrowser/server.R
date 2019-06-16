@@ -682,6 +682,14 @@ server <- function(input, output,session) {
     mb=((length(sensors)*length(station)*days*aggregation)+(length(station)*days*aggregation*2))*0.00001
 
     if(mb<=25){
+      writeLines(paste("n stations:",length(station)))
+      writeLines(paste("n sensors:",length(sensors)))
+      writeLines(paste("datestart:",datestart))
+      writeLines(paste("dateend:",dateend))
+      writeLines(paste("days:",days))
+      writeLines(paste("round:",round))
+      writeLines(paste("records in days:",days*aggregation))
+      writeLines(paste("estimated mb:",mb))
 
       if(as_date(datestart)<=dateend & length(station)!=0){
         withProgress(message = 'Getting data', value = 0, {
@@ -714,6 +722,7 @@ server <- function(input, output,session) {
         footer = NULL
       ))
 
+      writeLines("download request exceeded limits")
     }
 
 
