@@ -36,7 +36,14 @@ for each measurement in the selected timespan.
 
 In the "Readme" page of the application you will find further information about the app and the data source.
 
+### Requirements
 
+- The package depends on: R (>= 3.5.0)
+- Imports from CRAN the following R packages:
+	remotes,pbapply,httr,jsonlite,geojsonio,stringr,tibble,shinyjs,sp,dplyr,spdplyr,lubridate,shinydashboard,shiny,readr,DT,tidyr
+- Imports from github the following R packages:
+	GiulioGenova/MonalisR, rstudio/leaflet,bhaskarvk/leaflet.extras
+	
 ### Getting help
 
 If you encounter a clear bug, please describe it and file it on 
