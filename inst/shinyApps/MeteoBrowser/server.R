@@ -964,7 +964,7 @@ server <- function(input, output,session) {
       }else{
         write_json(db,con)
       }
-
+      remove(db)
     }
 
   )
