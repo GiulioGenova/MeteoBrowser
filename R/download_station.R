@@ -26,7 +26,7 @@ download_station<-function(station,station_sensor,datestart,dateend,
                            nstations=NULL,
                            spread=FALSE,
                            sort=TRUE){
-  #tryCatch({
+  tryCatch({
   sensors=station_sensor[which(station_sensor$SCODE==station),]$Sensor
 
   name_tab=MonalisR::getMeteoStat() %>% dplyr::filter(SCODE==station)
@@ -61,5 +61,5 @@ download_station<-function(station,station_sensor,datestart,dateend,
   }
 
   return(db)
-  #}, error = function(e){NULL})
+  }, error = function(e){NULL})
 }
