@@ -664,13 +664,19 @@ server <- function(input, output,session) {
 
     if(as_date(datestart)<=dateend & length(station)!=0){
       withProgress(message = 'Getting data', value = 0, {
-        db<-get_provBz_data(station_sensor=station_sensor,
-                            datestart=datestart,
-                            dateend=dateend,nstations=nstations,
-                            round=round,
-                            notScode=TRUE,spread=FALSE,sort=FALSE,
-                            inshiny=TRUE)#
+        args=list(station=as.list(station_sensor$SCODE),sensor=as.list(station_sensor$Sensor))
 
+        db = args %>% purrr::pmap(download_and_resample,# or downloadSensor from MeteoBrowser
+                                  datestart = datestart,dateend = dateend,
+                                  round = round,
+                                  nstations=nstations,
+                                  notScode=TRUE,
+                                  spread=FALSE,
+                                  sort=FALSE,
+                                  inshiny=TRUE)
+
+        # bind all downloaded tables
+        db = dplyr::bind_rows(db)
 
         #tab<-tot_tab %>% dplyr::select(SCODE,NAME)
 

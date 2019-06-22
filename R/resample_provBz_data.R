@@ -3,7 +3,7 @@
 #' @param df The dataframe downloaded
 #' @param round the resampling period. Possible options "raw" "hour" "day" "week" "month"
 #' @export
-#' @importFrom lubridate as_date  as_datetime floor_date ceiling_date with_tz
+#' @importFrom lubridate as_date  as_datetime floor_date ceiling_date with_tz tz
 #' @importFrom tidyr gather unite spread
 #' @importFrom dplyr bind_rows bind_cols mutate select summarise group_by ungroup filter full_join
 #' @importFrom magrittr %>%
@@ -11,7 +11,7 @@
 
 resample_provBz_data<-function(df,round="hour"){
 
-  df$TimeStamp<-as_datetime(df$TimeStamp,tz="Europe/Berlin")
+  tz(df$TimeStamp)<-"Europe/Berlin"
 
   df$TimeStamp <- with_tz(df$TimeStamp,tzone = "Etc/GMT-1")
 
@@ -154,5 +154,5 @@ resample_provBz_data<-function(df,round="hour"){
     remove(db_sum,db_mean,db_min,db_max,db_wind)
   }
 
-  df<- df %>% as.data.frame
+  return(df)
 }
