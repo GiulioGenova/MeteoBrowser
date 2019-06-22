@@ -616,8 +616,8 @@ server <- function(input, output,session) {
             sensorsName<-unique(filterForSensor$DESC_E)%>%as.character
           }
 
-        #stri_encode(stationName, "", "UTF-8")
-        #stri_encode(sensorsName, "", "UTF-8")
+          #stri_encode(stationName, "", "UTF-8")
+          #stri_encode(sensorsName, "", "UTF-8")
 
         }
       }
@@ -659,7 +659,7 @@ server <- function(input, output,session) {
     #   }
     nstations<-length(station)%>%as.numeric*length(sensors)%>%as.numeric
 
-    station_sensor<- getMeteoSensor() %>%
+    station_sensor<- getMeteoSensor() %>% distinct() %>%
       dplyr::filter(SCODE %in% station,Sensor %in% sensors)
 
     if(as_date(datestart)<=dateend & length(station)!=0){
@@ -899,17 +899,17 @@ server <- function(input, output,session) {
       #gather<-input$gather
       db=D$documents[[1]]
 
-       if(gather=="wide"){
-         spread=TRUE}else{
-           spread=FALSE
-         }
+      if(gather=="wide"){
+        spread=TRUE}else{
+          spread=FALSE
+        }
 
-       if(spread){
+      if(spread){
 
-         db<-db %>%
-           spread(Sensor, Value)
+        db<-db %>%
+          spread(Sensor, Value)
 
-       }
+      }
 
       if(input$isdst){
         db$TimeStamp <- with_tz(db$TimeStamp,tzone = "Europe/Berlin")
