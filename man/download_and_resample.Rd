@@ -6,7 +6,7 @@
 \usage{
 download_and_resample(sensor, station, datestart, dateend,
   round = "hour", spread = FALSE, notScode = FALSE,
-  inshiny = FALSE, nstations = NULL, sort = TRUE)
+  inshiny = FALSE, nstations = NULL, sort = NULL)
 }
 \arguments{
 \item{sensor}{Sensor to download. You can check SCODES station names and sensors typing MeteoBrowser::tot_tab_def}
@@ -25,7 +25,7 @@ download_and_resample(sensor, station, datestart, dateend,
 
 \item{nstations}{if the function is called in the shiny app: number of stations * sensors. default=NULL}
 
-\item{sort}{if to sort by NAME}
+\item{sort}{column names on which to sort the table. available options: c("NAME","TimeStamp","Sensor","Value")}
 }
 \description{
 Get data from province of Bozen monitoring stations. applies a resample with "resample_provBz_data"

@@ -672,7 +672,7 @@ server <- function(input, output,session) {
                                   nstations=nstations,
                                   notScode=TRUE,
                                   spread=FALSE,
-                                  sort=FALSE,
+                                  #sort="NAME",
                                   inshiny=TRUE)
 
         # bind all downloaded tables
@@ -891,9 +891,13 @@ server <- function(input, output,session) {
         nstat=D$documents[[1]]$NAME %>% unique %>% length %>% as.character
         #paste0(station,'_',round,'_',startdate,'_',enddate,'.csv')
         if(input$csvjson=="csv"){
+
           paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.csv')#,round
+
         }else{
+
           paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.json')#,round
+
         }
       }, error = function(e){"error.csv"})#
 
@@ -906,9 +910,13 @@ server <- function(input, output,session) {
       db=D$documents[[1]]
 
       if(gather=="wide"){
-        spread=TRUE}else{
-          spread=FALSE
-        }
+
+        spread=TRUE
+
+      }else{
+
+        spread=FALSE
+      }
 
       if(spread){
 
@@ -920,12 +928,17 @@ server <- function(input, output,session) {
       if(input$isdst){
         db$TimeStamp <- with_tz(db$TimeStamp,tzone = "Europe/Berlin")
       }
-      #db=resample_provBz_data(df=df,round=round,spread=spread)
+
       db <- db %>% dplyr::arrange(NAME)
+
       if(input$csvjson=="csv"){
+
         write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA",fileEncoding = "UTF-8")
+
       }else{
+
         write_json(db,con)
+
       }
 
     }
