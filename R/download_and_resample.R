@@ -27,16 +27,16 @@ download_and_resample <- function(sensor,station,datestart,dateend,
                                   nstations = NULL,
                                   sort = NULL){
 
-  dateend=as_date(dateend)+1
+  dateend=lubridate::as_date(dateend)+1
 
   tryCatch({
 
-    name_tab=MonalisR::getMeteoStat() %>% dplyr::filter(SCODE==station) %>% distinct()
+    name_tab=MonalisR::getMeteoStat() %>% dplyr::filter(SCODE==station) %>% dplyr::distinct()
     name= paste(as.character(name_tab$NAME_D),as.character(name_tab$NAME_I),sep="/")
 
     if(inshiny){
 
-      incProgress(amount = 1/nstations,message = "Downloading... (SCODE-Sensor):",
+      shiny::incProgress(amount = 1/nstations,message = "Downloading... (SCODE-Sensor):",
                   detail = paste(station,sensor,sep=" - ") )
 
     }
@@ -48,11 +48,11 @@ download_and_resample <- function(sensor,station,datestart,dateend,
     colnames(db)[colnames(db)=="Station"] <- "SCODE"
 
 
-    db<-resample_provBz_data(df=db,round=round)
+    db<-MeteoBrowser::resample_provBz_data(df=db,round=round)
 
     if(notScode){
 
-      db<- db %>% select(-SCODE)
+      db<- db %>% dplyr::select(-SCODE)
 
     }
 
@@ -61,14 +61,14 @@ download_and_resample <- function(sensor,station,datestart,dateend,
 
     if(!is.null(sort)){
 
-      db <- db %>% dplyr::arrange(!!!syms(sort))
+      db <- db %>% dplyr::arrange(!!!dplyr::syms(sort))
 
     }
 
     if(spread){
 
       db<-db %>%
-        spread(Sensor, Value)
+        tidyr::spread(Sensor, Value)
 
     }
 
