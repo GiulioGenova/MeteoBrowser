@@ -657,10 +657,11 @@ server <- function(input, output,session) {
     #   spread=TRUE}else{
     #     spread=FALSE
     #   }
-    nstations<-length(station)%>%as.numeric*length(sensors)%>%as.numeric
 
     station_sensor<- getMeteoSensor() %>% distinct() %>%
       dplyr::filter(SCODE %in% station,Sensor %in% sensors)
+
+    nstations<-nrow(station_sensor)
 
     if(as_date(datestart)<=dateend & length(station)!=0){
       withProgress(message = 'Getting data', value = 0, {
