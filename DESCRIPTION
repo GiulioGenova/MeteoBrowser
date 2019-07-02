@@ -1,6 +1,6 @@
 Package: MeteoBrowser
 Title: A Shiny App to download the meteorological time series from the Open Data - Province of Bozen
-Version: 0.0.0.9000
+Version: 1.0.2
 Authors@R: 
     person(given = "Giulio",
            family = "Genova",

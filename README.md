@@ -40,7 +40,7 @@ In the "Readme" page of the application you will find further information about 
 
 - The package depends on: R (>= 3.5.0)
 - Imports from CRAN the following R packages:
-	remotes,pbapply,httr,jsonlite,geojsonio,stringr,tibble,shinyjs,sp,dplyr,spdplyr,lubridate,shinydashboard,shiny,readr,DT,tidyr
+	  remotes, leaflet.extras, leaflet, httr, jsonlite, sp, dplyr, spdplyr, lubridate, shinydashboard, shiny, MonalisR, tidyr, purrr, magrittr
 - Imports from github the following R packages:
 	GiulioGenova/MonalisR, rstudio/leaflet,bhaskarvk/leaflet.extras
 	
