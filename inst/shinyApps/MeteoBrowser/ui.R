@@ -29,7 +29,7 @@ ui <- dashboardPage(#useShinyjs(),
     ),
 
     tags$a(
-      href="https://github.com/GiulioGenova/MeteoBrowser",
+      href="https://github.com/GiulioGenova/MeteoBrowser",target="_blank",
       tags$img(style="position: absolute; top: 0; right: 0; border: 0;z-index: 5;z-index: 5000;",
                src="https://github.blog/wp-content/uploads/2008/12/forkme_right_green_007200.png?resize=135%2C135",
                alt="Fork me on GitHub",
