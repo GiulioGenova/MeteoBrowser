@@ -36,4 +36,5 @@ Imports:
   readr,
   DT,
   MonalisR,
-  tidyr
+  tidyr,
+  writexl

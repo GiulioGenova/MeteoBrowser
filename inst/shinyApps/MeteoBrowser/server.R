@@ -45,7 +45,7 @@ server <- function(input, output,session) {
     conditionalPanel(condition = "output.tablebuilt",
                      #div(style=" width: 25%;",#display: inline-block;vertical-align:top;
                      radioButtons(inputId = "csvjson",label = tr("tableType",input$language),
-                                  choices = list("csv","json"))
+                                  choices = list("csv","json","xlsx"))
                      #)
     )
     #)
@@ -929,8 +929,10 @@ server <- function(input, output,session) {
         #paste0(station,'_',round,'_',startdate,'_',enddate,'.csv')
         if(input$csvjson=="csv"){
           paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.csv')#,round
-        }else{
+        }else if(input$csvjson=="json"){
           paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.json')#,round
+        }else{
+          paste0(nstat,'stat','_',startdate,'_',enddate,'_',round,'_',gather,'.xlsx')
         }
       }, error = function(e){"error.csv"})#
 
@@ -961,8 +963,10 @@ server <- function(input, output,session) {
       db <- db %>% dplyr::arrange(NAME)
       if(input$csvjson=="csv"){
         write.csv(x=db,file =  con,quote = F,row.names = F,na = "NA",fileEncoding = "UTF-8")
-      }else{
+      }else if(input$csvjson=="json"){
         write_json(db,con)
+      }else{
+        writexl::write_xlsx(db,con)
       }
       remove(db)
     }
