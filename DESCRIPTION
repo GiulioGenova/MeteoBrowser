@@ -35,3 +35,4 @@ Imports:
   data.table,
   glue,
   pbapply
+  writexl

@@ -12,5 +12,5 @@ library(jsonlite)
 #library(stringi)
 library(MonalisR)
 library(MeteoBrowser)
-
+library(writexl)
 initializeApp()
