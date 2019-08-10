@@ -47,7 +47,7 @@ RUN R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cloud.r-proje
 
 # install dependencies of the app
 # R dependecies
-RUN R -e "install.packages(c('devtools','remotes','pbapply','httr','jsonlite','geojsonio','stringr','tibble','shinyjs','dplyr','spdplyr','lubridate','shinydashboard','readr','DT','tidyr','sp','raster','leaflet.providers'))"
+RUN R -e "install.packages(c('devtools','remotes','pbapply','httr','jsonlite','geojsonio','stringr','tibble','shinyjs','dplyr','spdplyr','lubridate','shinydashboard','readr','DT','tidyr','sp','raster'))"
 
 
 # install MeteoBrowser package
