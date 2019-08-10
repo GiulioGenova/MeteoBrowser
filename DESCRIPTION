@@ -20,6 +20,7 @@ Imports:
   remotes,
   leaflet.extras,
   leaflet,
+  leaflet.providers,
   pbapply,
   httr,
   jsonlite,
