@@ -13,7 +13,7 @@ LazyData: true
 RoxygenNote: 6.1.1
 Depends: R (>= 3.5.0)
 Remotes: 
-  mattia6690/MonalisR,
+  mattia6690/MonalisR
 Imports:
   remotes,
   leaflet.extras,
@@ -32,5 +32,5 @@ Imports:
   magrittr,
   data.table,
   glue,
-  pbapply
+  pbapply,
   writexl
