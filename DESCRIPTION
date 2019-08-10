@@ -32,4 +32,5 @@ Imports:
   tidyr,
   purrr,
   magrittr,
-  data.table
+  data.table,
+  glue
