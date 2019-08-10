@@ -966,6 +966,7 @@ server <- function(input, output,session) {
       }else if(input$csvjson=="json"){
         write_json(db,con)
       }else{
+        db$TimeStamp=as.character(db$TimeStamp)
         writexl::write_xlsx(db,con)
       }
       remove(db)
