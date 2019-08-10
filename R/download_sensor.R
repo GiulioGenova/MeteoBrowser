@@ -13,7 +13,6 @@
 #' @importFrom dplyr bind_rows bind_cols mutate select summarise group_by ungroup filter full_join
 #' @importFrom magrittr %>%
 #' @importFrom MonalisR downloadMeteo
-#' @importFrom pbapply pblapply
 #' @importFrom shiny incProgress
 
 

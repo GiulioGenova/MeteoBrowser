@@ -33,4 +33,5 @@ Imports:
   purrr,
   magrittr,
   data.table,
-  glue
+  glue,
+  pbapply
