@@ -20,6 +20,24 @@ server <- function(input, output,session) {
     x
   })
 
+  output$tutorial  <- renderUI({
+    if(input$language=="en"){
+
+      tutrl <- HTML("<iframe width=100% height=100% src=https://www.youtube.com/embed/cnE5FejCV1E frameborder=0 allow= accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture allowfullscreen></iframe>")
+
+    }else if(input$language=="de"){
+
+      tutrl <-HTML("<iframe width=100% height=100% src=https://www.youtube.com/embed/xzxIu1LFffQ  frameborder=0 allow= accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture allowfullscreen></iframe>")
+
+    }else if(input$language=="it"){
+
+      tutrl <- HTML("<iframe width=100% height=100% src=https://www.youtube.com/embed/WAYTsc2ALl4 frameborder=0 allow=accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture allowfullscreen></iframe>")
+
+    }
+    tutrl
+  })
+
+
   ### moved from UI due to multilanguage
   output$d1scla1mer <- renderUI({
     tags$b(tr("d1scla1mer",input$language))
@@ -74,9 +92,9 @@ server <- function(input, output,session) {
     )
   })
 
-  output$legend  <- renderMenu({
+  output$Tutorial  <- renderMenu({
     sidebarMenu(
-      menuItem(tr("LegTab",input$language), tabName = "legend", icon = icon("info-circle"))
+      menuItem("Tutorial", tabName = "Tutorial", icon = icon("info-circle"))
     )
   })
 

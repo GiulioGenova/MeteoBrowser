@@ -111,4 +111,5 @@ border-left-color: #cd4e37;
 
 }*/
 
-
+#tutorial {height: calc(100vh - 180px) !important;
+}
