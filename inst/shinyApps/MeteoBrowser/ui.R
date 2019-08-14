@@ -1,4 +1,4 @@
-
+enableBookmarking("url")
 ui <- dashboardPage(#useShinyjs(),
   title= "Meteo Browser Südtirol",
   skin = "blue",

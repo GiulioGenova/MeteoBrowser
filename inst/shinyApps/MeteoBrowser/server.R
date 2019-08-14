@@ -8,7 +8,7 @@ blu <- awesomeIcons(icon = "ios-close", iconColor = "black",
                     library = "ion", markerColor = "blue")
 
 server <- function(input, output,session) {
-  #observe({
+
   if(is.null(u)){
 
     showModal(modalDialog(
@@ -18,6 +18,20 @@ server <- function(input, output,session) {
       footer = NULL
     ))
   }
+
+  observe({
+    # Trigger this observer every time an input changes
+    reactiveValuesToList(input)
+    session$doBookmark()
+  })
+  onBookmarked(function(url) {
+    updateQueryString(url)
+  })
+  #observe({ #to get the elements of the query
+  #query <- parseQueryString(session$clientData$url_search)
+  # if (!is.null(query[['name']])) {
+  #   updateTextInput(session, "name", value = query[['name']])
+  # }
   #})
   output$about_out  <- renderUI({
     if(input$language=="en"){
