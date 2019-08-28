@@ -24,9 +24,14 @@ get_provBz_data<-function(station_sensor,
                           nstations=NULL,
                           notScode=FALSE,
                           inshiny=FALSE,
-                          sort=TRUE){#
+                          sort=TRUE,
+                          filter_edges=TRUE){#
+
+  datestart_filt=as_datetime(paste(datestart,"00:00:00"),tz="Etc/GMT-1")
+  dateend_filt=as_datetime(paste(dateend,"23:59:59"),tz="Etc/GMT-1")
 
   dateend=as_date(dateend)+2
+  datestart=as_date(datestart)-1
 
   tryCatch({
     #datestart <- as_date(datestart)
@@ -43,9 +48,10 @@ get_provBz_data<-function(station_sensor,
 
     db<-bind_rows(db)
 
-    db <- db %>%
-      filter(TimeStamp <= dateend-2,TimeStamp >= datestart)
-
+    if(filter_edges) {
+      db <- db %>%
+        filter(TimeStamp <= dateend_filt,TimeStamp >= datestart_filt)
+    }
     #db_all$TimeStamp<-as_datetime(db_all$TimeStamp,tz="Europe/Berlin")
     #db_all$TimeStamp <- with_tz(db_all$TimeStamp,tzone = "Europe/Berlin")
     # if(spread){

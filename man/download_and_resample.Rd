@@ -6,7 +6,8 @@
 \usage{
 download_and_resample(sensor, station, datestart, dateend,
   round = "hour", spread = FALSE, notScode = FALSE,
-  inshiny = FALSE, nstations = NULL, sort = NULL)
+  inshiny = FALSE, nstations = NULL, sort = NULL,
+  filter_edges = TRUE)
 }
 \arguments{
 \item{sensor}{Sensor to download. You can check SCODES station names and sensors typing MeteoBrowser::tot_tab_def}

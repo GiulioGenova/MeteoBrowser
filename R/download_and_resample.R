@@ -24,9 +24,13 @@ download_and_resample <- function(sensor,station,datestart,dateend,
                                   notScode = FALSE,
                                   inshiny = FALSE,
                                   nstations = NULL,
-                                  sort = NULL){
+                                  sort = NULL,
+                                  filter_edges=TRUE){
+  datestart_filt=as_datetime(paste(datestart,"00:00:00"),tz="Etc/GMT-1")
+  dateend_filt=as_datetime(paste(dateend,"23:59:59"),tz="Etc/GMT-1")
 
   dateend=lubridate::as_date(dateend)+2
+  datestart=as_date(datestart)-1
 
   tryCatch({
 
@@ -71,9 +75,10 @@ download_and_resample <- function(sensor,station,datestart,dateend,
 
     }
 
-    db <- db %>%
-      filter(TimeStamp <= dateend-2,TimeStamp >= datestart)
-
+    if(filter_edges) {
+      db <- db %>%
+        filter(TimeStamp <= dateend_filt,TimeStamp >= datestart_filt)
+    }
     return(db)
 
   }, error = function(e){NULL})
