@@ -26,7 +26,7 @@ download_and_resample <- function(sensor,station,datestart,dateend,
                                   nstations = NULL,
                                   sort = NULL){
 
-  dateend=lubridate::as_date(dateend)+1
+  dateend=lubridate::as_date(dateend)+2
 
   tryCatch({
 
@@ -36,7 +36,7 @@ download_and_resample <- function(sensor,station,datestart,dateend,
     if(inshiny){
 
       shiny::incProgress(amount = 1/nstations,message = "Downloading... (SCODE-Sensor):",
-                  detail = paste(station,sensor,sep=" - ") )
+                         detail = paste(station,sensor,sep=" - ") )
 
     }
 
@@ -70,6 +70,9 @@ download_and_resample <- function(sensor,station,datestart,dateend,
         tidyr::spread(Sensor, Value)
 
     }
+
+    db <- db %>%
+      filter(TimeStamp <= dateend-2,TimeStamp >= datestart)
 
     return(db)
 

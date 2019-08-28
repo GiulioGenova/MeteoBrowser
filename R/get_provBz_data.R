@@ -26,7 +26,7 @@ get_provBz_data<-function(station_sensor,
                           inshiny=FALSE,
                           sort=TRUE){#
 
-  dateend=as_date(dateend)+1
+  dateend=as_date(dateend)+2
 
   tryCatch({
     #datestart <- as_date(datestart)
@@ -44,7 +44,7 @@ get_provBz_data<-function(station_sensor,
     db<-bind_rows(db)
 
     db <- db %>%
-      filter(TimeStamp < dateend)
+      filter(TimeStamp <= dateend-2,TimeStamp >= datestart)
 
     #db_all$TimeStamp<-as_datetime(db_all$TimeStamp,tz="Europe/Berlin")
     #db_all$TimeStamp <- with_tz(db_all$TimeStamp,tzone = "Europe/Berlin")
