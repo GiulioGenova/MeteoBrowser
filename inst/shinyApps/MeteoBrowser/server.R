@@ -716,7 +716,8 @@ server <- function(input, output,session) {
                               dateend=dateend,nstations=nstations,
                               round=round,
                               notScode=TRUE,spread=FALSE,sort=FALSE,
-                              inshiny=TRUE)#
+                              inshiny=TRUE,
+                              filter_edges=FALSE)#
 
 
           #tab<-tot_tab %>% dplyr::select(SCODE,NAME)
@@ -961,6 +962,11 @@ server <- function(input, output,session) {
       gather<-as.character(translation[grep(input$gather,translation[,input$language]),"key"])
       #gather<-input$gather
       db=D$documents[[1]]
+      datestart_filt=as_datetime(paste(input$daterange[1],"00:00:00"),tz="Etc/GMT-1")
+      dateend_filt=as_datetime(paste(input$daterange[2],"23:59:59"),tz="Etc/GMT-1")
+
+      datestart_filt_dst=as_datetime(paste(input$daterange[1],"00:00:00"),tz="Europe/Berlin")
+      dateend_filt_dst=as_datetime(paste(input$daterange[2],"23:59:59"),tz="Europe/Berlin")
 
       if(gather=="wide"){
         spread=TRUE}else{
@@ -975,7 +981,15 @@ server <- function(input, output,session) {
       }
 
       if(input$isdst){
+
         db$TimeStamp <- with_tz(db$TimeStamp,tzone = "Europe/Berlin")
+        db <- db %>%
+          filter(TimeStamp <= dateend_filt_dst,TimeStamp >= datestart_filt_dst)
+
+      }else{
+
+        db <- db %>%
+          filter(TimeStamp <= dateend_filt,TimeStamp >= datestart_filt)
       }
       #db=resample_provBz_data(df=df,round=round,spread=spread)
       db <- db %>% dplyr::arrange(NAME)
