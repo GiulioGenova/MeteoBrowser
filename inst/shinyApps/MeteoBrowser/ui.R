@@ -1,5 +1,8 @@
 enableBookmarking("url")
-ui <- dashboardPage(#useShinyjs(),
+
+ui <- function(request) {
+
+  dashboardPage(#useShinyjs(),
   title= "Meteo Browser Südtirol",
   skin = "blue",
 
@@ -137,3 +140,4 @@ ui <- dashboardPage(#useShinyjs(),
         )
       )
     )))
+}
