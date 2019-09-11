@@ -8,7 +8,17 @@ blu <- awesomeIcons(icon = "ios-close", iconColor = "black",
                     library = "ion", markerColor = "blue")
 
 server <- function(input, output,session) {
+  #observe({
+  if(is.null(u)){
 
+    showModal(modalDialog(
+      title = "Verbindungsfehler - Errore di connessione - Connection error",
+      "Server nicht verfügbar - Server non disponibile - Server unavailable ",
+      easyClose = FALSE,
+      footer = NULL
+    ))
+  }
+  #})
   output$about_out  <- renderUI({
     if(input$language=="en"){
       x <- includeHTML(file.path(getwd(),"about_EN.html"))
