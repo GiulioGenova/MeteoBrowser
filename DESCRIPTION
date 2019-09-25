@@ -6,7 +6,7 @@ Authors@R:
            family = "Genova",
            role = c("aut", "cre"),
            email = "Giulio.Genova@eurac.edu")
-Description: What the package does (one paragraph).
+Description: Meteo Browser South Tyrol is a user-friendly web-based application that helps to visualize and download the hydro-meteorological time series freely available in South Tyrol, Italy. It is designed for a wide range of users, from common citizens to students as well as researchers, private companies and the public administration. Meteo Browser South Tyrol is a Shiny App inside an R package and can be used on a local machine or accessed on-line. Drop down menus allow the user to select hydro-meteorological station and measurements. A simple map shows where the monitoring stations are, the latest measurements available, and lets the user subset the selected stations geographically by drawing a polygon.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
