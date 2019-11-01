@@ -9,7 +9,7 @@ blu <- awesomeIcons(icon = "ios-close", iconColor = "black",
 
 server <- function(input, output,session) {
 
-  if(is.null(u)){
+  if(is.null(u) | is.null(checkStat)){
 
     showModal(modalDialog(
       title = "Verbindungsfehler - Errore di connessione - Connection error",

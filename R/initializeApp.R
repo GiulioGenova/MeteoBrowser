@@ -24,6 +24,10 @@ initializeApp <- function(){
 
   # Building the table of stations
 
+  checkStat <<- tryCatch({
+    GET("http://daten.buergernetz.bz.it/services/meteo/v1/stations") %>% content
+  }, error = function(e){NULL})#
+
   u <<- tryCatch({
     GET("http://daten.buergernetz.bz.it/services/meteo/v1/sensors") %>% content
   }, error = function(e){NULL})#
