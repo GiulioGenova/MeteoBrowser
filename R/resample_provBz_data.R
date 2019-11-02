@@ -10,8 +10,8 @@
 #'
 
 resample_provBz_data<-function(df,round="hour"){
-
-  tz(df$TimeStamp)<-"Europe/Berlin"
+  df$TimeStamp = as_datetime(df$TimeStamp,tz = "Europe/Berlin")
+  #tz(df$TimeStamp)<-"Europe/Berlin"
 
   df$TimeStamp <- with_tz(df$TimeStamp,tzone = "Etc/GMT-1")
 
