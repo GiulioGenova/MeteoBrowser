@@ -27,12 +27,12 @@ initializeApp <- function(){
   checkStat <<- tryCatch({
     GET("http://daten.buergernetz.bz.it/services/meteo/v1/stations") %>% content
   }, error = function(e){NULL})#
-
+  if(class(checkStat)=="raw"){checkStat <<- NULL}
   u <<- tryCatch({
     GET("http://daten.buergernetz.bz.it/services/meteo/v1/sensors") %>% content
   }, error = function(e){NULL})#
 
-  if(!is.null(u)){
+  if(!is.null(u) & !is.null(checkStat)){
     se<-bind_rows(u)
     se <-se[!duplicated(se[ , 1:2 ]), ]
     st<-getMeteoStat()
