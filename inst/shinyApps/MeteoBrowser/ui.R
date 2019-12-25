@@ -29,12 +29,7 @@ ui <- function(request) {
       tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
         includeCSS("www/node_modules/cookies-eu-banner/css/cookies-eu-banner.default.css"),
-
-        tags$link(rel = "script", type = "js", href = "scr.js"),
-        #includeScript("https://www.googletagmanager.com/gtag/js?id=UA-147978948-1"),
-        #includeScript("google-analytics.js"),
-        #includeScript("node_modules/cookies-eu-banner/dist/cookies-eu-banner.js"),
-
+        tags$link(rel = "script", type = "js", href = "scr.js")
       ),
       tags$a(
         HTML(
@@ -44,9 +39,7 @@ ui <- function(request) {
             <button id="cookies-eu-reject">Reject</button>
             <button id="cookies-eu-accept">Accept</button>
             </div>'
-        )#,
-        #includeScript("www/cookies-eu-banner.js"),
-
+        )
       ),
 
       tags$a(
@@ -158,10 +151,8 @@ ui <- function(request) {
           )
         )
       ),
-      #includeScript("node_modules/cookies-eu-banner/dist/cookies-eu-banner.min.js"),
       tags$script(src = "node_modules/cookies-eu-banner/dist/cookies-eu-banner.min.js"),
       includeScript("www/google-analytics-cookies.js")
-      #includeHTML('<script src="node_modules/cookies-eu-banner/dist/cookies-eu-banner.min.js"></script>'),
     )
 
   )
