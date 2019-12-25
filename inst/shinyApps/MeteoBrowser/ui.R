@@ -28,25 +28,27 @@ ui <- function(request) {
     dashboardBody(
       tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
-        includeCSS("node_modules/cookies-eu-banner/css/cookies-eu-banner.default.css"),
+        includeCSS("www/node_modules/cookies-eu-banner/css/cookies-eu-banner.default.css"),
 
         tags$link(rel = "script", type = "js", href = "scr.js"),
         #includeScript("https://www.googletagmanager.com/gtag/js?id=UA-147978948-1"),
         #includeScript("google-analytics.js"),
-        includeScript("node_modules/cookies-eu-banner/dist/cookies-eu-banner.js"),
-        includeScript("node_modules/cookies-eu-banner/dist/cookies-eu-banner.min.js"),
-        includeScript("www/google-analytics-cookies.js")
-      ),
-      tags$div(
-        HTML(#style='display: none;' # <a href='./read-more.html' id='cookies-eu-more'>Read more</a>
-          "<div id='cookies-eu-banner' >
-               By continuing to visit this site, you accept the use of cookies by Google Analytics for statistical purposes.
+        #includeScript("node_modules/cookies-eu-banner/dist/cookies-eu-banner.js"),
 
-               <button id='cookies-eu-reject'>Reject</button>
-               <button id='cookies-eu-accept'>Accept</button>
-               </div>"
-        )
       ),
+      tags$a(
+        HTML(
+          '<div id="cookies-eu-banner" style="display: none;">
+            By continuing your visit to this site, you accept the use of cookies by Google Analytics to make visits statistics.
+          <a href="./read-more.html" id="cookies-eu-more">Read more</a>
+            <button id="cookies-eu-reject">Reject</button>
+            <button id="cookies-eu-accept">Accept</button>
+            </div>'
+        )#,
+        #includeScript("www/cookies-eu-banner.js"),
+
+      ),
+
       tags$a(
         href="https://github.com/GiulioGenova/MeteoBrowser",target="_blank",
         tags$img(style="position: absolute; top: 0; right: 0; border: 0;z-index: 5;z-index: 5000;",
@@ -155,5 +157,12 @@ ui <- function(request) {
               htmlOutput("tutorial")
           )
         )
-      )))
+      ),
+      #includeScript("node_modules/cookies-eu-banner/dist/cookies-eu-banner.min.js"),
+      tags$script(src = "node_modules/cookies-eu-banner/dist/cookies-eu-banner.min.js"),
+      includeScript("www/google-analytics-cookies.js")
+      #includeHTML('<script src="node_modules/cookies-eu-banner/dist/cookies-eu-banner.min.js"></script>'),
+    )
+
+  )
 }
