@@ -53,7 +53,7 @@ RUN R -e "install.packages(c('devtools','remotes','pbapply','httr','jsonlite','g
 # install MeteoBrowser package
 
 
-RUN R -e "devtools::install_github('GiulioGenova/MeteoBrowser', ref = 'online',force = TRUE)"
+RUN R -e "devtools::install_github('GiulioGenova/MeteoBrowser', ref = 'online')"
 
 
 # copy the app to the image
