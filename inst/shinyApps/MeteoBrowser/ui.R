@@ -34,7 +34,7 @@ ui <- function(request) {
       tags$a(
         HTML(
           '<div id="cookies-eu-banner" style="display: none;">
-            By continuing your visit to this site, you accept the use of cookies by Google Analytics to make visits statistics.
+            By continuing your visit to this site, you accept the eventual use of cookies to make visits statistics.
             <button id="cookies-eu-reject">Reject</button>
             <button id="cookies-eu-accept">Accept</button>
             </div>'
@@ -150,8 +150,7 @@ ui <- function(request) {
           )
         )
       ),
-      tags$script(src = "node_modules/cookies-eu-banner/dist/cookies-eu-banner.min.js"),
-      includeScript("www/google-analytics-cookies.js")
+      tags$script(src = "node_modules/cookies-eu-banner/dist/cookies-eu-banner.min.js")
     )
 
   )
