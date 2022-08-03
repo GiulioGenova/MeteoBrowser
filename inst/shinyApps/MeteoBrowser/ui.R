@@ -28,18 +28,18 @@ ui <- function(request) {
     dashboardBody(
       tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
-        includeCSS("www/node_modules/cookies-eu-banner/css/cookies-eu-banner.default.css"),
+        #includeCSS("www/node_modules/cookies-eu-banner/css/cookies-eu-banner.default.css"),
         tags$link(rel = "script", type = "js", href = "scr.js")
       ),
-      tags$a(
-        HTML(
-          '<div id="cookies-eu-banner" style="display: none;">
-            By continuing your visit to this site, you accept the eventual use of cookies to make visits statistics.
-            <button id="cookies-eu-reject">Reject</button>
-            <button id="cookies-eu-accept">Accept</button>
-            </div>'
-        )
-      ),
+      #tags$a(
+      #  HTML(
+      #    '<div id="cookies-eu-banner" style="display: none;">
+      #      By continuing your visit to this site, you accept the eventual use of cookies to make visits statistics.
+      #      <button id="cookies-eu-reject">Reject</button>
+      #      <button id="cookies-eu-accept">Accept</button>
+      #      </div>'
+      #  )
+      #),
 
       tags$a(
         href="https://github.com/GiulioGenova/MeteoBrowser",target="_blank",
@@ -149,8 +149,8 @@ ui <- function(request) {
               htmlOutput("tutorial")
           )
         )
-      ),
-      tags$script(src = "node_modules/cookies-eu-banner/dist/cookies-eu-banner.min.js")
+      )#,
+      #tags$script(src = "node_modules/cookies-eu-banner/dist/cookies-eu-banner.min.js")
     )
 
   )
